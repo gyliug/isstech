@@ -4,6 +4,8 @@
 entfrm开发平台，是一个以模块化为核心的无代码开发平台，是一个集PC和APP快速开发、系统管理、运维监控、开发工具、OAuth2授权、可视化数据源管理与数据构建、API动态生成与统计、工作流、智能表单设计、微服务骨架等全方位功能于一体的高效、稳定的快速开发平台。
 平台采用Spring Boot 2.X 、Spring Security、Oauth2、Mybatis Plus、Activiti、Flutter等核心技术，前端基于vue-element-admin框架。 参考项目：pig、ruoyi前端。演示地址：http://47.100.3.58/  **满 500 star更新已完成的所有功能**
 ###  entfrm官方交流群：871910881 (进群领取前端UI)
+### 思维导图
+![平台思维导图](http://47.100.3.58/static/show/entfrm.png)
 ### 软件功能
 #### 1.系统管理
  * 机构管理：配置系统组织机构，无限级树结构展现支持数据权限。
@@ -20,18 +22,20 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
 
  * 快捷方式：添加顶部、首页快捷方式。
 
- * 文件管理：文件统一管理。
+ * 文件管理：文件统一管理，集成阿里云、腾讯云、七牛等。
 
  * 终端管理：OAuth2 Password、授权码模式，灵活管理。
 
- * 数据备份：mysql数据库备份与还原。
+ * 数据维护：mysql数据库备份与还原。
 
 #### 2.运维监控
- * 令牌管理：用户登录token管理。
-
  * 定时任务：在线（添加、修改、删除)任务调度包含执行结果日志。
-
+ 
+ * 令牌管理：用户登录token管理。
+ 
  * 数据监控: 监视当前系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
+
+ * 缓存监控：redis缓存监控。
 
  * 服务监控: 监视当前系统CPU、内存、磁盘、堆栈等相关信息。
 
@@ -42,14 +46,32 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
  * 登录日志：系统正常操作日志记录和查询；系统异常信息日志记录和查询。
 
  * 操作日志：系统登录日志记录查询包含登录异常。
-#### 3.开发工具
- * 数据管理：Mysql、SQL Server、PostgreSQL等主流数据库在线管理、数据表管理（新建、修改、删除、查询）、代码生成、数据源管理。
+#### 3.消息系统
+ * 消息模板：消息模板管理与审核。
+ 
+ * 系统消息：包括系统通知、告警等。
+ 
+ * 短信：短信平台集成。
+ 
+ * 邮件：邮件集成。
 
- * API管理：基于数据源动态生成restful api，支持管理、发布、权限控制、api统计。
+#### 4.开发工具
+ * 数据管理：Mysql、SQL Server、PostgreSQL等主流数据库在线管理、数据表管理（新建、修改、删除、查询）、数据源管理与数据转换。
 
- * 智能表单：基于数据源动态生成表单，多终端支持。
+ * 代码生成：支持单表、树表、左树右表代码生成。
+ 
+#### 5.API引擎
+ * 应用管理：应用新增、修改、删除、查看。
+ 
+ * API设计：API在线设计、无代码开发，支持自定义。
+ 
+ * API文档与测试：API文档生成与自动化测试。
+ 
+ * API资源权限：API资源管理、权限控制。
+ 
+ * API统计报表：API使用统计、图表展示。
 
- #### 4.Activiti工作流
+#### 6.流程引擎（Activiti）
  * 模型管理：功能包括模型新增、查看、删除、模型设计、模型部署。
  
  * 流程定义：功能包括流程图查看、流程挂起与激活、流程删除。
@@ -57,7 +79,26 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
  * 请假管理：功能包括请假新增、编辑、查看、删除、导出、提交。
  
  * 流程任务：功能包括流程审批、审批意见列表及流程追踪。
- #### 5.Flutter
+#### 7.表单引擎
+ * 表单设计：表单快速设计。
+ 
+ * 多终端支持：PC、Pad、手机多端适配。
+ 
+ * 表单分享：表单一键分享。
+ 
+ * 表单数据统计：手机填写的表单，支持列表和图表统计。 
+ 
+ * Flutter示例与基础：提供Flutter实例，并集成表单功能。 
+#### 8.数据引擎 
+ * 可视化：快速配置，图表生成。
+ 
+ * 大屏：图表编排，大屏显示。
+ 
+ * 报表：报表设计。
+ 
+#### 9.拓展插件
+ 
+#### 10.分布式与微服务 
  
 ### 代码结构
 ~~~
@@ -97,28 +138,32 @@ entfrm-boot
 ### 演示效果
 <table>
     <tr>
-        <td><img src="http://47.100.3.58/static/img/login.png"/></td>
-        <td><img src="http://47.100.3.58/static/img/home.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/login.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/home.png"/></td>
     </tr>
     <tr>
-        <td><img src="http://47.100.3.58/static/img/dept.png"/></td>
-        <td><img src="http://47.100.3.58/static/img/role.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/dept.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/role.png"/></td>
     </tr>
     <tr>
-        <td><img src="http://47.100.3.58/static/img/user.png"/></td>
-        <td><img src="http://47.100.3.58/static/img/menu.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/user.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/menu.png"/></td>
     </tr>
 	<tr>
-        <td><img src="http://47.100.3.58/static/img/dict.png"/></td>
-        <td><img src="http://47.100.3.58/static/img/oauth.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/dict.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/oauth.png"/></td>
     </tr>	 
     <tr>
-        <td><img src="http://47.100.3.58/static/img/loginLog.png"/></td>
-        <td><img src="http://47.100.3.58/static/img/operLog.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/loginLog.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/operLog.png"/></td>
     </tr>
     <tr>
-        <td><img src="http://47.100.3.58/static/img/datasource.png"/></td>
-        <td><img src="http://47.100.3.58/static/img/job.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/datasource.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/job.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="http://47.100.3.58/static/show/model.png"/></td>
+        <td><img src="http://47.100.3.58/static/show/task.png"/></td>
     </tr>
 </table>
 

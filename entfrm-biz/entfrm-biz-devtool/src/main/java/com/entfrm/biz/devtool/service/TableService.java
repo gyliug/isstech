@@ -3,7 +3,6 @@ package com.entfrm.biz.devtool.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.entfrm.biz.devtool.entity.Table;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,30 +33,6 @@ public interface TableService extends IService<Table> {
     public void updateTable(Table table);
 
     /**
-     * 查询据库列表
-     *
-     * @param table 业务信息
-     * @return 数据库表集合
-     */
-    public List<Table> selectDbTableList(Table table);
-
-    /**
-     * 查询据库列表
-     *
-     * @param tableNames 表名称组
-     * @return 数据库表集合
-     */
-    public List<Table> selectDbTableListByNames(String[] tableNames);
-
-    /**
-     * 查询业务信息
-     *
-     * @param id 业务ID
-     * @return 业务信息
-     */
-    public Table selectTableById(Integer id);
-
-    /**
      * 删除业务信息
      *
      * @param ids 需要删除的数据ID
@@ -65,21 +40,6 @@ public interface TableService extends IService<Table> {
      */
     public void deleteTableByIds(String ids);
 
-    /**
-     * 导入表结构
-     *
-     * @param tableList 导入表列表
-     * @param operName  操作人员
-     */
-    public void importTable(List<Table> tableList, String operName);
-
-    /**
-     * 导入表结构
-     *
-     * @param table 导入表列表
-     * @param operName  操作人员
-     */
-    public Table importTable(Table table, String operName);
 
     /**
      * 预览代码
@@ -89,13 +49,6 @@ public interface TableService extends IService<Table> {
      */
     public Map<String, String> previewCode(Integer tableId);
 
-    /**
-     * 生成代码
-     *
-     * @param tableName 表名称
-     * @return 数据
-     */
-    public byte[] generatorCode(String tableName);
 
     /**
      * 批量生成代码
@@ -105,12 +58,5 @@ public interface TableService extends IService<Table> {
      */
     public byte[] generatorCode(String[] tableNames);
 
-    /**
-     * 查询表名称业务信息
-     *
-     * @param tableName 表名称
-     * @return 业务信息
-     */
-    public Table selectTableByName(String tableName);
 
 }

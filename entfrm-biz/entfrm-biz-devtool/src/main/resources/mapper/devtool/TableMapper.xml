@@ -13,6 +13,7 @@
         <result property="businessName" column="business_name"/>
         <result property="functionName" column="function_name"/>
         <result property="functionAuthor" column="function_author"/>
+        <result property="cols" column="cols"/>
         <result property="options" column="options"/>
         <result property="createBy" column="create_by"/>
         <result property="createTime" column="create_time"/>
@@ -51,15 +52,4 @@
 		and table_name = #{tableName}
 	</select>
 
-    <select id="selectTableById" parameterType="Long" resultMap="TableResult">
-	    SELECT t.id, t.table_name, t.table_comment, t.class_name, t.tpl_category, t.package_name, t.module_name, t.business_name, t.function_name, t.function_author, t.options, t.remarks
-		FROM gen_table t
-		where t.id = #{id}
-	</select>
-
-    <select id="selectTableByName" parameterType="String" resultMap="TableResult">
-	    SELECT t.id, t.table_name, t.table_comment, t.class_name, t.tpl_category, t.package_name, t.module_name, t.business_name, t.function_name, t.function_author, t.options, t.remarks
-		FROM gen_table t
-		where t.table_name = #{tableName}
-	</select>
 </mapper>

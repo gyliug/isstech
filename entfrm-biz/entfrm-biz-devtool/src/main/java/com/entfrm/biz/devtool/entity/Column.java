@@ -1,27 +1,30 @@
 package com.entfrm.biz.devtool.entity;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.entfrm.core.data.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.NotBlank;
-
 /**
  * 代码生成业务字段表 dev_column
  */
 @Data
+
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("dev_column")
 public class Column extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
+    public Column(){}
+
     /**
      * 编号
      */
+    @TableId
     private Integer id;
 
     /**
@@ -52,8 +55,12 @@ public class Column extends BaseEntity {
     /**
      * JAVA字段名
      */
-    @NotBlank(message = "Java属性不能为空")
     private String javaField;
+
+    /**
+     * 默认值
+     */
+    private String defValue;
 
     /**
      * 是否主键（1是）

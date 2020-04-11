@@ -4,9 +4,10 @@ import cn.hutool.core.util.StrUtil;
 import com.entfrm.biz.devtool.config.GenConfig;
 import com.entfrm.biz.devtool.entity.Column;
 import com.entfrm.biz.devtool.entity.Table;
-import com.entfrm.core.base.constant.GenConstants;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 代码生成器 工具类
@@ -97,5 +98,81 @@ public class GenUtil {
         } else {
             return 0;
         }
+    }
+
+    public static List<Column> initColumns(){
+        List<Column> list = new ArrayList<>();
+        Column column1 = new Column();
+        column1.setColumnName("id");
+        column1.setColumnComment("编号");
+        column1.setColumnType("int(11)");
+        column1.setJavaType("Integer");
+        column1.setJavaField("id");
+        column1.setIsPk("1");
+        column1.setIsIncrement("1");
+        column1.setIsList("1");
+        column1.setQueryType("eq");
+        column1.setHtmlType("input");
+        list.add(column1);
+        Column column2 = new Column();
+        column2.setColumnName("create_by");
+        column2.setColumnComment("创建人");
+        column2.setColumnType("varchar(60)");
+        column2.setJavaType("String");
+        column2.setJavaField("createBy");
+        column2.setQueryType("eq");
+        column2.setHtmlType("input");
+        list.add(column2);
+        Column column3 = new Column();
+        column3.setColumnName("create_time");
+        column3.setColumnComment("创建时间");
+        column3.setColumnType("datetime");
+        column3.setJavaType("Date");
+        column3.setJavaField("createTime");
+        column3.setIsQuery("1");
+        column3.setIsList("1");
+        column3.setQueryType("between");
+        column3.setHtmlType("datetime");
+        list.add(column3);
+        Column column4 = new Column();
+        column4.setColumnName("update_by");
+        column4.setColumnComment("更新人");
+        column4.setColumnType("varchar(60)");
+        column4.setJavaType("String");
+        column4.setJavaField("updateBy");
+        column4.setQueryType("eq");
+        column4.setHtmlType("input");
+        list.add(column4);
+        Column column5 = new Column();
+        column5.setColumnName("update_time");
+        column5.setColumnComment("更新时间");
+        column5.setColumnType("datetime");
+        column5.setJavaType("Date");
+        column5.setJavaField("updateTime");
+        column5.setQueryType("between");
+        column5.setHtmlType("datetime");
+        list.add(column5);
+        Column column6 = new Column();
+        column6.setColumnName("remarks");
+        column6.setColumnComment("备注");
+        column6.setColumnType("varchar(255)");
+        column6.setJavaType("String");
+        column6.setJavaField("remarks");
+        column6.setIsAdd("1");
+        column6.setIsEdit("1");
+        column6.setQueryType("eq");
+        column6.setHtmlType("textarea");
+        list.add(column6);
+        Column column7 = new Column();
+        column7.setColumnName("del_flag");
+        column7.setColumnComment("删除标识（0-正常，1-删除）");
+        column7.setColumnType("char(1)");
+        column7.setJavaType("String");
+        column7.setJavaField("delFlag");
+        column7.setDefValue("0");
+        column7.setQueryType("eq");
+        column7.setHtmlType("input");
+        list.add(column7);
+        return list;
     }
 }

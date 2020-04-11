@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * 定时任务执行日志表
  *
- * @author tumengtech
+ * @author entfrm
  * @date 2019-06-28
  */
 @Data

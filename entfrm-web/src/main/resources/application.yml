@@ -36,27 +36,22 @@ user:
 
 # Spring配置
 spring:
-  # 模板引擎
-  thymeleaf:
-    mode: HTML
-    encoding: utf-8
-    # 禁用缓存
-    cache: false
   # 资源信息
   messages:
     # 国际化资源文件路径
     basename: i18n/messages
     encoding: utf-8
+  # 序列化
   jackson:
     time-zone: GMT+8
-    date-format: yyyy/MM/dd HH:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss
   profiles:
     active: druid
   # 文件上传
   servlet:
-     multipart:
-       max-file-size:  50MB
-       max-request-size:  30MB
+    multipart:
+      max-file-size:  50MB
+      max-request-size:  30MB
   # 服务模块
   devtools:
     restart:

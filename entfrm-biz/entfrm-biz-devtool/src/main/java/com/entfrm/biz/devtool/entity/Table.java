@@ -95,6 +95,11 @@ public class Table extends BaseEntity {
     private String options;
 
     /**
+     * 分栏
+     */
+    private String cols;
+
+    /**
      * 树编码字段
      */
     @TableField(exist = false)

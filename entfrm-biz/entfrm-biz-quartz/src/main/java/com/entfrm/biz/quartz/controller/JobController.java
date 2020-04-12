@@ -13,7 +13,6 @@ import com.entfrm.biz.quartz.service.JobService;
 import com.entfrm.biz.quartz.util.TaskUtil;
 import com.entfrm.core.base.api.R;
 import com.entfrm.core.log.annotation.OperLog;
-import com.entfrm.core.security.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import org.quartz.Scheduler;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -83,31 +82,12 @@ public class JobController {
     @PutMapping
     @PreAuthorize("@ps.hasPerm('job_edit')")
     public R updateById(@RequestBody Job job) {
-        Job queryJob = this.jobService.getById(job.getId());
+        Job queryJob = jobService.getById(job.getId());
         if (EntfrmQuartzEnum.JOB_STATUS_NOT_RUNNING.getType().equals(queryJob.getJobStatus())) {
-            this.taskUtil.addOrUpateJob(job, scheduler);
+            taskUtil.addOrUpateJob(job, scheduler);
             jobService.updateById(job);
         } else if (EntfrmQuartzEnum.JOB_STATUS_RELEASE.getType().equals(queryJob.getJobStatus())) {
             jobService.updateById(job);
-        }
-        return R.ok();
-    }
-
-    /**
-     * 定时任务状态修改
-     */
-    @OperLog("定时任务状态更改")
-    @PreAuthorize("@ss.hasPermi('job_changeStatus')")
-    @PutMapping("/changeStatus")
-    public R changeStatus(@RequestBody Job job) {
-        Job newJob = jobService.getById(job.getId());
-        if (newJob != null) {
-            if (EntfrmQuartzEnum.JOB_STATUS_NOT_RUNNING.getType().equals(job.getJobStatus())) {
-                this.taskUtil.addOrUpateJob(job, scheduler);
-                jobService.updateById(job);
-            } else if (EntfrmQuartzEnum.JOB_STATUS_RELEASE.getType().equals(job.getJobStatus())) {
-                jobService.updateById(job);
-            }
         }
         return R.ok();
     }
@@ -122,12 +102,12 @@ public class JobController {
     @DeleteMapping("/{id}")
     @PreAuthorize("@ps.hasPerm('job_del')")
     public R removeById(@PathVariable Integer id) {
-        Job queryJob = this.jobService.getById(id);
+        Job queryJob = jobService.getById(id);
         if (EntfrmQuartzEnum.JOB_STATUS_NOT_RUNNING.getType().equals(queryJob.getJobStatus())) {
-            this.taskUtil.removeJob(queryJob, scheduler);
-            this.jobService.removeById(id);
+            taskUtil.removeJob(queryJob, scheduler);
+            jobService.removeById(id);
         } else if (EntfrmQuartzEnum.JOB_STATUS_RELEASE.getType().equals(queryJob.getJobStatus())) {
-            this.jobService.removeById(id);
+            jobService.removeById(id);
         }
         return R.ok();
     }
@@ -136,10 +116,27 @@ public class JobController {
      * 立即执行定时任务一次
      */
     @OperLog("执行定时任务一次")
-    @PutMapping("/runJob")
+    @PostMapping("/runJob")
     @PreAuthorize("@ps.hasPerm('job_start')")
     public R runJob(@RequestBody Job job) {
         taskUtil.runJob(job, scheduler);
+        return R.ok();
+    }
+
+    /**
+     * 启动全部定时任务
+     *
+     * @return
+     */
+    @OperLog("启动全部定时任务")
+    @PostMapping("/startJobs")
+    @PreAuthorize("@ps.hasPerm('job_start')")
+    public R startJobs() {
+        //更新定时任务状态条件，暂停状态3更新为运行状态2
+        jobService.update(Job.builder().jobStatus(EntfrmQuartzEnum.JOB_STATUS_RUNNING
+                .getType()).build(), new UpdateWrapper<Job>().lambda()
+                .eq(Job::getJobStatus, EntfrmQuartzEnum.JOB_STATUS_NOT_RUNNING.getType()));
+        taskUtil.startJobs(scheduler);
         return R.ok();
     }
 
@@ -153,34 +150,17 @@ public class JobController {
     @PreAuthorize("@ps.hasPerm('job_stop')")
     public R stopJobs() {
         taskUtil.pauseJobs(scheduler);
-        int count = this.jobService.count(new LambdaQueryWrapper<Job>()
+        int count = jobService.count(new LambdaQueryWrapper<Job>()
                 .eq(Job::getJobStatus, EntfrmQuartzEnum.JOB_STATUS_RUNNING.getType()));
         if (count <= 0) {
             return R.ok("无正在运行定时任务");
         } else {
             //更新定时任务状态条件，运行状态2更新为暂停状态2
-            this.jobService.update(Job.builder()
+            jobService.update(Job.builder()
                     .jobStatus(EntfrmQuartzEnum.JOB_STATUS_NOT_RUNNING.getType()).build(), new UpdateWrapper<Job>()
                     .lambda().eq(Job::getJobStatus, EntfrmQuartzEnum.JOB_STATUS_RUNNING.getType()));
             return R.ok("暂停成功");
         }
-    }
-
-    /**
-     * 启动全部定时任务
-     *
-     * @return
-     */
-    @OperLog("启动全部定时任务")
-    @PostMapping("/startJobs")
-    @PreAuthorize("@ps.hasPerm('job_start')")
-    public R startJobs() {
-        //更新定时任务状态条件，暂停状态3更新为运行状态2
-        this.jobService.update(Job.builder().jobStatus(EntfrmQuartzEnum.JOB_STATUS_RUNNING
-                .getType()).build(), new UpdateWrapper<Job>().lambda()
-                .eq(Job::getJobStatus, EntfrmQuartzEnum.JOB_STATUS_NOT_RUNNING.getType()));
-        taskUtil.startJobs(scheduler);
-        return R.ok();
     }
 
     /**
@@ -209,14 +189,14 @@ public class JobController {
     /**
      * 启动定时任务
      *
-     * @param jobId
+     * @param id
      * @return
      */
     @OperLog("启动定时任务")
     @PostMapping("/startJob/{id}")
     @PreAuthorize("@ps.hasPerm('job_start')")
-    public R startJob(@PathVariable("id") Integer jobId) {
-        Job queryJob = this.jobService.getById(jobId);
+    public R startJob(@PathVariable("id") Integer id) {
+        Job queryJob = jobService.getById(id);
         if (queryJob != null && EntfrmQuartzEnum.JOB_LOG_STATUS_FAIL.getType()
                 .equals(queryJob.getJobStatus())) {
             taskUtil.addOrUpateJob(queryJob, scheduler);
@@ -224,7 +204,7 @@ public class JobController {
             taskUtil.resumeJob(queryJob, scheduler);
         }
         //更新定时任务状态条件，暂停状态3更新为运行状态2
-        this.jobService.updateById(Job.builder().id(jobId)
+        jobService.updateById(Job.builder().id(id)
                 .jobStatus(EntfrmQuartzEnum.JOB_STATUS_RUNNING.getType()).build());
         return R.ok();
     }
@@ -238,9 +218,9 @@ public class JobController {
     @PostMapping("/stopJob/{id}")
     @PreAuthorize("@ps.hasPerm('job_stop')")
     public R shutdownJob(@PathVariable("id") Integer id) {
-        Job queryJob = this.jobService.getById(id);
+        Job queryJob = jobService.getById(id);
         //更新定时任务状态条件，运行状态2更新为暂停状态3
-        this.jobService.updateById(Job.builder().id(queryJob.getId())
+        jobService.updateById(Job.builder().id(queryJob.getId())
                 .jobStatus(EntfrmQuartzEnum.JOB_STATUS_NOT_RUNNING.getType()).build());
         taskUtil.pauseJob(queryJob, scheduler);
         return R.ok();
@@ -263,7 +243,7 @@ public class JobController {
      */
     @GetMapping("/isValidName")
     public R isValidTaskName(@RequestParam String jobName, @RequestParam String jobGroup) {
-        return this.jobService
+        return jobService
                 .count(Wrappers.query(Job.builder().jobName(jobName).jobGroup(jobGroup).build())) > 0
                 ? R.error() : R.ok();
     }

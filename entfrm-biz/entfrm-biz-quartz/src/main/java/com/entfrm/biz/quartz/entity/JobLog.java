@@ -1,8 +1,9 @@
 package com.entfrm.biz.quartz.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -83,5 +84,15 @@ public class JobLog implements Serializable {
 	 * 创建时间
 	 */
 	private Date createTime;
+
+	/** 开始时间 */
+	@TableField(exist = false)
+	@JsonIgnore
+	private String beginTime;
+
+	/** 结束时间 */
+	@TableField(exist = false)
+	@JsonIgnore
+	private String endTime;
 
 }

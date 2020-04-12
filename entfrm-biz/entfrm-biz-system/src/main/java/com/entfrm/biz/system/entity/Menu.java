@@ -1,6 +1,5 @@
 package com.entfrm.biz.system.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -78,6 +77,11 @@ public class Menu extends BaseEntity {
      * 菜单图标
      */
     private String icon;
+
+    /**
+     * 路由缓存
+     */
+    private String noCache;
 
     /**
      * 显示顺序

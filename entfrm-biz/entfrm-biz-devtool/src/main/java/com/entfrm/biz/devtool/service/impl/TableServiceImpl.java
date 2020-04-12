@@ -25,6 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,18 +61,19 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
     @Transactional
     public Table getGenTable(String tableName, String tableComment) {
         Table table = new Table();
-        if(StrUtil.isBlank(tableName)){
+        if (StrUtil.isBlank(tableName)) {
             table.setPackageName(GenConfig.getPackageName());
             table.setFunctionAuthor(GenConfig.getAuthor());
             table.setTplCategory("crud");
             table.setCols("24");
             table.setColumns(GenUtil.initColumns());
-        }else {
+        } else {
             table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName));
             if (table != null) {
                 List<Column> list = columnService.list(new QueryWrapper<Column>().eq(!StrUtil.isBlankIfStr(table.getId()), "table_id", table.getId()).orderByAsc("sort"));
                 table.setColumns(list);
             } else {
+                table = new Table();
                 //表信息新增
                 table.setTableName(tableName);
                 table.setTableComment(tableComment);
@@ -98,7 +102,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
 
                     if (arraysContains(GenConstants.COLUMNTYPE_STR, dataType)) {
                         column.setJavaType(GenConstants.TYPE_STRING);
-                        // 字符串长度超过500设置为文本域
+                        // 字符串长度超过255设置为文本域
                         Integer columnLength = getColumnLength(column.getColumnType());
                         String htmlType = columnLength >= 255 ? GenConstants.HTML_TEXTAREA : GenConstants.HTML_INPUT;
                         column.setHtmlType(htmlType);
@@ -144,9 +148,9 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                     // 查询字段类型
                     if (StrUtil.endWithIgnoreCase(columnName, "name")) {
                         column.setQueryType(GenConstants.QUERY_LIKE);
-                    }else if (StrUtil.endWithIgnoreCase(columnName, "createTime")) {
+                    } else if (StrUtil.endWithIgnoreCase(columnName, "createTime")) {
                         column.setQueryType(GenConstants.QUERY_BETWEEN);
-                    }else {
+                    } else {
                         column.setQueryType(GenConstants.QUERY_EQ);
                     }
 
@@ -198,22 +202,28 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
     public void updateTable(Table table) {
         String options = JSONUtil.toJsonStr(table.getParams());
         table.setOptions(options);
-        if(StrUtil.isBlankIfStr(table.getId())){
+        if (StrUtil.isBlankIfStr(table.getId())) {
             int row = baseMapper.insert(table);
             if (row > 0) {
                 for (Column column : table.getColumns()) {
-                    column.setJavaField(StrUtil.toCamelCase(column.getColumnName()));
-                    columnService.save(column);
+                    if (StrUtil.isNotEmpty(column.getColumnName())) {
+                        column.setTableId(table.getId());
+                        column.setJavaField(StrUtil.toCamelCase(column.getColumnName()));
+                        columnService.save(column);
+                    }
                 }
             }
             //创建数据库表结构
             jdbcTemplate.execute(BuilderUtil.createTable(table));
-        }else {
+        } else {
             int row = baseMapper.updateById(table);
             if (row > 0) {
                 for (Column column : table.getColumns()) {
-                    column.setJavaField(StrUtil.toCamelCase(column.getColumnName()));
-                    columnService.saveOrUpdate(column);
+                    if (StrUtil.isNotEmpty(column.getColumnName())) {
+                        column.setTableId(table.getId());
+                        column.setJavaField(StrUtil.toCamelCase(column.getColumnName()));
+                        columnService.saveOrUpdate(column);
+                    }
                 }
             }
             //更新数据库表结构
@@ -286,7 +296,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
     private void generatorCode(String tableName, ZipOutputStream zip) {
         // 查询表信息
         Table table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName));
-        if(table != null){
+        if (table != null) {
             // 查询列信息
             List<Column> columns = columnService.list(new QueryWrapper<Column>().eq("table_id", table.getId()));
             setPkColumn(table, columns);

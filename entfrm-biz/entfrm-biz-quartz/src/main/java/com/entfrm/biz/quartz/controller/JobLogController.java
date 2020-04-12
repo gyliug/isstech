@@ -1,11 +1,10 @@
 package com.entfrm.biz.quartz.controller;
 
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.entfrm.biz.quartz.entity.Job;
 import com.entfrm.biz.quartz.entity.JobLog;
-import com.entfrm.biz.quartz.enums.EntfrmQuartzEnum;
 import com.entfrm.biz.quartz.service.JobLogService;
 import com.entfrm.core.base.api.R;
 import com.entfrm.core.log.annotation.OperLog;
@@ -25,16 +24,14 @@ import org.springframework.web.bind.annotation.*;
 public class JobLogController {
     private final JobLogService jobLogService;
 
-    /**
-     * 分页查询
-     *
-     * @param page      分页对象
-     * @param jobLog 定时任务执行日志表
-     * @return
-     */
+    private QueryWrapper<JobLog> getQueryWrapper(JobLog jobLog) {
+        return new QueryWrapper<JobLog>().like(StrUtil.isNotBlank(jobLog.getJobName()), "job_name", jobLog.getJobName()).like(StrUtil.isNotBlank(jobLog.getJobGroup()), "job_group", jobLog.getJobGroup()).eq(StrUtil.isNotBlank(jobLog.getJobLogStatus()), "job_log_status", jobLog.getJobLogStatus())
+                .between(StrUtil.isNotBlank(jobLog.getBeginTime()) && StrUtil.isNotBlank(jobLog.getEndTime()), "create_time", jobLog.getBeginTime(), jobLog.getEndTime()).orderByDesc("create_time");
+    }
+
     @GetMapping("/list")
     public R list(Page page, JobLog jobLog) {
-        IPage<JobLog> jobLogPage = jobLogService.page(page, Wrappers.query(jobLog));
+        IPage<JobLog> jobLogPage = jobLogService.page(page, getQueryWrapper(jobLog));
         return R.ok(jobLogPage.getRecords(), jobLogPage.getTotal());
     }
 

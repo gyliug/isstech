@@ -1,10 +1,7 @@
 package com.entfrm.biz.system.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.entfrm.biz.system.entity.Menu;
-import com.entfrm.biz.system.entity.Role;
-import com.entfrm.biz.system.entity.User;
 import com.entfrm.biz.system.mapper.MenuMapper;
 import com.entfrm.biz.system.service.MenuService;
 import com.entfrm.biz.system.vo.MenuVo;
@@ -12,7 +9,9 @@ import com.entfrm.biz.system.vo.MetaVo;
 import com.entfrm.core.base.util.StrUtil;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -65,7 +64,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
             }
             menuVo.setHidden("1".equals(menu.getStatus()));
             menuVo.setComponent(menu.getComponent());
-            menuVo.setMeta(MetaVo.builder().title(menu.getName()).icon(menu.getIcon()).build());
+            menuVo.setMeta(MetaVo.builder().title(menu.getName()).icon(menu.getIcon()).noCache("0".equals(menu.getNoCache()) ? true : false).build());
             List<Menu> cMenus = menu.getChildren();
             if (cMenus != null && cMenus.size() > 0 && "M".equals(menu.getType())) {
                 menuVo.setAlwaysShow(true);

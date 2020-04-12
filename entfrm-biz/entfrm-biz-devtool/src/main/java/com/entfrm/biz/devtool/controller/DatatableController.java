@@ -49,7 +49,7 @@ public class DatatableController {
         StringBuilder sql = new StringBuilder();
         if (DataTypeEnum.MYSQL.getType().equals(AliasUtil.getDsType(alias))) {
             sql.append("select table_name tableName, table_comment tableComment, create_time createTime from information_schema.tables where table_schema=?")
-                    .append(" and table_type='base table'");
+                    .append(" and table_name not like 'qrtz_%' and table_name not like 'act_%' and table_name not like 'dev_%' and table_type='base table'");
             if (StrUtil.isNotBlank(tableName)) {
                 sql.append(" and table_name like '%" + tableName + "%'");
             }
@@ -67,15 +67,16 @@ public class DatatableController {
         return R.ok(list);
     }
 
-    /**
-     * 代码生成 配置
-     */
+    @OperLog("新建/配置表")
+    @PreAuthorize("@ps.hasAnyPerm('datatable_add,datatable_config')")
     @PostMapping("/getGenTable")
     @ResponseBody
     public R getGenTable(@RequestBody Table table) {
         return R.ok(tableService.getGenTable(table.getTableName(), table.getTableComment()));
     }
 
+    @OperLog("表修改")
+    @PreAuthorize("@ps.hasPerm('datatable_edit')")
     @PutMapping("/update")
     @ResponseBody
     public R update(@RequestBody Table table) {
@@ -84,9 +85,8 @@ public class DatatableController {
         return R.ok();
     }
 
-    /**
-     * 预览代码
-     */
+    @OperLog("预览代码")
+    @PreAuthorize("@ps.hasPerm('datatable_view')")
     @GetMapping("/preview/{tableId}")
     @ResponseBody
     public R preview(@PathVariable("tableId") Integer tableId) {
@@ -97,6 +97,8 @@ public class DatatableController {
     /**
      * 批量生成代码
      */
+    @OperLog("代码生成")
+    @PreAuthorize("@ps.hasPerm('datatable_gen')")
     @GetMapping("/batchGenCode")
     @ResponseBody
     public void batchGenCode(HttpServletResponse response, String tables) throws IOException {

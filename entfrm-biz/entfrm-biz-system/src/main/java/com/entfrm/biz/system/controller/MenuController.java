@@ -1,28 +1,24 @@
 package com.entfrm.biz.system.controller;
 
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.setting.SettingUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.entfrm.biz.system.entity.Menu;
-import com.entfrm.biz.system.entity.Role;
 import com.entfrm.biz.system.entity.RoleMenu;
-import com.entfrm.biz.system.entity.User;
 import com.entfrm.biz.system.service.MenuService;
 import com.entfrm.biz.system.service.RoleMenuService;
 import com.entfrm.biz.system.service.UserService;
 import com.entfrm.biz.system.vo.ResultVo;
 import com.entfrm.core.base.api.R;
-import com.entfrm.core.data.util.TreeUtil;
 import com.entfrm.core.log.annotation.OperLog;
 import com.entfrm.core.security.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -116,8 +112,8 @@ public class MenuController {
     @GetMapping("/menuTree")
     @ResponseBody
     public R menuTree() {
-        List<Menu> menuList = menuService.list(new QueryWrapper<Menu>().orderByAsc("sort"));
-        return R.ok(menuService.buildTree(menuList, 0));
+        List<Menu> menuList = menuService.list(new QueryWrapper<Menu>().eq("status", "0").orderByAsc("sort"));
+        return R.ok(menuList);
     }
 
     /**
@@ -125,8 +121,8 @@ public class MenuController {
      */
     @GetMapping("/roleMenuTree/{roleId}")
     public R roleMenuTree(@PathVariable Integer roleId) {
-        List<Menu> menuList = menuService.list(new QueryWrapper<Menu>().orderByAsc("sort"));
-        return R.ok(ResultVo.builder().result(menuService.buildTree(menuList, 0)).extend(menuService.selectMenusByRoleId(roleId)).build());
+        List<Menu> menuList = menuService.list(new QueryWrapper<Menu>().eq("status", "0").orderByAsc("sort"));
+        return R.ok(ResultVo.builder().result(menuList).extend(menuService.selectMenusByRoleId(roleId)).build());
     }
 
 }

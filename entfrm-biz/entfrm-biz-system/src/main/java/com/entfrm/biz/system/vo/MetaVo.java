@@ -1,6 +1,5 @@
 package com.entfrm.biz.system.vo;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -24,5 +23,10 @@ public class MetaVo implements Serializable {
      * 设置该路由的图标，对应路径src/icons/svg
      */
     private String icon;
+
+    /**
+     * 路由缓存，keep-alive
+     */
+    private boolean noCache;
 
 }

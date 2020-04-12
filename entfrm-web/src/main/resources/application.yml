@@ -1,9 +1,9 @@
 # 项目配置
 entfrm:
   # 名称
-  name: entfrm快速开发平台
+  name: entfrm开发平台
   # 版本
-  version: 0.1.0
+  version: 1.0.0
   # 文件上传路径
   profile: C:/profile/
   # 获取ip地址开关
@@ -49,9 +49,9 @@ spring:
     active: druid
   # 文件上传
   servlet:
-    multipart:
-      max-file-size:  50MB
-      max-request-size:  30MB
+     multipart:
+       max-file-size:  50MB
+       max-request-size:  30MB
   # 服务模块
   devtools:
     restart:
@@ -82,7 +82,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/entfrm-boot?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/entfrm-boot?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true
       username: root
       password: 123456Aa
       # 初始连接数

@@ -105,7 +105,7 @@ public class TaskUtil {
     public void pauseJob(Job job, Scheduler scheduler) {
         try {
             if (scheduler != null) {
-                scheduler.triggerJob(getJobKey(job));
+                scheduler.pauseJob(getJobKey(job));
             }
         } catch (SchedulerException e) {
             log.error("暂停任务失败，失败信息：{}", e.getMessage());

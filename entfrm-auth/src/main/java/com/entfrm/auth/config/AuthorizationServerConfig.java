@@ -2,11 +2,15 @@ package com.entfrm.auth.config;
 
 import com.entfrm.auth.handler.EntfrmWebResponseExceptionTranslator;
 import com.entfrm.auth.service.EntfrmUserDetailService;
+import com.entfrm.core.base.config.GlobalConfig;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -15,13 +19,13 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
-import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author yong
@@ -35,28 +39,47 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     private final AuthenticationManager authenticationManager;
     private final EntfrmUserDetailService userDetailService;
-    private final TokenStore jwtTokenStore;
-    private final JwtAccessTokenConverter jwtAccessTokenConverter;
-    private final TokenEnhancer tokenEnhancer;
+    private final RedisConnectionFactory redisConnectionFactory;
     private final DataSource dataSource;
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
-        List<TokenEnhancer> enhancers = new ArrayList<>();
-        enhancers.add(tokenEnhancer);
-        enhancers.add(jwtAccessTokenConverter);
-        enhancerChain.setTokenEnhancers(enhancers);
 
         endpoints.authenticationManager(authenticationManager)
-                .tokenStore(jwtTokenStore)
-                .tokenEnhancer(enhancerChain)
-                .accessTokenConverter(jwtAccessTokenConverter)
+                .tokenStore(tokenStore())
+                .tokenEnhancer(tokenEnhancer())
                 .userDetailsService(userDetailService)
-                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);//允许 GET、POST 请求获取 token，即访问端点：oauth/token
+                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)//允许 GET、POST 请求获取 token，即访问端点：oauth/token
+                .reuseRefreshTokens(true)
+                .exceptionTranslator(new EntfrmWebResponseExceptionTranslator());//oauth2登录异常处理
+    }
 
-        endpoints.reuseRefreshTokens(true);//oauth2登录异常处理
-        endpoints.exceptionTranslator(new EntfrmWebResponseExceptionTranslator());//oauth2登录异常处理
+    @Bean
+    public TokenStore tokenStore() {
+        TokenStore tokenStore = null;
+        if(GlobalConfig.isRedisSwitch()){
+            tokenStore = new RedisTokenStore(redisConnectionFactory);
+            ((RedisTokenStore) tokenStore).setPrefix("entfrm_");
+        }else {
+            tokenStore = new InMemoryTokenStore();
+        }
+
+        return tokenStore;
+    }
+
+    /**
+     * token增强
+     *
+     * @return TokenEnhancer
+     */
+    @Bean
+    public TokenEnhancer tokenEnhancer() {
+        return (accessToken, authentication) -> {
+            Map<String, Object> info = new HashMap<>(1);
+            info.put("license", "entfrm");
+            ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
+            return accessToken;
+        };
     }
 
     @Override

@@ -25,7 +25,6 @@ public class ApiStatController {
 
     private final JdbcTemplate jdbcTemplate;
 
-    @PreAuthorize("@ps.hasPerm('apiStat_view')")
     @GetMapping()
     public R getInfo() throws Exception {
         Map<String, Object> statMap = new HashMap<>();

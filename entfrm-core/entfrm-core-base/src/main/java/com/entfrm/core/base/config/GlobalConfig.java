@@ -1,17 +1,11 @@
 package com.entfrm.core.base.config;
 
 import cn.hutool.core.util.StrUtil;
-import com.entfrm.core.base.util.SpringContextUtil;
 import com.entfrm.core.base.util.YamlUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.MessageSource;
-import org.springframework.context.NoSuchMessageException;
-import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.io.FileNotFoundException;
-import java.text.MessageFormat;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -28,8 +22,6 @@ public class GlobalConfig {
      * 当前对象实例
      */
     private static GlobalConfig globalConfig = null;
-
-    private static MessageSource messageSource = (MessageSource) SpringContextUtil.getBean("messageSource");
 
     /**
      * 保存全局属性值
@@ -78,25 +70,6 @@ public class GlobalConfig {
         return StrUtil.nullToDefault(getConfig("entfrm.lang"), "");
     }
 
-    public static String getText(String code, String... params) {
-        if (StrUtil.isBlank(code)) {
-            return code;
-        } else {
-            Locale locale = Locale.CHINA;
-
-            try {
-                locale = new Locale(getLang());
-            } catch (IllegalArgumentException iaEx) {
-                ;
-            }
-            try {
-                return messageSource.getMessage(code, params, locale);
-            } catch (NoSuchMessageException var5) {
-                return params != null && params.length > 0 ? (new MessageFormat(code != null ? code : "", LocaleContextHolder.getLocale())).format(params) : code;
-            }
-        }
-    }
-
     /**
      * 获取项目名称
      */
@@ -108,7 +81,7 @@ public class GlobalConfig {
      * 获取项目版本
      */
     public static String getVersion() {
-        return StrUtil.nullToDefault(getConfig("entfrm.version"), "1.0.0");
+        return StrUtil.nullToDefault(getConfig("entfrm.version"), "1.0.1");
     }
 
     /**

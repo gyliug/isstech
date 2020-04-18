@@ -218,6 +218,14 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
         } else {
             int row = baseMapper.updateById(table);
             if (row > 0) {
+                //判断是否有删除字段
+                if (StrUtil.isNotEmpty(table.getDelNames())) {
+                    for (String columnName : StrUtil.split(table.getDelNames(), ",")) {
+                        columnService.remove(new QueryWrapper<Column>().eq("table_id", table.getId()).eq("column_name", columnName));
+                    }
+                }
+                //更新数据库表结构
+                jdbcTemplate.execute(BuilderUtil.updateTable(table));
                 for (Column column : table.getColumns()) {
                     if (StrUtil.isNotEmpty(column.getColumnName())) {
                         column.setTableId(table.getId());
@@ -226,8 +234,6 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                     }
                 }
             }
-            //更新数据库表结构
-            jdbcTemplate.execute(BuilderUtil.updateTable(table));
         }
     }
 

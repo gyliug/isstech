@@ -95,6 +95,10 @@ public class StrUtil extends cn.hutool.core.util.StrUtil {
         return ndata.substring(0, ndata.length() - 1);
     }
 
+    public static int genNewId(int id) {
+        return Integer.parseInt("1" + String.format("%04d", id));
+    }
+
     public static void main(String[] args) {
         //System.out.println(getScale("0.3795"));
         //System.out.println(DateUtil.parse("2014-06-12 00:00:00").toString("yyyy"));

@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/static/**", "/druid/**", "/ip2region/**", "/processes", "/profile/**", "/stencilset.json"
-                ,"/editor-app/**", "/modeler.html", "/favicon.ico");
+                ,"/editor-app/**", "/modeler.html", "/favicon.ico")
+                .antMatchers("/swagger-ui.html", "/webjars/**", "/v2/**", "/swagger-resources/**");
     }
 }

@@ -35,7 +35,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
         List<Dept> deptList = new ArrayList<Dept>();
         for (Iterator<Dept> iterator = list.iterator(); iterator.hasNext(); ) {
             Dept t = (Dept) iterator.next();
-            if (t.getParentId() == parentId) {
+            if (t.getParentId().intValue() == parentId) {
                 recursion(list, t);
                 deptList.add(t);
             }
@@ -73,7 +73,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
         Iterator<Dept> it = list.iterator();
         while (it.hasNext()) {
             Dept n = (Dept) it.next();
-            if (n.getParentId() == t.getId()) {
+            if (n.getParentId().intValue() == t.getId().intValue()) {
                 tlist.add(n);
             }
         }

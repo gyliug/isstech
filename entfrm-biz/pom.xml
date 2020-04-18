@@ -5,7 +5,7 @@
     <parent>
         <artifactId>entfrm</artifactId>
         <groupId>com.entfrm</groupId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,6 +17,7 @@
         <module>entfrm-biz-devtool</module>
         <module>entfrm-biz-quartz</module>
         <module>entfrm-biz-activiti</module>
+        <module>entfrm-biz-cms</module>
     </modules>
 
 

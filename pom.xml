@@ -7,7 +7,7 @@
     <groupId>com.entfrm</groupId>
     <artifactId>entfrm</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <modules>
         <module>entfrm-core</module>
@@ -31,6 +31,7 @@
         <activiti.version>5.22.0</activiti.version>
         <ip2region.version>1.7.2</ip2region.version>
         <velocity.version>1.7</velocity.version>
+        <swagger.version>2.9.2</swagger.version>
     </properties>
 
     <dependencies>

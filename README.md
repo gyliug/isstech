@@ -2,7 +2,7 @@
 ## 开源不易，如果对您有帮助，请点右上角 “Star” 支持一下 谢谢！
 ### 平台简介    
 entfrm开发平台，是一个以模块化为核心的无代码开发平台，是一个集PC和APP快速开发、系统管理、运维监控、开发工具、OAuth2授权、可视化数据源管理与数据构建、API动态生成与统计、工作流、智能表单设计、微服务骨架等全方位功能于一体的高效、稳定的快速开发平台。
-平台采用Spring Boot 2.X 、Spring Security、Oauth2、Mybatis Plus、Activiti、Flutter等核心技术，前端基于vue-element-admin框架。 参考项目：pig、ruoyi前端。演示地址：http://47.100.3.58/ **（请不要更改用户entfrm的密码，谢谢！）** **满 500 Star更新已完成的所有功能**
+平台采用Spring Boot 2.X 、Spring Security、Oauth2、Mybatis Plus、Activiti、Flutter等核心技术，前端基于vue-element-admin框架。演示地址：http://47.100.3.58/ **（请不要更改用户entfrm的密码，谢谢！）** **满 500 Star更新已完成的所有功能**
 ###  entfrm官方交流群：871910881 (进群领取前端UI)
 ### 思维导图
 ![平台思维导图](http://47.100.3.58/static/show/entfrm.png)
@@ -106,6 +106,7 @@ entfrm-boot
 |--entfrm-auth Oauth2授权模块
 |--entfrm-biz 
 |----entfrm-biz-activiti 工作流模块
+|----entfrm-biz-cms 内容管理模块
 |----entfrm-biz-devtool 开发工具模块
 |----entfrm-biz-monitor 运维监控模块
 |----entfrm-biz-quartz 定时任务模块
@@ -115,6 +116,7 @@ entfrm-boot
 |----entfrm-core-data 数据核心模块
 |----entfrm-core-log 日志核心模块
 |----entfrm-core-security 安全核心模块
+|----entfrm-core-swagger Swagger文档
 |--entfrm-web Web模块
 ~~~
 ### 在线演示

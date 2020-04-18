@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/monitor/server")
 public class ServerController {
 
-    @PreAuthorize("@ps.hasPerm('server_view')")
     @GetMapping()
     public R getInfo() throws Exception {
         Server server = new Server();

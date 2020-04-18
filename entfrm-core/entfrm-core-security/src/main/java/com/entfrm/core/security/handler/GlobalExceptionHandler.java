@@ -3,6 +3,7 @@ package com.entfrm.core.security.handler;
 import com.entfrm.core.base.api.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.SpringSecurityMessageSource;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 /**
@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
      * @param e the e
      * @return R
      */
-    @ExceptionHandler(java.nio.file.AccessDeniedException.class)
+    @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public R handleAccessDeniedException(AccessDeniedException e) {
         String msg = SpringSecurityMessageSource.getAccessor()

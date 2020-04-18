@@ -1,7 +1,7 @@
 package com.entfrm.core.base.exception;
 
 import cn.hutool.core.util.StrUtil;
-import com.entfrm.core.base.config.GlobalConfig;
+import com.entfrm.core.base.util.MesageSourceUtil;
 
 /**
  * @description 自定义异常
@@ -43,7 +43,7 @@ public class BaseException extends RuntimeException {
     public String getMessage() {
         String message = null;
         if (StrUtil.isNotEmpty(code)) {
-            message = GlobalConfig.getText(code, params);
+            message = MesageSourceUtil.getText(code, params);
         }
         if (message == null) {
             message = msg;

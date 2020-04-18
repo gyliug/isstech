@@ -41,7 +41,7 @@ public class PermissionService {
         return authorities.stream()
                 .map(GrantedAuthority::getAuthority)
                 .filter(StringUtils::hasText)
-                .anyMatch(x -> PatternMatchUtils.simpleMatch(permission, x) || PatternMatchUtils.simpleMatch("*_*", x));
+                .anyMatch(x -> PatternMatchUtils.simpleMatch(permission, x));
     }
 
     /**

@@ -128,4 +128,10 @@ public class Table extends BaseEntity {
      */
     @TableField(exist = false)
     private Map<String, Object> params;
+
+    /**
+     * 删除表字段名
+     */
+    @TableField(exist = false)
+    private String delNames;
 }

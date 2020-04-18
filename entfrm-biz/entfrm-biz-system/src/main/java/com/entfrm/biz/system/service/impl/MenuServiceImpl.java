@@ -90,7 +90,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         List<Menu> menuList = new ArrayList<Menu>();
         for (Iterator<Menu> iterator = list.iterator(); iterator.hasNext(); ) {
             Menu t = (Menu) iterator.next();
-            if (t.getParentId() == parentId) {
+            if (t.getParentId().intValue() == parentId) {
                 recursion(list, t);
                 menuList.add(t);
             }
@@ -135,7 +135,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         Iterator<Menu> it = list.iterator();
         while (it.hasNext()) {
             Menu n = (Menu) it.next();
-            if (n.getParentId() == t.getId()) {
+            if (n.getParentId().intValue() == t.getId().intValue()) {
                 tlist.add(n);
             }
         }

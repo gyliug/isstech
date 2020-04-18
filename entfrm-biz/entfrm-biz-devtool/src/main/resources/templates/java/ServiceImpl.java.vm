@@ -31,9 +31,9 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
             List<${ClassName}> ${className}List = new ArrayList<>();
             for (Iterator<${ClassName}> iterator = list.iterator(); iterator.hasNext(); ) {
                 ${ClassName} t = (${ClassName}) iterator.next();
-                if (t.getParentId() == parentId) {
+                if (t.getParentId().intValue() == parentId) {
                     recursion(list, t);
-                    ${className}List.add(t);
+                        ${className}List.add(t);
                 }
             }
             return ${className}List;
@@ -69,7 +69,7 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
             Iterator<${ClassName}> it = list.iterator();
             while (it.hasNext()) {
                 ${ClassName} n = (${ClassName}) it.next();
-                if (n.getParentId() == t.getId()) {
+                if (n.getParentId().intValue() == t.getId().intValue()) {
                     tlist.add(n);
                 }
             }

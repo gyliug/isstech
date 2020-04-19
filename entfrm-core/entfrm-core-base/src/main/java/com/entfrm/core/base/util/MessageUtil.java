@@ -1,9 +1,7 @@
 package com.entfrm.core.base.util;
 
 import cn.hutool.core.util.StrUtil;
-import com.entfrm.core.base.config.EntfrmConfig;
-import lombok.AllArgsConstructor;
-import lombok.experimental.UtilityClass;
+import com.entfrm.core.base.config.GlobalConfig;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -20,13 +18,6 @@ public class MessageUtil {
 
     private static MessageSource messageSource = (MessageSource) SpringContextUtil.getBean("messageSource");
 
-    /**
-     * 获取系统语言
-     */
-    public static String getLang() {
-        return StrUtil.nullToDefault(EntfrmConfig.getLang(), "");
-    }
-
     public static String getText(String code, String... params) {
         if (StrUtil.isBlank(code)) {
             return code;
@@ -34,7 +25,7 @@ public class MessageUtil {
             Locale locale = Locale.CHINA;
 
             try {
-                locale = new Locale(getLang());
+                locale = new Locale(GlobalConfig.getLang());
             } catch (IllegalArgumentException iaEx) {
                 ;
             }

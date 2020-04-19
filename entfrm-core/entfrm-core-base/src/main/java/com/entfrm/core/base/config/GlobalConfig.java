@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author entfrmtech
+ * @author entfrm
  * @date 2019/6/12
  * @description 全局配置类
  */
@@ -67,7 +67,7 @@ public class GlobalConfig {
      * 获取系统语言
      */
     public static String getLang() {
-        return StrUtil.nullToDefault(getConfig("entfrm.lang"), "");
+        return StrUtil.nullToDefault(getConfig("entfrm.lang"), "zh_CN");
     }
 
     /**

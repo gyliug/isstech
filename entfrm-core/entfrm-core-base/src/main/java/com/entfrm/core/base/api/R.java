@@ -1,6 +1,6 @@
 package com.entfrm.core.base.api;
 
-import com.entfrm.core.base.util.MesageSourceUtil;
+import com.entfrm.core.base.util.MessageUtil;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -49,15 +49,15 @@ public class R<T> implements Serializable {
     private T data;
 
     public static <T> R<T> ok() {
-        return restResult(null, SUCCESS, MesageSourceUtil.getText("success"));
+        return restResult(null, SUCCESS, MessageUtil.getText("success"));
     }
 
     public static <T> R<T> ok(String code, String... params) {
-        return restResult(null, SUCCESS, MesageSourceUtil.getText(code, params));
+        return restResult(null, SUCCESS, MessageUtil.getText(code, params));
     }
 
     public static <T> R<T> ok(T data) {
-        return restResult(data, SUCCESS, MesageSourceUtil.getText("success"));
+        return restResult(data, SUCCESS, MessageUtil.getText("success"));
     }
 
     public static <T> R<T> ok(T data, String msg) {
@@ -69,11 +69,11 @@ public class R<T> implements Serializable {
     }
 
     public static <T> R<T> error() {
-        return restResult(null, FAIL, MesageSourceUtil.getText("fail"));
+        return restResult(null, FAIL, MessageUtil.getText("fail"));
     }
 
     public static <T> R<T> error(String code, String... params) {
-        return restResult(null, FAIL, MesageSourceUtil.getText(code, params));
+        return restResult(null, FAIL, MessageUtil.getText(code, params));
     }
 
     public static <T> R<T> error(String msg) {

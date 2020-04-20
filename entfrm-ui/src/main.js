@@ -21,6 +21,9 @@ import { getByKey } from "@/api/system/config";
 import { parseTime, resetForm, addDateRange, selectDictLabel, download, handleTree } from "@/utils/entfrm";
 import Pagination from "@/components/Pagination";
 
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
 // 全局方法挂载
 Vue.prototype.getDicts = getDicts
 Vue.prototype.getByKey = getByKey
@@ -51,6 +54,8 @@ Vue.prototype.msgInfo = function (msg) {
 Vue.component('Pagination', Pagination)
 
 Vue.use(permission)
+
+Vue.use(mavonEditor)
 
 /**
  * If you don't want to use mock-server

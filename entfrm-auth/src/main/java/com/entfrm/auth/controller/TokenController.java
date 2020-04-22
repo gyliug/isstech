@@ -6,6 +6,7 @@ import com.entfrm.core.base.api.R;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.common.OAuth2RefreshToken;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerEndpointsConfiguration;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
@@ -26,8 +27,6 @@ public class TokenController {
 
     private final TokenStore tokenStore;
 
-    private final AuthorizationServerEndpointsConfiguration endpoints;
-
     /**
      * 退出token
      *
@@ -47,7 +46,9 @@ public class TokenController {
 
         // 清空access token
         tokenStore.removeAccessToken(accessToken);
-
+        // 清空 refresh token
+        OAuth2RefreshToken refreshToken = accessToken.getRefreshToken();
+        tokenStore.removeRefreshToken(refreshToken);
         return R.ok();
     }
 

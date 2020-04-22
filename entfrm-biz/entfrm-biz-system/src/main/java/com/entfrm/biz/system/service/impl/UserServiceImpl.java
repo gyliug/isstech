@@ -47,6 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             userRoleService.remove(new QueryWrapper<UserRole>().eq("user_id", user.getId()));
             // 新增用户与角色管理
             addUserRole(user);
+            user.setPassword(null);
             return baseMapper.updateById(user);
         }
     }

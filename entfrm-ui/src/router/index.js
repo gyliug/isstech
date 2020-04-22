@@ -33,33 +33,33 @@ export const constantRoutes = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect')
+        component: (resolve) => require(['@/views/redirect'], resolve)
       }
     ]
   },
   {
     path: '/login',
-    component: () => import('@/views/login'),
+    component: (resolve) => require(['@/views/login'], resolve),
     hidden: true
   },
   {
     path: '/404',
-    component: () => import('@/views/error/404'),
+    component: (resolve) => require(['@/views/error/404'], resolve),
     hidden: true
   },
   {
     path: '/401',
-    component: () => import('@/views/error/401'),
+    component: (resolve) => require(['@/views/error/401'], resolve),
     hidden: true
   },
   {
-    path: '',
+    path: '/',
     component: Layout,
     redirect: 'index',
     children: [
       {
         path: '/index',
-        component: () => import('@/views/index'),
+        component: (resolve) => require(['@/views/index'], resolve),
         name: '首页',
         meta: { title: '首页', icon: 'dashboard', noCache: true, affix: true }
       }
@@ -73,7 +73,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'profile',
-        component: () => import('@/views/system/user/profile/index'),
+        component: (resolve) => require(['@/views/system/user/profile/index'], resolve),
         name: 'Profile',
         meta: { title: '个人中心', icon: 'user' }
       }
@@ -86,7 +86,7 @@ export const constantRoutes = [
     children: [
       {
         path: '/dictData/:type(\\d+)',
-        component: () => import('@/views/system/dictData'),
+        component: (resolve) => require(['@/views/system/dictData'], resolve),
         name: 'DictData',
         meta: { title: '字典数据', icon: '' }
       }
@@ -99,7 +99,7 @@ export const constantRoutes = [
     children: [
       {
         path: '/detail/:modelId(\\d+)',
-        component: () => import('@/views/activiti/detail'),
+        component: (resolve) => require(['@/views/activiti/detail'], resolve),
         name: 'Detail',
         meta: { title: '模型设计', icon: '' }
       }
@@ -112,7 +112,7 @@ export const constantRoutes = [
     children: [
       {
         path: '/jobLog',
-        component: () => import('@/views/monitor/jobLog'),
+        component: (resolve) => require(['@/views/monitor/jobLog'], resolve),
         name: 'JobLog',
         meta: { title: '任务日志' }
       }
@@ -125,7 +125,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'edit',
-        component: () => import('@/views/devtool/gen/editTable'),
+        component: (resolve) => require(['@/views/devtool/gen/editTable'], resolve),
         name: 'GenEdit',
         meta: { title: '新建/配置表' }
       }

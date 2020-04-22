@@ -46,7 +46,7 @@ import java.util.stream.Collectors;
  *
  * @author entfrm
  */
-@Controller
+@RestController
 @RequestMapping("/system/user" )
 @AllArgsConstructor
 public class UserController {
@@ -65,7 +65,6 @@ public class UserController {
 
     @PreAuthorize("@ps.hasPerm('user_view')" )
     @GetMapping("/list" )
-    @ResponseBody
     @DataFilter
     public R list(Page page, User user) {
         IPage<User> userIPage = userService.page(page, getQueryWrapper(user));
@@ -73,7 +72,6 @@ public class UserController {
     }
 
     @GetMapping("/{id}" )
-    @ResponseBody
     public R getById(@PathVariable("id" ) Integer id) {
         User user = userService.getById(id);
         List<Integer> roles = new ArrayList<>();
@@ -93,7 +91,6 @@ public class UserController {
      * @return 用户信息
      */
     @GetMapping("/info" )
-    @ResponseBody
     public R info() {
         User user = userService.getOne(Wrappers.<User>query()
                 .lambda().eq(User::getUserName, SecurityUtil.getUser().getUsername()));
@@ -121,7 +118,6 @@ public class UserController {
     @OperLog("用户新增" )
     @PreAuthorize("@ps.hasPerm('user_add')" )
     @PostMapping("/save" )
-    @ResponseBody
     public R save(@RequestBody User user) {
         if (!StrUtil.isEmptyIfStr(user.getId()) && User.isAdmin(user.getId())) {
             return R.error("不允许修改超级管理员" );
@@ -134,7 +130,6 @@ public class UserController {
     @OperLog("用户修改" )
     @PreAuthorize("@ps.hasPerm('user_edit')" )
     @PutMapping("/update" )
-    @ResponseBody
     public R update(@RequestBody User user) {
         userService.saveUser(user);
         return R.ok();
@@ -143,7 +138,6 @@ public class UserController {
     @OperLog("用户删除" )
     @PreAuthorize("@ps.hasPerm('user_del')" )
     @DeleteMapping("/remove/{id}" )
-    @ResponseBody
     public R remove(@PathVariable Integer id) {
         if (SecurityUtil.getUser().isAdmin(id)) {
             return R.error("不允许删除超级管理员" );
@@ -153,7 +147,6 @@ public class UserController {
     }
 
     @GetMapping("/profile" )
-    @ResponseBody
     public R profile() {
         EntfrmUser entfrmUser = SecurityUtil.getUser();
         if (entfrmUser != null) {
@@ -173,7 +166,6 @@ public class UserController {
     @OperLog("用户信息修改" )
     @PreAuthorize("@ps.hasPerm('user_edit')" )
     @PutMapping("/updateProfile" )
-    @ResponseBody
     public R updateProfile(@RequestBody User user) {
         userService.update(new UpdateWrapper<User>().eq("id", user.getId()).set("nick_name", user.getNickName()).set(StrUtil.isNotBlank(user.getPhone()), "phone", user.getPhone()).set("email", user.getEmail()).set("sex", user.getSex()));
         return R.ok();
@@ -182,7 +174,6 @@ public class UserController {
     @OperLog("用户头像修改" )
     @PreAuthorize("@ps.hasPerm('user_edit')" )
     @PutMapping("/updateAvatar" )
-    @ResponseBody
     public R updateAvatar(@RequestParam("avatarfile") MultipartFile file, HttpServletRequest request) {
         String avatar = RequestUtil.getDomain(request) + "/profile/avatar/" + UploadUtil.fileUp(file, GlobalConfig.getAvatarPath(), "avatar" + new Date().getTime());
         userService.update(new UpdateWrapper<User>().eq("id", SecurityUtil.getUser().getId()).set("avatar", avatar));
@@ -192,7 +183,6 @@ public class UserController {
     @OperLog("用户密码修改" )
     @PreAuthorize("@ps.hasPerm('user_edit')" )
     @PutMapping("/updatePwd" )
-    @ResponseBody
     public R updatePwd(User user) {
         User user1 = userService.getById(SecurityUtil.getUser().getId());
         if (user1 != null && passwordEncoder.matches(user.getPassword(), user1.getPassword())) {
@@ -206,7 +196,6 @@ public class UserController {
     @OperLog("用户密码重置" )
     @PreAuthorize("@ps.hasPerm('user_reset')" )
     @PutMapping("/resetPwd" )
-    @ResponseBody
     public R resetPwd(@RequestBody User user) {
         userService.update(new UpdateWrapper<User>().eq("id", user.getId()).set("password", passwordEncoder.encode(user.getPassword())));
         return R.ok();
@@ -215,7 +204,6 @@ public class UserController {
     @OperLog("用户状态更改" )
     @PreAuthorize("@ps.hasPerm('user_edit')" )
     @PutMapping("/changeStatus" )
-    @ResponseBody
     public R changeStatus(@RequestBody User user) {
         if (User.isAdmin(user.getId())) {
             return R.error("不允许修改超级管理员用户" );
@@ -228,7 +216,6 @@ public class UserController {
     @OperLog("用户数据导出" )
     @PreAuthorize("@ps.hasPerm('user_export')" )
     @GetMapping("/exportUser" )
-    @ResponseBody
     public R exportUser(User user, HttpServletResponse response, HttpServletRequest request) {
         List<User> list = userService.list(getQueryWrapper(user));
         ExcelUtil<User> util = new ExcelUtil<User>(User.class);
@@ -239,7 +226,6 @@ public class UserController {
     @OperLog("用户数据导入" )
     @PreAuthorize("@ps.hasPerm('user_import')" )
     @PostMapping("/importUser" )
-    @ResponseBody
     public R importUser(MultipartFile file, boolean updateSupport) {
         ExcelUtil<User> util = new ExcelUtil<User>(User.class);
         List<User> userList = util.importExcel(file.getInputStream());
@@ -248,7 +234,6 @@ public class UserController {
     }
 
     @GetMapping("/importTemplate" )
-    @ResponseBody
     public R importTemplate() {
         ExcelUtil<User> util = new ExcelUtil<User>(User.class);
         return util.importTemplateExcel("用户数据" );

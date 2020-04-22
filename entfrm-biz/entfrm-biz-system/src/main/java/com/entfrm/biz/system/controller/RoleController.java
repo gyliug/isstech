@@ -51,7 +51,6 @@ public class RoleController {
         if (StrUtil.isBlank(role.getCode()) && ObjectUtil.isNull(role.getId()) && StrUtil.isNotBlank(role.getName())) {
             role.setCode(PinyinUtil.getAllFirstLetter(role.getName()));
         }
-        roleService.save(role);
         roleService.insertRole(role);
         return R.ok();
     }
@@ -59,9 +58,7 @@ public class RoleController {
     @OperLog("角色修改")
     @PreAuthorize("@ps.hasPerm('role_edit')")
     @PutMapping("/update")
-    @ResponseBody
     public R update(@RequestBody Role role) {
-        roleService.updateById(role);
         roleService.updateRoleMenu(role);
         return R.ok();
     }
@@ -79,7 +76,6 @@ public class RoleController {
     @OperLog("角色状态更改")
     @PreAuthorize("@ps.hasPerm('role_edit')")
     @PutMapping("/changeStatus")
-    @ResponseBody
     public R changeStatus(@RequestBody Role role) {
         roleService.update(new UpdateWrapper<Role>().eq("id", role.getId()).set("status", role.getStatus()));
         return R.ok();
@@ -88,7 +84,6 @@ public class RoleController {
     @OperLog("角色删除")
     @PreAuthorize("@ps.hasPerm('role_del')")
     @DeleteMapping("/remove/{id}")
-    @ResponseBody
     public R remove(@PathVariable Integer id) {
         if(id == 1){
             return R.error("不允许删除管理员角色");

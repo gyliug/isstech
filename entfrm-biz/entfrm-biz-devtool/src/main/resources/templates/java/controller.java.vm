@@ -52,7 +52,6 @@ public class ${ClassName}Controller {
         @ApiOperation("${functionName}列表")
         @PreAuthorize("@ps.hasPerm('${permissionPrefix}_view')")
         @GetMapping("/list")
-        @ResponseBody
         public R list(${ClassName} ${className}) {
             List<${ClassName}> ${className}List = ${className}Service.list(getQueryWrapper(${className}));
             return R.ok(${className}List);
@@ -61,7 +60,6 @@ public class ${ClassName}Controller {
         @ApiOperation("${functionName}列表")
         @PreAuthorize("@ps.hasPerm('${permissionPrefix}_view')")
         @GetMapping("/list")
-        @ResponseBody
         public R list(Page page, ${ClassName} ${className}) {
             IPage<${ClassName}> ${className}Page = ${className}Service.page(page, getQueryWrapper(${className}));
             return R.ok(${className}Page.getRecords(), ${className}Page.getTotal());
@@ -78,7 +76,6 @@ public class ${ClassName}Controller {
     @ApiOperation("${functionName}新增")
     @PreAuthorize("@ps.hasPerm('${permissionPrefix}_add')")
     @PostMapping("/save")
-    @ResponseBody
     public R save(@Validated @RequestBody ${ClassName} ${className}) {
             ${className}Service.save(${className});
         return R.ok();
@@ -88,7 +85,6 @@ public class ${ClassName}Controller {
     @ApiOperation("${functionName}修改")
     @PreAuthorize("@ps.hasPerm('${permissionPrefix}_edit')")
     @PutMapping("/update")
-    @ResponseBody
     public R update(@Validated @RequestBody ${ClassName} ${className}) {
             ${className}Service.updateById(${className});
         return R.ok();
@@ -98,8 +94,7 @@ public class ${ClassName}Controller {
     @OperLog("${functionName}删除")
     @ApiOperation("${functionName}删除")
     @PreAuthorize("@ps.hasPerm('${permissionPrefix}_del')")
-    @GetMapping("/remove/{${pkColumn.javaField}}")
-    @ResponseBody
+    @DeleteMapping("/remove/{${pkColumn.javaField}}")
     public R remove(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}) {
         return R.ok(${className}Service.removeById(${pkColumn.javaField}));
     }
@@ -107,7 +102,6 @@ public class ${ClassName}Controller {
 
     #if($table.tplCategory == 'tree')
         @GetMapping("/${className}Tree")
-        @ResponseBody
         public R ${className}Tree() {
             List<${ClassName}> ${className}List = ${className}Service.list(new QueryWrapper<${ClassName}>().orderByAsc("sort"));
             return R.ok(${className}Service.buildTree(${className}List, 0));
@@ -116,7 +110,6 @@ public class ${ClassName}Controller {
 
     @PreAuthorize("@ps.hasPerm('${permissionPrefix}_export')")
     @GetMapping("/export")
-    @ResponseBody
     public R export(${ClassName} ${className}) {
         List<${ClassName}> list = ${className}Service.list(getQueryWrapper(${className}));
         ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}. class);

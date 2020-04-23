@@ -2,7 +2,7 @@
   <el-card>
     <el-tabs v-model="activeName">
       <el-tab-pane label="基本信息" name="basic">
-        <basic-info-form ref="basicInfo" :info="info" />
+        <basic-info-form ref="basicInfo" :info="info"/>
       </el-tab-pane>
       <el-tab-pane label="字段信息" name="cloum">
         <el-row :gutter="10" class="mb8">
@@ -13,13 +13,14 @@
               size="mini"
               @click="handleAdd"
               v-hasPerm="['datatable_add']"
-            >新增</el-button>
+            >新增
+            </el-button>
           </el-col>
 
         </el-row>
 
-        <el-table :data="cloumns" :max-height="tableHeight">
-          <el-table-column label="序号" type="index" min-width="5%" />
+        <el-table ref="dragTable" :data="cloumns" :max-height="tableHeight">
+          <el-table-column label="序号" type="index" min-width="5%"/>
           <el-table-column label="字段列名" min-width="10%">
             <template slot-scope="scope">
               <el-input v-model="scope.row.columnName" placeholder="字段列名"></el-input>
@@ -38,12 +39,12 @@
           <el-table-column label="Java类型" min-width="11%">
             <template slot-scope="scope">
               <el-select v-model="scope.row.javaType">
-                <el-option label="Long" value="Long" />
-                <el-option label="String" value="String" />
-                <el-option label="Integer" value="Integer" />
-                <el-option label="Double" value="Double" />
-                <el-option label="BigDecimal" value="BigDecimal" />
-                <el-option label="Date" value="Date" />
+                <el-option label="Long" value="Long"/>
+                <el-option label="String" value="String"/>
+                <el-option label="Integer" value="Integer"/>
+                <el-option label="Double" value="Double"/>
+                <el-option label="BigDecimal" value="BigDecimal"/>
+                <el-option label="Date" value="Date"/>
               </el-select>
             </template>
           </el-table-column>
@@ -80,18 +81,18 @@
           <el-table-column label="查询方式" min-width="10%">
             <template slot-scope="scope">
               <el-select v-model="scope.row.queryType">
-                <el-option label="=" value="eq" />
-                <el-option label="!=" value="ne" />
-                <el-option label=">" value="gt" />
-                <el-option label=">=" value="ge" />
-                <el-option label="<" value="lt" />
-                <el-option label="<=" value="le" />
-                <el-option label="in" value="in" />
-                <el-option label="like" value="like" />
-                <el-option label="isNull" value="isNull" />
-                <el-option label="isNotNull" value="isNotNull" />
-                <el-option label="between" value="between" />
-                <el-option label="notBetween" value="notBetween" />
+                <el-option label="=" value="eq"/>
+                <el-option label="!=" value="ne"/>
+                <el-option label=">" value="gt"/>
+                <el-option label=">=" value="ge"/>
+                <el-option label="<" value="lt"/>
+                <el-option label="<=" value="le"/>
+                <el-option label="in" value="in"/>
+                <el-option label="like" value="like"/>
+                <el-option label="isNull" value="isNull"/>
+                <el-option label="isNotNull" value="isNotNull"/>
+                <el-option label="between" value="between"/>
+                <el-option label="notBetween" value="notBetween"/>
               </el-select>
             </template>
           </el-table-column>
@@ -103,15 +104,15 @@
           <el-table-column label="显示类型" min-width="12%">
             <template slot-scope="scope">
               <el-select v-model="scope.row.htmlType">
-                <el-option label="文本框" value="input" />
-                <el-option label="文本域" value="textarea" />
-                <el-option label="下拉框" value="select" />
-                <el-option label="单选框" value="radio" />
-                <el-option label="复选框" value="checkbox" />
-                <el-option label="日期控件" value="datetime" />
-                <el-option label="部门控件" value="dept" />
-                <el-option label="用户控件" value="user" />
-                <el-option label="文件上传控件" value="fileUpload" />
+                <el-option label="文本框" value="input"/>
+                <el-option label="文本域" value="textarea"/>
+                <el-option label="下拉框" value="select"/>
+                <el-option label="单选框" value="radio"/>
+                <el-option label="复选框" value="checkbox"/>
+                <el-option label="日期控件" value="datetime"/>
+                <el-option label="部门控件" value="dept"/>
+                <el-option label="用户控件" value="user"/>
+                <el-option label="文件上传控件" value="fileUpload"/>
               </el-select>
             </template>
           </el-table-column>
@@ -129,10 +130,17 @@
               </el-select>
             </template>
           </el-table-column>
+          <el-table-column align="center" label="操作" width="80">
+            <template slot-scope="scope">
+              <svg-icon class="drag-handler" icon-class="drag"/>
+              <el-button type="text" @click="handleDel(scope.$index, scope.row)" class="del-handler"
+                         icon="el-icon-delete"></el-button>
+            </template>
+          </el-table-column>
         </el-table>
       </el-tab-pane>
       <el-tab-pane label="生成信息" name="genInfo">
-        <gen-info-form ref="genInfo" :info="info" />
+        <gen-info-form ref="genInfo" :info="info"/>
       </el-tab-pane>
     </el-tabs>
     <el-form label-width="100px">
@@ -144,10 +152,12 @@
   </el-card>
 </template>
 <script>
-  import { getGenTable, updateGenTable } from "@/api/devtool/datatable";
-  import { dictList } from "@/api/system/dict";
+  import {getGenTable, updateGenTable} from "@/api/devtool/datatable";
+  import {dictList} from "@/api/system/dict";
   import basicInfoForm from "./basicInfoForm";
   import genInfoForm from "./genInfoForm";
+  import Sortable from 'sortablejs'
+
   export default {
     name: "GenEdit",
     components: {
@@ -164,22 +174,27 @@
         cloumns: [],
         // 字典信息
         dictOptions: [],
+        // 删除表字段名
+        delNames: [],
         // 表详细信息
         info: {}
       };
     },
     beforeCreate() {
-      const { tableName, tableComment } = this.$route.query;
+      const {tableName, tableComment} = this.$route.query;
       // 获取表详细信息
       getGenTable(tableName, tableComment).then(res => {
         this.info = res.data;
         this.cloumns = res.data.columns;
-        if(this.info.options){
+        if (this.info.options) {
           const options = JSON.parse(this.info.options);
           this.info.treeId = options.treeId
           this.info.treeParentId = options.treeParentId
           this.info.treeName = options.treeName
         }
+        this.$nextTick(() => {
+          this.setSort()
+        })
       });
       /** 查询字典下拉列表 */
       dictList().then(response => {
@@ -203,9 +218,10 @@
                 treeName: genTable.treeName,
                 treeParentId: genTable.treeParentId
               }
-              // delete genTable.columns
-              // delete genTable.params
-              console.log(genTable)
+              console.log('delNames：' + JSON.stringify(this.delNames))
+              if(this.delNames && this.delNames.length > 0){
+                genTable.delNames = this.delNames.join()
+              }
               updateGenTable(genTable)
                 .then(res => {
                   this.msgSuccess(res.msg)
@@ -225,15 +241,67 @@
           });
         });
       },
-      handleAdd(){
-        const cloumn = {columnName: '', columnComment: '', columnType: '', javaType: 'String', javaField: '', defValue: '', queryType: 'eq', htmlType: 'input'}
-        this.cloumns.splice(1, 0, cloumn)
+      handleAdd() {
+        const cloumn = {
+          columnName: '',
+          columnComment: '',
+          columnType: '',
+          javaType: 'String',
+          javaField: '',
+          defValue: '',
+          queryType: 'eq',
+          htmlType: 'input'
+        }
+        this.cloumns.splice(this.cloumns.length - 6, 0, cloumn)
       },
       /** 关闭按钮 */
       close() {
         this.$store.dispatch("tagsView/delView", this.$route);
-        this.$router.push({ path: "/devtool/datatable", query: { t: Date.now()}})
+        this.$router.push({path: "/devtool/datatable", query: {t: Date.now()}})
+      },
+      setSort() {
+        const el = this.$refs.dragTable.$el.querySelectorAll('.el-table__body-wrapper > table > tbody')[0]
+        this.sortable = Sortable.create(el, {
+          ghostClass: 'sortable-ghost', // Class name for the drop placeholder,
+          setData: function (dataTransfer) {
+            // to avoid Firefox bug
+            // Detail see : https://github.com/RubaXa/Sortable/issues/1012
+            dataTransfer.setData('Text', '')
+          },
+          onEnd: evt => {
+            const targetRow = this.cloumns.splice(evt.oldIndex, 1)[0]
+            this.cloumns.splice(evt.newIndex, 0, targetRow)
+          }
+        })
+      },
+      handleDel(index, row) {
+        this.$confirm('是否确认删除字段列名为"' + row.columnName + '"的数据项?', "警告", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }).then(() => {
+          if(row.id){
+            this.delNames.push(row.columnName);
+          }
+          this.cloumns.splice(index, 1);
+          this.msgSuccess("删除成功");
+        }).catch(function (err) {
+          console.log(err)
+        });
       }
     }
   };
 </script>
+<style scoped>
+  .drag-handler {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    color: #1890ff;
+  }
+
+  .del-handler {
+    font-size: 20px;
+    color: #ff4949;
+  }
+</style>

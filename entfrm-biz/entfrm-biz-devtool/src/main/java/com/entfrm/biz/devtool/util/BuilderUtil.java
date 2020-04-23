@@ -44,7 +44,7 @@ public class BuilderUtil {
     public static String updateTable(Table table) {
         StringBuilder sb = new StringBuilder();
         if(StrUtil.isNotEmpty(table.getTableName())){
-            sb.append("alter table " + table.getTableName() + " comment '" + table.getTableName() + "';");
+            sb.append("alter table " + table.getTableName() + " comment '" + table.getTableComment() + "';");
         }
         if (table.getColumns() != null && table.getColumns().size() > 0) {
             for (Column column : table.getColumns()) {

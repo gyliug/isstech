@@ -37,7 +37,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/entfrm/entfrm-boot.git"
+    "url": "https://gitee.com/entfrm/entfrm-boot"
   },
   "dependencies": {
     "@riophae/vue-treeselect": "0.4.0",
@@ -50,6 +50,7 @@
     "fuse.js": "3.4.4",
     "js-cookie": "2.2.0",
     "jsencrypt": "3.0.0-rc.1",
+    "sortablejs": "^1.10.2",
     "mavon-editor": "^2.8.0",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",

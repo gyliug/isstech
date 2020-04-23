@@ -114,7 +114,7 @@
               <el-radio-group v-model="form.type">
                 <el-radio label="M">目录</el-radio>
                 <el-radio label="C">菜单</el-radio>
-                <el-radio label="F">按钮</el-radio>
+                <el-radio label="F">资源</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>

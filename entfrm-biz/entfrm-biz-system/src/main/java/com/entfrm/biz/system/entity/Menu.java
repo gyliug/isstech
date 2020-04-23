@@ -55,7 +55,7 @@ public class Menu extends BaseEntity {
     private String parentName;
 
     /**
-     * 菜单类型（M模块 C菜单 A按钮）
+     * 菜单类型（M模块 C菜单 F资源）
      */
     private String type;
 

@@ -11,6 +11,11 @@ public interface CommonConstants {
     String DB_NAME = "entfrm";
 
     /**
+     * 前缀
+     */
+    String PREFIX = "entfrm_";
+
+    /**
      * UTF-8 字符集
      */
     String UTF8 = "UTF-8";

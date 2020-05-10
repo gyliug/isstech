@@ -3,6 +3,7 @@ package com.entfrm.auth.config;
 import com.entfrm.auth.handler.EntfrmWebResponseExceptionTranslator;
 import com.entfrm.auth.service.EntfrmUserDetailService;
 import com.entfrm.core.base.config.GlobalConfig;
+import com.entfrm.core.security.entity.EntfrmUser;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -76,6 +77,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public TokenEnhancer tokenEnhancer() {
         return (accessToken, authentication) -> {
             Map<String, Object> info = new HashMap<>(1);
+            EntfrmUser entfrmUser = (EntfrmUser) authentication.getUserAuthentication().getPrincipal();
+            info.put("user_id", entfrmUser.getId());
+            info.put("username", entfrmUser.getUsername());
+            info.put("dept_id", entfrmUser.getDeptId());
             info.put("license", "entfrm");
             ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
             return accessToken;

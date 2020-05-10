@@ -3,7 +3,7 @@ entfrm:
   # 名称
   name: entfrm开发平台
   # 版本
-  version: 1.0.1
+  version: 1.0.2
   # 文件上传路径
   profile: C:/profile/
   # 获取ip地址开关

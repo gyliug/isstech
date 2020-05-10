@@ -67,6 +67,7 @@ public class CommonController {
             String newFileName = "file" + new Date().getTime();
             // 上传并返回新文件名称
             String fileName = UploadUtil.fileUp(file, filePath, newFileName);
+            //在/profile前增加 /dev - 开发环境 /pro - 发布环境
             return R.ok(RequestUtil.getDomain(request) + "/profile/upload/" + fileName);
         } catch (Exception e) {
             return R.error(e.getMessage());

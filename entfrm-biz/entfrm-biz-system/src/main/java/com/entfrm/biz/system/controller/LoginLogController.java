@@ -8,8 +8,10 @@ import com.entfrm.biz.system.entity.LoginLog;
 import com.entfrm.biz.system.service.LoginLogService;
 import com.entfrm.core.base.api.R;
 import com.entfrm.core.base.util.AddressUtil;
+import com.entfrm.core.base.util.ExcelUtil;
 import com.entfrm.core.log.annotation.OperLog;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +36,6 @@ public class LoginLogController {
 
     @PreAuthorize("@ps.hasPerm('loginLog_view')")
     @GetMapping("/list")
-    @ResponseBody
     public R list(Page page, LoginLog loginLog) {
         IPage<LoginLog> loginLogPage = loginLogService.page(page, getQueryWrapper(loginLog));
         return R.ok(loginLogPage.getRecords(), loginLogPage.getTotal());
@@ -43,7 +44,6 @@ public class LoginLogController {
     @OperLog("登录日志删除")
     @PreAuthorize("@ps.hasPerm('loginLog_del')")
     @DeleteMapping("/remove/{id}")
-    @ResponseBody
     public R remove(@PathVariable String id) {
         try {
             loginLogService.removeById(id);
@@ -53,18 +53,21 @@ public class LoginLogController {
         }
     }
 
-    @OperLog("登录日志删除")
+    @OperLog("登录日志清空")
     @PreAuthorize("@ps.hasPerm('loginLog_del')")
-    @DeleteMapping("/clean/{id}")
-    @ResponseBody
-    public R clean(@PathVariable String id) {
-        List<LoginLog> loginLogList = loginLogService.list();
-        for(LoginLog loginLog : loginLogList){
-            if("XX XX".equals(loginLog.getLoginAddr())){
-                loginLog.setLoginAddr(AddressUtil.getCityInfo(loginLog.getLoginIp()));
-                loginLogService.updateById(loginLog);
-            }
-        }
+    @DeleteMapping("/clean")
+    public R clean() {
+        loginLogService.remove(new QueryWrapper<>());
         return R.ok();
+    }
+
+    @SneakyThrows
+    @OperLog("登录日志" )
+    @PreAuthorize("@ps.hasPerm('loginLog_export')" )
+    @GetMapping("/export" )
+    public R export(LoginLog loginLog) {
+        List<LoginLog> list = loginLogService.list(getQueryWrapper(loginLog));
+        ExcelUtil<LoginLog> util = new ExcelUtil<LoginLog>(LoginLog.class);
+        return util.exportExcel(list, "登录日志" );
     }
 }

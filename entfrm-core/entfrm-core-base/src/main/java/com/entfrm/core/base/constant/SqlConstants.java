@@ -18,4 +18,6 @@ public interface SqlConstants {
     String LOGIN_LOG = "insert into sys_login_log (login_name, login_type, login_ip, login_addr, user_agent, status, msg, login_time) values (?,?,?,?,?,?,?,?)";
 
     String ROLE_DATASCOPE = "select data_scope dataScope from sys_role where id = ?";
+
+    String ADD_FILEINFO = "insert into sys_file_info (name, type, format, size, path, dept_id, create_by, create_time) values (?,?,?,?,?,?,?,?)";
 }

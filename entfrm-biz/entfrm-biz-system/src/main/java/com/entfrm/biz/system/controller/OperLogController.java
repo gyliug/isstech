@@ -7,9 +7,15 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.entfrm.biz.system.entity.OperLog;
 import com.entfrm.biz.system.service.OperLogService;
 import com.entfrm.core.base.api.R;
+import com.entfrm.core.base.util.ExcelUtil;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 系统操作记录
@@ -30,7 +36,6 @@ public class OperLogController {
 
     @PreAuthorize("@ps.hasPerm('operLog_view')")
     @GetMapping("/list")
-    @ResponseBody
     public R list(Page page, OperLog operLog) {
         IPage<OperLog> operLogPage = operLogService.page(page, getQueryWrapper(operLog));
         return R.ok(operLogPage.getRecords(), operLogPage.getTotal());
@@ -39,7 +44,6 @@ public class OperLogController {
     @com.entfrm.core.log.annotation.OperLog("操作日志删除")
     @PreAuthorize("@ps.hasPerm('operLog_del')")
     @DeleteMapping("/remove/{id}")
-    @ResponseBody
     public R remove(@PathVariable String id) {
         try {
             operLogService.removeById(id);
@@ -47,5 +51,23 @@ public class OperLogController {
         } catch (Exception e) {
             return R.error(e.getMessage());
         }
+    }
+
+    @com.entfrm.core.log.annotation.OperLog("操作日志清空")
+    @PreAuthorize("@ps.hasPerm('operLog_del')")
+    @DeleteMapping("/clean")
+    public R clean() {
+        operLogService.remove(new QueryWrapper<>());
+        return R.ok();
+    }
+
+    @SneakyThrows
+    @com.entfrm.core.log.annotation.OperLog("操作日志" )
+    @PreAuthorize("@ps.hasPerm('operLog_export')" )
+    @GetMapping("/export" )
+    public R export(OperLog operLog) {
+        List<OperLog> list = operLogService.list(getQueryWrapper(operLog));
+        ExcelUtil<OperLog> util = new ExcelUtil<OperLog>(OperLog.class);
+        return util.exportExcel(list, "操作日志" );
     }
 }

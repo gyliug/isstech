@@ -238,7 +238,7 @@ export default {
         }).then(function() {
           return exportLoginLog(queryParams);
         }).then(response => {
-          this.download(response.msg);
+          this.download(response.data);
         }).catch(function() {});
     }
   }

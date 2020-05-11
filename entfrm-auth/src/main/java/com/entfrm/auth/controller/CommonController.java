@@ -4,12 +4,17 @@ import cn.hutool.core.util.ReUtil;
 import com.entfrm.core.base.api.R;
 import com.entfrm.core.base.config.GlobalConfig;
 import com.entfrm.core.base.constant.CommonConstants;
+import com.entfrm.core.base.constant.SqlConstants;
 import com.entfrm.core.base.exception.BaseException;
 import com.entfrm.core.base.util.FileUtil;
 import com.entfrm.core.base.util.RequestUtil;
 import com.entfrm.core.base.util.StrUtil;
 import com.entfrm.core.base.util.UploadUtil;
+import com.entfrm.core.security.entity.EntfrmUser;
+import com.entfrm.core.security.util.SecurityUtil;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +30,11 @@ import java.util.Date;
  */
 @Slf4j
 @RestController
+@AllArgsConstructor
 @RequestMapping("/common" )
 public class CommonController {
 
+    private final JdbcTemplate jdbcTemplate;
     /**
      * 通用下载请求
      *
@@ -62,13 +69,22 @@ public class CommonController {
     @PostMapping("/upload" )
     public R uploadFile(MultipartFile file, HttpServletRequest request) throws Exception {
         try {
-            // 上传文件路径
-            String filePath = GlobalConfig.getUploadPath();;
-            String newFileName = "file" + new Date().getTime();
-            // 上传并返回新文件名称
-            String fileName = UploadUtil.fileUp(file, filePath, newFileName);
-            //在/profile前增加 /dev - 开发环境 /pro - 发布环境
-            return R.ok(RequestUtil.getDomain(request) + "/profile/upload/" + fileName);
+            String oFileName = file.getOriginalFilename();
+            // 获取文件的文件名
+            String fileName = oFileName.substring(0, oFileName.lastIndexOf("."));
+            // 获取文件的后缀名
+            String fileFormat = oFileName.substring(oFileName.lastIndexOf(".") + 1);
+            // 获取文件的后缀名
+            String type = UploadUtil.getType(fileFormat);
+            // 新文件名
+            String newFileName = type + new Date().getTime();
+            // 获取大小
+            String fileSize = FileUtil.fileSize(file.getSize());
+            // 上传文件 在/profile前增加 /dev - 开发环境 /pro - 发布环境
+            String path = RequestUtil.getDomain(request) + "/dev/profile/upload/" + type + "/" + UploadUtil.fileUp(file, GlobalConfig.getUploadPath() + type + "/", newFileName);
+            EntfrmUser user = SecurityUtil.getUser();
+            jdbcTemplate.update(SqlConstants.ADD_FILEINFO, fileName, type, fileFormat, fileSize, path, user.getDeptId(), user.getUsername(), new Date());
+            return R.ok(path);
         } catch (Exception e) {
             return R.error(e.getMessage());
         }

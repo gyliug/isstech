@@ -216,7 +216,7 @@ public class UserController {
     @OperLog("用户数据导出" )
     @PreAuthorize("@ps.hasPerm('user_export')" )
     @GetMapping("/exportUser" )
-    public R exportUser(User user, HttpServletResponse response, HttpServletRequest request) {
+    public R exportUser(User user) {
         List<User> list = userService.list(getQueryWrapper(user));
         ExcelUtil<User> util = new ExcelUtil<User>(User.class);
         return util.exportExcel(list, "用户数据" );

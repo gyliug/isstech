@@ -70,7 +70,7 @@ public class FileInfoController {
         String newFileName = type + new Date().getTime();
         // 获取大小
         String fileSize = FileUtil.fileSize(file.getSize());
-        String path = RequestUtil.getDomain(request) + "/profile/upload/" + type + "/" + UploadUtil.fileUp(file, GlobalConfig.getUploadPath() + type + "/", newFileName);
+        String path = "/profile/upload/" + type + "/" + UploadUtil.fileUp(file, GlobalConfig.getUploadPath() + type + "/", newFileName);
         fileInfo.setName(fileName);
         fileInfo.setType(type);
         fileInfo.setPath(path);

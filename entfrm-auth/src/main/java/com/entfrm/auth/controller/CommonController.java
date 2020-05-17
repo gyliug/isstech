@@ -80,8 +80,8 @@ public class CommonController {
             String newFileName = type + new Date().getTime();
             // 获取大小
             String fileSize = FileUtil.fileSize(file.getSize());
-            // 上传文件 在/profile前增加 /dev - 开发环境 /pro - 发布环境
-            String path = RequestUtil.getDomain(request) + "/dev/profile/upload/" + type + "/" + UploadUtil.fileUp(file, GlobalConfig.getUploadPath() + type + "/", newFileName);
+            // 上传文件
+            String path = "/profile/upload/" + type + "/" + UploadUtil.fileUp(file, GlobalConfig.getUploadPath() + type + "/", newFileName);
             EntfrmUser user = SecurityUtil.getUser();
             jdbcTemplate.update(SqlConstants.ADD_FILEINFO, fileName, type, fileFormat, fileSize, path, user.getDeptId(), user.getUsername(), new Date());
             return R.ok(path);

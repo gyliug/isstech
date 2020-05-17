@@ -80,6 +80,11 @@ export function download(fileName) {
 	window.location.href = baseURL + "/common/download?fileName=" + encodeURI(fileName) + "&delete=" + true;
 }
 
+// 地址转换
+export function newPath(path) {
+  return baseURL + path;
+}
+
 // 字符串格式化(%s )
 export function sprintf(str) {
 	var args = arguments, flag = true, i = 1;

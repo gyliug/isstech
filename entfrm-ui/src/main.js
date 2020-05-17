@@ -18,7 +18,7 @@ import './assets/icons' // icon
 import './permission' // permission control
 import { getDicts } from "@/api/system/dictData";
 import { getByKey } from "@/api/system/config";
-import { parseTime, resetForm, addDateRange, selectDictLabel, download, handleTree } from "@/utils/entfrm";
+import { parseTime, newPath, resetForm, addDateRange, selectDictLabel, download, handleTree } from "@/utils/entfrm";
 import Pagination from "@/components/Pagination";
 
 import mavonEditor from 'mavon-editor'
@@ -28,6 +28,7 @@ import 'mavon-editor/dist/css/index.css'
 Vue.prototype.getDicts = getDicts
 Vue.prototype.getByKey = getByKey
 Vue.prototype.parseTime = parseTime
+Vue.prototype.newPath = newPath
 Vue.prototype.resetForm = resetForm
 Vue.prototype.addDateRange = addDateRange
 Vue.prototype.selectDictLabel = selectDictLabel

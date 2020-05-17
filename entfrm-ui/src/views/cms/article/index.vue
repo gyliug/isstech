@@ -376,7 +376,7 @@
           if (response.code === 0) {
             // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
             // $vm.$img2Url 详情见本页末尾
-            this.$refs.md.$img2Url(pos, response.data);
+            this.$refs.md.$img2Url(pos, 'http://' + location.host + process.env.VUE_APP_BASE_API + response.data);
           } else {
             this.msgError(response.msg);
           }

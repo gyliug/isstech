@@ -175,7 +175,7 @@ public class UserController {
     @PreAuthorize("@ps.hasPerm('user_edit')" )
     @PutMapping("/updateAvatar" )
     public R updateAvatar(@RequestParam("avatarfile") MultipartFile file, HttpServletRequest request) {
-        String avatar = RequestUtil.getDomain(request) + "/profile/avatar/" + UploadUtil.fileUp(file, GlobalConfig.getAvatarPath(), "avatar" + new Date().getTime());
+        String avatar = "/profile/avatar/" + UploadUtil.fileUp(file, GlobalConfig.getAvatarPath(), "avatar" + new Date().getTime());
         userService.update(new UpdateWrapper<User>().eq("id", SecurityUtil.getUser().getId()).set("avatar", avatar));
         return R.ok(avatar);
     }

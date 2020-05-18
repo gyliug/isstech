@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+
 /**
  * 定时任务执行日志表
  *
@@ -35,17 +37,11 @@ public class JobLogController {
         return R.ok(jobLogPage.getRecords(), jobLogPage.getTotal());
     }
 
-    /**
-     * 通过id删除定时任务
-     *
-     * @param id id
-     * @return R
-     */
     @OperLog("定时任务日志删除")
-    @DeleteMapping("/{id}")
     @PreAuthorize("@ps.hasPerm('jobLog_del')")
-    public R removeById(@PathVariable Integer id) {
-        jobLogService.removeById(id);
+    @DeleteMapping("/{id}")
+    public R removeById(@PathVariable Integer[] id) {
+        jobLogService.removeByIds(Arrays.asList(id));
         return R.ok();
     }
 }

@@ -84,9 +84,8 @@ public class ArticleController {
     @ApiOperation("文章删除")
     @PreAuthorize("@ps.hasPerm('article_del')")
     @DeleteMapping("/remove/{id}")
-    @ResponseBody
-    public R remove(@PathVariable("id") Integer id) {
-        return R.ok(articleService.removeById(id));
+    public R remove(@PathVariable("id") Integer[] id) {
+        return R.ok(articleService.removeByIds(Arrays.asList(id)));
     }
 
     @PreAuthorize("@ps.hasPerm('article_export')")

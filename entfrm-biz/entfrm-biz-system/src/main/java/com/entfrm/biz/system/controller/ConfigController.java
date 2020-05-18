@@ -13,6 +13,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+
 /**
  * 参数信息
  *
@@ -72,9 +74,9 @@ public class ConfigController {
     @PreAuthorize("@ps.hasPerm('config_del')")
     @DeleteMapping("/remove/{id}")
     @ResponseBody
-    public R remove(@PathVariable String id) {
+    public R remove(@PathVariable Integer[] id) {
         try {
-            configService.removeById(id);
+            configService.removeByIds(Arrays.asList(id));
             return R.ok();
         } catch (Exception e) {
             return R.error(e.getMessage());

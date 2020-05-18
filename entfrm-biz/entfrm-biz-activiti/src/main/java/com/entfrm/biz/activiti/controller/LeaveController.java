@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -64,25 +65,13 @@ public class LeaveController {
         return R.ok(leaveService.updateById(leave));
     }
 
-    /**
-     * 删除
-     *
-     * @param id
-     * @return R
-     */
     @OperLog("请假删除")
     @PreAuthorize("@ps.hasPerm('leave_del')")
     @DeleteMapping("/{id}")
-    public R removeById(@PathVariable Integer id) {
-        return R.ok(leaveService.removeById(id));
+    public R removeById(@PathVariable Integer[] id) {
+        return R.ok(leaveService.removeByIds(Arrays.asList(id)));
     }
 
-    /**
-     * 启动请假流程
-     *
-     * @param id
-     * @return R
-     */
     @OperLog("启动请假流程")
     @PreAuthorize("@ps.hasPerm('leave_edit')")
     @GetMapping("/startProcess/{id}")

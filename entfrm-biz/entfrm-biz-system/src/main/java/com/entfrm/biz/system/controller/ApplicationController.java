@@ -1,5 +1,6 @@
 package com.entfrm.biz.system.controller;
 
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -15,6 +16,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -71,11 +73,11 @@ public class ApplicationController {
     @OperLog("应用删除")
     @PreAuthorize("@ps.hasPerm('application_del')")
     @DeleteMapping("/remove/{id}")
-    public R remove(@PathVariable("id") Integer id) {
-        if(id == 1){
+    public R remove(@PathVariable("id") Integer[] id) {
+        if(ArrayUtil.contains(id, 1)){
             return R.error("该应用不可删除");
         }
-        return R.ok(applicationService.removeById(id));
+        return R.ok(applicationService.removeByIds(Arrays.asList(id)));
     }
 
 

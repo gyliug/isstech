@@ -28,18 +28,6 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDel"
-          v-hasPerm="['process_del']"
-        >删除
-        </el-button>
-      </el-col>
-
       <div class="top-right-btn">
         <el-tooltip class="item" effect="dark" content="刷新" placement="top">
           <el-button size="mini" circle icon="el-icon-refresh" @click="handleQuery"/>
@@ -230,7 +218,7 @@
       },
       /** 删除按钮操作 */
       handleDel(row) {
-        const ids = row.deploymentId || this.ids;
+        const ids = row.deploymentId;
         this.$confirm('确认要删除流程编号为"' + ids + '"的数据项吗?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",

@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -66,9 +67,9 @@ public class DictController {
     @PreAuthorize("@ps.hasPerm('dict_del')")
     @DeleteMapping("/remove/{id}")
     @ResponseBody
-    public R remove(@PathVariable String id) {
+    public R remove(@PathVariable Integer[] id) {
         try {
-            dictService.removeById(id);
+            dictService.removeByIds(Arrays.asList(id));
             return R.ok();
         } catch (Exception e) {
             return R.error(e.getMessage());

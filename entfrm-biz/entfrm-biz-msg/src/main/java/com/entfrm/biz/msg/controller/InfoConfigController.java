@@ -27,6 +27,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -82,15 +83,13 @@ public class InfoConfigController {
         return R.ok();
     }
 
-
     @OperLog("消息配置删除")
     @ApiOperation("消息配置删除")
     @PreAuthorize("@ps.hasPerm('infoConfig_del')")
     @DeleteMapping("/remove/{id}")
-    public R remove(@PathVariable("id") Integer id) {
-        return R.ok(infoConfigService.removeById(id));
+    public R remove(@PathVariable("id") Integer[] id) {
+        return R.ok(infoConfigService.removeByIds(Arrays.asList(id)));
     }
-
 
     @PreAuthorize("@ps.hasPerm('infoConfig_export')")
     @GetMapping("/export")
@@ -105,7 +104,7 @@ public class InfoConfigController {
     @GetMapping("/sendSms/{id}")
     public R sendSms(@PathVariable("id") Integer id) {
         InfoConfig infoConfig = infoConfigService.getById(id);
-        if(infoConfig != null){
+        if (infoConfig != null) {
             DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", infoConfig.getAccessKeyId(), infoConfig.getAccessKeySecret());
             IAcsClient client = new DefaultAcsClient(profile);
 
@@ -132,7 +131,7 @@ public class InfoConfigController {
     @GetMapping("/sendEmail/{id}")
     public R sendEmail(@PathVariable("id") Integer id, @RequestParam String toEmail, @RequestParam String subject, @RequestParam String content) {
         InfoConfig infoConfig = infoConfigService.getById(id);
-        if(infoConfig != null) {
+        if (infoConfig != null) {
             MailAccount account = new MailAccount();
             account.setHost(infoConfig.getHost());
             account.setPort(infoConfig.getPort());

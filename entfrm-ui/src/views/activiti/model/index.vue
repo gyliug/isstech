@@ -37,16 +37,6 @@
           v-hasPerm="['model_add']"
         >新增</el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDel"
-          v-hasPerm="['model_del']"
-        >删除</el-button>
-      </el-col>
       <div class="top-right-btn">
         <el-tooltip class="item" effect="dark" content="刷新" placement="top">
           <el-button size="mini" circle icon="el-icon-refresh" @click="handleQuery" />
@@ -299,7 +289,7 @@ export default {
     },
     /** 删除按钮操作 */
     handleDel(row) {
-      const ids = row.id || this.ids;
+      const ids = row.id;
       this.$confirm('是否确认删除模型编号为"' + ids + '"的数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,9 +45,9 @@ public class OperLogController {
     @com.entfrm.core.log.annotation.OperLog("操作日志删除")
     @PreAuthorize("@ps.hasPerm('operLog_del')")
     @DeleteMapping("/remove/{id}")
-    public R remove(@PathVariable String id) {
+    public R remove(@PathVariable String[] id) {
         try {
-            operLogService.removeById(id);
+            operLogService.removeByIds(Arrays.asList(id));
             return R.ok();
         } catch (Exception e) {
             return R.error(e.getMessage());

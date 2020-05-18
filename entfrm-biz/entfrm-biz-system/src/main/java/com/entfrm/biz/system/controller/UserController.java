@@ -138,11 +138,11 @@ public class UserController {
     @OperLog("用户删除" )
     @PreAuthorize("@ps.hasPerm('user_del')" )
     @DeleteMapping("/remove/{id}" )
-    public R remove(@PathVariable Integer id) {
-        if (SecurityUtil.getUser().isAdmin(id)) {
+    public R remove(@PathVariable Integer[] id) {
+        if (ArrayUtil.contains(id, 1)) {
             return R.error("不允许删除超级管理员" );
         }
-        userService.removeById(id);
+        userService.removeByIds(Arrays.asList(id));
         return R.ok();
     }
 

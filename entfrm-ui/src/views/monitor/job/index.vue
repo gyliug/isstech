@@ -90,17 +90,6 @@
       </el-col>
       <el-col :span="1.5">
         <el-button
-          type="danger"
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDel"
-          v-hasPerm="['job_del']"
-        >删除
-        </el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
           type="info"
           icon="el-icon-s-operation"
           size="mini"
@@ -131,7 +120,7 @@
       <el-table-column label="上次执行时间" align="center" prop="previousTime" :show-overflow-tooltip="true"/>
       <el-table-column label="下次执行时间" align="center" prop="nextTime" :show-overflow-tooltip="true"/>
       <el-table-column label="任务状态" align="center" prop="jobStatus" :formatter="statusFormat"/>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="260">
         <template slot-scope="scope">
           <el-button
             size="mini"
@@ -167,6 +156,13 @@
             v-hasPerm="['job_view']"
           >详细
           </el-button>
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-delete"
+            @click="handleDel(scope.row)"
+            v-hasPerm="['user_del']"
+          >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -532,7 +528,7 @@
       },
       /** 删除按钮操作 */
       handleDel(row) {
-        const ids = row.id || this.ids;
+        const ids = row.id;
         this.$confirm('是否确认删除定时任务编号为"' + ids + '"的数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",

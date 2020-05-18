@@ -1,5 +1,6 @@
 package com.entfrm.biz.system.controller;
 
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -14,6 +15,8 @@ import com.entfrm.core.log.annotation.OperLog;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 
 /**
  * 角色信息
@@ -84,11 +87,11 @@ public class RoleController {
     @OperLog("角色删除")
     @PreAuthorize("@ps.hasPerm('role_del')")
     @DeleteMapping("/remove/{id}")
-    public R remove(@PathVariable Integer id) {
-        if(id == 1){
+    public R remove(@PathVariable Integer[] id) {
+        if(ArrayUtil.contains(id, 1)){
             return R.error("不允许删除管理员角色");
         }
-        roleService.removeById(id);
+        roleService.removeByIds(Arrays.asList(id));
         return R.ok();
     }
 

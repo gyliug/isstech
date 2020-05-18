@@ -37,7 +37,7 @@ public class ModelController {
     }
 
     @OperLog("模型删除")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/remove/{id}")
     public R remove(@PathVariable("id") String id) {
         return R.ok(modelService.removeById(id));
 

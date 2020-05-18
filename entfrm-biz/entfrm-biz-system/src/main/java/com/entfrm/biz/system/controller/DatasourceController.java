@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -83,8 +84,8 @@ public class DatasourceController {
     @PreAuthorize("@ps.hasPerm('datasource_del')")
     @DeleteMapping("/remove/{id}")
     @ResponseBody
-    public R remove(@PathVariable("id") Integer id) {
-        datasourceService.removeById(id);
+    public R remove(@PathVariable("id") Integer[] id) {
+        datasourceService.removeByIds(Arrays.asList(id));
         dynamicDataSourceConfig.reload();
         return R.ok();
     }

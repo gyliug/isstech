@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -110,8 +111,8 @@ public class BackupController {
     @PreAuthorize("@ps.hasPerm('backup_del')")
     @DeleteMapping("/remove/{id}")
     @ResponseBody
-    public R remove(@PathVariable("id") Integer id) {
+    public R remove(@PathVariable("id") Integer[] id) {
         //自行增加删除本地文件
-        return R.ok(backupService.removeById(id));
+        return R.ok(backupService.removeByIds(Arrays.asList(id)));
     }
 }

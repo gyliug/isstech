@@ -88,10 +88,9 @@ public class FileInfoController {
     @PreAuthorize("@ps.hasPerm('fileInfo_del')")
     @DeleteMapping("/remove/{id}")
     @ResponseBody
-    public R remove(@PathVariable("id") Integer id) {
-        return R.ok(fileInfoService.removeById(id));
+    public R remove(@PathVariable("id") Integer[] id) {
+        return R.ok(fileInfoService.removeByIds(Arrays.asList(id)));
     }
-
 
     /**
      * 预览图片

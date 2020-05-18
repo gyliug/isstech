@@ -62,7 +62,7 @@
           icon="el-icon-delete"
           size="mini"
           :disabled="multiple"
-          @click="handleDelete"
+          @click="handleDel"
           v-hasPerm="['jobLog_del']"
         >删除</el-button>
       </el-col>
@@ -218,7 +218,7 @@ export default {
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.jobLogId);
+      this.ids = selection.map(item => item.id);
       this.multiple = !selection.length;
     },
     /** 详细按钮操作 */
@@ -227,7 +227,7 @@ export default {
       this.form = row;
     },
     /** 删除按钮操作 */
-    handleDelete(row) {
+    handleDel() {
       const jobLogIds = this.ids;
       this.$confirm('是否确认删除调度日志编号为"' + jobLogIds + '"的数据项?', "警告", {
           confirmButtonText: "确定",

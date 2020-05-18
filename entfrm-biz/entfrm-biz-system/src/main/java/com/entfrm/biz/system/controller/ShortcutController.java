@@ -13,6 +13,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+
 
 /**
  * @author entfrm
@@ -66,7 +68,7 @@ public class ShortcutController {
     @PreAuthorize("@ps.hasPerm('shortcut_del')")
     @DeleteMapping("/remove/{id}")
     @ResponseBody
-    public R remove(@PathVariable("id") Integer id) {
-        return R.ok(shortcutService.removeById(id));
+    public R remove(@PathVariable("id") Integer[] id) {
+        return R.ok(shortcutService.removeByIds(Arrays.asList(id)));
     }
 }

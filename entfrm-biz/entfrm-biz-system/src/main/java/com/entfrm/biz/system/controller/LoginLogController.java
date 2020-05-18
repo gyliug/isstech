@@ -15,6 +15,7 @@ import lombok.SneakyThrows;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,9 +45,9 @@ public class LoginLogController {
     @OperLog("登录日志删除")
     @PreAuthorize("@ps.hasPerm('loginLog_del')")
     @DeleteMapping("/remove/{id}")
-    public R remove(@PathVariable String id) {
+    public R remove(@PathVariable Integer[] id) {
         try {
-            loginLogService.removeById(id);
+            loginLogService.removeByIds(Arrays.asList(id));
             return R.ok();
         } catch (Exception e) {
             return R.error(e.getMessage());

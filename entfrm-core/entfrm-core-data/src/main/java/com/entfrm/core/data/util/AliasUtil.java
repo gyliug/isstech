@@ -12,6 +12,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class AliasUtil {
 
+    //生成别名
     public String genAlias(String driverClassName, String dsName, int id) {
         if (DataTypeEnum.MYSQL.getDriverClassName().equals(driverClassName)) {
             return DataTypeEnum.MYSQL.getType() + "_" + dsName + "_" + id;
@@ -28,14 +29,17 @@ public class AliasUtil {
         }
     }
 
+    //获取数据库类型
     public String getDsType(String aliass) {
         return aliass.substring(0, aliass.indexOf("_"));
     }
 
+    //获取数据库名
     public String getDsName(String aliass) {
         return aliass.substring(aliass.indexOf("_") + 1, aliass.lastIndexOf("_"));
     }
 
+    //获取数据库id
     public int getDsId(String aliass) {
         String dsId = aliass.substring(aliass.lastIndexOf("_") + 1, aliass.length());
         if(StrUtil.isNotBlank(dsId)){

@@ -1,3 +1,18 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : mysql
+ Source Server Type    : MySQL
+ Source Server Version : 50725
+ Source Host           : localhost:3306
+ Source Schema         : entfrm-boot
+
+ Target Server Type    : MySQL
+ Target Server Version : 50725
+ File Encoding         : 65001
+
+ Date: 11/05/2020 22:16:36
+*/
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -61,7 +76,7 @@ CREATE TABLE `act_ge_property`  (
 -- ----------------------------
 -- Records of act_ge_property
 -- ----------------------------
-INSERT INTO `act_ge_property` VALUES ('next.dbid', '17501', 8);
+INSERT INTO `act_ge_property` VALUES ('next.dbid', '22501', 10);
 INSERT INTO `act_ge_property` VALUES ('schema.history', 'create(5.22.0.0)', 1);
 INSERT INTO `act_ge_property` VALUES ('schema.version', '5.22.0.0', 1);
 
@@ -96,7 +111,14 @@ CREATE TABLE `act_hi_actinst`  (
 -- ----------------------------
 INSERT INTO `act_hi_actinst` VALUES ('10005', 'Leave:1:7508', '7509', '7509', 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', '10006', NULL, '审批', 'userTask', NULL, '2020-04-05 15:48:02.079', NULL, NULL, '');
 INSERT INTO `act_hi_actinst` VALUES ('12502', 'Leave:1:7508', '12501', '12501', 'sid-43C1118D-22B1-4A77-83CC-24EFC62086D8', NULL, NULL, '开始', 'startEvent', NULL, '2020-04-05 15:54:46.198', '2020-04-05 15:54:46.220', 22, '');
-INSERT INTO `act_hi_actinst` VALUES ('12503', 'Leave:1:7508', '12501', '12501', 'user', '12504', NULL, '请假申请', 'userTask', NULL, '2020-04-05 15:54:46.221', NULL, NULL, '');
+INSERT INTO `act_hi_actinst` VALUES ('12503', 'Leave:1:7508', '12501', '12501', 'user', '12504', NULL, '请假申请', 'userTask', NULL, '2020-04-05 15:54:46.221', '2020-04-12 19:04:54.868', 616208647, '');
+INSERT INTO `act_hi_actinst` VALUES ('17502', 'Leave:1:7508', '17501', '17501', 'sid-43C1118D-22B1-4A77-83CC-24EFC62086D8', NULL, NULL, '开始', 'startEvent', NULL, '2020-04-12 14:37:06.872', '2020-04-12 14:37:06.889', 17, '');
+INSERT INTO `act_hi_actinst` VALUES ('17503', 'Leave:1:7508', '17501', '17501', 'user', '17504', NULL, '请假申请', 'userTask', NULL, '2020-04-12 14:37:06.891', '2020-04-12 14:37:21.666', 14775, '');
+INSERT INTO `act_hi_actinst` VALUES ('17511', 'Leave:1:7508', '17501', '17501', 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', '17512', NULL, '审批', 'userTask', NULL, '2020-04-12 14:37:21.666', NULL, NULL, '');
+INSERT INTO `act_hi_actinst` VALUES ('20005', 'Leave:1:7508', '12501', '12501', 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', '20006', NULL, '审批', 'userTask', NULL, '2020-04-12 19:04:54.870', NULL, NULL, '');
+INSERT INTO `act_hi_actinst` VALUES ('20008', 'Leave:1:7508', '20007', '20007', 'sid-43C1118D-22B1-4A77-83CC-24EFC62086D8', NULL, NULL, '开始', 'startEvent', NULL, '2020-04-12 19:05:41.936', '2020-04-12 19:05:41.942', 6, '');
+INSERT INTO `act_hi_actinst` VALUES ('20009', 'Leave:1:7508', '20007', '20007', 'user', '20010', NULL, '请假申请', 'userTask', NULL, '2020-04-12 19:05:41.942', '2020-04-12 19:06:22.719', 40777, '');
+INSERT INTO `act_hi_actinst` VALUES ('20017', 'Leave:1:7508', '20007', '20007', 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', '20018', NULL, '审批', 'userTask', NULL, '2020-04-12 19:06:22.720', NULL, NULL, '');
 INSERT INTO `act_hi_actinst` VALUES ('7510', 'Leave:1:7508', '7509', '7509', 'sid-43C1118D-22B1-4A77-83CC-24EFC62086D8', NULL, NULL, '开始', 'startEvent', NULL, '2020-04-05 12:22:50.724', '2020-04-05 12:22:50.752', 28, '');
 INSERT INTO `act_hi_actinst` VALUES ('7511', 'Leave:1:7508', '7509', '7509', 'user', '7512', NULL, '请假申请', 'userTask', NULL, '2020-04-05 12:22:50.753', '2020-04-05 15:48:02.078', 12311325, '');
 
@@ -140,6 +162,9 @@ CREATE TABLE `act_hi_comment`  (
 -- Records of act_hi_comment
 -- ----------------------------
 INSERT INTO `act_hi_comment` VALUES ('10001', 'comment', '2020-04-05 15:48:02.013', 'entfrm', '7512', '7509', 'AddComment', '测试', 0xE6B58BE8AF95);
+INSERT INTO `act_hi_comment` VALUES ('17507', 'comment', '2020-04-12 14:37:21.633', 'entfrm', '17504', '17501', 'AddComment', '321', 0x333231);
+INSERT INTO `act_hi_comment` VALUES ('20001', 'comment', '2020-04-12 19:04:54.793', 'entfrm', '12504', '12501', 'AddComment', '123', 0x313233);
+INSERT INTO `act_hi_comment` VALUES ('20013', 'comment', '2020-04-12 19:06:19.463', 'entfrm', '20010', '20007', 'AddComment', '123', 0x313233);
 
 -- ----------------------------
 -- Table structure for act_hi_detail
@@ -191,6 +216,10 @@ CREATE TABLE `act_hi_identitylink`  (
 -- ----------------------------
 INSERT INTO `act_hi_identitylink` VALUES ('12505', NULL, 'candidate', 'entfrm', '12504', NULL);
 INSERT INTO `act_hi_identitylink` VALUES ('12506', NULL, 'participant', 'entfrm', NULL, '12501');
+INSERT INTO `act_hi_identitylink` VALUES ('17505', NULL, 'candidate', 'entfrm', '17504', NULL);
+INSERT INTO `act_hi_identitylink` VALUES ('17506', NULL, 'participant', 'entfrm', NULL, '17501');
+INSERT INTO `act_hi_identitylink` VALUES ('20011', NULL, 'candidate', 'entfrm', '20010', NULL);
+INSERT INTO `act_hi_identitylink` VALUES ('20012', NULL, 'participant', 'entfrm', NULL, '20007');
 INSERT INTO `act_hi_identitylink` VALUES ('7513', NULL, 'candidate', 'entfrm', '7512', NULL);
 INSERT INTO `act_hi_identitylink` VALUES ('7514', NULL, 'participant', 'entfrm', NULL, '7509');
 
@@ -223,6 +252,8 @@ CREATE TABLE `act_hi_procinst`  (
 -- Records of act_hi_procinst
 -- ----------------------------
 INSERT INTO `act_hi_procinst` VALUES ('12501', '12501', 'Leave_6', 'Leave:1:7508', '2020-04-05 15:54:46.193', NULL, NULL, NULL, 'sid-43C1118D-22B1-4A77-83CC-24EFC62086D8', NULL, NULL, NULL, '', NULL);
+INSERT INTO `act_hi_procinst` VALUES ('17501', '17501', 'Leave_7', 'Leave:1:7508', '2020-04-12 14:37:06.871', NULL, NULL, NULL, 'sid-43C1118D-22B1-4A77-83CC-24EFC62086D8', NULL, NULL, NULL, '', NULL);
+INSERT INTO `act_hi_procinst` VALUES ('20007', '20007', 'Leave_8', 'Leave:1:7508', '2020-04-12 19:05:41.936', NULL, NULL, NULL, 'sid-43C1118D-22B1-4A77-83CC-24EFC62086D8', NULL, NULL, NULL, '', NULL);
 INSERT INTO `act_hi_procinst` VALUES ('7509', '7509', 'Leave_5', 'Leave:1:7508', '2020-04-05 12:22:50.724', NULL, NULL, NULL, 'sid-43C1118D-22B1-4A77-83CC-24EFC62086D8', NULL, NULL, NULL, '', NULL);
 
 -- ----------------------------
@@ -258,7 +289,12 @@ CREATE TABLE `act_hi_taskinst`  (
 -- Records of act_hi_taskinst
 -- ----------------------------
 INSERT INTO `act_hi_taskinst` VALUES ('10006', 'Leave:1:7508', 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', '7509', '7509', '审批', NULL, NULL, NULL, NULL, '2020-04-05 15:48:02.079', NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, '');
-INSERT INTO `act_hi_taskinst` VALUES ('12504', 'Leave:1:7508', 'user', '12501', '12501', '请假申请', NULL, NULL, NULL, NULL, '2020-04-05 15:54:46.224', NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('12504', 'Leave:1:7508', 'user', '12501', '12501', '请假申请', NULL, NULL, NULL, NULL, '2020-04-05 15:54:46.224', NULL, '2020-04-12 19:04:54.850', 616208626, 'completed', 50, NULL, NULL, NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('17504', 'Leave:1:7508', 'user', '17501', '17501', '请假申请', NULL, NULL, NULL, NULL, '2020-04-12 14:37:06.893', NULL, '2020-04-12 14:37:21.662', 14769, 'completed', 50, NULL, NULL, NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('17512', 'Leave:1:7508', 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', '17501', '17501', '审批', NULL, NULL, NULL, NULL, '2020-04-12 14:37:21.666', NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('20006', 'Leave:1:7508', 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', '12501', '12501', '审批', NULL, NULL, NULL, NULL, '2020-04-12 19:04:54.870', NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('20010', 'Leave:1:7508', 'user', '20007', '20007', '请假申请', NULL, NULL, NULL, NULL, '2020-04-12 19:05:41.943', NULL, '2020-04-12 19:06:22.703', 40760, 'completed', 50, NULL, NULL, NULL, '');
+INSERT INTO `act_hi_taskinst` VALUES ('20018', 'Leave:1:7508', 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', '20007', '20007', '审批', NULL, NULL, NULL, NULL, '2020-04-12 19:06:22.720', NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, '');
 INSERT INTO `act_hi_taskinst` VALUES ('7512', 'Leave:1:7508', 'user', '7509', '7509', '请假申请', NULL, NULL, NULL, NULL, '2020-04-05 12:22:50.757', NULL, '2020-04-05 15:48:02.057', 12311300, 'complete', 50, NULL, NULL, NULL, '');
 
 -- ----------------------------
@@ -292,6 +328,15 @@ CREATE TABLE `act_hi_varinst`  (
 INSERT INTO `act_hi_varinst` VALUES ('10002', '7509', '7509', NULL, 'type', 'string', 0, NULL, NULL, NULL, '1', NULL, '2020-04-05 15:48:02.047', '2020-04-05 15:48:02.047');
 INSERT INTO `act_hi_varinst` VALUES ('10003', '7509', '7509', NULL, 'days', 'integer', 0, NULL, NULL, 2, '2', NULL, '2020-04-05 15:48:02.048', '2020-04-05 15:48:02.048');
 INSERT INTO `act_hi_varinst` VALUES ('10004', '7509', '7509', NULL, 'flag', 'string', 0, NULL, NULL, NULL, '审批', NULL, '2020-04-05 15:48:02.048', '2020-04-05 15:48:02.048');
+INSERT INTO `act_hi_varinst` VALUES ('17508', '17501', '17501', NULL, 'type', 'string', 0, NULL, NULL, NULL, '1', NULL, '2020-04-12 14:37:21.654', '2020-04-12 14:37:21.654');
+INSERT INTO `act_hi_varinst` VALUES ('17509', '17501', '17501', NULL, 'days', 'integer', 0, NULL, NULL, 1, '1', NULL, '2020-04-12 14:37:21.655', '2020-04-12 14:37:21.655');
+INSERT INTO `act_hi_varinst` VALUES ('17510', '17501', '17501', NULL, 'flag', 'string', 0, NULL, NULL, NULL, '审批', NULL, '2020-04-12 14:37:21.655', '2020-04-12 14:37:21.655');
+INSERT INTO `act_hi_varinst` VALUES ('20002', '12501', '12501', NULL, 'type', 'string', 0, NULL, NULL, NULL, '1', NULL, '2020-04-12 19:04:54.839', '2020-04-12 19:04:54.839');
+INSERT INTO `act_hi_varinst` VALUES ('20003', '12501', '12501', NULL, 'days', 'integer', 0, NULL, NULL, 3, '3', NULL, '2020-04-12 19:04:54.840', '2020-04-12 19:04:54.840');
+INSERT INTO `act_hi_varinst` VALUES ('20004', '12501', '12501', NULL, 'flag', 'string', 0, NULL, NULL, NULL, '审批', NULL, '2020-04-12 19:04:54.840', '2020-04-12 19:04:54.840');
+INSERT INTO `act_hi_varinst` VALUES ('20014', '20007', '20007', NULL, 'type', 'string', 0, NULL, NULL, NULL, '1', NULL, '2020-04-12 19:06:22.678', '2020-04-12 19:06:22.678');
+INSERT INTO `act_hi_varinst` VALUES ('20015', '20007', '20007', NULL, 'days', 'integer', 0, NULL, NULL, 1, '1', NULL, '2020-04-12 19:06:22.679', '2020-04-12 19:06:22.679');
+INSERT INTO `act_hi_varinst` VALUES ('20016', '20007', '20007', NULL, 'flag', 'string', 0, NULL, NULL, NULL, '审批', NULL, '2020-04-12 19:06:22.679', '2020-04-12 19:06:22.679');
 
 -- ----------------------------
 -- Table structure for act_id_group
@@ -368,13 +413,15 @@ CREATE TABLE `act_leave`  (
   `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0正常 1删除）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of act_leave
 -- ----------------------------
 INSERT INTO `act_leave` VALUES (5, 'entfrm', '1', 'test', '2020-04-08 00:00:00', 2, '1', 'entfrm', '2020-04-05 12:02:25', '', '2020-04-05 12:22:51', NULL, '0');
 INSERT INTO `act_leave` VALUES (6, 'entfrm', '1', 'Springboot最完美实践', '2020-04-10 00:00:00', 3, '1', 'entfrm', '2020-04-05 15:54:41', '', '2020-04-05 15:54:46', NULL, '0');
+INSERT INTO `act_leave` VALUES (7, 'entfrm', '1', '测试一下', '2020-04-13 00:00:00', 1, '1', 'entfrm', '2020-04-12 14:37:00', '', '2020-04-12 14:37:07', NULL, '0');
+INSERT INTO `act_leave` VALUES (8, 'entfrm', '1', '123', '2020-04-13 00:00:00', 1, '1', 'entfrm', '2020-04-12 19:05:33', '', '2020-04-12 19:05:42', NULL, '0');
 
 -- ----------------------------
 -- Table structure for act_procdef_info
@@ -531,7 +578,9 @@ CREATE TABLE `act_ru_execution`  (
 -- ----------------------------
 -- Records of act_ru_execution
 -- ----------------------------
-INSERT INTO `act_ru_execution` VALUES ('12501', 1, '12501', 'Leave_6', NULL, 'Leave:1:7508', NULL, 'user', 1, 0, 1, 0, 1, 2, '', NULL, NULL);
+INSERT INTO `act_ru_execution` VALUES ('12501', 2, '12501', 'Leave_6', NULL, 'Leave:1:7508', NULL, 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', 1, 0, 1, 0, 1, 2, '', NULL, NULL);
+INSERT INTO `act_ru_execution` VALUES ('17501', 2, '17501', 'Leave_7', NULL, 'Leave:1:7508', NULL, 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', 1, 0, 1, 0, 1, 2, '', NULL, NULL);
+INSERT INTO `act_ru_execution` VALUES ('20007', 2, '20007', 'Leave_8', NULL, 'Leave:1:7508', NULL, 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', 1, 0, 1, 0, 1, 2, '', NULL, NULL);
 INSERT INTO `act_ru_execution` VALUES ('7509', 2, '7509', 'Leave_5', NULL, 'Leave:1:7508', NULL, 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', 1, 0, 1, 0, 1, 2, '', NULL, NULL);
 
 -- ----------------------------
@@ -561,8 +610,9 @@ CREATE TABLE `act_ru_identitylink`  (
 -- ----------------------------
 -- Records of act_ru_identitylink
 -- ----------------------------
-INSERT INTO `act_ru_identitylink` VALUES ('12505', 1, NULL, 'candidate', 'entfrm', '12504', NULL, NULL);
 INSERT INTO `act_ru_identitylink` VALUES ('12506', 1, NULL, 'participant', 'entfrm', NULL, '12501', NULL);
+INSERT INTO `act_ru_identitylink` VALUES ('17506', 1, NULL, 'participant', 'entfrm', NULL, '17501', NULL);
+INSERT INTO `act_ru_identitylink` VALUES ('20012', 1, NULL, 'participant', 'entfrm', NULL, '20007', NULL);
 INSERT INTO `act_ru_identitylink` VALUES ('7514', 1, NULL, 'participant', 'entfrm', NULL, '7509', NULL);
 
 -- ----------------------------
@@ -630,7 +680,9 @@ CREATE TABLE `act_ru_task`  (
 -- Records of act_ru_task
 -- ----------------------------
 INSERT INTO `act_ru_task` VALUES ('10006', 1, '7509', '7509', 'Leave:1:7508', '审批', NULL, NULL, 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', NULL, NULL, NULL, 50, '2020-04-05 15:48:02.079', NULL, NULL, 1, '', NULL);
-INSERT INTO `act_ru_task` VALUES ('12504', 1, '12501', '12501', 'Leave:1:7508', '请假申请', NULL, NULL, 'user', NULL, NULL, NULL, 50, '2020-04-05 15:54:46.221', NULL, NULL, 1, '', NULL);
+INSERT INTO `act_ru_task` VALUES ('17512', 1, '17501', '17501', 'Leave:1:7508', '审批', NULL, NULL, 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', NULL, NULL, NULL, 50, '2020-04-12 14:37:21.666', NULL, NULL, 1, '', NULL);
+INSERT INTO `act_ru_task` VALUES ('20006', 1, '12501', '12501', 'Leave:1:7508', '审批', NULL, NULL, 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', NULL, NULL, NULL, 50, '2020-04-12 19:04:54.870', NULL, NULL, 1, '', NULL);
+INSERT INTO `act_ru_task` VALUES ('20018', 1, '20007', '20007', 'Leave:1:7508', '审批', NULL, NULL, 'sid-D4B25038-F6B6-4741-B705-529D4790E4D2', NULL, NULL, NULL, 50, '2020-04-12 19:06:22.720', NULL, NULL, 1, '', NULL);
 
 -- ----------------------------
 -- Table structure for act_ru_variable
@@ -665,6 +717,129 @@ CREATE TABLE `act_ru_variable`  (
 INSERT INTO `act_ru_variable` VALUES ('10002', 1, 'string', 'type', '7509', '7509', NULL, NULL, NULL, NULL, '1', NULL);
 INSERT INTO `act_ru_variable` VALUES ('10003', 1, 'integer', 'days', '7509', '7509', NULL, NULL, NULL, 2, '2', NULL);
 INSERT INTO `act_ru_variable` VALUES ('10004', 1, 'string', 'flag', '7509', '7509', NULL, NULL, NULL, NULL, '审批', NULL);
+INSERT INTO `act_ru_variable` VALUES ('17508', 1, 'string', 'type', '17501', '17501', NULL, NULL, NULL, NULL, '1', NULL);
+INSERT INTO `act_ru_variable` VALUES ('17509', 1, 'integer', 'days', '17501', '17501', NULL, NULL, NULL, 1, '1', NULL);
+INSERT INTO `act_ru_variable` VALUES ('17510', 1, 'string', 'flag', '17501', '17501', NULL, NULL, NULL, NULL, '审批', NULL);
+INSERT INTO `act_ru_variable` VALUES ('20002', 1, 'string', 'type', '12501', '12501', NULL, NULL, NULL, NULL, '1', NULL);
+INSERT INTO `act_ru_variable` VALUES ('20003', 1, 'integer', 'days', '12501', '12501', NULL, NULL, NULL, 3, '3', NULL);
+INSERT INTO `act_ru_variable` VALUES ('20004', 1, 'string', 'flag', '12501', '12501', NULL, NULL, NULL, NULL, '审批', NULL);
+INSERT INTO `act_ru_variable` VALUES ('20014', 1, 'string', 'type', '20007', '20007', NULL, NULL, NULL, NULL, '1', NULL);
+INSERT INTO `act_ru_variable` VALUES ('20015', 1, 'integer', 'days', '20007', '20007', NULL, NULL, NULL, 1, '1', NULL);
+INSERT INTO `act_ru_variable` VALUES ('20016', 1, 'string', 'flag', '20007', '20007', NULL, NULL, NULL, NULL, '审批', NULL);
+
+-- ----------------------------
+-- Table structure for api_apiinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `api_apiinfo`;
+CREATE TABLE `api_apiinfo`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `application_id` int(11) NULL DEFAULT NULL COMMENT '应用编号',
+  `table_id` int(11) NULL DEFAULT NULL COMMENT '表编号',
+  `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '名称',
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '自定义编号',
+  `parent_id` int(11) NULL DEFAULT NULL COMMENT '父编号',
+  `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '接口类型',
+  `request_type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '请求方式',
+  `request_method` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '请求方法',
+  `data` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '数据',
+  `scripts` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '脚本',
+  `dept_id` int(11) NULL DEFAULT NULL COMMENT '机构编号',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '状态（0-正常，1-停用）',
+  `create_by` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标识（0-正常，1-删除）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '接口信息' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of api_apiinfo
+-- ----------------------------
+INSERT INTO `api_apiinfo` VALUES (1, 1, 1, '测试', 'test', 0, NULL, 'get', 'test', NULL, NULL, NULL, '0', NULL, '2020-05-07 20:46:58', NULL, NULL, NULL, '0');
+
+-- ----------------------------
+-- Table structure for cms_article
+-- ----------------------------
+DROP TABLE IF EXISTS `cms_article`;
+CREATE TABLE `cms_article`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标题',
+  `category_id` int(11) NULL DEFAULT NULL COMMENT '类别编号',
+  `category_name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类别名称',
+  `cover` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '封面地址',
+  `summary` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '摘要',
+  `contents` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '内容',
+  `sort` int(11) NULL DEFAULT 1 COMMENT '排序置顶',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cms_article
+-- ----------------------------
+INSERT INTO `cms_article` VALUES (1, '平台介绍', 1, '开发文档', NULL, '平台介绍', '## entfrm开发平台\n### 基于SpringBoot、Spring Security、Oauth2、Vue的前后端分离的模块化快速开发平台\n#### entfrm开发平台是一个Web可视化开发平台，是一个集PC和APP快速开发、系统管理、运维监控、开发工具、OAuth2授权、可视化数据源管理与数据构建、API动态生成与统计、工作流、智能表单设计、微服务骨架等全方位功能于一体的高效、稳定的快速开发平台。\n#### 平台采用Spring Boot 2.X 、Spring Security、Oauth2、Mybatis Plus、Activiti7、Flutter等核心技术，前端基于vue-element-admin框架。\n#### 功能一览\n![平台思维导图](http://47.100.3.58/static/show/entfrm.png)\n#### 主要特性\n* Maven多模块结构，松耦合，可插拔，自由组合\n* 完全响应式布局（支持电脑、平板、手机等所有主流设备）\n* 强大的代码生成功能（包括控制器、模型、视图、前端、菜单等）\n* 支持多数据源，简单配置、自由切换。\n* 支持按钮及数据权限，可自定义机构数据权限。\n* 完善的XSS防范及SQL脚本过滤，彻底杜绝XSS攻击\n* 国际化支持，服务端及客户端支持\n* 完善的日志记录体系，简单注解实现\n\n#### 在线演示\n* 地址：http://47.100.3.58/\n* 账号：entfrm\n* 密码：123456\n\n#### 环境要求\n* JDK >= 1.8\n* MySQL >= 5.6\n* Maven >= 3.0\n* Redis >= 3.2\n\n#### 联系我们\n> entfrm交流群：871910881 **(进群领取前端UI)**\n\n\n', 0, '0', 'entfrm', '2020-04-01 20:17:23', '', '2020-04-01 20:19:48', NULL, '0');
+INSERT INTO `cms_article` VALUES (2, '更新日志', 1, '开发文档', NULL, NULL, '### 1.0.1 \n#### 2020-04-18\n- 新功能 \n1. Swagger2集成，接口文档功能实现；\n2. 代码生成功能优化与字段信息支持拖拽、删除；\n3. 增加内容管理模块\n4. entfrm-ui已加入项目中，可直接git\n- 优化功能\n5. 移除jwt，优化代码\n6. 修复菜单构建树bug\n7. 修复数据库管理url保存后异常bug\n8. 修复退出登录刷新bug\n\n### 1.0.0\n#### 2020-04-12\n- 1.0.0正式版发布\n\n### 1.0.0.0405_beta\n#### 2020-04-05\n- 新功能 \n\nactiviti工作流（版本5.22.0）\n\n框架安全增强（xss、sql注入）\n- 优化功能\n\n优化代码生成\n\n### 1.0.0.0331_beta\n#### 2020-03-31\n- 新功能 \n\n新增代码生成 树表（增删改查） \n\n新增API监控 \n\n- 优化功能\n\n优化代码生成 单表（增删改查）\n\n### 1.0.0.0329_beta\n#### 2020-03-29\n\n1.系统管理\n- 机构管理：配置系统组织机构，无限级树结构展现支持数据权限。\n\n- 角色管理：角色菜单权限分配、设置角色按机构进行数据范围权限划分。\n\n- 用户管理：用户是系统操作者，该功能主要完成系统用户配置。\n\n- 菜单管理：配置系统菜单，操作权限，按钮权限标识等。\n\n- 字典管理：对系统中经常使用的一些较为固定的数据进行维护。\n\n- 参数管理：对系统动态配置常用参数。\n\n- 快捷方式：添加顶部、首页快捷方式。\n\n- 文件管理：文件统一管理。\n\n- 终端管理：OAuth2 授权码、Password模式，灵活管理。\n\n- 数据备份：mysql数据库备份与还原。\n\n2.运维监控\n- 定时任务：在线（添加、修改、删除)任务调度包含执行结果日志。\n\n- 数据监控: 监视当前系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。\n\n- 服务监控: 监视当前系统CPU、内存、磁盘、堆栈等相关信息。\n\n- API监控：restful api 接口调用统计、可视化。\n\n日志监控\n\n- 登录日志：系统正常操作日志记录和查询；系统异常信息日志记录和查询。\n\n- 操作日志：系统登录日志记录查询包含登录异常。\n\n3.开发工具\n- 数据管理：数据库表查询、代码生成。', 0, '0', 'entfrm', '2020-04-02 18:04:57', '', '2020-04-02 18:29:01', NULL, '0');
+INSERT INTO `cms_article` VALUES (3, '开发运行', 1, '开发文档', NULL, NULL, '### 准备工作\n```\nJDK >= 1.8 (推荐1.8版本)\nMysql >= 5.6.0 (推荐5.7版本)\nRedis >= 3.0\nMaven >= 3.0\nNode >= 10\n\n```\n### 运行系统\n**本项目为前后端分离项目**\n前往Gitee下载页面(https://gitee.com/entfrm/entfrm-boot)下载后端代码解压到工作目录，在群文件中下载前端代码（文件顺序靠前为最新）\n### 后端运行\n1. 导入entfrm-boot到Idea，菜单 File -&gt; Open，然后找到entfrm-boot目录下pom.xml右键选择 Maven -&gt; Reimport，等待Idea自动导入Maven依赖包；\n2. 打开Navicat Premium（mysql可视化工具）创建数据库entfrm并导入数据脚本entfrm.sql;然后打开entfrm-web模块下application.yml，找到68、70、72修改redis配置，然后找到90、91、92行修改mysql数据库配置；\n3. 打开并运行com.enfrm.web.WebApplication.java.\n\n### 前端运行\n1. 安装前端项目\n```javascript\n# 进入项目目录\ncd entfrm-ui\n\n# 安装依赖\nnpm install\n\n# 强烈建议不要用直接使用 cnpm 安装，会有各种诡异的 bug，可以通过重新指定 registry 来解决 npm 安装速度慢的问题。\nnpm install --registry=https://registry.npm.taobao.org\n\n# 本地开发 启动项目\nnpm run dev\n```\n* 注：node-sass可能会安装失败，请安装Python 2，或者执行命令：cnpm install node-sass --save-dev\n2. 打开游览器，地址栏输入：http://localhost （默认账户 entfrm/123456）\n', 0, '0', 'entfrm', '2020-04-05 21:46:41', '', '2020-04-05 22:36:52', NULL, '0');
+INSERT INTO `cms_article` VALUES (4, '系统部署', 1, '开发文档', NULL, NULL, '### 后端部署\nbin/package.bat 在项目的目录下执行，会在项目entfrm-web模块target文件夹下生成entfrm-web.jar，然后将entfrm-web.jar与bin目录下的run.bat放在同一目录，点击run.bat启动系统\n\n1. jar部署方式\n使用命令行执行：java –jar entfrm-web.jar\n\n2. war部署方式\npom.xml packaging修改为war 放入tomcat服务器webapps\n\n### 前端部署\n1. 项目开发完成后，运行如下命令打包项目：\n```bash\n# 打包正式环境\nnpm run build:prod\n\n# 构建测试环境\nnpm run build:stage\n\n```\n* 打包成功后，会在根目录文件夹 dist 生成 ***.js 、***.css、index.html 等静态文件。\n2. 在D盘符下新建entfrm-ui文件夹，然后将打包后dist下的素有文件复制过去；\n3. nginx配置\n```bash\nworker_processes  1;\n\nevents {\n    worker_connections  1024;\n}\n\nhttp {\n    include       mime.types;\n    default_type  application/octet-stream;\n    sendfile        on;\n    keepalive_timeout  65;\n\n    server {\n        listen       80;\n        server_name  localhost;\n\n	location / {\n            root   D:/entfrm-ui;\n	    try_files $uri $uri/ /index.html;\n            index  index.html index.htm;\n        }\n		\n	location /pro/{\n            proxy_pass http://localhost:8888/;\n            proxy_set_header Host $http_host;\n	    proxy_set_header X-Real-IP $remote_addr;\n	    proxy_set_header REMOTE-HOST $remote_addr;\n            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n			\n	}\n\n        error_page   500 502 503 504  /50x.html;\n        location = /50x.html {\n            root   html;\n        }\n    }\n}\n```\n4. 环境变量\n所有测试环境或者正式环境变量的配置都在 .env.xxxx 文件中；如.env.production：\n```bash\n# 生产环境配置\nENV = \'production\'\n\n# entfrm开发平台/生产环境 跟nginx配置中的服务路由前缀相同\nVUE_APP_BASE_API = \'/pro\'\n\n```\n5. 常见问题\n* 如果使用Mac或Linux 需要修改application.yml文件路径profile，并确定给的路径文件权限为可读可写。\n', 0, '0', 'entfrm', '2020-04-05 22:55:48', '', '2020-04-05 23:01:04', NULL, '0');
+INSERT INTO `cms_article` VALUES (5, '文件结构', 1, '开发文档', NULL, NULL, '- 后端结构\n```language\ncom.entfrm     \n├── auth             // oauth2授权\n│     └── config                       // 授权相关配置\n│     └── controller                   // 通用控制器\n│     └── enhancer                     // 增强器\n│     └── entity                       // 实体\n│     └── handler                      // 常用处理\n│     └── service                      // 服务实现\n|     └── util                         // 工具类\n├── biz              // 业务模块\n│     ├── activiti                     // 工作流\n│     ├── cms                          // 内容管理\n│     ├── devtool                      // 开发工具\n│     ├── monitor                      // 运维监控\n│     ├── quartz                       // 定时任务\n│     ├── system                       // 系统管理\n|            └── controller                     // 控制器\n│            └── entity                         // 实体\n│            └── mapper                         // 映射器\n│            └── service                        // 接口与实现\n|            └── util                           // 工具类\n\n├── core            // 框架核心\n│     ├── base                        // 基础工具类\n│     ├── data                        // 数据操作\n│     ├── log                         // 操作日志\n│     ├── security                    // 权限控制\n│     ├── swagger                     // swagger文档\n├── web             // 启动程序\n```\n- 配置文件\n```language\n# 项目配置\nentfrm:\n  # 名称\n  name: entfrm快速开发平台\n  # 版本\n  version: 0.1.0\n  # 文件上传路径\n  profile: C:/profile/\n  # 获取ip地址开关\n  addressSwitch: true\n  # redis开关\n  redisSwitch: true\n  #en_US 英语  zh_CN 简体中文\n  lang: zh_CN\n\n# 开发环境配置\nserver:\n  # 服务端口\n  port: 8888\n  servlet:\n    # 项目contextPath\n    context-path: /\n  tomcat:\n    # tomcat的URI编码\n    uri-encoding: UTF-8\n    # tomcat最大线程数，默认为200\n    max-threads: 800\n    # Tomcat启动初始化的线程数，默认值25\n    min-spare-threads: 30\n\n# 用户配置\nuser:\n  password:\n    # 密码错误{maxRetryCount}次锁定10分钟\n    maxRetryCount: 5\n\n# Spring配置\nspring:\n  # 资源信息\n  messages:\n    # 国际化资源文件路径\n    basename: i18n/messages\n    encoding: utf-8\n  # 序列化\n  jackson:\n    time-zone: GMT+8\n    date-format: yyyy-MM-dd HH:mm:ss\n  profiles:\n    active: druid\n  # 文件上传\n  servlet:\n     multipart:\n       max-file-size:  50MB\n       max-request-size:  30MB\n  # 服务模块\n  devtools:\n    restart:\n      # 热部署开关\n      enabled: true\n  # redis 配置\n  redis:\n    # 地址\n    host: localhost\n    # 端口，默认为6379\n    port: 6379\n    # 密码\n    password:\n    # 连接超时时间\n    timeout: 10s\n    lettuce:\n      pool:\n        # 连接池中的最小空闲连接\n        min-idle: 0\n        # 连接池中的最大空闲连接\n        max-idle: 8\n        # 连接池的最大数据库连接数\n        max-active: 8\n        # #连接池最大阻塞等待时间（使用负值表示没有限制）\n        max-wait: -1ms\n  # 数据源配置\n  datasource:\n    type: com.alibaba.druid.pool.DruidDataSource\n    druid:\n      driver-class-name: com.mysql.cj.jdbc.Driver\n      jdbc-url: jdbc:mysql://127.0.0.1:3306/entfrm-boot?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true\n      username: root\n      password: 123456Aa\n      # 初始连接数\n      initialSize: 5\n      # 最小连接池数量\n      minIdle: 10\n      # 最大连接池数量\n      maxActive: 500\n      # 配置获取连接等待超时的时间\n      maxWait: 60000\n      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒\n      timeBetweenEvictionRunsMillis: 60000\n      # 配置一个连接在池中最小生存的时间，单位是毫秒\n      minEvictableIdleTimeMillis: 300000\n      # 配置一个连接在池中最大生存的时间，单位是毫秒\n      maxEvictableIdleTimeMillis: 900000\n      # 配置检测连接是否有效\n      validationQuery: SELECT 1 FROM DUAL\n      testWhileIdle: true\n      testOnBorrow: false\n      testOnReturn: false\n      statViewServlet:\n        enabled: true\n        # 设置白名单，不填则允许所有访问\n        allow:\n        url-pattern: /druid/*\n      filter:\n        stat:\n        # 慢SQL记录\n        log-slow-sql: true\n        slow-sql-millis: 1000\n        merge-sql: true\n      wall:\n        config:\n          multi-statement-allow: true\n\n# MyBatis Plus\nmybatis-plus:\n  mapper-locations: classpath*:mapper/**/*.xml\n  typeAliasesPackage: com.entfrm.biz.**.entity\n  global-config:\n    # 不显示banner\n    banner: false\n    # 数据库相关配置\n    db-config:\n      #主键类型  AUTO:\"数据库ID自增\", INPUT:\"用户输入ID\",ID_WORKER:\"全局唯一ID (数字类型唯一ID)\", UUID:\"全局唯一ID UUID\";\n      id-type: AUTO\n  configuration:\n    call-setters-on-nulls: true\n\n# 防止XSS攻击\nxss:\n  # 过滤开关\n  enabled: true\n  # 排除链接（多个用逗号分隔）\n  excludes: /cms/article/*\n  # 匹配链接\n  urlPatterns: /system/*,/monitor/*,/quartz/*,/devtool/*,/activiti/*,/cms/*\n\n# 日志配置\nlogging:\n  level:\n    com.entfrm: debug\n    org.springframework: WARN\n    org.spring.springboot.dao: debug\n```\n- 前端结构\n```language\n├── build                      // 构建相关  \n├── bin                        // 批处理\n├── public                     \n│   ├── favicon.ico            // favicon图标\n│   └── index.html             // 应用入口\n├── src                        \n│   ├── api                    // api请求\n│   ├── assets                 // 主题、字体等静态资源\n│   ├── components             // 全局公用组件\n│   ├── directive              // 全局指令\n│   ├── layout                 // 布局\n│   ├── router                 // 路由\n│   ├── store                  // 全局store管理\n│   ├── utils                  // 全局常用方法\n│   ├── views                  // view视图\n│   ├── App.vue                // 入口页面\n│   ├── main.js                // 入口，组件初始化\n│   ├── permission.js          // 权限管理\n│   └── settings.js            // 系统配置\n├── .editorconfig              // 编码格式\n├── .env.development           // 开发环境配置\n├── .env.production            // 生产环境配置\n├── .env.staging               // 测试环境配置\n├── .eslintignore              // 忽略语法检查\n├── .eslintrc.js               // eslint 配置项\n├── .gitignore                 // git 忽略项\n├── babel.config.js            // babel.config.js\n├── package.json               // package.json\n└── vue.config.js              // vue.config.js\n```\n', 0, '0', 'entfrm', '2020-04-09 00:11:29', '', '2020-04-09 00:20:11', NULL, '0');
+INSERT INTO `cms_article` VALUES (6, '常见问题', 1, '开发文档', NULL, NULL, '- 后端结构\n```language\ncom.entfrm     \n├── auth             // oauth2授权\n│     └── config                       // 授权相关配置\n│     └── controller                   // 通用控制器\n│     └── enhancer                     // 增强器\n│     └── entity                       // 实体\n│     └── handler                      // 常用处理\n│     └── service                      // 服务实现\n|     └── util                         // 工具类\n├── biz              // 业务模块\n│     ├── activiti                     // 工作流\n│     ├── cms                          // 内容管理\n│     ├── devtool                      // 开发工具\n│     ├── monitor                      // 运维监控\n│     ├── quartz                       // 定时任务\n│     ├── system                       // 系统管理\n|            └── controller                     // 控制器\n│            └── entity                         // 实体\n│            └── mapper                         // 映射器\n│            └── service                        // 接口与实现\n|            └── util                           // 工具类\n\n├── core            // 框架核心\n│     ├── base                        // 基础工具类\n│     ├── data                        // 数据操作\n│     ├── log                         // 操作日志\n│     ├── security                    // 权限控制\n│     ├── swagger                     // swagger文档\n├── web             // 启动程序\n```\n- 配置文件\n```language\n# 项目配置\nentfrm:\n  # 名称\n  name: entfrm快速开发平台\n  # 版本\n  version: 0.1.0\n  # 文件上传路径\n  profile: C:/profile/\n  # 获取ip地址开关\n  addressSwitch: true\n  # redis开关\n  redisSwitch: true\n  #en_US 英语  zh_CN 简体中文\n  lang: zh_CN\n\n# 开发环境配置\nserver:\n  # 服务端口\n  port: 8888\n  servlet:\n    # 项目contextPath\n    context-path: /\n  tomcat:\n    # tomcat的URI编码\n    uri-encoding: UTF-8\n    # tomcat最大线程数，默认为200\n    max-threads: 800\n    # Tomcat启动初始化的线程数，默认值25\n    min-spare-threads: 30\n\n# 用户配置\nuser:\n  password:\n    # 密码错误{maxRetryCount}次锁定10分钟\n    maxRetryCount: 5\n\n# Spring配置\nspring:\n  # 资源信息\n  messages:\n    # 国际化资源文件路径\n    basename: i18n/messages\n    encoding: utf-8\n  # 序列化\n  jackson:\n    time-zone: GMT+8\n    date-format: yyyy-MM-dd HH:mm:ss\n  profiles:\n    active: druid\n  # 文件上传\n  servlet:\n     multipart:\n       max-file-size:  50MB\n       max-request-size:  30MB\n  # 服务模块\n  devtools:\n    restart:\n      # 热部署开关\n      enabled: true\n  # redis 配置\n  redis:\n    # 地址\n    host: localhost\n    # 端口，默认为6379\n    port: 6379\n    # 密码\n    password:\n    # 连接超时时间\n    timeout: 10s\n    lettuce:\n      pool:\n        # 连接池中的最小空闲连接\n        min-idle: 0\n        # 连接池中的最大空闲连接\n        max-idle: 8\n        # 连接池的最大数据库连接数\n        max-active: 8\n        # #连接池最大阻塞等待时间（使用负值表示没有限制）\n        max-wait: -1ms\n  # 数据源配置\n  datasource:\n    type: com.alibaba.druid.pool.DruidDataSource\n    druid:\n      driver-class-name: com.mysql.cj.jdbc.Driver\n      jdbc-url: jdbc:mysql://127.0.0.1:3306/entfrm-boot?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true\n      username: root\n      password: 123456Aa\n      # 初始连接数\n      initialSize: 5\n      # 最小连接池数量\n      minIdle: 10\n      # 最大连接池数量\n      maxActive: 500\n      # 配置获取连接等待超时的时间\n      maxWait: 60000\n      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒\n      timeBetweenEvictionRunsMillis: 60000\n      # 配置一个连接在池中最小生存的时间，单位是毫秒\n      minEvictableIdleTimeMillis: 300000\n      # 配置一个连接在池中最大生存的时间，单位是毫秒\n      maxEvictableIdleTimeMillis: 900000\n      # 配置检测连接是否有效\n      validationQuery: SELECT 1 FROM DUAL\n      testWhileIdle: true\n      testOnBorrow: false\n      testOnReturn: false\n      statViewServlet:\n        enabled: true\n        # 设置白名单，不填则允许所有访问\n        allow:\n        url-pattern: /druid/*\n      filter:\n        stat:\n        # 慢SQL记录\n        log-slow-sql: true\n        slow-sql-millis: 1000\n        merge-sql: true\n      wall:\n        config:\n          multi-statement-allow: true\n\n# MyBatis Plus\nmybatis-plus:\n  mapper-locations: classpath*:mapper/**/*.xml\n  typeAliasesPackage: com.entfrm.biz.**.entity\n  global-config:\n    # 不显示banner\n    banner: false\n    # 数据库相关配置\n    db-config:\n      #主键类型  AUTO:\"数据库ID自增\", INPUT:\"用户输入ID\",ID_WORKER:\"全局唯一ID (数字类型唯一ID)\", UUID:\"全局唯一ID UUID\";\n      id-type: AUTO\n  configuration:\n    call-setters-on-nulls: true\n\n# 防止XSS攻击\nxss:\n  # 过滤开关\n  enabled: true\n  # 排除链接（多个用逗号分隔）\n  excludes: /cms/article/*\n  # 匹配链接\n  urlPatterns: /system/*,/monitor/*,/quartz/*,/devtool/*,/activiti/*,/cms/*\n\n# 日志配置\nlogging:\n  level:\n    com.entfrm: debug\n    org.springframework: WARN\n    org.spring.springboot.dao: debug\n```\n- 前端结构\n```language\n├── build                      // 构建相关  \n├── bin                        // 批处理\n├── public                     \n│   ├── favicon.ico            // favicon图标\n│   └── index.html             // 应用入口\n├── src                        \n│   ├── api                    // api请求\n│   ├── assets                 // 主题、字体等静态资源\n│   ├── components             // 全局公用组件\n│   ├── directive              // 全局指令\n│   ├── layout                 // 布局\n│   ├── router                 // 路由\n│   ├── store                  // 全局store管理\n│   ├── utils                  // 全局常用方法\n│   ├── views                  // view视图\n│   ├── App.vue                // 入口页面\n│   ├── main.js                // 入口，组件初始化\n│   ├── permission.js          // 权限管理\n│   └── settings.js            // 系统配置\n├── .editorconfig              // 编码格式\n├── .env.development           // 开发环境配置\n├── .env.production            // 生产环境配置\n├── .env.staging               // 测试环境配置\n├── .eslintignore              // 忽略语法检查\n├── .eslintrc.js               // eslint 配置项\n├── .gitignore                 // git 忽略项\n├── babel.config.js            // babel.config.js\n├── package.json               // package.json\n└── vue.config.js              // vue.config.js\n```\n', 0, '0', 'entfrm', '2020-04-09 00:11:29', '', '2020-04-09 00:20:11', NULL, '1');
+INSERT INTO `cms_article` VALUES (7, '开发规范', 2, '后端文档', NULL, NULL, '> 整个项目遵循《阿里巴巴Java开发手册》代码开发规范\n\n1.业务模块统一放在entfrm-biz下\n\n2.结构规范\n```\n├── system                        //模块\n└──── controller                     // 控制器\n└──── entity                        // 实体\n└──── mapper                        // 映射器\n└──── service                       // 接口与实现\n\n├── resources\n└──── mapper \n└────── system \n```\n3.Controller规范\n```\nprivate QueryWrapper<Article> getQueryWrapper(Article article) {\n    ...\n}\n\n@ApiOperation(\"文章列表\")\n@PreAuthorize(\"@ps.hasPerm(\'article_view\')\")\n@GetMapping(\"/list\")\npublic R list(Page page, Article article) {\n    ...    \n}\n\n@ApiOperation(\"文章查询\")\n@GetMapping(\"/{id}\")\npublic R getById(@PathVariable(\"id\") Integer id) {\n    ...\n}\n\n@OperLog(\"文章新增\")\n@ApiOperation(\"文章新增\")\n@PreAuthorize(\"@ps.hasPerm(\'article_add\')\")\n@PostMapping(\"/save\")\npublic R save(@Validated @RequestBody Article article) {\n    ...\n}\n\n@OperLog(\"文章修改\")\n@ApiOperation(\"文章修改\")\n@PreAuthorize(\"@ps.hasPerm(\'article_edit\')\")\n@PutMapping(\"/update\")\npublic R update(@Validated @RequestBody Article article) {\n     ...\n}\n\n@OperLog(\"文章删除\")\n@ApiOperation(\"文章删除\")\n@PreAuthorize(\"@ps.hasPerm(\'article_del\')\")\n@DeleteMapping(\"/remove/{id}\")\npublic R remove(@PathVariable(\"id\") Integer id) {\n    ...\n}\n\n@PreAuthorize(\"@ps.hasPerm(\'article_export\')\")\n@PostMapping(\"/export\")\npublic R export(Article article) {\n    ...\n}\n```\n', 0, '0', 'entfrm', '2020-04-14 23:49:46', '', '2020-04-14 23:54:19', NULL, '0');
+INSERT INTO `cms_article` VALUES (8, '新建一个新模块', 2, '后端文档', NULL, NULL, '1.点击entfrm-biz右键选择**new** =&gt;**Module**进入模块新建引导界面，首先输入包名，然后点击下一步输入模块名称，然后在pom.xml已入核心依赖。\n\n![第一步](http://47.100.3.58/static/show/nm1.gif)\n2.点击左侧菜单**开发工具**=》**数据表管理**，然后选择数据库并点击，右侧并会显示数据库所有表，此时你可以点击配置表（针对已通过数据库可视化工具设计好的表,当然你也可以点击**生成表**，可视化设计数据表），然后依次完善基本信息，字段信息，生成信息（所有命名规范遵循阿里巴巴JAVA开发规范），在字段信息中你可以调整字段在数据库中的类型、长度、默认值等熟悉以及配置代码生成的熟悉，如类型、是否列表显示、查询、查询方式、字典等；最后在生成信息中可以选择单表和树表方式，分类等信息，按上面提示配置即可，配置完后**提交**。\n\n![第二步](http://47.100.3.58/static/show/nm2.gif)\n\n3.返回到列表界面，点击刚刚配置好的表操作栏下的**生成**，系统安装配置参数生成后端和前端所有代码，然后解压并将main这个文件夹放到刚刚创建的模块**src**文件夹下；然后将vue文件夹下两个文件拷贝到前端项目**src**文件夹下；最后将生成的菜单**sql**文件放到数据库中执行（注：记得修改所属父级id），到此重启后台服务，并可在前端中访问刚刚设计的模块功能了。\n\n![第三步](http://47.100.3.58/static/show/nm3.gif)', 0, '0', 'entfrm', '2020-04-14 23:49:46', '', '2020-04-14 23:54:19', NULL, '0');
+INSERT INTO `cms_article` VALUES (9, '分页实现', 2, '后端文档', NULL, '分页实现', '> 引用 前端基于Element封装的分页组件 Pagination\n> 后端分页组件使用Mybatis Plus分页插件 PaginationInterceptor\n### 前端实现\n```javascript\n// 一般在查询参数中定义分页变量\nqueryParams: {\n  current: 1,\n  size: 10\n},\n\n// 页面添加分页组件，传入分页变量\n<pagination\n  v-show=\"total>0\"\n  :total=\"total\"\n  :page.sync=\"queryParams.current\"\n  :limit.sync=\"queryParams.size\"\n  @pagination=\"getList\"\n/>;\n\n// 调用后台方法，传入参数 获取结果\nlistUser(this.queryParams).then(response => {\n    this.userList = response.data;\n    this.total = response.total;\n  }\n);\n```\n- 前端传参\n```javascript\n// 查询文章列表\nexport function listArticle(query) {\n  return request({\n    url: \'/cms/article/list\',\n    method: \'get\',\n    params: query\n  })\n}\n```\n前端对axios做了封装，方便request请求、统一相应，详情代码请见：\n[axios封装](https://gitee.com/entfrm/entfrm-boot/blob/master/entfrm-ui/src/utils/request.js)\n### 后端实现\n```java\n    @ApiOperation(\"文章列表\")\n    @PreAuthorize(\"@ps.hasPerm(\'article_view\')\")\n    @GetMapping(\"/list\")\n    @ResponseBody\n    public R list(Page page, Article article) {\n        IPage<Article> articlePage = articleService.page(page, getQueryWrapper(article));\n        return R.ok(articlePage.getRecords(), articlePage.getTotal());\n    }\n```\n分页交给了mybatis plus中的分页实现，此处查询条件由Article接收，再交给getQueryWrapper进行查询条件的解析，最后进行查询。\n```java\nprivate QueryWrapper<Article> getQueryWrapper(Article article) {\n        return new QueryWrapper<Article>()\n                .eq(StrUtil.isNotBlank(article.getTitle()), \"title\", article.getTitle())\n                .eq(!StrUtil.isEmptyIfStr(article.getCategoryId()), \"category_id\", article.getCategoryId())\n                .eq(StrUtil.isNotBlank(article.getStatus()), \"status\", article.getStatus()).orderByAsc(\"sort\");\n    }\n```\ngetQueryWrapper是查询条件解析封装的方法，好处有3点：\n1. 可以重复利用解析查询条件；\n2. 查询条件集中管理，利用代码维护和扩展；\n3. 便于代码生成器自动生成查询条件。\n\n', 0, '0', 'entfrm', '2020-04-15 20:48:47', '', '2020-04-19 12:46:21', NULL, '0');
+INSERT INTO `cms_article` VALUES (10, '@OperLog使用', 2, '后端文档', NULL, NULL, '> 在实际开发中，对于某些关键业务操作，我们通常需要记录该操作的内容，一个操作调一次记录方法，每次调阅需要收集时间、参数、谁操作的等等，会造成大量代码重复。 我们希望代码中简化业务相关的操作，在项目中使用注解来完成此项功能。\n\n- 在需要被记录日志的controller方法上添加@OperLog注解，使用方法如下：\n```java\n@OperLog(\"文章新增\")\n```\n支持参数\n参数 |类型 |描述 |\n-------- |-------- |-------- |\nvalue |String |描述 |\n> 逻辑实现代码 [OperLogAspect](https://gitee.com/entfrm/entfrm-boot/blob/master/entfrm-core/entfrm-core-log/src/main/java/com/entfrm/core/log/aspect/OperLogAspect.java)\n\n> 查询操作日志可以登录系统（系统管理->日志监控->操作日志）', 0, '0', 'entfrm', '2020-04-20 09:07:20', '', '2020-04-20 09:13:40', NULL, '0');
+INSERT INTO `cms_article` VALUES (11, '导入导出', 2, '后端文档', NULL, NULL, '> 在实际开发中经常需要使用导入导出功能来加快数据的操作。在项目中可以使用注解来完成此项功能。 在需要被导入导出的实体类属性添加@Excel注解，目前支持参数如下：\n\n参数 |类型 |默认值 |描述 |\n-------- |-------- |-------- |-------- |\nname	|String	|空	|导出到Excel中的名字\ndateFormat	|String	|空	|日期格式, 如: yyyy-MM-dd\nconvertExp	|String	|空	|读取内容转表达式 (如: 0=男,1=女,2=未知)\ncellType	|Enum	|Type.STRING	|导出类型（0数字 1字符串）\nheight	|String	|14	|导出时在excel中每个列的高度 单位为字符\nwidth	|String	|16	|导出时在excel中每个列的宽 单位为字符\nsuffix	|String	|空	|文字后缀,如% 90 变成90%\ndefaultValue	|String	|空	|当值为空时,字段的默认值\nprompt	|String	|空	|提示信息\ncombo	|String	|Null	|设置只能选择不能输入的列内容\ntargetAttr	|String	|空	|另一个类中的属性名称,支持多级获取,以小数点隔开\ntype	|Enum	|Type.ALL	|字段类型（0：导出导入；1：仅导出；2：仅导入）\n### 导出实现\n1. 在实体属性上添加@Excel注解\n```java\n@Excel(name = \"用户编号\", cellType = Excel.ColumnType.NUMERIC, prompt = \"用户编号\")\nprivate Integer id;\n\n@Excel(name = \"用户名称\")\nprivate String userName;\n\n@Excel(name = \"用户昵称\")\nprivate String nickName;\n    \n@Excel(name = \"用户性别\", readConverterExp = \"0=男,1=女,2=未知\")\nprivate String sex;\n\n@Excel(name = \"状态\", convertExp = \"0=正常,1=停用\")\nprivate String status;\n    \n@Excel(name = \"最后登录时间\", width = 30, dateFormat = \"yyyy-MM-dd HH:mm:ss\")\nprivate Date loginTime;\n```\n2.在Controller添加导出方法\n```java\n@SneakyThrows\n@OperLog(\"用户数据导出\" )\n@PreAuthorize(\"@ps.hasPerm(\'user_export\')\" )\n@GetMapping(\"/exportUser\" )\n@ResponseBody\npublic R exportUser(User user, HttpServletResponse response, HttpServletRequest request) {\n   List<User> list = userService.list(getQueryWrapper(user));\n   ExcelUtil<User> util = new ExcelUtil<User>(User.class);\n   return util.exportExcel(list, \"用户数据\" );\n}\n```\n3.前端调用\n```javascript\n// 查询参数 queryParams\nqueryParams: {\n  current: 1,\n  size: 10,\n  userName: undefined,\n  phone: undefined,\n  status: undefined,\n  deptId: undefined\n},\n\n// 导出接口exportUser\nimport { exportUser } from \"@/api/system/user\";\n\n/** 导出按钮操作 */\nhandleExport() {\n  const queryParams = this.queryParams;\n  this.$confirm(\'是否确认导出所有用户数据项?\', \"警告\", {\n     confirmButtonText: \"确定\",\n     cancelButtonText: \"取消\",\n     type: \"warning\"\n  }).then(function() {\n     return exportUser(queryParams);\n   }).then(response => {\n     this.download(response.data);\n   }).catch(function() {});\n},\n```\n4.添加导出按钮\n```\n<el-button\n  type=\"warning\"\n  icon=\"el-icon-download\"\n  size=\"mini\"\n  @click=\"handleExport\"\n>导出</el-button>\n```\n### 导入实现\n1.在实体属性上添加@Excel注解，默认为导出导入，也可以单独设置仅导入Type.IMPORT\n```java\n@Excel(name = \"用户编号\", cellType = Excel.ColumnType.NUMERIC, prompt = \"用户编号\")\nprivate Integer id;\n\n@Excel(name = \"用户名称\")\nprivate String userName;\n\n@Excel(name = \"机构名称\")\nprivate String deptName;\n```\n2.在Controller添加导入方法，updateSupport属性为是否存在则覆盖（可选）\n```java\n@SneakyThrows\n@OperLog(\"用户数据导入\" )\n@PreAuthorize(\"@ps.hasPerm(\'user_import\')\" )\n@PostMapping(\"/importUser\" )\n@ResponseBody\npublic R importUser(MultipartFile file, boolean updateSupport) {\n   ExcelUtil<User> util = new ExcelUtil<User>(User.class);\n   List<User> userList = util.importExcel(file.getInputStream());\n   String message = userService.importUser(userList, updateSupport);\n   return R.ok(message);\n}\n```\n3.前端调用\n```\n// 用户导入参数\nupload: {\n  // 是否显示弹出层（用户导入）\n  open: false,\n  // 弹出层标题（用户导入）\n  title: \"\",\n  // 是否禁用上传\n  isUploading: false,\n  // 是否更新已经存在的用户数据\n  updateSupport: 0,\n  // 设置上传的请求头部\n  headers: { Authorization: \"Bearer \" + getToken() },\n  // 上传的地址\n  url: process.env.VUE_APP_BASE_API + \"/system/user/importData\"\n},\n\n// 导入模板接口importTemplate\nimport { importTemplate } from \"@/api/system/user\";\n\n/** 导入按钮操作 */\nhandleImport() {\n  this.upload.title = \"用户导入\";\n  this.upload.open = true;\n},\n/** 下载模板操作 */\nimportTemplate() {\n  importTemplate().then(response => {\n	this.download(response.msg);\n  });\n},\n// 文件上传中处理\nhandleFileUploadProgress(event, file, fileList) {\n  this.upload.isUploading = true;\n},\n// 文件上传成功处理\nhandleFileSuccess(response, file, fileList) {\n  this.upload.open = false;\n  this.upload.isUploading = false;\n  this.$refs.upload.clearFiles();\n  this.$alert(response.msg, \"导入结果\", { dangerouslyUseHTMLString: true });\n  this.getList();\n},\n// 提交上传文件\nsubmitFileForm() {\n  this.$refs.upload.submit();\n}\n```\n4.添加导入按钮\n```\n<el-button\n  type=\"info\"\n  icon=\"el-icon-upload2\"\n  size=\"mini\"\n  @click=\"handleImport\"\n>导入</el-button>\n```\n5.导入前端代码\n```<!-- 用户导入对话框 -->\n<el-dialog :title=\"upload.title\" :visible.sync=\"upload.open\" width=\"400px\">\n  <el-upload\n	ref=\"upload\"\n	:limit=\"1\"\n	accept=\".xlsx, .xls\"\n	:headers=\"upload.headers\"\n	:action=\"upload.url + \'?updateSupport=\' + upload.updateSupport\"\n	:disabled=\"upload.isUploading\"\n	:on-progress=\"handleFileUploadProgress\"\n	:on-success=\"handleFileSuccess\"\n	:auto-upload=\"false\"\n	drag\n  >\n	<i class=\"el-icon-upload\"></i>\n	<div class=\"el-upload__text\">\n	  将文件拖到此处，或\n	  <em>点击上传</em>\n	</div>\n	<div class=\"el-upload__tip\" slot=\"tip\">\n	  <el-checkbox v-model=\"upload.updateSupport\" />是否更新已经存在的用户数据\n	  <el-link type=\"info\" style=\"font-size:12px\" @click=\"importTemplate\">下载模板</el-link>\n	</div>\n	<div class=\"el-upload__tip\" style=\"color:red\" slot=\"tip\">提示：仅允许导入“xls”或“xlsx”格式文件！</div>\n  </el-upload>\n  <div slot=\"footer\" class=\"dialog-footer\">\n	<el-button type=\"primary\" @click=\"submitFileForm\">确 定</el-button>\n	<el-button @click=\"upload.open = false\">取 消</el-button>\n  </div>\n</el-dialog>\n<!-- 用户导入对话框 -->\n<el-dialog :title=\"upload.title\" :visible.sync=\"upload.open\" width=\"400px\">\n  <el-upload\n	ref=\"upload\"\n	:limit=\"1\"\n	accept=\".xlsx, .xls\"\n	:headers=\"upload.headers\"\n	:action=\"upload.url + \'?updateSupport=\' + upload.updateSupport\"\n	:disabled=\"upload.isUploading\"\n	:on-progress=\"handleFileUploadProgress\"\n	:on-success=\"handleFileSuccess\"\n	:auto-upload=\"false\"\n	drag\n  >\n	<i class=\"el-icon-upload\"></i>\n	<div class=\"el-upload__text\">\n	  将文件拖到此处，或\n	  <em>点击上传</em>\n	</div>\n	<div class=\"el-upload__tip\" slot=\"tip\">\n	  <el-checkbox v-model=\"upload.updateSupport\" />是否更新已经存在的用户数据\n	  <el-link type=\"info\" style=\"font-size:12px\" @click=\"importTemplate\">下载模板</el-link>\n	</div>\n	<div class=\"el-upload__tip\" style=\"color:red\" slot=\"tip\">提示：仅允许导入“xls”或“xlsx”格式文件！</div>\n  </el-upload>\n  <div slot=\"footer\" class=\"dialog-footer\">\n	<el-button type=\"primary\" @click=\"submitFileForm\">确 定</el-button>\n	<el-button @click=\"upload.open = false\">取 消</el-button>\n  </div>\n</el-dialog>\n```', 0, '0', 'entfrm', '2020-04-20 10:03:13', '', '2020-04-20 10:11:56', NULL, '0');
+INSERT INTO `cms_article` VALUES (12, '数据权限', 2, '后端文档', NULL, NULL, '1.在（系统管理-角色管理）设置需要数据权限的角色 目前支持以下几种权限\n```\n全部数据权限\n自定数据权限\n机构数据权限\n机构及以下数据权限\n仅本人数据权限\n```\n2.在需要数据权限控制方法上添加@DataFilter注解，并在QueryWrapper上增加.apply(StrUtil.isNotBlank(user.getSqlFilter()), user.getSqlFilter())\n```\n    private QueryWrapper<User> getQueryWrapper(User user) {\n        return new QueryWrapper<User>().like(StrUtil.isNotBlank(user.getUserName()), \"user_name\", user.getUserName())\n                .apply(StrUtil.isNotBlank(user.getSqlFilter()), user.getSqlFilter());\n    }\n\n    @PreAuthorize(\"@ps.hasPerm(\'user_view\')\" )\n    @GetMapping(\"/list\" )\n    @DataFilter\n    public R list(Page page, User user) {\n        IPage<User> userIPage = userService.page(page, getQueryWrapper(user));\n        return R.ok(userIPage.getRecords(), userIPage.getTotal());\n    }\n```\n\n> 具体实现代码参见：[com.entfrm.core.data.aspect.DataFilterAspect](https://gitee.com/entfrm/entfrm-boot/blob/master/entfrm-core/entfrm-core-data/src/main/java/com/entfrm/core/data/aspect/DataFilterAspect.java)', 0, '0', 'entfrm', '2020-04-23 22:46:32', '', '2020-04-25 16:52:13', NULL, '0');
+INSERT INTO `cms_article` VALUES (13, '国际化', 2, '后端文档', NULL, NULL, '### 国际化配置\n```\npackage com.entfrm.core.base.config;\n\nimport org.springframework.context.MessageSource;\nimport org.springframework.context.annotation.Bean;\nimport org.springframework.context.annotation.Configuration;\nimport org.springframework.context.support.ReloadableResourceBundleMessageSource;\n\n/**\n * @author entfrm\n * @date 2020/2/1\n * <p>\n * 国际化配置\n */\n@Configuration\npublic class MessageSourceConfig {\n\n	@Bean\n	public MessageSource messageSource() {\n		ReloadableResourceBundleMessageSource messageSource\n			= new ReloadableResourceBundleMessageSource();\n		messageSource.setBasename(\"classpath:i18n/messages\");\n		return messageSource;\n	}\n}\n```\n### i18n 目录文件下定义资源文件\n简体中文messages_zh_CN.properties\n```\n#通用\nsuccess=操作成功\nfail=操作失败\n\n#login\nsys.password.incorrect=用户名不存在或密码错误\nsys.account.locked=用户已被禁用，请联系管理员\nsys.authentication.fail=当前操作没有权限\n```\n美式英语 messages_en_US.properties\n```\n#common\nsuccess=operate success\nfail=operate fail\n\n#login\nsys.password.incorrect=Incorrect account or password\nsys.account.locked=The account has been locked\nsys.authentication.fail=Account Validation Failed\n```\n### MessageUtil国际化在java中的使用\n> 在application.yml文件配置 默认语言：en_US 英语  zh_CN 简体中文（在第14行）\n```\nMessageUtil.getText(\"success\")\nMessageUtil.getText(\"fail\")\n```\n', 0, '0', 'entfrm', '2020-04-23 22:46:58', '', '2020-04-25 16:49:31', NULL, '0');
+INSERT INTO `cms_article` VALUES (14, '多数据源', 2, '后端文档', NULL, NULL, '1.在开发工具->数据库管理中添加新的数据库名称、数据库类型、url、用户和密码，并会自动创建一个别名（组成格式：数据库类型_数据库名称_数据库编号）。\n\n2.在使用的时候请将别名作为参数传递，工具类中有一个别名解析工具类,方便别名解析\n```\npackage com.entfrm.core.data.util;\n\nimport com.entfrm.core.base.util.StrUtil;\nimport com.entfrm.core.data.enums.DataTypeEnum;\nimport lombok.experimental.UtilityClass;\n\n/**\n * @author entfrm\n * @date 2020/3/24\n * @description 别名 工具类\n */\n@UtilityClass\npublic class AliasUtil {\n\n    public String genAlias(String driverClassName, String dsName, int id) {\n        if (DataTypeEnum.MYSQL.getDriverClassName().equals(driverClassName)) {\n            return DataTypeEnum.MYSQL.getType() + \"_\" + dsName + \"_\" + id;\n        } else if (DataTypeEnum.SQLSERVER.getDriverClassName().equals(driverClassName)) {\n            return DataTypeEnum.SQLSERVER.getType() + \"_\" + dsName + \"_\" + id;\n        } else if (DataTypeEnum.ORACLE.getDriverClassName().equals(driverClassName)) {\n            return DataTypeEnum.ORACLE.getType() + \"_\" + dsName + \"_\" + id;\n        } else if (DataTypeEnum.POSTGRESQL.getDriverClassName().equals(driverClassName)) {\n            return DataTypeEnum.POSTGRESQL.getType() + \"_\" + dsName + \"_\" + id;\n        } else if (DataTypeEnum.SQLITE.getDriverClassName().equals(driverClassName)) {\n            return DataTypeEnum.SQLITE.getType() + \"_\" + dsName + \"_\" + id;\n        } else {\n            return dsName;\n        }\n    }\n\n    public String getDsType(String aliass) {\n        return aliass.substring(0, aliass.indexOf(\"_\"));\n    }\n\n    public String getDsName(String aliass) {\n        return aliass.substring(aliass.indexOf(\"_\") + 1, aliass.lastIndexOf(\"_\"));\n    }\n\n    public int getDsId(String aliass) {\n        String dsId = aliass.substring(aliass.lastIndexOf(\"_\") + 1, aliass.length());\n        if(StrUtil.isNotBlank(dsId)){\n            return Integer.parseInt(dsId);\n        }\n        return 1;\n    }\n}\n```\n3.动态数据源使用,参见：[DatatableController](https://gitee.com/entfrm/entfrm-boot/blob/master/entfrm-biz/entfrm-biz-devtool/src/main/java/com/entfrm/biz/devtool/controller/DatatableController.java)\n```\n    @GetMapping(\"/list\")\n    @ResponseBody\n    public R list(@RequestParam String alias, @RequestParam(required = false) String tableName) {\n        DSContextHolder.setDSType(AliasUtil.getDsId(alias));\n        //此处实现数据库查询\n        ...\n        return R.ok(list);\n    }\n```\n\n> 动态数据源实现参见：[com.entfrm.core.data.datasource](https://gitee.com/entfrm/entfrm-boot/tree/master/entfrm-core/entfrm-core-data/src/main/java/com/entfrm/core/data/datasource)', 0, '0', 'entfrm', '2020-04-23 22:47:16', '', '2020-04-25 17:09:24', NULL, '0');
+INSERT INTO `cms_article` VALUES (15, '接口文档', 2, '后端文档', NULL, NULL, '参见我的博文：[https://blog.csdn.net/entfrm/article/details/105678938](https://blog.csdn.net/entfrm/article/details/105678938)', 0, '0', 'entfrm', '2020-04-23 22:47:36', '', '2020-04-24 18:56:45', NULL, '0');
+INSERT INTO `cms_article` VALUES (16, '定时任务', 2, '后端文档', NULL, NULL, '### 新建任务 执行路径/文件.方法 说明\n```\nJar包调用示例：/opt/entfrm-web.jar //此处输入的是Jar包存放路径\nRest调用示例：http://47.100.3.58/ //此处输入的是rest接口地址\nBean调用示例：demo.demoMethod //此处输入的是Bean名称+方法，参见：SpringBeanTaskDemo示例\nClass类调用示例：com.entfrm.core.base.util.AddressUtil.getCityInfo\n参数说明：支持字符串，布尔类型，长整型，浮点型，整型，指令等\n```\n### cron表达式\n\n> 自行搜索下 **cron表达式语法**\n', 0, '0', 'entfrm', '2020-04-23 22:48:23', '', '2020-04-25 17:12:04', NULL, '0');
+INSERT INTO `cms_article` VALUES (17, '开发规范', 3, '前端文档', NULL, NULL, '### 新增view\n在 @/views 文件下创建模块的文件夹，一个模块一个文件夹， 该模块下的功能就建议在本文件夹下创建一个新文件夹，各个功能模块维护自己的utils或components组件。\n\n### 新增api\n在 @/api 文件夹下创建本模块对应的 api 服务。\n\n### 新增组件\n在全局的 @/components 写一些全局的组件，如富文本，各种搜索组件，封装的分页组件等等能被公用的组件。 每个页面或者模块特定的业务组件则会写在当前 @/views 下面。\n\n### 新增样式\n页面的样式和组件是一个道理，全局的 @/style 放置一下全局公用的样式，每一个页面的样式就写在当前 views下面，请记住加上scoped 就只会作用在当前组件内了，避免造成全局的样式污染。', 0, '0', 'entfrm', '2020-04-24 10:20:21', '', '2020-04-25 16:26:03', NULL, '0');
+INSERT INTO `cms_article` VALUES (18, '图标新增与使用', 3, '前端文档', NULL, NULL, '### 图标新增\n本项目中有常用的Icon图标，如果需要或使用更多的图标，您可以到 iconfont.cn 上选择并生成自己的业务图标库，然后下载 .svg 文件并放入 assets/icons/svg 文件夹下（svg文件会自动导入）。最后你就可以在系统中使用放入的Icon图标了。\n### 图标使用\n```\n<svg-icon icon-class=\"password\" /> // icon-class 为 icon 的名字\n```\n### 图标颜色\nsvg-icon 默认会读取其父级的 color fill: currentColor;\n\n你可以改变父级的color或者直接改变fill的颜色即可。\n\n> 本项目中使用的图标都是 128*128 大小规格的。', 0, '0', 'entfrm', '2020-04-24 10:21:09', '', '2020-04-25 12:01:45', NULL, '0');
+INSERT INTO `cms_article` VALUES (19, '数据请求', 3, '前端文档', NULL, NULL, '系统中的统一的请求处理都在 @/src/api 文件夹下，文件结构遵循 api/module/entity，如下：\n```\napi/\n  cms/\n    article.js\n    category.js\n  system/\n    role.js\n    user.js\n  ...\n```\n### 请求示例\n```\n// api/system/user.js\nimport request from \'@/utils/request\'\n\n// 查询用户列表\nexport function listUser(query) {\n  return request({\n    url: \'/system/user/list\',\n    method: \'get\',\n    params: query\n  })\n}\n\n// views/system/user/index.vue\nimport { listUser } from \"@/api/system/user\";\n\nexport default {\n  data() {\n    userList: null,\n    loading: true\n  },\n  methods: {\n    getList() {\n      this.loading = true\n      listUser(this.addDateRange(this.queryParams, this.dateRange)).then(response => {\n          this.userList = response.data;\n          this.total = response.total;\n          this.loading = false;\n        }\n      );\n    }\n  }\n}\n```\n> 其中，@/src/utils/request.js 是基于 axios 的封装，便于统一处理 POST，GET 等请求参数，请求头，以及错误提示信息等。 它封装了全局 request拦截器、response拦截器、统一的错误处理、统一的超时处理、baseURL设置等。\n', 0, '0', 'entfrm', '2020-04-24 10:21:51', '', '2020-04-25 12:08:58', NULL, '0');
+INSERT INTO `cms_article` VALUES (20, '组件安装与使用', 3, '前端文档', NULL, NULL, '> 除了 element-ui 组件以及脚手架内置的业务组件，有时我们还需要引入其他外部组件，这里以引入 vue-count-to 为例进行介绍。\n### 组件安装\n在终端中输入如下指令：\n```\n$ npm install vue-count-to --save\n```\n> 加 ==--save== 参数会自动添加依赖到 package.json 的dependencies(生产环境下所依赖的 npm 包集合)中; 加 ==--save-dev== 参数会自动添加依赖到 package.json 的devDependencies(开发和测试环境下所依赖的 npm 包集合)中。\n### 组件使用\n1.局部注册\n```\n<template>\n  <count-to :startVal=\'startVal\' :endVal=\'endVal\' :duration=\'3000\'></count-to>\n</template>\n\n<script>\nimport countTo from \'vue-count-to\';\nexport default {\n  components: { countTo },\n  data () {\n    return {\n      startVal: 0,\n      endVal: 2020\n    }\n  }\n}\n</script>\n```\n1.全局注册\n\n> 在 @/main.js 文件下注册组件。\n```\nimport countTo from \'vue-count-to\'\nVue.component(\'countTo\', countTo)\n```\n```\n<template>\n  <count-to :startVal=\'startVal\' :endVal=\'endVal\' :duration=\'3000\'></count-to>\n</template>\n```', 0, '0', 'entfrm', '2020-04-24 10:30:33', '', '2020-04-25 16:07:52', NULL, '0');
+INSERT INTO `cms_article` VALUES (21, '权限使用', 3, '前端文档', NULL, NULL, '### 使用权限字符串 v-hasPerm\n```\n// 单个\n<el-button v-hasPerm=\"[\'user_add\']\">存在权限字符串才能看到</el-button>\n// 多个\n<el-button v-hasPermi=\"[\'user_add\', \'user_edit\']\">包含权限字符串才能看到</el-button>\n```\n### 使用角色字符串 v-hasRole\n```\n// 单个\n<el-button v-hasRole=\"[\'ROLE_1\']\">管理员才能看到</el-button>\n// 多个\n<el-button v-hasRole=\"[\'ROLE_1\', \'ROLE_2\']\">包含角色才能看到</el-button>\n```\n> 在某些情况下，v-hasPerm并不适合使用，如元素标签组件，只能通过手动设置v-if，此时可以使用全局权限判断函数，用法和指令 v-hasPerm 类似。\n```\n<template>\n  <el-tabs>\n    <el-tab-pane v-if=\"checkPerm([\'user_add\'])\" label=\"用户管理\" name=\"user\">用户管理</el-tab-pane>\n    <el-tab-pane v-if=\"checkPerm([\'config_add\', \'config_edit\'])\" label=\"参数管理\" name=\"menu\">参数管理</el-tab-pane>\n    <el-tab-pane v-if=\"checkRole([\'ROLE_1\'])\" label=\"角色管理\" name=\"role\">角色管理</el-tab-pane>\n    <el-tab-pane v-if=\"checkRole([\'ROLE_1\',\'ROLE_2\'])\" label=\"定时任务\" name=\"job\">定时任务</el-tab-pane>\n   </el-tabs>\n</template>\n\n<script>\nimport { checkPerm, checkRole } from \"@/utils/permission\"; // 权限判断函数\n\nexport default{\n   methods: {\n    checkPerm,\n    checkRole\n  }\n}\n</script>\n```', 0, '0', 'entfrm', '2020-04-24 10:30:55', '', '2020-04-25 11:50:17', NULL, '0');
+INSERT INTO `cms_article` VALUES (22, '路由缓存', 3, '前端文档', NULL, NULL, '### 左侧菜单基于element-ui的NavMenu来实现的,参数如下：\n```\n/**\n* hidden: true                   if `hidden:true` will not show in the sidebar(default is false)\n* redirect: noredirect           if `redirect:noredirect` will no redirct in the breadcrumb\n* name:\'router-name\'             the name is used by <keep-alive> (must set!!!)\n* meta : {\n   role: [\'ROLE_1\',\'ROLE_2\']     will control the page role (you can set multiple roles)\n   title: \'title\'               the name show in submenu and breadcrumb (recommend set)\n   icon: \'svg-name\'             the icon show in the sidebar,\n   noCache: true                if fasle ,the page will no be cached(default is false)\n }\n**/\n```\n> 由于 keep-alive 和 router-view 是强耦合的，而且查看文档和源码不难发现 keep-alive 的 include 默认是优先匹配组件的 name ，所以在编写路由 router 和路由对应的 view component 的时候一定要确保 两者的 name 是完全一致的。(切记 name 命名时候尽量保证唯一性，不然会递归引用最后内存溢出等问题)\n### 如何开启路由缓存\n在系统管理->菜单管理页面中创建菜单时，有一个是否缓存选型，勾选是即可，勾选后在生成菜单的时候noCache属性为true,创建的菜单会增加到cachedViews缓存中，keep-alive并会生效，详情代码参见：layout/components/AppMain.vue', 0, '0', 'entfrm', '2020-04-24 10:31:29', '', '2020-04-25 15:49:30', NULL, '0');
+INSERT INTO `cms_article` VALUES (23, '字典使用', 3, '前端文档', NULL, NULL, '> 引用字典管理是用来维护数据类型的数据，如下拉框、单选按钮、复选框、树选择的数据，方便系统管理员维护。主要功能包括：字典分类管理、字典数据管理\n\n1.main.js中引入全局变量和方法\n```\nimport { getDicts } from \"@/api/system/dict/data\";\nVue.prototype.getDicts = getDicts\n```\n2.页面使用数据字典\n```this.getDicts(\"字典类型\").then(response => {\n  this.xxx = response.data;\n});\nthis.getDicts(\"字典类型\").then(response => {\n  this.xxx = response.data;\n});\n```', 0, '0', 'entfrm', '2020-04-24 10:31:52', '', '2020-04-25 15:52:58', NULL, '0');
+INSERT INTO `cms_article` VALUES (24, '参数使用', 3, '前端文档', NULL, NULL, '> 参数设置是提供开发人员、实施人员的动态系统配置参数，不需要去频繁修改后台配置文件，也无需重启服务器即可生效。\n\n1.main.js中引入全局变量和方法\n```\nimport { getConfigKey } from \"@/api/system/config\";\nVue.prototype.getConfigKey = getConfigKey\n```\n2.页面使用参数\n```\nthis.getConfigKey(\"参数键名\").then(response => {\n  this.xxx = response.msg;\n});\n```', 0, '0', 'entfrm', '2020-04-24 10:32:08', '', '2020-04-25 15:54:12', NULL, '0');
+INSERT INTO `cms_article` VALUES (25, '国际化', 3, '前端文档', NULL, NULL, '参见element-ui国际化文档：[https://element.eleme.cn/#/zh-CN/component/i18n](https://element.eleme.cn/#/zh-CN/component/i18n)\n', 0, '0', 'entfrm', '2020-04-24 10:36:37', '', '2020-04-25 16:13:45', NULL, '0');
+INSERT INTO `cms_article` VALUES (26, '常用组件', 3, '前端文档', NULL, NULL, '### 基础框架组件\n[element-ui](https://gitee.com/mirrors/element-ui)\n\n[vue-element-admin](https://gitee.com/panjiachen/vue-element-admin)\n', 0, '0', 'entfrm', '2020-04-24 10:33:54', '', '2020-04-25 16:20:56', NULL, '0');
+INSERT INTO `cms_article` VALUES (27, '常见问题', 4, '其他', NULL, NULL, '暂无', 0, '0', 'entfrm', '2020-04-24 10:39:30', '', '2020-04-25 17:32:08', NULL, '0');
+
+-- ----------------------------
+-- Table structure for cms_category
+-- ----------------------------
+DROP TABLE IF EXISTS `cms_category`;
+CREATE TABLE `cms_category`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '类别名称',
+  `parent_id` int(11) NULL DEFAULT 0 COMMENT '父级编号',
+  `ancestors` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '祖级列表',
+  `sort` int(11) NULL DEFAULT 1 COMMENT '排序',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of cms_category
+-- ----------------------------
+INSERT INTO `cms_category` VALUES (1, '开发文档', 0, '0', 1, '0', 'entfrm', '2020-04-01 09:28:04', '', '2020-04-02 17:57:06', NULL, '0');
+INSERT INTO `cms_category` VALUES (2, '后端文档', 1, '0,1', 1, '0', 'entfrm', '2020-04-02 17:58:35', '', '2020-04-02 18:04:07', NULL, '0');
+INSERT INTO `cms_category` VALUES (3, '前端文档', 1, '0,1', 2, '0', 'entfrm', '2020-04-02 17:59:55', '', '2020-04-02 18:04:14', NULL, '0');
+INSERT INTO `cms_category` VALUES (4, '其他', 1, '0,1', 3, '0', 'entfrm', '2020-04-02 18:00:36', '', '2020-04-02 18:04:30', NULL, '0');
 
 -- ----------------------------
 -- Table structure for dev_column
@@ -678,12 +853,13 @@ CREATE TABLE `dev_column`  (
   `column_type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '列类型',
   `java_type` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'JAVA类型',
   `java_field` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'JAVA字段名',
+  `def_value` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '默认值',
   `is_pk` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '是否主键（1是）',
   `is_increment` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '是否自增（1是）',
   `is_required` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '是否必填（1是）',
   `is_add` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '是否为新增字段（1是）',
   `is_edit` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '是否编辑字段（1是）',
-  `is_list` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否列表字段（1是）',
+  `is_list` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '是否列表字段（1是）',
   `is_query` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '是否查询字段（1是）',
   `query_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'eq' COMMENT '查询方式（等于、不等于、大于、小于、范围）',
   `html_type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '显示类型（文本框、文本域、下拉框、复选框、单选框、日期控件）',
@@ -713,12 +889,104 @@ CREATE TABLE `dev_table`  (
   `business_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '生成业务名',
   `function_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '生成功能名',
   `function_author` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '生成功能作者',
+  `cols` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '24' COMMENT '分栏',
   `options` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '其它生成选项',
   `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for msg_info_config
+-- ----------------------------
+DROP TABLE IF EXISTS `msg_info_config`;
+CREATE TABLE `msg_info_config`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '名称',
+  `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '类型',
+  `access_key_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'key编号',
+  `access_key_secret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '密钥',
+  `sign_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '签名',
+  `template_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '模板code',
+  `template_param` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '模板参数',
+  `host` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '地址',
+  `port` int(11) NULL DEFAULT NULL COMMENT '端口',
+  `from_by` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发件人',
+  `user` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户名',
+  `pass` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '密码',
+  `other_info` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '其他信息',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建者',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新者',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '消息配置' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of msg_info_config
+-- ----------------------------
+INSERT INTO `msg_info_config` VALUES (1, '阿里大鱼', '0', '1', '1', 'entfrm', 'entfrm', NULL, 'dysmsapi.aliyuncs.com', NULL, NULL, NULL, NULL, NULL, '0', 'entfrm', '2020-05-10 16:29:03', 'entfrm', '2020-05-10 16:38:54', NULL, '0');
+INSERT INTO `msg_info_config` VALUES (2, '网易邮箱', '1', NULL, NULL, NULL, 'entfrm', NULL, 'smtp.yeah.net', 25, 'entfrm@yeah.net', 'entfrm', 'entfrm', NULL, '0', 'entfrm', '2020-05-10 16:37:59', 'entfrm', '2020-05-10 16:43:32', NULL, '0');
+
+-- ----------------------------
+-- Table structure for msg_info_content
+-- ----------------------------
+DROP TABLE IF EXISTS `msg_info_content`;
+CREATE TABLE `msg_info_content`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `title` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息标题',
+  `type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息类型',
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '内容',
+  `files` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '附件',
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '连接',
+  `dept_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '归属机构',
+  `extend` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '扩展字段',
+  `create_by` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `update_by` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
+  `update_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for msg_info_push
+-- ----------------------------
+DROP TABLE IF EXISTS `msg_info_push`;
+CREATE TABLE `msg_info_push`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `msginfo_id` int(11) NOT NULL COMMENT '消息编号',
+  `receive_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '接受人',
+  `is_read` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '是否阅读',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `read_time` datetime(0) NULL DEFAULT NULL COMMENT '阅读时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for msg_info_template
+-- ----------------------------
+DROP TABLE IF EXISTS `msg_info_template`;
+CREATE TABLE `msg_info_template`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '模板名称',
+  `type` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '模板类型',
+  `tpl_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '模板键值',
+  `tpl_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '模板内容',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '状态',
+  `create_by` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `update_by` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
+  `update_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
@@ -922,6 +1190,34 @@ CREATE TABLE `qrtz_triggers`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Table structure for sys_application
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_application`;
+CREATE TABLE `sys_application`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '应用名称',
+  `type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '应用类型',
+  `industry` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '行业',
+  `cover` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '封面',
+  `version` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '版本',
+  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `dept_id` int(11) NULL DEFAULT NULL COMMENT '机构编号',
+  `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '状态',
+  `create_by` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '删除标识（0-正常，1-删除）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '应用管理' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_application
+-- ----------------------------
+INSERT INTO `sys_application` VALUES (1, '通用管理系统', '1', '通用', NULL, '1.0.1', '通用管理系统', 1, '0', 'entfrm', '2020-04-23 19:20:29', 'entfrm', '2020-04-23 20:06:36', NULL, '0');
+
+-- ----------------------------
 -- Table structure for sys_area
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_area`;
@@ -1013,9 +1309,7 @@ CREATE TABLE `sys_datasource`  (
 -- ----------------------------
 -- Records of sys_datasource
 -- ----------------------------
-INSERT INTO `sys_datasource` VALUES (1, 'entfrm', 'com.mysql.cj.jdbc.Driver', 'jdbc:mysql://127.0.0.1:3306/entfrm?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true', 'root', '123456Aa', 'mysql_entfrm_1', 'entfrm', '2020-02-21 11:37:30', 'entfrm', '2020-03-25 13:02:35', '', '0');
-INSERT INTO `sys_datasource` VALUES (2, 'presys', 'com.mysql.cj.jdbc.Driver', 'jdbc:mysql://127.0.0.1:3306/presys?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true', 'root', '123456Aa', 'mysql_presys_2', 'entfrm', '2020-02-21 11:37:30', 'entfrm', '2020-03-25 13:02:37', '', '0');
-INSERT INTO `sys_datasource` VALUES (3, 'player', 'com.mysql.cj.jdbc.Driver', 'jdbc:mysql://127.0.0.1:3306/player?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true', 'root', '123456Aa', 'mysql_player_3', 'entfrm', '2020-02-21 11:37:30', 'entfrm', '2020-03-25 13:02:41', '', '0');
+INSERT INTO `sys_datasource` VALUES (1, 'entfrm-boot', 'com.mysql.cj.jdbc.Driver', 'jdbc:mysql://127.0.0.1:3306/entfrm-boot?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowMultiQueries=true', 'root', '123456Aa', 'mysql_entfrm-boot_1', 'entfrm', '2020-02-21 11:37:30', 'entfrm', '2020-04-12 18:18:15', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -1066,7 +1360,7 @@ CREATE TABLE `sys_dict`  (
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict
@@ -1083,6 +1377,10 @@ INSERT INTO `sys_dict` VALUES (9, '登录类型', 'login_type', '0', '0', 'entfr
 INSERT INTO `sys_dict` VALUES (10, '快捷方式类型', 'shortcut_type', '0', '0', 'entfrm', '2020-03-27 09:48:05', 'entfrm', '2020-03-27 10:14:27', '快捷方式类型列表', '0');
 INSERT INTO `sys_dict` VALUES (11, '模型分类', 'model_category', '0', '0', 'entfrm', '2020-04-04 22:09:36', NULL, NULL, '', '0');
 INSERT INTO `sys_dict` VALUES (12, '请假类型', 'leave_type', '0', '0', 'entfrm', '2020-04-05 10:08:18', NULL, NULL, '', '0');
+INSERT INTO `sys_dict` VALUES (13, '任务状态', 'job_status', '0', '0', 'entfrm', '2020-04-11 18:54:20', NULL, NULL, '', '0');
+INSERT INTO `sys_dict` VALUES (14, '请假状态', 'leave_status', '0', '0', 'entfrm', '2020-04-12 14:30:52', NULL, NULL, '请假状态列表', '0');
+INSERT INTO `sys_dict` VALUES (15, '应用类型', 'application_type', '0', '0', 'entfrm', '2020-04-23 18:54:07', NULL, NULL, '', '0');
+INSERT INTO `sys_dict` VALUES (16, '消息类型', 'msg_type', '0', '0', 'entfrm', '2020-05-10 16:02:20', NULL, NULL, '', '0');
 
 -- ----------------------------
 -- Table structure for sys_dict_data
@@ -1102,7 +1400,7 @@ CREATE TABLE `sys_dict_data`  (
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注信息',
   `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict_data
@@ -1137,6 +1435,18 @@ INSERT INTO `sys_dict_data` VALUES (27, NULL, 'model_category', '项目流程', 
 INSERT INTO `sys_dict_data` VALUES (28, NULL, 'leave_type', '事假', '1', 1, 'entfrm', '2020-04-05 10:08:52', NULL, '2020-04-05 10:08:52', NULL, '0');
 INSERT INTO `sys_dict_data` VALUES (29, NULL, 'leave_type', '病假', '2', 2, 'entfrm', '2020-04-05 10:09:05', NULL, '2020-04-05 10:09:05', NULL, '0');
 INSERT INTO `sys_dict_data` VALUES (30, NULL, 'leave_type', '产假', '3', 3, 'entfrm', '2020-04-05 10:09:37', 'entfrm', '2020-04-05 10:09:37', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (31, NULL, 'job_status', '未发布', '1', 1, 'entfrm', '2020-04-11 18:54:37', NULL, '2020-04-11 18:54:37', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (32, NULL, 'job_status', '运行中', '2', 2, 'entfrm', '2020-04-11 18:54:48', NULL, '2020-04-11 18:54:47', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (33, NULL, 'job_status', '暂停', '3', 3, 'entfrm', '2020-04-11 18:54:57', NULL, '2020-04-11 18:54:57', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (34, NULL, 'leave_status', '未提交', '0', 0, 'entfrm', '2020-04-12 14:31:12', NULL, '2020-04-12 14:31:11', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (35, NULL, 'leave_status', '未审批', '1', 1, 'entfrm', '2020-04-12 14:31:29', NULL, '2020-04-12 14:31:28', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (36, NULL, 'leave_status', '批准', '2', 2, 'entfrm', '2020-04-12 14:31:38', NULL, '2020-04-12 14:31:38', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (37, NULL, 'leave_status', '驳回', '3', 3, 'entfrm', '2020-04-12 14:31:51', NULL, '2020-04-12 14:31:51', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (38, NULL, 'application_type', 'PC', '1', 1, 'entfrm', '2020-04-23 18:54:36', NULL, '2020-04-23 18:54:36', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (39, NULL, 'application_type', 'APP', '2', 2, 'entfrm', '2020-04-23 18:54:44', NULL, '2020-04-23 18:54:44', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (40, NULL, 'application_type', '小程序', '3', 3, 'entfrm', '2020-04-23 18:54:58', NULL, '2020-04-23 18:54:57', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (41, NULL, 'msg_type', '短信', '0', 0, 'entfrm', '2020-05-10 16:02:40', NULL, '2020-05-10 16:02:40', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (42, NULL, 'msg_type', '邮件', '1', 1, 'entfrm', '2020-05-10 16:02:50', NULL, '2020-05-10 16:02:50', NULL, '0');
 
 -- ----------------------------
 -- Table structure for sys_file_info
@@ -1157,18 +1467,12 @@ CREATE TABLE `sys_file_info`  (
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_file_info
 -- ----------------------------
-INSERT INTO `sys_file_info` VALUES (1, '用户数据导入', 'file', 'xlsx', '9.25KB', 'http://localhost:8888/profile/upload/file/file1585383894358.xlsx', NULL, 1, '0', 'entfrm', '2020-03-28 16:24:54', '', '0');
-INSERT INTO `sys_file_info` VALUES (2, '微信农信小程序使用手册', 'file', 'docx', '465.83KB', 'http://localhost:8888/profile/upload/file/file1585383894361.docx', NULL, 1, '0', 'entfrm', '2020-03-28 16:24:54', '', '0');
-INSERT INTO `sys_file_info` VALUES (3, '信息发布系统优化', 'file', 'txt', '652.00B', 'http://localhost:8888/profile/upload/file/file1585383946469.txt', NULL, 1, '0', 'entfrm', '2020-03-28 16:25:46', '', '0');
-INSERT INTO `sys_file_info` VALUES (4, '微信截图_20200222133910', 'image', 'png', '28.59KB', 'http://localhost:8888/profile/upload/image/image1585383946473.png', NULL, 1, '0', 'entfrm', '2020-03-28 16:25:46', '', '0');
-INSERT INTO `sys_file_info` VALUES (5, '微信截图_20200222112300', 'image', 'png', '24.94KB', 'http://localhost:8888/profile/upload/image/image1585383946477.png', NULL, 1, '0', 'entfrm', '2020-03-28 16:25:46', '', '0');
-INSERT INTO `sys_file_info` VALUES (6, '中科软发票拒收证明', 'image', 'jpg', '45.86KB', 'http://localhost:8888/profile/upload/image/image1585737741941.jpg', NULL, 1, '0', 'entfrm', '2020-04-01 18:42:22', '', '0');
-INSERT INTO `sys_file_info` VALUES (7, 'mips_home.fda657d2', 'image', 'png', '73.18KB', 'http://localhost:8888/profile/upload/image/image1585743439058.png', NULL, 1, '0', 'entfrm', '2020-04-01 20:17:19', '', '0');
+INSERT INTO `sys_file_info` VALUES (1, '用户数据导入测试', 'file', 'xlsx', '9.25KB', 'http://localhost:8888/profile/upload/file/file1585383894358.xlsx', NULL, 1, '0', 'entfrm', '2020-04-03 16:24:54', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_job
@@ -1197,13 +1501,14 @@ CREATE TABLE `sys_job`  (
   `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注信息',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_job
 -- ----------------------------
 INSERT INTO `sys_job` VALUES (4, '测试任务', 'demo', NULL, '2', 'demo.demoMethod', '1', '0/5 * * * * ? ', '3', '1', '1', '0', NULL, NULL, NULL, 'entfrm', '2020-03-26 16:16:50', '', '2020-03-26 16:16:49', '', '1');
-INSERT INTO `sys_job` VALUES (5, '测试任务', 'demo', NULL, '2', 'demo.demoMethod', '1', '0/5 * * * * ? ', '3', '1', '1', '0', NULL, NULL, NULL, 'entfrm', '2020-03-26 16:19:14', '', '2020-03-26 16:19:13', '', '0');
+INSERT INTO `sys_job` VALUES (5, '测试任务', 'demo', NULL, '2', 'demo.demoMethod', '1', '* 0/5 * * * ? ', '3', '1', '3', '0', '2020-04-12 17:58:47', '2020-04-12 18:00:59', '2020-04-12 18:05:00', 'entfrm', '2020-03-26 16:19:14', 'entfrm', '2020-04-27 08:54:04', '', '0');
+INSERT INTO `sys_job` VALUES (6, '测试rest', 'demo', NULL, '3', 'http://47.100.3.58/', NULL, ' 0 * * * * ? *', '1', '1', '3', '0', '2020-04-27 08:58:44', '2020-04-27 09:19:00', '2020-04-27 09:20:00', 'entfrm', '2020-04-27 08:46:37', 'entfrm', '2020-04-27 09:19:38', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_job_log
@@ -1225,12 +1530,7 @@ CREATE TABLE `sys_job_log`  (
   `exception_info` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '异常信息',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务执行日志表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of sys_job_log
--- ----------------------------
-INSERT INTO `sys_job_log` VALUES (1, 1, '测试任务', 'demo', '5', '2', 'demo.demoMethod', '1', '0 * * * * ? *', '执行成功', '0', '7', '', '2020-03-26 15:01:00');
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务执行日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -1247,22 +1547,24 @@ CREATE TABLE `sys_login_log`  (
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 147 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '菜单名称',
   `parent_id` int(11) NULL DEFAULT NULL COMMENT '父菜单ID',
   `parent_ids` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '父菜单IDS',
+  `application_id` int(11) NULL DEFAULT 1 COMMENT '应用编号',
   `type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单类型 ',
   `path` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '前端URL',
   `component` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '#' COMMENT 'VUE页面',
   `perms` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单权限标识',
   `icon` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图标',
+  `no_cache` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '1' COMMENT '路由缓存',
   `sort` int(11) NULL DEFAULT 1 COMMENT '排序值',
   `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '菜单状态（0显示 1隐藏）',
   `create_by` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
@@ -1272,204 +1574,171 @@ CREATE TABLE `sys_menu`  (
   `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '删除标识（0-正常,1-删除）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 138 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 161 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES (1, '系统管理', 0, NULL, 'M', 'system', '#', '', 'system', 10, '0', 'admin', '2019-03-16 11:33:00', 'admin', '2020-03-16 20:45:21', '系统管理模块', '0');
-INSERT INTO `sys_menu` VALUES (2, '运维监控', 0, NULL, 'M', 'monitor', '#', '', 'monitor', 20, '0', 'admin', '2019-03-16 11:33:00', 'admin', '2020-03-17 19:14:27', '运维监控模块', '0');
-INSERT INTO `sys_menu` VALUES (3, '开发工具', 0, NULL, 'M', 'devtool', '#', '', 'tool', 30, '0', 'admin', '2019-03-16 11:33:00', 'admin', '2020-03-17 19:14:33', '开发工具模块', '0');
-INSERT INTO `sys_menu` VALUES (4, '机构管理', 1, NULL, 'C', 'dept', 'system/dept/index', '', 'tree', 1, '0', NULL, '2020-03-13 19:31:20', NULL, '2020-03-14 20:55:41', NULL, '0');
-INSERT INTO `sys_menu` VALUES (5, '角色管理', 1, NULL, 'C', 'role', 'system/role/index', '', 'peoples', 2, '0', NULL, '2020-03-13 19:32:09', NULL, '2020-03-16 22:11:57', NULL, '0');
-INSERT INTO `sys_menu` VALUES (6, '用户管理', 1, NULL, 'C', 'user', 'system/user/index', '', 'user', 3, '0', NULL, '2020-03-13 19:32:30', NULL, '2020-03-16 22:11:59', NULL, '0');
-INSERT INTO `sys_menu` VALUES (7, '菜单管理', 1, NULL, 'C', 'menu', 'system/menu/index', '', 'tree-table', 4, '0', NULL, '2020-03-13 19:33:24', NULL, '2020-03-16 22:12:01', NULL, '0');
-INSERT INTO `sys_menu` VALUES (8, '机构新增', 4, NULL, 'F', NULL, '#', 'dept_add', NULL, 1, '0', NULL, '2020-03-12 20:42:47', NULL, '2020-03-16 20:42:51', NULL, '0');
-INSERT INTO `sys_menu` VALUES (9, '机构修改', 4, NULL, 'F', NULL, '#', 'dept_edit', NULL, 2, '0', NULL, '2020-03-12 20:42:52', NULL, '2020-03-16 20:42:56', NULL, '0');
-INSERT INTO `sys_menu` VALUES (10, '机构删除', 4, NULL, 'F', NULL, '#', 'dept_del', NULL, 3, '0', NULL, '2020-03-12 20:42:57', NULL, '2020-03-16 20:43:02', NULL, '0');
-INSERT INTO `sys_menu` VALUES (11, '机构查看', 4, NULL, 'F', NULL, '#', 'dept_view', NULL, 4, '0', NULL, '2020-03-12 20:43:03', NULL, '2020-03-16 20:43:06', NULL, '0');
-INSERT INTO `sys_menu` VALUES (12, '机构导入', 4, NULL, 'F', NULL, '#', 'dept_import', NULL, 5, '0', 'entfrm', '2020-03-16 20:40:08', 'entfrm', '2020-03-16 20:42:10', NULL, '0');
-INSERT INTO `sys_menu` VALUES (13, '角色新增', 5, NULL, 'F', NULL, '#', 'role_add', NULL, 1, '0', 'entfrm', '2020-03-16 11:50:24', NULL, '2020-03-16 20:41:51', NULL, '0');
-INSERT INTO `sys_menu` VALUES (14, '角色修改', 5, NULL, 'F', NULL, '#', 'role_edit', NULL, 2, '0', 'entfrm', '2020-03-16 11:51:05', NULL, '2020-03-16 20:41:44', NULL, '0');
-INSERT INTO `sys_menu` VALUES (15, '角色删除', 5, NULL, 'F', NULL, '#', 'role_del', NULL, 3, '0', 'entfrm', '2020-03-16 11:51:21', NULL, '2020-03-16 20:41:41', NULL, '0');
-INSERT INTO `sys_menu` VALUES (16, '角色查看', 5, NULL, 'F', NULL, '#', 'role_view', NULL, 4, '0', 'entfrm', '2020-03-16 11:51:40', NULL, '2020-03-16 20:41:37', NULL, '0');
-INSERT INTO `sys_menu` VALUES (17, '数据权限', 5, NULL, 'F', NULL, '#', 'role_data', NULL, 5, '0', 'entfrm', '2020-03-16 12:15:50', NULL, '2020-03-16 20:41:34', NULL, '0');
-INSERT INTO `sys_menu` VALUES (18, '用户添加', 6, NULL, 'F', NULL, '#', 'user_add', NULL, 1, '0', 'entfrm', '2020-03-16 20:31:15', NULL, '2020-03-16 20:41:31', NULL, '0');
-INSERT INTO `sys_menu` VALUES (19, '用户修改', 6, NULL, 'F', NULL, '#', 'user_edit', NULL, 2, '0', 'entfrm', '2020-03-16 20:32:19', 'entfrm', '2020-03-16 20:41:28', NULL, '0');
-INSERT INTO `sys_menu` VALUES (20, '用户删除', 6, NULL, 'F', NULL, '#', 'user_del', NULL, 3, '0', 'entfrm', '2020-03-16 20:32:41', NULL, '2020-03-16 20:41:25', NULL, '0');
-INSERT INTO `sys_menu` VALUES (21, '用户查看', 6, NULL, 'F', NULL, '#', 'user_view', NULL, 4, '0', 'entfrm', '2020-03-16 20:33:11', NULL, '2020-03-16 20:41:20', NULL, '0');
-INSERT INTO `sys_menu` VALUES (22, '重置密码', 6, NULL, 'F', NULL, '#', 'user_reset', NULL, 5, '0', 'entfrm', '2020-03-16 20:34:22', 'entfrm', '2020-03-16 20:41:17', NULL, '0');
-INSERT INTO `sys_menu` VALUES (23, '用户导入', 6, NULL, 'F', NULL, '#', 'user_import', NULL, 6, '0', 'entfrm', '2020-03-16 20:34:49', NULL, '2020-03-16 20:41:14', NULL, '0');
-INSERT INTO `sys_menu` VALUES (24, '用户导出', 6, NULL, 'F', NULL, '#', 'user_export', NULL, 7, '0', 'entfrm', '2020-03-16 20:35:12', NULL, '2020-03-16 20:41:12', NULL, '0');
-INSERT INTO `sys_menu` VALUES (25, '菜单新增', 7, NULL, 'F', NULL, '#', 'menu_add', NULL, 1, '0', 'entfrm', '2020-03-16 20:38:18', NULL, '2020-03-16 20:41:10', NULL, '0');
-INSERT INTO `sys_menu` VALUES (26, '菜单修改', 7, NULL, 'F', NULL, '#', 'menu_edit', NULL, 2, '0', 'entfrm', '2020-03-16 20:38:41', 'entfrm', '2020-03-16 20:41:07', NULL, '0');
-INSERT INTO `sys_menu` VALUES (27, '菜单删除', 7, NULL, 'F', NULL, '#', 'menu_del', NULL, 3, '0', 'entfrm', '2020-03-16 20:39:04', NULL, '2020-03-16 20:41:04', NULL, '0');
-INSERT INTO `sys_menu` VALUES (28, '菜单查看', 7, NULL, 'F', NULL, '#', 'menu_view', NULL, 4, '0', 'entfrm', '2020-03-16 20:39:39', NULL, '2020-03-16 20:41:01', NULL, '0');
-INSERT INTO `sys_menu` VALUES (29, '字典管理', 1, '6', 'C', 'dict', 'system/dict/index', '', 'dict', 5, '0', 'entfrm', '2020-03-16 11:33:00', '', '2020-03-16 11:33:00', '字典管理菜单', '0');
-INSERT INTO `sys_menu` VALUES (30, '字典新增', 29, NULL, 'F', NULL, '#', 'dict_add', NULL, 1, '0', 'entfrm', '2020-03-16 20:50:45', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (31, '字典修改', 29, NULL, 'F', NULL, '#', 'dict_edit', NULL, 2, '0', 'entfrm', '2020-03-16 20:51:01', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (32, '字典删除', 29, NULL, 'F', NULL, '#', 'dict_del', NULL, 3, '0', 'entfrm', '2020-03-16 20:52:18', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (33, '字典查看', 29, NULL, 'F', NULL, '#', 'dict_view', NULL, 4, '0', 'entfrm', '2020-03-16 20:52:38', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (34, '数据增加', 29, NULL, 'F', NULL, '#', 'dictData_add', NULL, 5, '0', 'entfrm', '2020-03-16 21:49:18', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (35, '数据修改', 29, NULL, 'F', NULL, '#', 'dictData_edit', NULL, 6, '0', 'entfrm', '2020-03-16 21:49:36', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (36, '数据删除', 29, NULL, 'F', NULL, '#', 'dictData_del', NULL, 7, '0', 'entfrm', '2020-03-16 21:50:00', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (37, '数据查看', 29, NULL, 'F', NULL, '#', 'dictData_view', NULL, 8, '0', 'entfrm', '2020-03-16 21:50:19', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (38, '参数管理', 1, NULL, 'C', 'config', 'system/config/index', NULL, 'list', 6, '0', 'entfrm', '2020-03-16 22:06:52', NULL, '2020-03-16 22:11:13', NULL, '0');
-INSERT INTO `sys_menu` VALUES (39, '参数新增', 38, NULL, 'F', NULL, '#', 'config_add', NULL, 1, '0', 'entfrm', '2020-03-16 22:07:16', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (40, '参数修改', 38, NULL, 'F', NULL, '#', 'config_edit', NULL, 2, '0', 'entfrm', '2020-03-16 22:07:30', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (41, '参数删除', 38, NULL, 'F', NULL, '#', 'config_del', NULL, 3, '0', 'entfrm', '2020-03-16 22:07:43', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (42, '参数查看', 38, NULL, 'F', NULL, '#', 'config_view', NULL, 4, '0', 'entfrm', '2020-03-16 22:08:06', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (43, '快捷方式', 1, NULL, 'C', 'shortcut', 'system/shortcut/index', NULL, 'link', 7, '0', 'entfrm', '2020-03-17 17:53:08', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (44, '文件管理', 1, NULL, 'C', 'fileInfo', 'system/fileInfo/index', NULL, 'zip', 8, '0', 'entfrm', '2020-03-17 17:56:28', 'entfrm', '2020-03-20 22:33:35', NULL, '0');
-INSERT INTO `sys_menu` VALUES (45, '终端管理', 1, NULL, 'C', 'clientDetails', 'system/clientDetails/index', NULL, 'phone', 9, '0', 'entfrm', '2020-03-17 17:57:46', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (46, '数据备份', 1, NULL, 'C', 'backup', 'system/backup/index', NULL, 'date-range', 11, '0', 'entfrm', '2020-03-17 18:02:21', NULL, '2020-03-18 22:20:28', NULL, '0');
-INSERT INTO `sys_menu` VALUES (47, '令牌管理', 2, NULL, 'C', 'token', 'monitor/token/index', NULL, 'post', 1, '1', 'entfrm', '2020-03-17 17:59:55', 'entfrm', '2020-03-20 22:56:34', NULL, '0');
-INSERT INTO `sys_menu` VALUES (48, '定时任务', 2, NULL, 'C', 'job', 'monitor/job/index', NULL, 'time-range', 2, '0', 'entfrm', '2020-03-17 18:08:23', NULL, '2020-03-18 22:20:23', NULL, '0');
-INSERT INTO `sys_menu` VALUES (49, '数据监控', 2, NULL, 'C', 'druid', 'monitor/druid/index', NULL, 'druid', 3, '0', 'entfrm', '2020-03-17 18:08:56', NULL, '2020-03-20 18:53:07', NULL, '0');
-INSERT INTO `sys_menu` VALUES (50, '服务监控', 2, NULL, 'C', 'server', 'monitor/server/index', NULL, 'server', 4, '0', 'entfrm', '2020-03-17 18:09:39', 'entfrm', '2020-03-20 19:23:24', NULL, '0');
-INSERT INTO `sys_menu` VALUES (51, 'API监控', 2, NULL, 'C', 'apiStat', 'monitor/apiStat/index', 'apiStat_view', 'chart', 5, '0', 'entfrm', '2020-03-17 18:15:13', 'entfrm', '2020-03-20 22:57:03', NULL, '0');
-INSERT INTO `sys_menu` VALUES (52, '日志监控', 2, NULL, 'M', 'log', '#', NULL, 'monitor', 6, '0', 'entfrm', '2020-03-17 18:12:01', NULL, '2020-03-18 23:00:39', NULL, '0');
-INSERT INTO `sys_menu` VALUES (53, '登录日志', 52, NULL, 'C', 'loginLog', 'monitor/loginLog/index', NULL, 'logininfor', 1, '0', 'entfrm', '2020-03-17 18:12:56', NULL, '2020-03-18 22:31:53', NULL, '0');
-INSERT INTO `sys_menu` VALUES (54, '操作日志', 52, NULL, 'C', 'operLog', 'monitor/operLog/index', NULL, 'log', 2, '0', 'entfrm', '2020-03-17 18:13:52', 'entfrm', '2020-03-18 22:31:36', NULL, '0');
-INSERT INTO `sys_menu` VALUES (55, '数据管理', 3, NULL, 'M', 'data', '#', NULL, 'star', 1, '0', 'entfrm', '2020-03-17 18:18:38', 'entfrm', '2020-03-21 11:09:59', NULL, '0');
-INSERT INTO `sys_menu` VALUES (56, 'API管理', 3, NULL, 'M', 'api', '#', NULL, 'drag', 2, '0', 'entfrm', '2020-03-17 18:19:52', 'entfrm', '2020-03-17 18:23:35', NULL, '0');
-INSERT INTO `sys_menu` VALUES (57, '智能表单', 3, NULL, 'M', 'form', '#', NULL, 'form', 3, '0', 'entfrm', '2020-03-17 18:21:32', 'entfrm', '2020-03-24 17:57:17', NULL, '0');
-INSERT INTO `sys_menu` VALUES (58, '工作流', 0, NULL, 'M', 'activiti', '#', NULL, 'skill', 40, '0', 'entfrm', '2020-03-17 18:22:36', 'entfrm', '2020-03-20 23:09:48', NULL, '0');
-INSERT INTO `sys_menu` VALUES (59, '终端新增', 45, NULL, 'F', NULL, '#', 'clientDetails_add', NULL, 1, '0', 'entfrm', '2020-03-18 15:18:36', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (60, '终端修改', 45, NULL, 'F', NULL, '#', 'clientDetails_edit', NULL, 2, '0', 'entfrm', '2020-03-18 15:18:53', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (61, '终端删除', 45, NULL, 'F', NULL, '#', 'clientDetails_del', NULL, 3, '0', 'entfrm', '2020-03-18 15:19:06', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (62, '终端查看', 45, NULL, 'F', NULL, '#', 'clientDetails_view', NULL, 4, '0', 'entfrm', '2020-03-18 15:19:29', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (63, '登录日志删除', 53, NULL, 'F', NULL, '#', 'loginLog_del', NULL, 1, '0', 'entfrm', '2020-03-19 11:50:34', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (64, '登录日志查看', 53, NULL, 'F', NULL, '#', 'loginLog_view', NULL, 2, '0', 'entfrm', '2020-03-19 11:50:59', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (65, '登录日志导出', 53, NULL, 'F', NULL, '#', 'loginLog_export', NULL, 3, '0', 'entfrm', '2020-03-19 11:52:05', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (66, '操作日志删除', 54, NULL, 'F', NULL, '#', 'operLog_del', NULL, 1, '0', 'entfrm', '2020-03-19 11:52:25', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (67, '操作日志查看', 54, NULL, 'F', NULL, '#', 'operLog_view', NULL, 2, '0', 'entfrm', '2020-03-19 11:52:45', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (68, '操作日志导出', 54, NULL, 'F', NULL, '#', 'operLog_export', NULL, 3, '0', 'entfrm', '2020-03-19 11:53:09', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (69, '备份新增', 46, NULL, 'F', NULL, '#', 'backup_add', NULL, 1, '0', 'entfrm', '2020-03-20 21:59:58', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (70, '备份还原', 46, NULL, 'F', NULL, '#', 'backup_restore', NULL, 2, '0', 'entfrm', '2020-03-20 22:00:23', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (71, '备份删除', 46, NULL, 'F', NULL, '#', 'backup_del', NULL, 3, '0', 'entfrm', '2020-03-20 22:00:41', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (72, '备份查看', 46, NULL, 'F', NULL, '#', 'backup_view', NULL, 4, '0', 'entfrm', '2020-03-20 22:44:05', NULL, '2020-03-20 22:44:39', NULL, '0');
-INSERT INTO `sys_menu` VALUES (73, '文件上传', 44, NULL, 'F', NULL, '#', 'fileInfo_add', NULL, 1, '0', 'entfrm', '2020-03-20 22:41:42', NULL, '2020-03-20 22:44:35', NULL, '0');
-INSERT INTO `sys_menu` VALUES (74, '文件启用', 44, NULL, 'F', NULL, '#', 'fileInfo_edit', NULL, 2, '0', 'entfrm', '2020-03-20 22:42:07', 'entfrm', '2020-03-20 22:44:32', NULL, '0');
-INSERT INTO `sys_menu` VALUES (75, '文件删除', 44, NULL, 'F', NULL, '#', 'fileInfo_del', NULL, 3, '0', 'entfrm', '2020-03-20 22:42:30', NULL, '2020-03-20 22:44:29', NULL, '0');
-INSERT INTO `sys_menu` VALUES (76, '文件查看', 44, NULL, 'F', NULL, '#', 'fileInfo_view', NULL, 4, '0', 'entfrm', '2020-03-20 22:43:06', NULL, '2020-03-20 22:44:26', NULL, '0');
-INSERT INTO `sys_menu` VALUES (77, '文件分享', 44, NULL, 'F', NULL, '#', 'fileInfo_share', NULL, 5, '0', 'entfrm', '2020-03-20 22:43:37', 'entfrm', '2020-03-20 22:44:23', NULL, '0');
-INSERT INTO `sys_menu` VALUES (78, '数据库管理', 55, NULL, 'C', 'datasource', 'devtool/datasource/index', NULL, 'druid', 1, '0', 'entfrm', '2020-03-21 11:05:47', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (79, '数据表管理', 55, NULL, 'C', 'datatable', 'devtool/datatable/index', NULL, 'table', 2, '0', 'entfrm', '2020-03-21 11:07:23', 'entfrm', '2020-03-21 12:04:41', NULL, '0');
-INSERT INTO `sys_menu` VALUES (80, '数据源管理', 55, NULL, 'C', 'dataset', 'devtool/dataset/index', NULL, 'row', 3, '0', 'entfrm', '2020-03-21 11:08:16', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (81, '数据库新增', 78, NULL, 'F', NULL, '#', 'datasource_add', NULL, 1, '0', 'entfrm', '2020-03-21 11:27:26', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (82, '数据库修改', 78, NULL, 'F', NULL, '#', 'datasource_edit', NULL, 2, '0', 'entfrm', '2020-03-21 11:27:46', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (83, '数据库删除', 78, NULL, 'F', NULL, '#', 'datasource_del', NULL, 3, '0', 'entfrm', '2020-03-21 11:27:59', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (84, '数据库查看', 78, NULL, 'F', NULL, '#', 'datasource_view', NULL, 4, '0', 'entfrm', '2020-03-21 11:28:11', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (85, '模型管理', 58, NULL, 'C', 'model', 'activiti/model/index', NULL, 'edit', 1, '0', 'entfrm', '2020-03-24 12:48:54', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (86, '模型新增', 85, NULL, 'F', NULL, '#', 'model_add', NULL, 1, '0', 'entfrm', '2020-03-24 12:52:47', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (87, '模型删除', 85, NULL, 'F', NULL, '#', 'model_del', NULL, 2, '0', 'entfrm', '2020-03-24 12:53:43', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (88, '模型查看', 85, NULL, 'F', NULL, '#', 'model_view', NULL, 3, '0', 'entfrm', '2020-03-24 12:53:56', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (89, '模型部署', 85, NULL, 'F', NULL, '#', 'model_deploy', NULL, 5, '0', 'entfrm', '2020-03-24 12:54:19', 'entfrm', '2020-04-04 22:36:20', NULL, '0');
-INSERT INTO `sys_menu` VALUES (90, '表新增', 79, NULL, 'F', NULL, '#', 'datatable_add', NULL, 1, '0', 'entfrm', '2020-03-25 14:59:45', 'entfrm', '2020-03-25 15:00:14', NULL, '0');
-INSERT INTO `sys_menu` VALUES (91, '表修改', 79, NULL, 'F', NULL, '#', 'datatable_edit', NULL, 2, '0', 'entfrm', '2020-03-25 15:00:31', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (92, '表删除', 79, NULL, 'F', NULL, '#', 'datatable_del', NULL, 3, '0', 'entfrm', '2020-03-25 15:00:49', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (93, '表查看', 79, NULL, 'F', NULL, '#', 'datatable_view', NULL, 4, '0', 'entfrm', '2020-03-25 15:01:06', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (94, '表配置', 79, NULL, 'F', NULL, '#', 'datatable_config', NULL, 5, '0', 'entfrm', '2020-03-25 15:02:39', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (95, '代码生成', 79, NULL, 'F', NULL, '#', 'datatable_gen', NULL, 6, '0', 'entfrm', '2020-03-25 15:03:06', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (96, '任务新增', 48, NULL, 'F', NULL, '#', 'job_add', NULL, 1, '0', 'entfrm', '2020-03-26 15:34:44', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (97, '任务编辑', 48, NULL, 'F', NULL, '#', 'job_edit', NULL, 2, '0', 'entfrm', '2020-03-26 15:34:59', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (98, '任务删除', 48, NULL, 'F', NULL, '#', 'job_del', NULL, 3, '0', 'entfrm', '2020-03-26 15:35:17', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (99, '任务查看', 48, NULL, 'F', NULL, '#', 'job_view', NULL, 4, '0', 'entfrm', '2020-03-26 15:35:32', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (100, '任务暂定', 48, NULL, 'F', NULL, '#', 'job_stop', NULL, 5, '0', 'entfrm', '2020-03-26 15:37:16', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (101, '任务启动', 48, NULL, 'F', NULL, '#', 'job_start', NULL, 6, '0', 'entfrm', '2020-03-26 15:37:35', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (102, '任务重置', 48, NULL, 'F', NULL, '#', 'job_refresh', NULL, 7, '0', 'entfrm', '2020-03-26 15:37:56', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (103, '任务日志查看', 48, NULL, 'F', NULL, '#', 'jobLog_view', NULL, 8, '0', 'entfrm', '2020-03-26 15:38:19', 'entfrm', '2020-03-26 15:38:35', NULL, '0');
-INSERT INTO `sys_menu` VALUES (104, '任务日志删除', 48, NULL, 'F', NULL, '#', 'jobLog_del', NULL, 9, '0', 'entfrm', '2020-03-26 15:38:51', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (105, '快捷方式新增', 43, NULL, 'F', NULL, '#', 'shortcut_add', NULL, 1, '0', 'entfrm', '2020-03-27 09:44:13', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (106, '快捷方式修改', 43, NULL, 'F', NULL, '#', 'shortcut_edit', NULL, 2, '0', 'entfrm', '2020-03-27 09:44:36', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (107, '快捷方式删除', 43, NULL, 'F', NULL, '#', 'shortcut_del', NULL, 3, '0', 'entfrm', '2020-03-27 09:44:57', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (108, '快捷方式查看', 43, NULL, 'F', NULL, '#', 'shortcut_view', NULL, 4, '0', 'entfrm', '2020-03-27 09:45:16', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (109, '内容管理', 0, NULL, 'M', 'cms', '#', NULL, 'edit', 50, '0', 'entfrm', '2020-03-31 20:12:07', 'entfrm', '2020-04-04 22:31:04', NULL, '0');
-INSERT INTO `sys_menu` VALUES (110, '类别管理', 109, NULL, 'C', 'category', 'cms/category/index', NULL, 'list', 1, '0', 'entfrm', '2020-03-31 20:12:46', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (111, '列表新增', 110, NULL, 'F', NULL, '#', 'category_add', NULL, 1, '0', 'entfrm', '2020-03-31 20:13:03', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (112, '类别修改', 110, NULL, 'F', NULL, '#', 'category_edit', NULL, 2, '0', 'entfrm', '2020-03-31 20:13:27', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (113, '类别删除', 110, NULL, 'F', NULL, '#', 'category_del', NULL, 3, '0', 'entfrm', '2020-03-31 20:13:53', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (114, '类别查看', 110, NULL, 'F', NULL, '#', 'category_view', NULL, 4, '0', 'entfrm', '2020-03-31 20:14:15', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (115, '文章管理', 109, NULL, 'C', 'article', 'cms/article/index', NULL, 'rate', 2, '0', 'entfrm', '2020-03-31 20:15:05', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (116, '文章添加', 115, NULL, 'F', NULL, '#', 'article_add', NULL, 1, '0', 'entfrm', '2020-03-31 20:15:25', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (117, '文章修改', 115, NULL, 'F', NULL, '#', 'article_edit', NULL, 2, '0', 'entfrm', '2020-03-31 20:16:11', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (118, '文章删除', 115, NULL, 'F', NULL, '#', 'article_del', NULL, 3, '0', 'entfrm', '2020-03-31 20:16:23', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (119, '文章查看', 115, NULL, 'F', NULL, '#', 'article_view', NULL, 4, '0', 'entfrm', '2020-03-31 20:16:38', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (120, '文章导出', 115, NULL, 'F', NULL, '#', 'article_export', NULL, 5, '0', 'entfrm', '2020-03-31 20:17:16', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (121, '流程定义', 58, NULL, 'C', 'process', 'activiti/process/index', NULL, 'list', 2, '0', 'entfrm', '2020-04-04 22:33:12', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (122, '模型设计', 85, NULL, 'F', NULL, '#', 'model_design', NULL, 4, '0', 'entfrm', '2020-04-04 22:36:13', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (123, '流程图', 121, NULL, 'F', NULL, '#', 'process_img', NULL, 1, '0', 'entfrm', '2020-04-04 22:49:07', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (124, '流程状态改变', 121, NULL, 'F', NULL, '#', 'process_change', NULL, 2, '0', 'entfrm', '2020-04-04 22:49:46', NULL, '2020-04-05 00:40:17', NULL, '0');
-INSERT INTO `sys_menu` VALUES (125, '流程删除', 121, NULL, 'F', NULL, '#', 'process_del', NULL, 3, '0', 'entfrm', '2020-04-04 22:50:05', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (126, '流程查看', 121, NULL, 'F', NULL, '#', 'process_view', NULL, 4, '0', 'entfrm', '2020-04-04 22:50:30', 'entfrm', '2020-04-04 22:50:35', NULL, '0');
-INSERT INTO `sys_menu` VALUES (127, '请假管理', 58, NULL, 'C', 'leave', 'activiti/leave/index', NULL, 'tree-table', 3, '0', 'entfrm', '2020-04-04 22:51:56', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (128, '请假新增', 127, NULL, 'F', NULL, '#', 'leave_add', NULL, 1, '0', 'entfrm', '2020-04-04 22:52:44', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (129, '请假修改', 127, NULL, 'F', NULL, '#', 'leave_edit', NULL, 2, '0', 'entfrm', '2020-04-04 22:53:01', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (130, '请假删除', 127, NULL, 'F', NULL, '#', 'leave_del', NULL, 3, '0', 'entfrm', '2020-04-04 22:53:13', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (131, '请假查看', 127, NULL, 'F', NULL, '#', 'leave_view', NULL, 4, '0', 'entfrm', '2020-04-04 22:53:26', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (132, '请假导出', 127, NULL, 'F', NULL, '#', 'leave_export', NULL, 5, '0', 'entfrm', '2020-04-04 22:53:45', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (133, '流程任务', 58, NULL, 'C', 'task', 'activiti/task/index', NULL, 'checkbox', 4, '0', 'entfrm', '2020-04-04 22:55:03', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (134, '审批', 133, NULL, 'F', NULL, '#', 'task_check', NULL, 1, '0', 'entfrm', '2020-04-04 22:56:31', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (135, '批注', 133, NULL, 'F', NULL, '#', 'task_comment', NULL, 2, '0', 'entfrm', '2020-04-04 22:56:46', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (136, '流程追踪', 133, NULL, 'F', NULL, '#', 'task_track', NULL, 3, '0', 'entfrm', '2020-04-04 22:57:19', NULL, '2020-04-05 13:04:51', NULL, '0');
-INSERT INTO `sys_menu` VALUES (137, '任务查看', 133, NULL, 'F', NULL, '#', 'task_view', NULL, 4, '0', 'entfrm', '2020-04-04 22:57:19', NULL, '2020-04-05 13:04:59', NULL, '0');
-
--- ----------------------------
--- Table structure for sys_msginfo
--- ----------------------------
-DROP TABLE IF EXISTS `sys_msginfo`;
-CREATE TABLE `sys_msginfo`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `title` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息标题',
-  `type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息类型',
-  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '内容',
-  `files` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '附件',
-  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '连接',
-  `dept_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '归属机构',
-  `extend` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '扩展字段',
-  `create_by` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
-  `update_by` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
-  `update_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
-  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for sys_msginfo_push
--- ----------------------------
-DROP TABLE IF EXISTS `sys_msginfo_push`;
-CREATE TABLE `sys_msginfo_push`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `msginfo_id` int(11) NOT NULL COMMENT '消息编号',
-  `receive_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '接受人',
-  `is_read` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '是否阅读',
-  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `read_time` datetime(0) NULL DEFAULT NULL COMMENT '阅读时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for sys_msginfo_template
--- ----------------------------
-DROP TABLE IF EXISTS `sys_msginfo_template`;
-CREATE TABLE `sys_msginfo_template`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '模板名称',
-  `type` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '模板类型',
-  `tpl_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '模板键值',
-  `tpl_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '模板内容',
-  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '状态',
-  `create_by` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
-  `update_by` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '修改人',
-  `update_time` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
-  `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
-  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+INSERT INTO `sys_menu` VALUES (1, '系统管理', 0, NULL, 1, 'M', 'system', '#', '', 'system', '0', 10, '0', 'admin', '2019-03-16 11:33:00', 'admin', '2020-03-16 20:45:21', '系统管理模块', '0');
+INSERT INTO `sys_menu` VALUES (2, '运维监控', 0, NULL, 1, 'M', 'monitor', '#', '', 'monitor', '0', 20, '0', 'admin', '2019-03-16 11:33:00', 'admin', '2020-03-17 19:14:27', '运维监控模块', '0');
+INSERT INTO `sys_menu` VALUES (3, '开发工具', 0, NULL, 1, 'M', 'devtool', '#', '', 'tool', '0', 30, '0', 'admin', '2019-03-16 11:33:00', 'admin', '2020-03-17 19:14:33', '开发工具模块', '0');
+INSERT INTO `sys_menu` VALUES (4, '机构管理', 1, NULL, 1, 'C', 'dept', 'system/dept/index', '', 'tree', '0', 1, '0', NULL, '2020-03-13 19:31:20', NULL, '2020-03-14 20:55:41', NULL, '0');
+INSERT INTO `sys_menu` VALUES (5, '角色管理', 1, NULL, 1, 'C', 'role', 'system/role/index', '', 'peoples', '0', 2, '0', NULL, '2020-03-13 19:32:09', NULL, '2020-03-16 22:11:57', NULL, '0');
+INSERT INTO `sys_menu` VALUES (6, '用户管理', 1, NULL, 1, 'C', 'user', 'system/user/index', '', 'user', '0', 3, '0', NULL, '2020-03-13 19:32:30', NULL, '2020-03-16 22:11:59', NULL, '0');
+INSERT INTO `sys_menu` VALUES (7, '菜单管理', 1, NULL, 1, 'C', 'menu', 'system/menu/index', '', 'tree-table', '0', 4, '0', NULL, '2020-03-13 19:33:24', NULL, '2020-03-16 22:12:01', NULL, '0');
+INSERT INTO `sys_menu` VALUES (8, '机构新增', 4, NULL, 1, 'F', NULL, '#', 'dept_add', NULL, '0', 1, '0', NULL, '2020-03-12 20:42:47', NULL, '2020-03-16 20:42:51', NULL, '0');
+INSERT INTO `sys_menu` VALUES (9, '机构修改', 4, NULL, 1, 'F', NULL, '#', 'dept_edit', NULL, '0', 2, '0', NULL, '2020-03-12 20:42:52', NULL, '2020-03-16 20:42:56', NULL, '0');
+INSERT INTO `sys_menu` VALUES (10, '机构删除', 4, NULL, 1, 'F', NULL, '#', 'dept_del', NULL, '0', 3, '0', NULL, '2020-03-12 20:42:57', NULL, '2020-03-16 20:43:02', NULL, '0');
+INSERT INTO `sys_menu` VALUES (11, '机构查看', 4, NULL, 1, 'F', NULL, '#', 'dept_view', NULL, '0', 4, '0', NULL, '2020-03-12 20:43:03', NULL, '2020-03-16 20:43:06', NULL, '0');
+INSERT INTO `sys_menu` VALUES (12, '机构导入', 4, NULL, 1, 'F', NULL, '#', 'dept_import', NULL, '0', 5, '0', 'entfrm', '2020-03-16 20:40:08', 'entfrm', '2020-03-16 20:42:10', NULL, '0');
+INSERT INTO `sys_menu` VALUES (13, '角色新增', 5, NULL, 1, 'F', NULL, '#', 'role_add', NULL, '0', 1, '0', 'entfrm', '2020-03-16 11:50:24', NULL, '2020-03-16 20:41:51', NULL, '0');
+INSERT INTO `sys_menu` VALUES (14, '角色修改', 5, NULL, 1, 'F', NULL, '#', 'role_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-16 11:51:05', NULL, '2020-03-16 20:41:44', NULL, '0');
+INSERT INTO `sys_menu` VALUES (15, '角色删除', 5, NULL, 1, 'F', NULL, '#', 'role_del', NULL, '0', 3, '0', 'entfrm', '2020-03-16 11:51:21', NULL, '2020-03-16 20:41:41', NULL, '0');
+INSERT INTO `sys_menu` VALUES (16, '角色查看', 5, NULL, 1, 'F', NULL, '#', 'role_view', NULL, '0', 4, '0', 'entfrm', '2020-03-16 11:51:40', NULL, '2020-03-16 20:41:37', NULL, '0');
+INSERT INTO `sys_menu` VALUES (17, '数据权限', 5, NULL, 1, 'F', NULL, '#', 'role_data', NULL, '0', 5, '0', 'entfrm', '2020-03-16 12:15:50', NULL, '2020-03-16 20:41:34', NULL, '0');
+INSERT INTO `sys_menu` VALUES (18, '用户添加', 6, NULL, 1, 'F', NULL, '#', 'user_add', NULL, '0', 1, '0', 'entfrm', '2020-03-16 20:31:15', NULL, '2020-03-16 20:41:31', NULL, '0');
+INSERT INTO `sys_menu` VALUES (19, '用户修改', 6, NULL, 1, 'F', NULL, '#', 'user_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-16 20:32:19', 'entfrm', '2020-03-16 20:41:28', NULL, '0');
+INSERT INTO `sys_menu` VALUES (20, '用户删除', 6, NULL, 1, 'F', NULL, '#', 'user_del', NULL, '0', 3, '0', 'entfrm', '2020-03-16 20:32:41', NULL, '2020-03-16 20:41:25', NULL, '0');
+INSERT INTO `sys_menu` VALUES (21, '用户查看', 6, NULL, 1, 'F', NULL, '#', 'user_view', NULL, '0', 4, '0', 'entfrm', '2020-03-16 20:33:11', NULL, '2020-03-16 20:41:20', NULL, '0');
+INSERT INTO `sys_menu` VALUES (22, '重置密码', 6, NULL, 1, 'F', NULL, '#', 'user_reset', NULL, '0', 5, '0', 'entfrm', '2020-03-16 20:34:22', 'entfrm', '2020-03-16 20:41:17', NULL, '0');
+INSERT INTO `sys_menu` VALUES (23, '用户导入', 6, NULL, 1, 'F', NULL, '#', 'user_import', NULL, '0', 6, '0', 'entfrm', '2020-03-16 20:34:49', NULL, '2020-03-16 20:41:14', NULL, '0');
+INSERT INTO `sys_menu` VALUES (24, '用户导出', 6, NULL, 1, 'F', NULL, '#', 'user_export', NULL, '0', 7, '0', 'entfrm', '2020-03-16 20:35:12', NULL, '2020-03-16 20:41:12', NULL, '0');
+INSERT INTO `sys_menu` VALUES (25, '菜单新增', 7, NULL, 1, 'F', NULL, '#', 'menu_add', NULL, '0', 1, '0', 'entfrm', '2020-03-16 20:38:18', NULL, '2020-03-16 20:41:10', NULL, '0');
+INSERT INTO `sys_menu` VALUES (26, '菜单修改', 7, NULL, 1, 'F', NULL, '#', 'menu_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-16 20:38:41', 'entfrm', '2020-03-16 20:41:07', NULL, '0');
+INSERT INTO `sys_menu` VALUES (27, '菜单删除', 7, NULL, 1, 'F', NULL, '#', 'menu_del', NULL, '0', 3, '0', 'entfrm', '2020-03-16 20:39:04', NULL, '2020-03-16 20:41:04', NULL, '0');
+INSERT INTO `sys_menu` VALUES (28, '菜单查看', 7, NULL, 1, 'F', NULL, '#', 'menu_view', NULL, '0', 4, '0', 'entfrm', '2020-03-16 20:39:39', NULL, '2020-03-16 20:41:01', NULL, '0');
+INSERT INTO `sys_menu` VALUES (29, '字典管理', 1, '6', 1, 'C', 'dict', 'system/dict/index', '', 'dict', '0', 5, '0', 'entfrm', '2020-03-16 11:33:00', '', '2020-03-16 11:33:00', '字典管理菜单', '0');
+INSERT INTO `sys_menu` VALUES (30, '字典新增', 29, NULL, 1, 'F', NULL, '#', 'dict_add', NULL, '0', 1, '0', 'entfrm', '2020-03-16 20:50:45', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (31, '字典修改', 29, NULL, 1, 'F', NULL, '#', 'dict_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-16 20:51:01', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (32, '字典删除', 29, NULL, 1, 'F', NULL, '#', 'dict_del', NULL, '0', 3, '0', 'entfrm', '2020-03-16 20:52:18', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (33, '字典查看', 29, NULL, 1, 'F', NULL, '#', 'dict_view', NULL, '0', 4, '0', 'entfrm', '2020-03-16 20:52:38', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (34, '数据增加', 29, NULL, 1, 'F', NULL, '#', 'dictData_add', NULL, '0', 5, '0', 'entfrm', '2020-03-16 21:49:18', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (35, '数据修改', 29, NULL, 1, 'F', NULL, '#', 'dictData_edit', NULL, '0', 6, '0', 'entfrm', '2020-03-16 21:49:36', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (36, '数据删除', 29, NULL, 1, 'F', NULL, '#', 'dictData_del', NULL, '0', 7, '0', 'entfrm', '2020-03-16 21:50:00', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (37, '数据查看', 29, NULL, 1, 'F', NULL, '#', 'dictData_view', NULL, '0', 8, '0', 'entfrm', '2020-03-16 21:50:19', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (38, '参数管理', 1, NULL, 1, 'C', 'config', 'system/config/index', NULL, 'list', '0', 6, '0', 'entfrm', '2020-03-16 22:06:52', NULL, '2020-03-16 22:11:13', NULL, '0');
+INSERT INTO `sys_menu` VALUES (39, '参数新增', 38, NULL, 1, 'F', NULL, '#', 'config_add', NULL, '0', 1, '0', 'entfrm', '2020-03-16 22:07:16', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (40, '参数修改', 38, NULL, 1, 'F', NULL, '#', 'config_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-16 22:07:30', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (41, '参数删除', 38, NULL, 1, 'F', NULL, '#', 'config_del', NULL, '0', 3, '0', 'entfrm', '2020-03-16 22:07:43', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (42, '参数查看', 38, NULL, 1, 'F', NULL, '#', 'config_view', NULL, '0', 4, '0', 'entfrm', '2020-03-16 22:08:06', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (43, '快捷方式', 1, NULL, 1, 'C', 'shortcut', 'system/shortcut/index', NULL, 'link', '0', 7, '0', 'entfrm', '2020-03-17 17:53:08', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (44, '文件管理', 1, NULL, 1, 'C', 'fileInfo', 'system/fileInfo/index', NULL, 'zip', '0', 8, '0', 'entfrm', '2020-03-17 17:56:28', 'entfrm', '2020-03-20 22:33:35', NULL, '0');
+INSERT INTO `sys_menu` VALUES (45, '终端管理', 1, NULL, 1, 'C', 'clientDetails', 'system/clientDetails/index', NULL, 'phone', '0', 9, '0', 'entfrm', '2020-03-17 17:57:46', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (46, '数据备份', 1, NULL, 1, 'C', 'backup', 'system/backup/index', NULL, 'date-range', '0', 11, '0', 'entfrm', '2020-03-17 18:02:21', NULL, '2020-03-18 22:20:28', NULL, '0');
+INSERT INTO `sys_menu` VALUES (47, '令牌管理', 2, NULL, 1, 'C', 'token', 'monitor/token/index', NULL, 'post', '0', 1, '0', 'entfrm', '2020-03-17 17:59:55', 'entfrm', '2020-05-10 22:32:05', NULL, '0');
+INSERT INTO `sys_menu` VALUES (48, '定时任务', 2, NULL, 1, 'C', 'job', 'monitor/job/index', NULL, 'time-range', '0', 2, '0', 'entfrm', '2020-03-17 18:08:23', NULL, '2020-03-18 22:20:23', NULL, '0');
+INSERT INTO `sys_menu` VALUES (49, '数据监控', 2, NULL, 1, 'C', 'druid', 'monitor/druid/index', NULL, 'druid', '0', 3, '0', 'entfrm', '2020-03-17 18:08:56', NULL, '2020-03-20 18:53:07', NULL, '0');
+INSERT INTO `sys_menu` VALUES (50, '服务监控', 2, NULL, 1, 'C', 'server', 'monitor/server/index', NULL, 'server', '0', 4, '0', 'entfrm', '2020-03-17 18:09:39', 'entfrm', '2020-03-20 19:23:24', NULL, '0');
+INSERT INTO `sys_menu` VALUES (51, 'API监控', 2, NULL, 1, 'C', 'apiStat', 'monitor/apiStat/index', 'apiStat_view', 'chart', '0', 5, '0', 'entfrm', '2020-03-17 18:15:13', 'entfrm', '2020-03-20 22:57:03', NULL, '0');
+INSERT INTO `sys_menu` VALUES (52, '日志监控', 2, NULL, 1, 'M', 'log', '#', NULL, 'monitor', '0', 6, '0', 'entfrm', '2020-03-17 18:12:01', NULL, '2020-03-18 23:00:39', NULL, '0');
+INSERT INTO `sys_menu` VALUES (53, '登录日志', 52, NULL, 1, 'C', 'loginLog', 'monitor/loginLog/index', NULL, 'logininfor', '0', 1, '0', 'entfrm', '2020-03-17 18:12:56', NULL, '2020-03-18 22:31:53', NULL, '0');
+INSERT INTO `sys_menu` VALUES (54, '操作日志', 52, NULL, 1, 'C', 'operLog', 'monitor/operLog/index', NULL, 'log', '0', 2, '0', 'entfrm', '2020-03-17 18:13:52', 'entfrm', '2020-03-18 22:31:36', NULL, '0');
+INSERT INTO `sys_menu` VALUES (55, '接口文档', 3, NULL, 1, 'C', 'swagger', 'devtool/swagger/index', NULL, 'swagger', '0', 4, '0', 'entfrm', '2020-03-17 18:18:38', 'entfrm', '2020-03-21 11:09:59', NULL, '0');
+INSERT INTO `sys_menu` VALUES (56, '模板管理', 3, NULL, 1, 'M', 'template', '#', NULL, 'drag', '0', 5, '0', 'entfrm', '2020-03-17 18:19:52', 'entfrm', '2020-03-17 18:23:35', NULL, '0');
+INSERT INTO `sys_menu` VALUES (57, '表单构建', 3, NULL, 1, 'C', 'build', 'devtool/build/index', NULL, 'form', '0', 6, '0', 'entfrm', '2020-03-17 18:21:32', 'entfrm', '2020-03-24 17:57:17', NULL, '0');
+INSERT INTO `sys_menu` VALUES (58, '工作流', 0, NULL, 1, 'M', 'activiti', '#', NULL, 'skill', '0', 40, '0', 'entfrm', '2020-03-17 18:22:36', 'entfrm', '2020-03-20 23:09:48', NULL, '0');
+INSERT INTO `sys_menu` VALUES (59, '终端新增', 45, NULL, 1, 'F', NULL, '#', 'clientDetails_add', NULL, '0', 1, '0', 'entfrm', '2020-03-18 15:18:36', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (60, '终端修改', 45, NULL, 1, 'F', NULL, '#', 'clientDetails_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-18 15:18:53', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (61, '终端删除', 45, NULL, 1, 'F', NULL, '#', 'clientDetails_del', NULL, '0', 3, '0', 'entfrm', '2020-03-18 15:19:06', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (62, '终端查看', 45, NULL, 1, 'F', NULL, '#', 'clientDetails_view', NULL, '0', 4, '0', 'entfrm', '2020-03-18 15:19:29', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (63, '登录日志删除', 53, NULL, 1, 'F', NULL, '#', 'loginLog_del', NULL, '0', 1, '0', 'entfrm', '2020-03-19 11:50:34', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (64, '登录日志查看', 53, NULL, 1, 'F', NULL, '#', 'loginLog_view', NULL, '0', 2, '0', 'entfrm', '2020-03-19 11:50:59', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (65, '登录日志导出', 53, NULL, 1, 'F', NULL, '#', 'loginLog_export', NULL, '0', 3, '0', 'entfrm', '2020-03-19 11:52:05', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (66, '操作日志删除', 54, NULL, 1, 'F', NULL, '#', 'operLog_del', NULL, '0', 1, '0', 'entfrm', '2020-03-19 11:52:25', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (67, '操作日志查看', 54, NULL, 1, 'F', NULL, '#', 'operLog_view', NULL, '0', 2, '0', 'entfrm', '2020-03-19 11:52:45', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (68, '操作日志导出', 54, NULL, 1, 'F', NULL, '#', 'operLog_export', NULL, '0', 3, '0', 'entfrm', '2020-03-19 11:53:09', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (69, '备份新增', 46, NULL, 1, 'F', NULL, '#', 'backup_add', NULL, '0', 1, '0', 'entfrm', '2020-03-20 21:59:58', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (70, '备份还原', 46, NULL, 1, 'F', NULL, '#', 'backup_restore', NULL, '0', 2, '0', 'entfrm', '2020-03-20 22:00:23', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (71, '备份删除', 46, NULL, 1, 'F', NULL, '#', 'backup_del', NULL, '0', 3, '0', 'entfrm', '2020-03-20 22:00:41', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (72, '备份查看', 46, NULL, 1, 'F', NULL, '#', 'backup_view', NULL, '0', 4, '0', 'entfrm', '2020-03-20 22:44:05', NULL, '2020-03-20 22:44:39', NULL, '0');
+INSERT INTO `sys_menu` VALUES (73, '文件上传', 44, NULL, 1, 'F', NULL, '#', 'fileInfo_add', NULL, '0', 1, '0', 'entfrm', '2020-03-20 22:41:42', NULL, '2020-03-20 22:44:35', NULL, '0');
+INSERT INTO `sys_menu` VALUES (74, '文件启用', 44, NULL, 1, 'F', NULL, '#', 'fileInfo_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-20 22:42:07', 'entfrm', '2020-03-20 22:44:32', NULL, '0');
+INSERT INTO `sys_menu` VALUES (75, '文件删除', 44, NULL, 1, 'F', NULL, '#', 'fileInfo_del', NULL, '0', 3, '0', 'entfrm', '2020-03-20 22:42:30', NULL, '2020-03-20 22:44:29', NULL, '0');
+INSERT INTO `sys_menu` VALUES (76, '文件查看', 44, NULL, 1, 'F', NULL, '#', 'fileInfo_view', NULL, '0', 4, '0', 'entfrm', '2020-03-20 22:43:06', NULL, '2020-03-20 22:44:26', NULL, '0');
+INSERT INTO `sys_menu` VALUES (77, '文件分享', 44, NULL, 1, 'F', NULL, '#', 'fileInfo_share', NULL, '0', 5, '0', 'entfrm', '2020-03-20 22:43:37', 'entfrm', '2020-03-20 22:44:23', NULL, '0');
+INSERT INTO `sys_menu` VALUES (78, '数据库管理', 3, NULL, 1, 'C', 'datasource', 'devtool/datasource/index', NULL, 'druid', '0', 1, '0', 'entfrm', '2020-03-21 11:05:47', 'entfrm', '2020-04-12 11:20:56', NULL, '0');
+INSERT INTO `sys_menu` VALUES (79, '数据表管理', 3, NULL, 1, 'C', 'datatable', 'devtool/datatable/index', NULL, 'table', '0', 2, '0', 'entfrm', '2020-03-21 11:07:23', 'entfrm', '2020-03-21 12:04:41', NULL, '0');
+INSERT INTO `sys_menu` VALUES (80, '数据源管理', 3, NULL, 1, 'C', 'dataset', 'devtool/dataset/index', NULL, 'row', '0', 3, '0', 'entfrm', '2020-03-21 11:08:16', 'entfrm', '2020-04-12 11:21:04', NULL, '0');
+INSERT INTO `sys_menu` VALUES (81, '数据库新增', 78, NULL, 1, 'F', NULL, '#', 'datasource_add', NULL, '0', 1, '0', 'entfrm', '2020-03-21 11:27:26', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (82, '数据库修改', 78, NULL, 1, 'F', NULL, '#', 'datasource_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-21 11:27:46', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (83, '数据库删除', 78, NULL, 1, 'F', NULL, '#', 'datasource_del', NULL, '0', 3, '0', 'entfrm', '2020-03-21 11:27:59', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (84, '数据库查看', 78, NULL, 1, 'F', NULL, '#', 'datasource_view', NULL, '0', 4, '0', 'entfrm', '2020-03-21 11:28:11', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (85, '模型管理', 58, NULL, 1, 'C', 'model', 'activiti/model/index', NULL, 'edit', '0', 1, '0', 'entfrm', '2020-03-24 12:48:54', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (86, '模型新增', 85, NULL, 1, 'F', NULL, '#', 'model_add', NULL, '0', 1, '0', 'entfrm', '2020-03-24 12:52:47', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (87, '模型删除', 85, NULL, 1, 'F', NULL, '#', 'model_del', NULL, '0', 2, '0', 'entfrm', '2020-03-24 12:53:43', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (88, '模型查看', 85, NULL, 1, 'F', NULL, '#', 'model_view', NULL, '0', 3, '0', 'entfrm', '2020-03-24 12:53:56', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (89, '模型部署', 85, NULL, 1, 'F', NULL, '#', 'model_deploy', NULL, '0', 5, '0', 'entfrm', '2020-03-24 12:54:19', 'entfrm', '2020-04-04 22:36:20', NULL, '0');
+INSERT INTO `sys_menu` VALUES (90, '表新增', 79, NULL, 1, 'F', NULL, '#', 'datatable_add', NULL, '0', 1, '0', 'entfrm', '2020-03-25 14:59:45', 'entfrm', '2020-03-25 15:00:14', NULL, '0');
+INSERT INTO `sys_menu` VALUES (91, '表修改', 79, NULL, 1, 'F', NULL, '#', 'datatable_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-25 15:00:31', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (92, '表删除', 79, NULL, 1, 'F', NULL, '#', 'datatable_del', NULL, '0', 3, '0', 'entfrm', '2020-03-25 15:00:49', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (93, '表查看', 79, NULL, 1, 'F', NULL, '#', 'datatable_view', NULL, '0', 4, '0', 'entfrm', '2020-03-25 15:01:06', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (94, '表配置', 79, NULL, 1, 'F', NULL, '#', 'datatable_config', NULL, '0', 5, '0', 'entfrm', '2020-03-25 15:02:39', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (95, '代码生成', 79, NULL, 1, 'F', NULL, '#', 'datatable_gen', NULL, '0', 6, '0', 'entfrm', '2020-03-25 15:03:06', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (96, '任务新增', 48, NULL, 1, 'F', NULL, '#', 'job_add', NULL, '0', 1, '0', 'entfrm', '2020-03-26 15:34:44', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (97, '任务编辑', 48, NULL, 1, 'F', NULL, '#', 'job_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-26 15:34:59', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (98, '任务删除', 48, NULL, 1, 'F', NULL, '#', 'job_del', NULL, '0', 3, '0', 'entfrm', '2020-03-26 15:35:17', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (99, '任务查看', 48, NULL, 1, 'F', NULL, '#', 'job_view', NULL, '0', 4, '0', 'entfrm', '2020-03-26 15:35:32', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (100, '任务暂定', 48, NULL, 1, 'F', NULL, '#', 'job_stop', NULL, '0', 5, '0', 'entfrm', '2020-03-26 15:37:16', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (101, '任务启动', 48, NULL, 1, 'F', NULL, '#', 'job_start', NULL, '0', 6, '0', 'entfrm', '2020-03-26 15:37:35', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (102, '任务重置', 48, NULL, 1, 'F', NULL, '#', 'job_refresh', NULL, '0', 7, '0', 'entfrm', '2020-03-26 15:37:56', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (103, '任务日志查看', 48, NULL, 1, 'F', NULL, '#', 'jobLog_view', NULL, '0', 8, '0', 'entfrm', '2020-03-26 15:38:19', 'entfrm', '2020-03-26 15:38:35', NULL, '0');
+INSERT INTO `sys_menu` VALUES (104, '任务日志删除', 48, NULL, 1, 'F', NULL, '#', 'jobLog_del', NULL, '0', 9, '0', 'entfrm', '2020-03-26 15:38:51', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (105, '快捷方式新增', 43, NULL, 1, 'F', NULL, '#', 'shortcut_add', NULL, '0', 1, '0', 'entfrm', '2020-03-27 09:44:13', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (106, '快捷方式修改', 43, NULL, 1, 'F', NULL, '#', 'shortcut_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-27 09:44:36', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (107, '快捷方式删除', 43, NULL, 1, 'F', NULL, '#', 'shortcut_del', NULL, '0', 3, '0', 'entfrm', '2020-03-27 09:44:57', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (108, '快捷方式查看', 43, NULL, 1, 'F', NULL, '#', 'shortcut_view', NULL, '0', 4, '0', 'entfrm', '2020-03-27 09:45:16', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (109, '内容管理', 0, NULL, 1, 'M', 'cms', '#', NULL, 'edit', '0', 50, '0', 'entfrm', '2020-03-31 20:12:07', 'entfrm', '2020-04-04 22:31:04', NULL, '0');
+INSERT INTO `sys_menu` VALUES (110, '类别管理', 109, NULL, 1, 'C', 'category', 'cms/category/index', NULL, 'list', '0', 1, '0', 'entfrm', '2020-03-31 20:12:46', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (111, '列表新增', 110, NULL, 1, 'F', NULL, '#', 'category_add', NULL, '0', 1, '0', 'entfrm', '2020-03-31 20:13:03', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (112, '类别修改', 110, NULL, 1, 'F', NULL, '#', 'category_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-31 20:13:27', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (113, '类别删除', 110, NULL, 1, 'F', NULL, '#', 'category_del', NULL, '0', 3, '0', 'entfrm', '2020-03-31 20:13:53', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (114, '类别查看', 110, NULL, 1, 'F', NULL, '#', 'category_view', NULL, '0', 4, '0', 'entfrm', '2020-03-31 20:14:15', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (115, '文章管理', 109, NULL, 1, 'C', 'article', 'cms/article/index', NULL, 'rate', '0', 2, '0', 'entfrm', '2020-03-31 20:15:05', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (116, '文章添加', 115, NULL, 1, 'F', NULL, '#', 'article_add', NULL, '0', 1, '0', 'entfrm', '2020-03-31 20:15:25', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (117, '文章修改', 115, NULL, 1, 'F', NULL, '#', 'article_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-31 20:16:11', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (118, '文章删除', 115, NULL, 1, 'F', NULL, '#', 'article_del', NULL, '0', 3, '0', 'entfrm', '2020-03-31 20:16:23', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (119, '文章查看', 115, NULL, 1, 'F', NULL, '#', 'article_view', NULL, '0', 4, '0', 'entfrm', '2020-03-31 20:16:38', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (120, '文章导出', 115, NULL, 1, 'F', NULL, '#', 'article_export', NULL, '0', 5, '0', 'entfrm', '2020-03-31 20:17:16', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (121, '流程定义', 58, NULL, 1, 'C', 'process', 'activiti/process/index', NULL, 'list', '0', 2, '0', 'entfrm', '2020-04-04 22:33:12', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (122, '模型设计', 85, NULL, 1, 'F', NULL, '#', 'model_design', NULL, '0', 4, '0', 'entfrm', '2020-04-04 22:36:13', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (123, '流程图', 121, NULL, 1, 'F', NULL, '#', 'process_img', NULL, '0', 1, '0', 'entfrm', '2020-04-04 22:49:07', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (124, '流程状态改变', 121, NULL, 1, 'F', NULL, '#', 'process_change', NULL, '0', 2, '0', 'entfrm', '2020-04-04 22:49:46', NULL, '2020-04-05 00:40:17', NULL, '0');
+INSERT INTO `sys_menu` VALUES (125, '流程删除', 121, NULL, 1, 'F', NULL, '#', 'process_del', NULL, '0', 3, '0', 'entfrm', '2020-04-04 22:50:05', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (126, '流程查看', 121, NULL, 1, 'F', NULL, '#', 'process_view', NULL, '0', 4, '0', 'entfrm', '2020-04-04 22:50:30', 'entfrm', '2020-04-04 22:50:35', NULL, '0');
+INSERT INTO `sys_menu` VALUES (127, '请假管理', 58, NULL, 1, 'C', 'leave', 'activiti/leave/index', NULL, 'tree-table', '0', 3, '0', 'entfrm', '2020-04-04 22:51:56', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (128, '请假新增', 127, NULL, 1, 'F', NULL, '#', 'leave_add', NULL, '0', 1, '0', 'entfrm', '2020-04-04 22:52:44', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (129, '请假修改', 127, NULL, 1, 'F', NULL, '#', 'leave_edit', NULL, '0', 2, '0', 'entfrm', '2020-04-04 22:53:01', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (130, '请假删除', 127, NULL, 1, 'F', NULL, '#', 'leave_del', NULL, '0', 3, '0', 'entfrm', '2020-04-04 22:53:13', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (131, '请假查看', 127, NULL, 1, 'F', NULL, '#', 'leave_view', NULL, '0', 4, '0', 'entfrm', '2020-04-04 22:53:26', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (132, '请假导出', 127, NULL, 1, 'F', NULL, '#', 'leave_export', NULL, '0', 5, '0', 'entfrm', '2020-04-04 22:53:45', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (133, '流程任务', 58, NULL, 1, 'C', 'task', 'activiti/task/index', NULL, 'checkbox', '0', 4, '0', 'entfrm', '2020-04-04 22:55:03', NULL, '2020-04-12 16:27:31', NULL, '0');
+INSERT INTO `sys_menu` VALUES (134, '审批', 133, NULL, 1, 'F', NULL, '#', 'task_check', NULL, '0', 1, '0', 'entfrm', '2020-04-04 22:56:31', 'entfrm', '2020-04-12 16:27:33', NULL, '0');
+INSERT INTO `sys_menu` VALUES (135, '批注', 133, NULL, 1, 'F', NULL, '#', 'task_comment', NULL, '0', 2, '0', 'entfrm', '2020-04-04 22:56:46', 'entfrm', '2020-04-12 16:19:54', NULL, '0');
+INSERT INTO `sys_menu` VALUES (136, '流程追踪', 133, NULL, 1, 'F', NULL, '#', 'task_track', NULL, '0', 3, '0', 'entfrm', '2020-04-04 22:57:19', 'entfrm', '2020-04-05 13:04:51', NULL, '0');
+INSERT INTO `sys_menu` VALUES (137, '任务查看', 133, NULL, 1, 'F', NULL, '#', 'task_view', NULL, '0', 4, '0', 'entfrm', '2020-04-04 22:57:19', 'entfrm', '2020-04-05 13:04:59', NULL, '0');
+INSERT INTO `sys_menu` VALUES (138, '模板新增', 56, NULL, 1, 'F', NULL, '#', 'template_add', NULL, '1', 1, '0', 'entfrm', '2020-04-12 16:28:51', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (139, '应用管理', 1, NULL, 1, 'C', 'application', 'system/application/index', NULL, 'tool', '1', 0, '0', 'entfrm', '2020-04-23 18:35:21', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (140, '应用新增', 139, NULL, 1, 'F', NULL, '#', 'application_add', '#', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (141, '应用修改', 139, NULL, 1, 'F', NULL, '#', 'application_edit', '#', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (142, '应用删除', 139, NULL, 1, 'F', NULL, '#', 'application_del', '#', '1', 3, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (143, '应用查询', 139, NULL, 1, 'F', NULL, '#', 'application_view', '#', '1', 4, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (144, '应用导出', 139, NULL, 1, 'F', NULL, '#', 'application_export', '#', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (145, 'API引擎', 0, NULL, 1, 'M', 'api', '#', NULL, 'component', '1', 60, '0', 'entfrm', '2020-04-24 22:26:31', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (146, '接口管理', 145, NULL, 1, 'C', 'apiinfo', 'api/apiinfo/index', NULL, 'star', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '接口菜单', '0');
+INSERT INTO `sys_menu` VALUES (147, '接口新增', 146, NULL, 1, 'F', NULL, '#', 'apiinfo_add', '#', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (148, '接口修改', 146, NULL, 1, 'F', NULL, '#', 'apiinfo_edit', '#', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (149, '接口删除', 146, NULL, 1, 'F', NULL, '#', 'apiinfo_del', '#', '1', 3, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (150, '接口查询', 146, NULL, 1, 'F', NULL, '#', 'apiinfo_view', '#', '1', 4, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (151, '接口导出', 146, NULL, 1, 'F', NULL, '#', 'apiinfo_export', '#', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (152, '消息管理', 0, NULL, 1, 'M', 'msg', '#', NULL, 'message', '1', 70, '0', 'entfrm', '2020-05-10 15:55:25', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (153, '消息配置', 152, NULL, 1, 'C', 'infoConfig', 'msg/infoConfig/index', NULL, 'star', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '消息配置菜单', '0');
+INSERT INTO `sys_menu` VALUES (154, '消息配置新增', 153, NULL, 1, 'F', NULL, '#', 'infoConfig_add', '#', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (155, '消息配置修改', 153, NULL, 1, 'F', NULL, '#', 'infoConfig_edit', '#', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (156, '消息配置删除', 153, NULL, 1, 'F', NULL, '#', 'infoConfig_del', '#', '1', 3, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (157, '消息配置查询', 153, NULL, 1, 'F', NULL, '#', 'infoConfig_view', '#', '1', 4, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (158, '消息配置导出', 153, NULL, 1, 'F', NULL, '#', 'infoConfig_export', '#', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (159, '令牌删除', 47, NULL, 1, 'F', NULL, '#', 'token_del', NULL, '1', 1, '0', 'entfrm', '2020-04-21 12:28:59', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (160, '令牌查看', 47, NULL, 1, 'F', NULL, '#', 'token_view', NULL, '1', 2, '0', 'entfrm', '2020-04-21 12:29:19', NULL, NULL, NULL, '0');
 
 -- ----------------------------
 -- Table structure for sys_oper_log
@@ -1492,7 +1761,7 @@ CREATE TABLE `sys_oper_log`  (
   `execute_time` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '执行时间',
   `oper_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 337 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -1546,12 +1815,43 @@ CREATE TABLE `sys_role_menu`  (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
+INSERT INTO `sys_role_menu` VALUES (2, 11);
 INSERT INTO `sys_role_menu` VALUES (2, 16);
 INSERT INTO `sys_role_menu` VALUES (2, 7);
+INSERT INTO `sys_role_menu` VALUES (2, 25);
+INSERT INTO `sys_role_menu` VALUES (2, 26);
+INSERT INTO `sys_role_menu` VALUES (2, 27);
+INSERT INTO `sys_role_menu` VALUES (2, 28);
+INSERT INTO `sys_role_menu` VALUES (2, 33);
 INSERT INTO `sys_role_menu` VALUES (2, 3);
+INSERT INTO `sys_role_menu` VALUES (2, 55);
+INSERT INTO `sys_role_menu` VALUES (2, 56);
+INSERT INTO `sys_role_menu` VALUES (2, 138);
+INSERT INTO `sys_role_menu` VALUES (2, 57);
+INSERT INTO `sys_role_menu` VALUES (2, 78);
+INSERT INTO `sys_role_menu` VALUES (2, 81);
+INSERT INTO `sys_role_menu` VALUES (2, 82);
+INSERT INTO `sys_role_menu` VALUES (2, 83);
+INSERT INTO `sys_role_menu` VALUES (2, 84);
+INSERT INTO `sys_role_menu` VALUES (2, 79);
+INSERT INTO `sys_role_menu` VALUES (2, 90);
+INSERT INTO `sys_role_menu` VALUES (2, 91);
+INSERT INTO `sys_role_menu` VALUES (2, 92);
+INSERT INTO `sys_role_menu` VALUES (2, 93);
+INSERT INTO `sys_role_menu` VALUES (2, 94);
+INSERT INTO `sys_role_menu` VALUES (2, 95);
+INSERT INTO `sys_role_menu` VALUES (2, 80);
 INSERT INTO `sys_role_menu` VALUES (2, 1);
+INSERT INTO `sys_role_menu` VALUES (2, 4);
 INSERT INTO `sys_role_menu` VALUES (2, 5);
+INSERT INTO `sys_role_menu` VALUES (2, 29);
 INSERT INTO `sys_role_menu` VALUES (1, 1);
+INSERT INTO `sys_role_menu` VALUES (1, 139);
+INSERT INTO `sys_role_menu` VALUES (1, 140);
+INSERT INTO `sys_role_menu` VALUES (1, 141);
+INSERT INTO `sys_role_menu` VALUES (1, 142);
+INSERT INTO `sys_role_menu` VALUES (1, 143);
+INSERT INTO `sys_role_menu` VALUES (1, 144);
 INSERT INTO `sys_role_menu` VALUES (1, 4);
 INSERT INTO `sys_role_menu` VALUES (1, 8);
 INSERT INTO `sys_role_menu` VALUES (1, 9);
@@ -1612,6 +1912,10 @@ INSERT INTO `sys_role_menu` VALUES (1, 69);
 INSERT INTO `sys_role_menu` VALUES (1, 70);
 INSERT INTO `sys_role_menu` VALUES (1, 71);
 INSERT INTO `sys_role_menu` VALUES (1, 72);
+INSERT INTO `sys_role_menu` VALUES (1, 2);
+INSERT INTO `sys_role_menu` VALUES (1, 47);
+INSERT INTO `sys_role_menu` VALUES (1, 159);
+INSERT INTO `sys_role_menu` VALUES (1, 160);
 INSERT INTO `sys_role_menu` VALUES (1, 48);
 INSERT INTO `sys_role_menu` VALUES (1, 96);
 INSERT INTO `sys_role_menu` VALUES (1, 97);
@@ -1634,8 +1938,6 @@ INSERT INTO `sys_role_menu` VALUES (1, 54);
 INSERT INTO `sys_role_menu` VALUES (1, 66);
 INSERT INTO `sys_role_menu` VALUES (1, 67);
 INSERT INTO `sys_role_menu` VALUES (1, 68);
-INSERT INTO `sys_role_menu` VALUES (1, 3);
-INSERT INTO `sys_role_menu` VALUES (1, 55);
 INSERT INTO `sys_role_menu` VALUES (1, 78);
 INSERT INTO `sys_role_menu` VALUES (1, 81);
 INSERT INTO `sys_role_menu` VALUES (1, 82);
@@ -1649,7 +1951,7 @@ INSERT INTO `sys_role_menu` VALUES (1, 93);
 INSERT INTO `sys_role_menu` VALUES (1, 94);
 INSERT INTO `sys_role_menu` VALUES (1, 95);
 INSERT INTO `sys_role_menu` VALUES (1, 80);
-INSERT INTO `sys_role_menu` VALUES (1, 56);
+INSERT INTO `sys_role_menu` VALUES (1, 55);
 INSERT INTO `sys_role_menu` VALUES (1, 57);
 INSERT INTO `sys_role_menu` VALUES (1, 58);
 INSERT INTO `sys_role_menu` VALUES (1, 85);
@@ -1670,6 +1972,10 @@ INSERT INTO `sys_role_menu` VALUES (1, 130);
 INSERT INTO `sys_role_menu` VALUES (1, 131);
 INSERT INTO `sys_role_menu` VALUES (1, 132);
 INSERT INTO `sys_role_menu` VALUES (1, 133);
+INSERT INTO `sys_role_menu` VALUES (1, 134);
+INSERT INTO `sys_role_menu` VALUES (1, 135);
+INSERT INTO `sys_role_menu` VALUES (1, 136);
+INSERT INTO `sys_role_menu` VALUES (1, 137);
 INSERT INTO `sys_role_menu` VALUES (1, 109);
 INSERT INTO `sys_role_menu` VALUES (1, 110);
 INSERT INTO `sys_role_menu` VALUES (1, 111);
@@ -1682,11 +1988,21 @@ INSERT INTO `sys_role_menu` VALUES (1, 117);
 INSERT INTO `sys_role_menu` VALUES (1, 118);
 INSERT INTO `sys_role_menu` VALUES (1, 119);
 INSERT INTO `sys_role_menu` VALUES (1, 120);
-INSERT INTO `sys_role_menu` VALUES (1, 2);
-INSERT INTO `sys_role_menu` VALUES (1, 134);
-INSERT INTO `sys_role_menu` VALUES (1, 135);
-INSERT INTO `sys_role_menu` VALUES (1, 136);
-INSERT INTO `sys_role_menu` VALUES (1, 137);
+INSERT INTO `sys_role_menu` VALUES (1, 145);
+INSERT INTO `sys_role_menu` VALUES (1, 146);
+INSERT INTO `sys_role_menu` VALUES (1, 147);
+INSERT INTO `sys_role_menu` VALUES (1, 148);
+INSERT INTO `sys_role_menu` VALUES (1, 149);
+INSERT INTO `sys_role_menu` VALUES (1, 150);
+INSERT INTO `sys_role_menu` VALUES (1, 151);
+INSERT INTO `sys_role_menu` VALUES (1, 152);
+INSERT INTO `sys_role_menu` VALUES (1, 153);
+INSERT INTO `sys_role_menu` VALUES (1, 154);
+INSERT INTO `sys_role_menu` VALUES (1, 155);
+INSERT INTO `sys_role_menu` VALUES (1, 156);
+INSERT INTO `sys_role_menu` VALUES (1, 157);
+INSERT INTO `sys_role_menu` VALUES (1, 158);
+INSERT INTO `sys_role_menu` VALUES (1, 3);
 
 -- ----------------------------
 -- Table structure for sys_shortcut
@@ -1706,12 +2022,13 @@ CREATE TABLE `sys_shortcut`  (
   `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_shortcut
 -- ----------------------------
 INSERT INTO `sys_shortcut` VALUES (1, '登录日志', '1', 'form', '/system/loginLog', 1, 'entfrm', '2020-03-27 10:09:11', '', '2020-03-27 10:12:39', '1', '0');
+INSERT INTO `sys_shortcut` VALUES (2, 'test', '1', 'build', 'test', 1, 'entfrm', '2020-04-15 22:44:58', '', NULL, NULL, '0');
 
 -- ----------------------------
 -- Table structure for sys_user

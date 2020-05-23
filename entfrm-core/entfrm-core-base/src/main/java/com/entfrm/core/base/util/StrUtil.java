@@ -2,8 +2,12 @@ package com.entfrm.core.base.util;
 
 import cn.hutool.core.util.ObjectUtil;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author yong
@@ -97,6 +101,40 @@ public class StrUtil extends cn.hutool.core.util.StrUtil {
 
     public static int genNewId(int id) {
         return Integer.parseInt("1" + String.format("%04d", id));
+    }
+
+    /**
+     * 加载解析sql 读取方式字符流 行读取
+     *
+     * @param sqlFile
+     * @return
+     * @throws Exception
+     */
+    public static List<String> loadSql(String sqlFile) throws Exception {
+        List<String> sqlList = new ArrayList<String>();
+        try {
+            FileReader fr = new FileReader(sqlFile);
+            BufferedReader br = new BufferedReader(fr);
+            String s = "";
+            StringBuffer sb = new StringBuffer();
+            while ((s = br.readLine()) != null) {
+                if (s.startsWith("/*") || s.startsWith("--")) {
+
+                } else if (s.endsWith(";")) {
+                    sb.append(s);
+                    sqlList.add(sb.toString());
+                    sb.delete(0, sb.length());
+                } else {
+                    sb.append(s);
+                }
+
+            }
+            fr.close();
+            br.close();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        return sqlList;
     }
 
     public static void main(String[] args) {

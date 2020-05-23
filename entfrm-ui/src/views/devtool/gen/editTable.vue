@@ -152,7 +152,7 @@
   </el-card>
 </template>
 <script>
-  import {getGenTable, updateGenTable} from "@/api/devtool/datatable";
+  import {getGenTable, updateGenTable, menuTree} from "@/api/devtool/datatable";
   import {dictList} from "@/api/system/dict";
   import basicInfoForm from "./basicInfoForm";
   import genInfoForm from "./genInfoForm";
@@ -176,6 +176,8 @@
         dictOptions: [],
         // 删除表字段名
         delNames: [],
+        // 菜单信息
+        menus: [],
         // 表详细信息
         info: {}
       };
@@ -192,6 +194,7 @@
           this.info.treeParentId = options.treeParentId
           this.info.treeName = options.treeName
         }
+        this.info.menus = this.handleTree(res.data.menus, "id");
         this.$nextTick(() => {
           this.setSort()
         })

@@ -49,6 +49,13 @@ public interface TableService extends IService<Table> {
      */
     public Map<String, String> previewCode(Integer tableId);
 
+    /**
+     * 批量生成代码到本地
+     *
+     * @param tableNames 表数组
+     * @return 数据
+     */
+    public String genToLocal(String[] tableNames);
 
     /**
      * 批量生成代码
@@ -56,7 +63,7 @@ public interface TableService extends IService<Table> {
      * @param tableNames 表数组
      * @return 数据
      */
-    public byte[] generatorCode(String[] tableNames);
+    public byte[] genCode(String[] tableNames);
 
 
 }

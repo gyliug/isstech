@@ -22,7 +22,7 @@ public class EntfrmAuth2ExceptionSerializer extends StdSerializer<EntfrmAuth2Exc
 		gen.writeStartObject();
 		gen.writeObjectField("code", "1");
 		gen.writeStringField("msg", value.getMessage());
-		gen.writeStringField("data", value.getErrorCode());
+		gen.writeStringField("data", value.getOAuth2ErrorCode());
 		gen.writeEndObject();
 	}
 }

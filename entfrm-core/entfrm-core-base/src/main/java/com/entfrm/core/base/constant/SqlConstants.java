@@ -20,4 +20,6 @@ public interface SqlConstants {
     String ROLE_DATASCOPE = "select data_scope dataScope from sys_role where id = ?";
 
     String ADD_FILEINFO = "insert into sys_file_info (name, type, format, size, path, dept_id, create_by, create_time) values (?,?,?,?,?,?,?,?)";
+
+    String MENU_TREE = "select id, name, parent_id parentId from sys_menu where type != 'F' and del_flag = '0'";
 }

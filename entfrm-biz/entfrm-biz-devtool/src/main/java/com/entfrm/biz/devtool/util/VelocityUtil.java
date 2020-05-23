@@ -53,6 +53,7 @@ public class VelocityUtil {
         velocityContext.put("importList", getImportList(columnList));
         velocityContext.put("permissionPrefix", businessName);
         velocityContext.put("columns", columnList);
+        velocityContext.put("menuId", table.getMenuId());
         velocityContext.put("table", table);
         if (GenConstants.TPL_TREE.equals(tplCategory)) {
             setTreeVelocityContext(velocityContext, table);

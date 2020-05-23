@@ -18,7 +18,9 @@ import com.entfrm.biz.devtool.util.VelocityInitializer;
 import com.entfrm.biz.devtool.util.VelocityUtil;
 import com.entfrm.core.base.constant.CommonConstants;
 import com.entfrm.core.base.constant.GenConstants;
+import com.entfrm.core.base.constant.SqlConstants;
 import com.entfrm.core.base.exception.BaseException;
+import com.entfrm.core.base.util.FileUtil;
 import com.entfrm.core.security.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -169,6 +171,9 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 table.setColumns(list);
             }
         }
+        table.setGenPath(System.getProperty("user.dir"));
+        List<Map<String, Object>> list = jdbcTemplate.queryForList(SqlConstants.MENU_TREE);
+        table.setMenus(list);
         return table;
     }
 
@@ -286,11 +291,11 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
      * @return 数据
      */
     @Override
-    public byte[] generatorCode(String[] tableNames) {
+    public byte[] genCode(String[] tableNames) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ZipOutputStream zip = new ZipOutputStream(outputStream);
         for (String tableName : tableNames) {
-            generatorCode(tableName, zip);
+            genCode(tableName, zip);
         }
         IoUtil.close(zip);
         return outputStream.toByteArray();
@@ -299,7 +304,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
     /**
      * 查询表信息并生成代码
      */
-    private void generatorCode(String tableName, ZipOutputStream zip) {
+    private void genCode(String tableName, ZipOutputStream zip) {
         // 查询表信息
         Table table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName));
         if (table != null) {
@@ -329,6 +334,66 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                     log.error("渲染模板失败，表名：" + table.getTableName(), e);
                 }
             }
+        }
+    }
+
+    @Override
+    public String genToLocal(String[] tableNames) {
+        StringBuilder result = new StringBuilder();
+        result.append("生成结果：");
+        for (String tableName : tableNames) {
+            result.append(genToFile(tableName));
+        }
+        return result.toString();
+    }
+
+    private String genToFile(String tableName) {
+        // 查询表信息
+        Table table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName));
+        if (table != null) {
+            // 查询列信息
+            List<Column> columns = columnService.list(new QueryWrapper<Column>().eq("table_id", table.getId()));
+            setPkColumn(table, columns);
+            table.setColumns(columns);
+
+            VelocityInitializer.initVelocity();
+
+            VelocityContext context = VelocityUtil.prepareContext(table);
+
+            // 获取模板列表
+            List<String> templates = VelocityUtil.getTemplateList(table.getTplCategory());
+            for (String template : templates) {
+                // 渲染模板
+                StringWriter sw = new StringWriter();
+                Template tpl = Velocity.getTemplate(template, CommonConstants.UTF8);
+                tpl.merge(context, sw);
+                // 生成文件到本地
+                String localFile = "";
+                String sqlPath = "";
+                if(com.entfrm.core.base.util.StrUtil.containsAny(template, "vue", "js")){
+                    localFile = table.getGenPath().replace("\\", "/") + "/entfrm-ui/" + VelocityUtil.getFileName(template, table).replace("vue/", "src/");
+                }else if(com.entfrm.core.base.util.StrUtil.contains(template, "sql")){
+                    localFile = table.getGenPath().replace("\\", "/") + "/entfrm-biz/entfrm-biz-" + table.getModuleName() + "/sql/" + VelocityUtil.getFileName(template, table);
+                    sqlPath = localFile;
+                }else {
+                    localFile = table.getGenPath().replace("\\", "/") + "/entfrm-biz/entfrm-biz-" + table.getModuleName() + "/src/" + VelocityUtil.getFileName(template, table);
+                }
+                IoUtil.write(FileUtil.getOutputStream(localFile), CommonConstants.UTF8, false, sw.toString());
+                IoUtil.close(sw);
+                //执行生成菜单脚本
+                if(com.entfrm.core.base.util.StrUtil.isNotBlank(sqlPath)){
+                    try {
+                        List<String> sqlList = com.entfrm.core.base.util.StrUtil.loadSql(sqlPath);
+                        log.error(com.entfrm.core.base.util.StrUtil.join(sqlList.toArray(), ""));
+                        jdbcTemplate.batchUpdate(com.entfrm.core.base.util.StrUtil.join(sqlList.toArray(), ""));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            return tableName + "成功 ";
+        } else {
+            return tableName + "表不存在 ";
         }
     }
 

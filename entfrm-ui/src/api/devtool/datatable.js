@@ -61,3 +61,10 @@ export function delDatatable(alias, tableName) {
   })
 }
 
+// 生成文件到本地
+export function batchGenToLocal(tables) {
+  return request({
+    url: '/devtool/datatable/batchGenToLocal/' + tables,
+    method: 'get'
+  })
+}

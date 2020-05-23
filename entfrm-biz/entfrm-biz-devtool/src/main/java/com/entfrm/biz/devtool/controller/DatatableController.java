@@ -95,15 +95,26 @@ public class DatatableController {
     }
 
     /**
+     * 批量生成代码到本地
+     */
+    @OperLog("代码生成到本地")
+    @PreAuthorize("@ps.hasPerm('datatable_gen')")
+    @GetMapping("/batchGenToLocal/{tables}")
+    public R batchGenToLocal(@PathVariable String tables) {
+        String[] tableNames = Convert.toStrArray(tables);
+        return R.ok(tableService.genToLocal(tableNames));
+    }
+
+    /**
      * 批量生成代码
      */
     @OperLog("代码生成")
     @PreAuthorize("@ps.hasPerm('datatable_gen')")
-    @GetMapping("/batchGenCode")
+    @GetMapping("/batchGenCode/{tables}")
     @ResponseBody
-    public void batchGenCode(HttpServletResponse response, String tables) throws IOException {
+    public void batchGenCode(HttpServletResponse response, @PathVariable String tables) throws IOException {
         String[] tableNames = Convert.toStrArray(tables);
-        byte[] data = tableService.generatorCode(tableNames);
+        byte[] data = tableService.genCode(tableNames);
         genCode(response, data);
     }
 

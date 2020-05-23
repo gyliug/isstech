@@ -195,7 +195,8 @@
     exportDatatable,
     resetPwd,
     changeStatus,
-    importTemplate
+    importTemplate,
+    batchGenToLocal
   } from "@/api/devtool/datatable";
   import {datasourceList} from "@/api/devtool/datasource";
   import Treeselect from "@riophae/vue-treeselect";
@@ -410,13 +411,25 @@
       },
       /** 生成按钮操作 */
       handleGen(row) {
-        var tableNames = '';
+        var tables = '';
         if(row.tableName){
-          tableNames = row.tableName
+          tables = row.tableName
         }else {
-          tableNames = this.tableNames.join()
+          tables = this.tableNames.join()
         }
-        downLoadZip("/devtool/datatable/batchGenCode?tables=" + tableNames, "entfrm");
+
+        if(process.env.VUE_APP_BASE_API.indexOf('/pro') == -1){
+          batchGenToLocal(tables).then(response => {
+            if (response.code === 0) {
+              this.msgSuccess(response.data);
+              this.getList();
+            } else {
+              this.msgError(response.msg);
+            }
+          });
+        }else {
+          downLoadZip("/devtool/datatable/batchGenCode/" + tables, "entfrm");
+        }
       }
     }
   };

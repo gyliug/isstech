@@ -100,6 +100,16 @@ public class Table extends BaseEntity {
     private String cols;
 
     /**
+     * 父级菜单编号
+     */
+    private Integer menuId;
+
+    /**
+     * 生成路径
+     */
+    private String genPath;
+
+    /**
      * 树编码字段
      */
     @TableField(exist = false)
@@ -134,4 +144,10 @@ public class Table extends BaseEntity {
      */
     @TableField(exist = false)
     private String delNames;
+
+    /**
+     * 菜单信息
+     */
+    @TableField(exist = false)
+    private List<Map<String, Object>> menus;
 }

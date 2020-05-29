@@ -18,6 +18,21 @@
           <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
+
+      <el-row>
+        <el-col :span="12">
+          <el-form-item prop="code" >
+            <el-input v-model="loginForm.code" type="text" auto-complete="off" placeholder="验证码" maxlength="4" >
+              <svg-icon slot="prefix" icon-class="code" class="el-input__icon input-icon" />
+            </el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item >
+           <img :src="codeUrl" class="captcha" @click="getCode">
+          </el-form-item>
+        </el-col>
+      </el-row>
       <el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox>
       <el-form-item style="width:100%;">
         <el-button
@@ -48,14 +63,15 @@ export default {
   name: "Login",
   data() {
     return {
-      codeUrl: "",
+      codeUrl: require('../assets/images/captcha.jpg'),
       cookiePassword: "",
       loginForm: {
         username: "entfrm",
         password: "123456",
         rememberMe: false,
         code: "",
-        time: ""
+        time: "",
+        realKey: ""
       },
       loginRules: {
         username: [
@@ -64,7 +80,9 @@ export default {
         password: [
           { required: true, trigger: "blur", message: "密码不能为空" }
         ],
-        /*code: [{ required: true, trigger: "change", message: "验证码不能为空" }]*/
+        code: [
+          { required: true, trigger: "blur", message: "验证码不能为空", min: 4 }
+        ]
       },
       loading: false,
       redirect: undefined
@@ -79,14 +97,14 @@ export default {
     }
   },
   created() {
-    //this.getCode();
+    this.getCode();
     this.getCookie();
   },
   methods: {
     getCode() {
       getCodeImg().then(res => {
-        this.codeUrl = "data:image/gif;base64," + res.img;
-        this.loginForm.time = Date.now();
+        this.codeUrl = "data:image/jpg;base64," + res.data.img;
+        this.loginForm.realKey=res.data.realKey;
       });
     },
     getCookie() {
@@ -96,7 +114,9 @@ export default {
       this.loginForm = {
         username: username === undefined ? this.loginForm.username : username,
         password: password === undefined ? this.loginForm.password : decrypt(password),
-        rememberMe: rememberMe === undefined ? false : Boolean(rememberMe)
+        rememberMe: rememberMe === undefined ? false : Boolean(rememberMe),
+        code: this.loginForm.code,
+        realKey: this.loginForm.realKey
       };
     },
     handleLogin() {
@@ -119,7 +139,9 @@ export default {
             })
             .catch(() => {
               this.loading = false;
-              //this.getCode();
+              this.loginForm.code="";
+              this.loginForm.realKey="";
+              this.getCode();
             });
         }
       });
@@ -185,5 +207,8 @@ export default {
   font-family: Arial;
   font-size: 16px;
   letter-spacing: 1px;
+}
+.captcha{
+  margin-left: 20px;
 }
 </style>

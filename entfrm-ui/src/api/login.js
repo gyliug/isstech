@@ -2,7 +2,7 @@ import request from '@/utils/request'
 const scope = 'server'
 
 // 登录方法
-export function login(username, password, time) {
+export function login(username, password, time, code, realKey) {
   const grant_type = 'password'
 
   return request({
@@ -12,7 +12,7 @@ export function login(username, password, time) {
       'Authorization': 'Basic ZW50ZnJtOmVudGZybQ=='
     },
     method: 'post',
-    params: { username, password, time, grant_type, scope }
+    params: { username, password, time, grant_type, scope, code, realKey }
   })
 }
 
@@ -49,7 +49,7 @@ export function logout() {
 // 获取验证码
 export function getCodeImg() {
   return request({
-    url: '/captchaImage',
+    url: '/captcha/image/'+Date.now(),
     method: 'get'
   })
 }

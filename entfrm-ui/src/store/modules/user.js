@@ -37,10 +37,11 @@ const user = {
     Login({ commit }, userInfo) {
       const username = userInfo.username.trim()
       const password = userInfo.password
-      // const code = userInfo.code
+      const code = userInfo.code
+      const realKey = userInfo.realKey
       const time = userInfo.time
       return new Promise((resolve, reject) => {
-        login(username, password, time).then(res => {
+        login(username, password, time, code, realKey).then(res => {
           setAccessToken(res.access_token)
           setRefreshToken(res.refresh_token)
           commit('SET_ACCESS_TOKEN', res.access_token)

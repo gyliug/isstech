@@ -1,6 +1,6 @@
 package ${basePackage}.${moduleName}.controller;
 
-import cn.hutool.core.util.StrUtil;
+import com.entfrm.core.base.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
     #if($table.tplCategory == 'crud')
     import com.baomidou.mybatisplus.core.metadata.IPage;

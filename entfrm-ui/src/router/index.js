@@ -85,7 +85,7 @@ export const constantRoutes = [
     hidden: true,
     children: [
       {
-        path: '/dictData/:type(\\d+)',
+        path: '/dictData/:type',
         component: (resolve) => require(['@/views/system/dictData'], resolve),
         name: 'DictData',
         meta: { title: '字典数据', icon: '' }

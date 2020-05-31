@@ -37,7 +37,6 @@ public class InfoPushController {
 
     @PreAuthorize("@ps.hasPerm('infoPush_view')")
     @GetMapping("/list")
-    @ResponseBody
     public R list(Page page, InfoPush infoPush) {
         IPage<InfoPush> infoPushPage = infoPushService.page(page, getQueryWrapper(infoPush));
         for (InfoPush infoPush1 : infoPushPage.getRecords()) {
@@ -57,8 +56,7 @@ public class InfoPushController {
 
     @PreAuthorize("@ps.hasPerm('infoPush_add')")
     @PostMapping("/save")
-    @ResponseBody
-    public R save(@Validated InfoPush infoPush) {
+    public R save(@Validated @RequestBody InfoPush infoPush) {
         if (infoPush.getId() != null) {
             infoPush.setIsRead("1");
             infoPush.setReadTime(new Date());
@@ -69,15 +67,13 @@ public class InfoPushController {
 
     @PreAuthorize("@ps.hasPerm('infoPush_edit')")
     @PostMapping("/update")
-    @ResponseBody
-    public R update(@Validated InfoPush infoPush) {
+    public R update(@Validated @RequestBody InfoPush infoPush) {
         infoPushService.updateById(infoPush);
         return R.ok();
     }
 
     @PreAuthorize("@ps.hasPerm('infoPush_del')")
     @GetMapping("/remove/{id}")
-    @ResponseBody
     public R remove(@PathVariable("id") Integer[] id) {
         return R.ok(infoPushService.removeByIds(Arrays.asList(id)));
     }

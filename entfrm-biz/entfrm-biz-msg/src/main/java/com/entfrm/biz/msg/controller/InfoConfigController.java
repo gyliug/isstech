@@ -104,7 +104,7 @@ public class InfoConfigController {
     @GetMapping("/sendSms/{id}")
     public R sendSms(@PathVariable("id") Integer id) {
         InfoConfig infoConfig = infoConfigService.getById(id);
-        if (infoConfig != null) {
+        if(infoConfig != null){
             DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", infoConfig.getAccessKeyId(), infoConfig.getAccessKeySecret());
             IAcsClient client = new DefaultAcsClient(profile);
 
@@ -131,7 +131,7 @@ public class InfoConfigController {
     @GetMapping("/sendEmail/{id}")
     public R sendEmail(@PathVariable("id") Integer id, @RequestParam String toEmail, @RequestParam String subject, @RequestParam String content) {
         InfoConfig infoConfig = infoConfigService.getById(id);
-        if (infoConfig != null) {
+        if(infoConfig != null) {
             MailAccount account = new MailAccount();
             account.setHost(infoConfig.getHost());
             account.setPort(infoConfig.getPort());

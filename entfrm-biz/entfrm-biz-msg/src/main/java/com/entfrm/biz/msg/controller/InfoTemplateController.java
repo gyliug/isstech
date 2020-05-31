@@ -34,7 +34,6 @@ public class InfoTemplateController {
 
     @PreAuthorize("@ps.hasPerm('infoTemplate_view')")
     @GetMapping("/list")
-    @ResponseBody
     public R list(Page page, InfoTemplate infoTemplate) {
         IPage<InfoTemplate> infoTemplatePage = infoTemplateService.page(page, getQueryWrapper(infoTemplate));
         return R.ok(infoTemplatePage.getRecords(), infoTemplatePage.getTotal());
@@ -48,8 +47,7 @@ public class InfoTemplateController {
 
     @PreAuthorize("@ps.hasPerm('infoTemplate_add')")
     @PostMapping("/save")
-    @ResponseBody
-    public R save(@Validated InfoTemplate infoTemplate) {
+    public R save(@Validated @RequestBody InfoTemplate infoTemplate) {
         redisTemplate.opsForValue().set("tpl_" + infoTemplate.getTplKey(), infoTemplate.getTplContent());
         infoTemplateService.save(infoTemplate);
         return R.ok();
@@ -57,8 +55,7 @@ public class InfoTemplateController {
 
     @PreAuthorize("@ps.hasPerm('infoTemplate_edit')")
     @PostMapping("/update")
-    @ResponseBody
-    public R update(@Validated InfoTemplate infoTemplate) {
+    public R update(@Validated @RequestBody InfoTemplate infoTemplate) {
         redisTemplate.opsForValue().set("tpl_" + infoTemplate.getTplKey(), infoTemplate.getTplContent());
         infoTemplateService.updateById(infoTemplate);
         return R.ok();
@@ -66,7 +63,6 @@ public class InfoTemplateController {
 
     @PreAuthorize("@ps.hasPerm('infoTemplate_del')")
     @GetMapping("/remove/{id}")
-    @ResponseBody
     public R remove(@PathVariable("id") Integer[] id) {
         return R.ok(infoTemplateService.removeByIds(Arrays.asList(id)));
     }
@@ -76,7 +72,6 @@ public class InfoTemplateController {
      */
     @PreAuthorize("@ps.hasPerm('infoTemplate_edit')")
     @GetMapping("/changeStatus")
-    @ResponseBody
     public R changeStatus(InfoTemplate infoTemplate) {
         infoTemplateService.updateById(infoTemplate);
         return R.ok();

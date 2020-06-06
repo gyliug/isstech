@@ -3,6 +3,8 @@
 
     <panel-group @handleSetLineChartData="handleSetLineChartData" />
 
+    <shortcut />
+
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
       <line-chart :chart-data="lineChartData" />
     </el-row>
@@ -25,12 +27,13 @@
       </el-col>
     </el-row>
 
-    
+
   </div>
 </template>
 
 <script>
 import PanelGroup from './dashboard/PanelGroup'
+import Shortcut from './dashboard/Shortcut'
 import LineChart from './dashboard/LineChart'
 import RaddarChart from './dashboard/RaddarChart'
 import PieChart from './dashboard/PieChart'
@@ -59,6 +62,7 @@ export default {
   name: 'Index',
   components: {
     PanelGroup,
+    Shortcut,
     LineChart,
     RaddarChart,
     PieChart,

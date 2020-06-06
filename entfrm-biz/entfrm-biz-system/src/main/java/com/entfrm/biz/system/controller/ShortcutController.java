@@ -10,10 +10,10 @@ import com.entfrm.core.base.api.R;
 import com.entfrm.core.log.annotation.OperLog;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -30,15 +30,21 @@ public class ShortcutController {
 
     private QueryWrapper<Shortcut> getQueryWrapper(Shortcut shortcut) {
         return new QueryWrapper<Shortcut>().like(StrUtil.isNotBlank(shortcut.getName()), "name", shortcut.getName()).eq(StrUtil.isNotBlank(shortcut.getRegion()), "region", shortcut.getRegion())
-                .between(StrUtil.isNotBlank(shortcut.getBeginTime()) && StrUtil.isNotBlank(shortcut.getEndTime()), "create_time", shortcut.getBeginTime(), shortcut.getEndTime()).orderByDesc("create_time");
+                .between(StrUtil.isNotBlank(shortcut.getBeginTime()) && StrUtil.isNotBlank(shortcut.getEndTime()), "create_time", shortcut.getBeginTime(), shortcut.getEndTime()).orderByAsc("sort");
     }
 
     @PreAuthorize("@ps.hasPerm('shortcut_view')")
     @GetMapping("/list")
-    @ResponseBody
     public R list(Page page, Shortcut shortcut) {
         IPage<Shortcut> shortcutPage = shortcutService.page(page, getQueryWrapper(shortcut));
         return R.ok(shortcutPage.getRecords(), shortcutPage.getTotal());
+    }
+
+    @PreAuthorize("@ps.hasPerm('shortcut_view')")
+    @GetMapping("/shortcutList")
+    public R shortcutList(Shortcut shortcut) {
+        List<Shortcut> shortcutList = shortcutService.list(getQueryWrapper(shortcut));
+        return R.ok(shortcutList);
     }
 
     @GetMapping("/{id}")
@@ -49,7 +55,6 @@ public class ShortcutController {
     @OperLog("快捷方式新增")
     @PreAuthorize("@ps.hasPerm('shortcut_add')")
     @PostMapping("/save")
-    @ResponseBody
     public R save(@RequestBody Shortcut shortcut) {
         shortcutService.saveOrUpdate(shortcut);
         return R.ok();
@@ -58,7 +63,6 @@ public class ShortcutController {
     @OperLog("快捷方式修改")
     @PreAuthorize("@ps.hasPerm('shortcut_edit')")
     @PutMapping("/update")
-    @ResponseBody
     public R update(@RequestBody Shortcut shortcut) {
         shortcutService.updateById(shortcut);
         return R.ok();
@@ -67,7 +71,6 @@ public class ShortcutController {
     @OperLog("快捷方式删除")
     @PreAuthorize("@ps.hasPerm('shortcut_del')")
     @DeleteMapping("/remove/{id}")
-    @ResponseBody
     public R remove(@PathVariable("id") Integer[] id) {
         return R.ok(shortcutService.removeByIds(Arrays.asList(id)));
     }

@@ -8,7 +8,7 @@
         :background-color="variables.menuBg"
         :text-color="variables.menuText"
         :unique-opened="true"
-        :active-text-color="variables.menuActiveText"
+        :active-text-color="settings.theme"
         :collapse-transition="false"
         mode="vertical"
       >
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '@/assets/styles/variables.scss'
@@ -27,6 +27,7 @@ import variables from '@/assets/styles/variables.scss'
 export default {
   components: { SidebarItem, Logo },
   computed: {
+    ...mapState(["settings"]),
     ...mapGetters([
       'permission_routes',
       'sidebar'

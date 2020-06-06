@@ -1,12 +1,11 @@
 package com.entfrm.biz.system.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.entfrm.core.data.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import com.entfrm.core.data.entity.BaseEntity;
 
 /**
  * @author entfrm
@@ -18,7 +17,7 @@ import com.entfrm.core.data.entity.BaseEntity;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_shortcut")
-public class Shortcut extends BaseEntity{
+public class Shortcut extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /** 编号 */
@@ -33,6 +32,9 @@ public class Shortcut extends BaseEntity{
 
     /** 图标 */
     private String icon;
+
+    /** 背景颜色 */
+    private String bgColor;
 
     /** 路径 */
     private String path;

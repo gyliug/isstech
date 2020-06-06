@@ -1,5 +1,8 @@
 <template>
   <div class="login">
+    <div class="el-login-header">
+      <a href="http://www.entfrm.com">进入官网</a>
+    </div>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
       <h3 class="title">entfrm开发平台</h3>
       <el-form-item prop="username">
@@ -159,6 +162,21 @@ export default {
   background: #E7ECF2 url("../assets/images/login_bg.svg");
   background-size: cover;
 }
+
+.el-login-header {
+  height: 40px;
+  line-height: 40px;
+  position: fixed;
+  top: 10px;
+  width: 50%;
+  text-align: left;
+  color: #6959CD;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
 .title {
   margin: 0px auto 30px auto;
   text-align: center;

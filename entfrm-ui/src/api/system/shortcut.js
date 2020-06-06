@@ -9,6 +9,15 @@ export function listShortcut(query) {
   })
 }
 
+// 查询快捷方式列表
+export function shortcutList(query) {
+  return request({
+    url: '/system/shortcut/shortcutList',
+    method: 'get',
+    params: query
+  })
+}
+
 // 查询快捷方式详细
 export function getShortcut(shortcutId) {
   return request({

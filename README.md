@@ -16,6 +16,10 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
     </tr>
 </table>
 
+#### entfrm-app已可体验试用，扫描二维码注册体验
+
+<img src="http://47.100.3.58/static/show/qrcode.png"/>
+
 ### 软件功能
 
 #### 1.系统管理

@@ -62,7 +62,7 @@ public class InfoTemplateController {
     }
 
     @PreAuthorize("@ps.hasPerm('infoTemplate_del')")
-    @GetMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
     public R remove(@PathVariable("id") Integer[] id) {
         return R.ok(infoTemplateService.removeByIds(Arrays.asList(id)));
     }

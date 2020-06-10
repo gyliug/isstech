@@ -84,7 +84,7 @@ public class SwaggerConfig {
                 // 描述
                 .description(GlobalConfig.getName() + "接口文档")
                 // 作者信息
-                .contact(new Contact("entfrm", "http://47.100.3.58/", "1029861695@qq.com"))
+                .contact(new Contact("entfrm", "http://www.entfrm.com/", "1029861695@qq.com"))
                 // 版本
                 .version("版本号:" + GlobalConfig.getVersion())
                 .build();

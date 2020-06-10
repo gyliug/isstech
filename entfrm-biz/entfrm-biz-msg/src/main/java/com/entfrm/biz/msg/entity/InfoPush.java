@@ -27,10 +27,6 @@ public class InfoPush implements Serializable {
     @TableId
     private Integer id;
 
-    /** 消息标题 */
-    @TableField(exist = false)
-    private String title;
-
     /** 消息类型 */
     @TableField(exist = false)
     private String type;
@@ -40,10 +36,16 @@ public class InfoPush implements Serializable {
     private String content;
 
     /** 消息编号 */
-    private Integer msginfoId;
+    private Integer contentId;
+
+    /** 消息标题 */
+    private String contentTitle;
 
     /** 接受人 */
-    private String receiveId;
+    private Integer receiveId;
+
+    /** 通知类型 */
+    private String noticeType;
 
     /** 是否阅读 */
     private String isRead;

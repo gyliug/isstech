@@ -26,8 +26,8 @@
     <select id="selectDbTableList" resultMap="TableResult">
         select table_name, table_comment, create_time, update_time from information_schema.tables
         <where>table_schema = (select database())
-            AND table_name NOT LIKE 'qrtz_%' AND table_name NOT LIKE 'gen_%'
-            AND table_name NOT IN (select table_name from gen_table)
+            AND table_name NOT LIKE 'qrtz_%' AND table_name NOT LIKE 'dev_%'
+            AND table_name NOT IN (select table_name from dev_table)
             <if test="tableName != null and tableName != ''">
                 AND table_name like concat('%', #{tableName}, '%')
             </if>
@@ -39,7 +39,7 @@
 
     <select id="selectDbTableListByNames" resultMap="TableResult">
         select table_name, table_comment, create_time, update_time from information_schema.tables
-        where table_name NOT LIKE 'qrtz_%' and table_name NOT LIKE 'gen_%' and table_schema = (select database())
+        where table_name NOT LIKE 'qrtz_%' and table_name NOT LIKE 'dev_%' and table_schema = (select database())
         and table_name in
         <foreach collection="array" item="name" open="(" separator="," close=")">
             #{name}

@@ -7,7 +7,7 @@
     <groupId>com.entfrm</groupId>
     <artifactId>entfrm</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.2</version>
+    <version>1.1.0</version>
 
     <modules>
         <module>entfrm-core</module>

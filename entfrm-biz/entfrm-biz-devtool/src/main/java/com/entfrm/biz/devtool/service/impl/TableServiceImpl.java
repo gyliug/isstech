@@ -1,7 +1,6 @@
 package com.entfrm.biz.devtool.service.impl;
 
 import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -21,15 +20,13 @@ import com.entfrm.core.base.constant.GenConstants;
 import com.entfrm.core.base.constant.SqlConstants;
 import com.entfrm.core.base.exception.BaseException;
 import com.entfrm.core.base.util.FileUtil;
+import com.entfrm.core.base.util.StrUtil;
 import com.entfrm.core.security.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -370,24 +367,28 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 // 生成文件到本地
                 String localFile = "";
                 String sqlPath = "";
-                if(com.entfrm.core.base.util.StrUtil.containsAny(template, "vue", "js")){
+                if (StrUtil.containsAny(template, "vue", "js")) {
                     localFile = table.getGenPath().replace("\\", "/") + "/entfrm-ui/" + VelocityUtil.getFileName(template, table).replace("vue/", "src/");
-                }else if(com.entfrm.core.base.util.StrUtil.contains(template, "sql")){
+                } else if (StrUtil.contains(template, "sql")) {
                     localFile = table.getGenPath().replace("\\", "/") + "/entfrm-biz/entfrm-biz-" + table.getModuleName() + "/sql/" + VelocityUtil.getFileName(template, table);
                     sqlPath = localFile;
-                }else {
+                } else {
                     localFile = table.getGenPath().replace("\\", "/") + "/entfrm-biz/entfrm-biz-" + table.getModuleName() + "/src/" + VelocityUtil.getFileName(template, table);
                 }
                 IoUtil.write(FileUtil.getOutputStream(localFile), CommonConstants.UTF8, false, sw.toString());
                 IoUtil.close(sw);
-                //执行生成菜单脚本
-                if(com.entfrm.core.base.util.StrUtil.isNotBlank(sqlPath)){
-                    try {
-                        List<String> sqlList = com.entfrm.core.base.util.StrUtil.loadSql(sqlPath);
-                        log.error(com.entfrm.core.base.util.StrUtil.join(sqlList.toArray(), ""));
-                        jdbcTemplate.batchUpdate(com.entfrm.core.base.util.StrUtil.join(sqlList.toArray(), ""));
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                //查询菜单是否创建
+                List<Map<String, Object>> maps = jdbcTemplate.queryForList("select * from sys_menu where name = ?", table.getFunctionName());
+                if (maps.size() == 0 ) {
+                    //执行生成菜单脚本
+                    if (StrUtil.isNotBlank(sqlPath)) {
+                        try {
+                            List<String> sqlList = StrUtil.loadSql(sqlPath);
+                            jdbcTemplate.batchUpdate(StrUtil.join(sqlList.toArray(), ""));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+
+                        }
                     }
                 }
             }
@@ -411,5 +412,4 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
             }
         }
     }
-
 }

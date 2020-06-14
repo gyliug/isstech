@@ -3,7 +3,9 @@ package com.entfrm.biz.devtool.controller;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.io.IoUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.entfrm.biz.devtool.entity.Column;
 import com.entfrm.biz.devtool.entity.Table;
+import com.entfrm.biz.devtool.service.ColumnService;
 import com.entfrm.biz.devtool.service.TableService;
 import com.entfrm.core.base.api.R;
 import com.entfrm.core.base.util.StrUtil;
@@ -34,6 +36,7 @@ public class DatatableController {
 
     private final JdbcTemplate jdbcTemplate;
     private final TableService tableService;
+    private final ColumnService columnService;
 
     /**
      * **
@@ -43,7 +46,6 @@ public class DatatableController {
      * @return
      */
     @GetMapping("/list")
-    @ResponseBody
     public R list(@RequestParam String alias, @RequestParam(required = false) String tableName) {
         DSContextHolder.setDSType(AliasUtil.getDsId(alias));
         StringBuilder sql = new StringBuilder();
@@ -67,10 +69,21 @@ public class DatatableController {
         return R.ok(list);
     }
 
+    @GetMapping("/tree")
+    public R tree() {
+        List<Table> tableList = tableService.list();
+        return R.ok(tableList);
+    }
+
+    @GetMapping("/column/{tableId}")
+    public R column(@PathVariable String tableId) {
+        List<Column> columnList = columnService.list(new QueryWrapper<Column>().eq("table_id", tableId));
+        return R.ok(columnList);
+    }
+
     @OperLog("新建/配置表")
     @PreAuthorize("@ps.hasAnyPerm('datatable_add,datatable_config')")
     @PostMapping("/getGenTable")
-    @ResponseBody
     public R getGenTable(@RequestBody Table table) {
         return R.ok(tableService.getGenTable(table.getTableName(), table.getTableComment()));
     }
@@ -78,7 +91,6 @@ public class DatatableController {
     @OperLog("表修改")
     @PreAuthorize("@ps.hasPerm('datatable_edit')")
     @PutMapping("/update")
-    @ResponseBody
     public R update(@RequestBody Table table) {
         tableService.validateEdit(table);
         tableService.updateTable(table);
@@ -88,7 +100,6 @@ public class DatatableController {
     @OperLog("预览代码")
     @PreAuthorize("@ps.hasPerm('datatable_view')")
     @GetMapping("/preview/{tableId}")
-    @ResponseBody
     public R preview(@PathVariable("tableId") Integer tableId) {
         Map<String, String> dataMap = tableService.previewCode(tableId);
         return R.ok(dataMap);
@@ -126,17 +137,16 @@ public class DatatableController {
         response.setHeader("Content-Disposition", "attachment; filename=\"entfrm.zip\"");
         response.addHeader("Content-Length", "" + data.length);
         response.setContentType("application/octet-stream; charset=UTF-8");
-        IoUtil.write(response.getOutputStream(),true,data);
+        IoUtil.write(response.getOutputStream(), true, data);
     }
 
     @OperLog("表删除")
     @PreAuthorize("@ps.hasPerm('datatable_del')")
     @GetMapping("/remove")
-    @ResponseBody
     @Transactional
     public R remove(@RequestParam String alias, @RequestParam String tableName) {
         Table table = tableService.getOne(new QueryWrapper<Table>().eq("table_name", tableName));
-        if(table != null){
+        if (table != null) {
             //删除表信息
             tableService.removeById(table.getId());
             //删除表列信息

@@ -111,7 +111,7 @@ public class InfoConfigController {
             CommonRequest request = new CommonRequest();
             request.setMethod(MethodType.POST);
             request.setDomain(infoConfig.getHost());
-            request.setVersion("1.0.2");
+            request.setVersion("1.1.0");
             request.setAction("SendSms");
             request.putQueryParameter("RegionId", "cn-hangzhou");
             try {

@@ -34,8 +34,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter implem
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(
-                        "/oauth/**", "/common/**", "/cms/article/doc/**", "/activiti/service/**","/activiti/task/track/**",
-                        "/activiti/process/resource", "/actuator/**" ).permitAll()
+                        "/oauth/**", "/common/**", "/cms/article/doc/**", "/activiti/service/**", "/activiti/task/track/**",
+                        "/devtool/dataset/api/**", "/activiti/process/resource", "/actuator/**").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new CaptchaFilter(redisTemplate), UsernamePasswordAuthenticationFilter.class);
     }
@@ -43,7 +43,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter implem
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         /** 本地文件上传路径 */
-        registry.addResourceHandler("/profile/**" ).addResourceLocations("file:" + GlobalConfig.getProfile() + "/" );
+        registry.addResourceHandler("/profile/**").addResourceLocations("file:" + GlobalConfig.getProfile() + "/");
     }
 
 }

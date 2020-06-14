@@ -132,7 +132,7 @@
           </el-table-column>
           <el-table-column align="center" label="操作" width="80">
             <template slot-scope="scope">
-              <svg-icon class="drag-handler" icon-class="drag"/>
+              <svg-icon class="drag-handler" icon-class="drag" class-name="allowDrag"/>
               <el-button type="text" @click="handleDel(scope.$index, scope.row)" class="del-handler"
                          icon="el-icon-delete"></el-button>
             </template>
@@ -195,13 +195,23 @@
           this.info.treeName = options.treeName
         }
         this.info.menus = this.handleTree(res.data.menus, "id");
-        this.$nextTick(() => {
-          this.setSort()
-        })
       });
       /** 查询字典下拉列表 */
       dictList().then(response => {
         this.dictOptions = response.data;
+      });
+    },
+    mounted() {
+      const el = this.$refs.dragTable.$el.querySelectorAll(".el-table__body-wrapper > table > tbody")[0];
+      const sortable = Sortable.create(el, {
+        handle: ".allowDrag",
+        onEnd: evt => {
+          const targetRow = this.cloumns.splice(evt.oldIndex, 1)[0];
+          this.cloumns.splice(evt.newIndex, 0, targetRow);
+          for (let index in this.cloumns) {
+            this.cloumns[index].sort = parseInt(index) + 1;
+          }
+        }
       });
     },
     methods: {
@@ -214,17 +224,22 @@
             const validateResult = res.every(item => !!item)
             if (validateResult) {
               const genTable = Object.assign({}, basicForm.model, genForm.model)
-              console.log(this.cloumns)
+              //console.log(this.cloumns)
+              //生成新sort
+              for (let index in this.cloumns) {
+                this.cloumns[index].sort = parseInt(index) + 1;
+              }
               genTable.columns = this.cloumns
               genTable.params = {
                 treeId: genTable.treeId,
                 treeName: genTable.treeName,
                 treeParentId: genTable.treeParentId
               }
-              console.log('delNames：' + JSON.stringify(this.delNames))
+              //console.log('delNames：' + JSON.stringify(this.delNames))
               if(this.delNames && this.delNames.length > 0){
                 genTable.delNames = this.delNames.join()
               }
+              //console.log('genTable：' + JSON.stringify(genTable))
               updateGenTable(genTable)
                 .then(res => {
                   this.msgSuccess(res.msg)
@@ -256,26 +271,14 @@
           htmlType: 'input'
         }
         this.cloumns.splice(this.cloumns.length - 6, 0, cloumn)
+        for (let index in this.cloumns) {
+          this.cloumns[index].sort = parseInt(index) + 1;
+        }
       },
       /** 关闭按钮 */
       close() {
         this.$store.dispatch("tagsView/delView", this.$route);
         this.$router.push({path: "/devtool/datatable", query: {t: Date.now()}})
-      },
-      setSort() {
-        const el = this.$refs.dragTable.$el.querySelectorAll('.el-table__body-wrapper > table > tbody')[0]
-        this.sortable = Sortable.create(el, {
-          ghostClass: 'sortable-ghost', // Class name for the drop placeholder,
-          setData: function (dataTransfer) {
-            // to avoid Firefox bug
-            // Detail see : https://github.com/RubaXa/Sortable/issues/1012
-            dataTransfer.setData('Text', '')
-          },
-          onEnd: evt => {
-            const targetRow = this.cloumns.splice(evt.oldIndex, 1)[0]
-            this.cloumns.splice(evt.newIndex, 0, targetRow)
-          }
-        })
       },
       handleDel(index, row) {
         this.$confirm('是否确认删除字段列名为"' + row.columnName + '"的数据项?', "警告", {

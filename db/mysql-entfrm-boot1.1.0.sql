@@ -1741,6 +1741,30 @@ INSERT INTO `sys_menu` VALUES (157, '消息配置查询', 153, NULL, 1, 'F', NUL
 INSERT INTO `sys_menu` VALUES (158, '消息配置导出', 153, NULL, 1, 'F', NULL, '#', 'infoConfig_export', '#', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
 INSERT INTO `sys_menu` VALUES (159, '令牌删除', 47, NULL, 1, 'F', NULL, '#', 'token_del', NULL, '1', 1, '0', 'entfrm', '2020-04-21 12:28:59', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (160, '令牌查看', 47, NULL, 1, 'F', NULL, '#', 'token_view', NULL, '1', 2, '0', 'entfrm', '2020-04-21 12:29:19', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (179, '消息管理', 152, NULL, 1, 'C', 'infoContent', 'msg/infoContent/index', '', 'star', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-05-25 15:34:53', '消息内容菜单', '0');
+INSERT INTO `sys_menu` VALUES (180, '消息管理新增', 179, NULL, 1, 'F', '', '#', 'infoContent_add', '#', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-05-25 15:34:58', '', '0');
+INSERT INTO `sys_menu` VALUES (181, '消息管理修改', 179, NULL, 1, 'F', '', '#', 'infoContent_edit', '#', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-05-25 15:35:01', '', '0');
+INSERT INTO `sys_menu` VALUES (182, '消息管理删除', 179, NULL, 1, 'F', '', '#', 'infoContent_del', '#', '1', 3, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-05-25 15:35:04', '', '0');
+INSERT INTO `sys_menu` VALUES (183, '消息管理查询', 179, NULL, 1, 'F', '', '#', 'infoContent_view', '#', '1', 4, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-05-25 15:35:06', '', '0');
+INSERT INTO `sys_menu` VALUES (184, '消息管理导出', 179, NULL, 1, 'F', '', '#', 'infoContent_export', '#', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-05-25 15:35:09', '', '0');
+INSERT INTO `sys_menu` VALUES (185, '消息模板', 152, NULL, 1, 'C', 'infoTemplate', 'msg/infoTemplate/index', '', 'star', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '消息模板菜单', '0');
+INSERT INTO `sys_menu` VALUES (186, '消息模板新增', 185, NULL, 1, 'F', '', '#', 'infoTemplate_add', '#', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (187, '消息模板修改', 185, NULL, 1, 'F', '', '#', 'infoTemplate_edit', '#', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (188, '消息模板删除', 185, NULL, 1, 'F', '', '#', 'infoTemplate_del', '#', '1', 3, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (189, '消息模板查询', 185, NULL, 1, 'F', '', '#', 'infoTemplate_view', '#', '1', 4, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (190, '消息模板导出', 185, NULL, 1, 'F', '', '#', 'infoTemplate_export', '#', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (191, '消息推送', 152, NULL, 1, 'C', 'infoPush', 'msg/infoPush/index', '', 'star', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '消息推送菜单', '0');
+INSERT INTO `sys_menu` VALUES (192, '消息推送新增', 191, NULL, 1, 'F', '', '#', 'infoPush_add', '#', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (193, '消息推送修改', 191, NULL, 1, 'F', '', '#', 'infoPush_edit', '#', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (194, '消息推送删除', 191, NULL, 1, 'F', '', '#', 'infoPush_del', '#', '1', 3, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (195, '消息推送查询', 191, NULL, 1, 'F', '', '#', 'infoPush_view', '#', '1', 4, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (196, '消息推送导出', 191, NULL, 1, 'F', '', '#', 'infoPush_export', '#', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (197, '数据源管理', 3, NULL, 1, 'C', 'dataset', 'devtool/dataset/index', NULL, 'star', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-06-12 21:57:13', '数据源菜单', '0');
+INSERT INTO `sys_menu` VALUES (198, '数据源新增', 197, NULL, 1, 'F', NULL, '#', 'dataset_add', '#', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (199, '数据源修改', 197, NULL, 1, 'F', NULL, '#', 'dataset_edit', '#', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (200, '数据源删除', 197, NULL, 1, 'F', NULL, '#', 'dataset_del', '#', '1', 3, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (201, '数据源查询', 197, NULL, 1, 'F', NULL, '#', 'dataset_view', '#', '1', 4, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
+INSERT INTO `sys_menu` VALUES (202, '数据源导出', 197, NULL, 1, 'F', NULL, '#', 'dataset_export', '#', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
 
 -- ----------------------------
 -- Table structure for sys_oper_log

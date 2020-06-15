@@ -31,7 +31,7 @@ public class BuilderUtil {
 
     //字段信息转sql脚本(创建)
     private static String fieldCreateScript(Column column) {
-        String script = column.getColumnName() + " " + column.getColumnType() + " " + (("1").equals(column.getIsRequired()) ? "NOT NULL" : "NULL");
+        String script = column.getColumnName() + " " + column.getColumnType() + " " + ((("1").equals(column.getIsRequired()) || "1".equals(column.getIsPk())) ? "NOT NULL" : "NULL");
         script += (StrUtil.isNotEmpty(column.getColumnComment()) ? " COMMENT '" + column.getColumnComment() + "'" : " ");
         script += (StrUtil.isNotEmpty(column.getDefValue()) ? " DEFAULT " + column.getDefValue() : " ");
         if ("id".equalsIgnoreCase(column.getColumnName()) && "1".equals(column.getIsPk())) {

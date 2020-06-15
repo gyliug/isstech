@@ -259,6 +259,7 @@
   } from "@/api/devtool/dataset";
   import {datasourceList} from "@/api/devtool/datasource";
   import {codemirror} from 'vue-codemirror'
+  import "codemirror/lib/codemirror.css";
   import "codemirror/theme/ambiance.css";  // 这里引入的是主题样式，根据设置的theme的主题引入，一定要引入！！
   require("codemirror/mode/sql/sql"); // 这里引入的模式的js，根据设置的mode引入，一定要引入！！
   import Treeselect from "@riophae/vue-treeselect";
@@ -324,7 +325,7 @@
         cmOptions: {
           value: '',
           mode: "text/javascript",
-          theme: "base16-dark",
+          theme: "ambiance",
           readOnly: false,
           lineNumbers: true,
           line: true,
@@ -406,24 +407,28 @@
       },
       /** 解析脚本 */
       analysisScripts() {
-        /*if (!this.form.alias) {
+        if (!this.form.alias) {
           this.msgError("请选择数据源");
           return
-        }*/
+        }
         if (!this.form.scripts) {
           this.msgError("请输入sql脚本");
           return
         }
-        analysisScripts('mysql_entfrm-boot_1', this.form.scripts).then(response => {
+        analysisScripts(this.form.alias, this.form.scripts).then(response => {
           this.analysisData = response.data;
         });
       },
       handlePreview() {
+        if (!this.form.alias) {
+          this.msgError("请选择数据源");
+          return
+        }
         if (!this.form.scripts) {
           this.msgError("请输入sql脚本");
           return
         }
-        previewData('mysql_entfrm-boot_1', this.form.scripts).then(response => {
+        previewData(this.form.alias, this.form.scripts).then(response => {
           this.previewDatas = JSON.stringify(response.data);
           this.dataDialog = true
         });

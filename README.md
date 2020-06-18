@@ -2,7 +2,7 @@
 ## 开源不易，如果对您有帮助，请点右上角 “Star” 支持一下 谢谢！
 ### 平台简介    
 entfrm开发平台，是一个以模块化为核心的无代码开发平台，是一个集PC和APP快速开发、系统管理、运维监控、开发工具、OAuth2授权、可视化数据源管理与数据构建、API动态生成与统计、工作流、智能表单设计、微服务骨架等全方位功能于一体的高效、稳定的快速开发平台。
-平台采用Spring Boot 2.X 、Spring Security、Oauth2、Mybatis Plus、Activiti、uni-app等核心技术，前端基于vue-element-admin框架。官网：http://www.entfrm.com/ **满 500 Star更新已完成的所有功能**
+平台采用Spring Boot 2.X 、Spring Security、Oauth2、Mybatis Plus、Activiti、uni-app等核心技术，前端基于vue-element-admin框架。官网：http://www.entfrm.com/ **满 1k Star 更新智能表单+entfrm-flow工作流**
 ###  entfrm官方交流群：871910881 (进群领取最新数据库脚本)
 ### 思维导图
 ![平台思维导图](http://47.100.3.58/static/show/entfrm.png)

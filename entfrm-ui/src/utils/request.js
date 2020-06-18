@@ -4,7 +4,6 @@ import {MessageBox, Message} from 'element-ui'
 import store from '@/store'
 import errorCode from '@/utils/errorCode'
 import {getAccessToken} from '@/utils/auth'
-import router from '../router/index.js'
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 axios.defaults.validateStatus = function (status) {
@@ -59,7 +58,7 @@ service.interceptors.response.use(res => {
         }
       ).then(() => {
         store.dispatch('LogOut').then(() => {
-          this.$router.push({path: "/login"});
+          location.reload()
         })
       })
     } else if (status === 500) {

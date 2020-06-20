@@ -142,7 +142,7 @@ public class DatatableController {
 
     @OperLog("表删除")
     @PreAuthorize("@ps.hasPerm('datatable_del')")
-    @GetMapping("/remove")
+    @DeleteMapping("/remove")
     @Transactional
     public R remove(@RequestParam String alias, @RequestParam String tableName) {
         Table table = tableService.getOne(new QueryWrapper<Table>().eq("table_name", tableName));

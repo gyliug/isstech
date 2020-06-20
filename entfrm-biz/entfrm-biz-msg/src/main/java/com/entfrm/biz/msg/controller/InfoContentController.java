@@ -75,7 +75,7 @@ public class InfoContentController {
     }
 
     @PreAuthorize("@ps.hasPerm('infoContent_del')")
-    @GetMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
     public R remove(@PathVariable("id") Integer[] id) {
         return R.ok(infoContentService.removeByIds(Arrays.asList(id)));
     }

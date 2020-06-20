@@ -112,7 +112,7 @@ public class InfoPushController {
     }
 
     @PreAuthorize("@ps.hasPerm('infoPush_del')")
-    @GetMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
     public R remove(@PathVariable("id") Integer[] id) {
         return R.ok(infoPushService.removeByIds(Arrays.asList(id)));
     }

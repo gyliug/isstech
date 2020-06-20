@@ -87,7 +87,7 @@ public class CategoryController {
 
     @OperLog("类别删除")
     @PreAuthorize("@ps.hasPerm('category_del')")
-    @GetMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
     @ResponseBody
     public R remove(@PathVariable("id") Integer id) {
         return R.ok(categoryService.removeById(id));

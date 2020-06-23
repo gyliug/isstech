@@ -107,9 +107,9 @@ public class DataFilterAspect {
                     sqlFilter.append(StrUtil.format(" {}dept_id = {} ", tableAlias, user.getDeptId()));
                 } else if (DATA_SCOPE_DEPT_AND_CHILD.equals(dataScope)) {
                     sqlFilter.append(StrUtil.format(
-                            " {}dept_id IN ( SELECT dept_id FROM sys_dept WHERE dept_id = {} or find_in_set( {} , ancestors ) )", tableAlias, user.getDeptId(), user.getDeptId()));
+                            " {}dept_id IN ( SELECT id FROM sys_dept WHERE id = {} or find_in_set( {} , ancestors ) )", tableAlias, user.getDeptId(), user.getDeptId()));
                 } else if (DATA_SCOPE_SELF.equals(dataScope)) {
-                    sqlFilter.append(StrUtil.format(" create_by = {} ", user.getUsername()));
+                    sqlFilter.append(StrUtil.format(" create_by = '{}' ", user.getUsername()));
                 }
             }
             if (StrUtil.isNotBlank(sqlFilter)) {

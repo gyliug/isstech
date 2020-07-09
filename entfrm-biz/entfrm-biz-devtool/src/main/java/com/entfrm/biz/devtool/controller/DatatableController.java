@@ -147,8 +147,6 @@ public class DatatableController {
     public R remove(@RequestParam String alias, @RequestParam String tableName) {
         Table table = tableService.getOne(new QueryWrapper<Table>().eq("table_name", tableName));
         if (table != null) {
-            //删除表信息
-            tableService.removeById(table.getId());
             //删除表列信息
             tableService.deleteTableByIds(table.getId() + "");
         }

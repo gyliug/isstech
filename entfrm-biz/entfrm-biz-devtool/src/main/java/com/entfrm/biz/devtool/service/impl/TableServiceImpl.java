@@ -21,6 +21,9 @@ import com.entfrm.core.base.constant.SqlConstants;
 import com.entfrm.core.base.exception.BaseException;
 import com.entfrm.core.base.util.FileUtil;
 import com.entfrm.core.base.util.StrUtil;
+import com.entfrm.core.data.datasource.DSContextHolder;
+import com.entfrm.core.data.enums.DataTypeEnum;
+import com.entfrm.core.data.util.AliasUtil;
 import com.entfrm.core.security.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -168,7 +171,8 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 table.setColumns(list);
             }
         }
-        table.setGenPath(System.getProperty("user.dir"));
+        String genPath = StrUtil.isNotBlank(table.getGenPath()) ? table.getGenPath() : System.getProperty("user.dir");
+        table.setGenPath(genPath);
         List<Map<String, Object>> list = jdbcTemplate.queryForList(SqlConstants.MENU_TREE);
         table.setMenus(list);
         return table;
@@ -224,6 +228,10 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 if (StrUtil.isNotEmpty(table.getDelNames())) {
                     for (String columnName : StrUtil.split(table.getDelNames(), ",")) {
                         columnService.remove(new QueryWrapper<Column>().eq("table_id", table.getId()).eq("column_name", columnName));
+                        //更新实际表结构
+                        StringBuilder sql = new StringBuilder();
+                        sql.append("ALTER TABLE ").append(table.getTableName()).append(" drop ").append(columnName).append(";");
+                        jdbcTemplate.execute(sql.toString());
                     }
                 }
                 //更新数据库表结构
@@ -379,7 +387,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 IoUtil.close(sw);
                 //查询菜单是否创建
                 List<Map<String, Object>> maps = jdbcTemplate.queryForList("select * from sys_menu where name = ?", table.getFunctionName());
-                if (maps.size() == 0 ) {
+                if (maps.size() == 0) {
                     //执行生成菜单脚本
                     if (StrUtil.isNotBlank(sqlPath)) {
                         try {

@@ -50,14 +50,9 @@ export function previewTable(tableId) {
 
 // 删除数据表
 export function delDatatable(alias, tableName) {
-  const data = {
-    alias,
-    tableName
-  }
   return request({
-    url: '/devtool/datatable/remove',
-    method: 'get',
-    data: data
+    url: '/devtool/datatable/remove?alias='+alias+'&tableName='+tableName,
+    method: 'delete',
   })
 }
 

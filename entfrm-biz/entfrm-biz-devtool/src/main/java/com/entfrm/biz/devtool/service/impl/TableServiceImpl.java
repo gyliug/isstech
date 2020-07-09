@@ -168,7 +168,8 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 table.setColumns(list);
             }
         }
-        table.setGenPath(System.getProperty("user.dir"));
+        String genPath = StrUtil.isNotBlank(table.getGenPath()) ? table.getGenPath() : System.getProperty("user.dir");
+        table.setGenPath(genPath);
         List<Map<String, Object>> list = jdbcTemplate.queryForList(SqlConstants.MENU_TREE);
         table.setMenus(list);
         return table;
@@ -379,7 +380,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 IoUtil.close(sw);
                 //查询菜单是否创建
                 List<Map<String, Object>> maps = jdbcTemplate.queryForList("select * from sys_menu where name = ?", table.getFunctionName());
-                if (maps.size() == 0 ) {
+                if (maps.size() == 0) {
                     //执行生成菜单脚本
                     if (StrUtil.isNotBlank(sqlPath)) {
                         try {

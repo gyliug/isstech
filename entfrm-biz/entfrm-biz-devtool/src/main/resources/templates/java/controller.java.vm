@@ -1,4 +1,4 @@
-package ${basePackage}.${moduleName}.controller;
+package ${packageName}.controller;
 
 import com.entfrm.core.base.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;

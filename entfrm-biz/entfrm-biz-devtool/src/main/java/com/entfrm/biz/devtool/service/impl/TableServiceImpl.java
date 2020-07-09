@@ -21,6 +21,9 @@ import com.entfrm.core.base.constant.SqlConstants;
 import com.entfrm.core.base.exception.BaseException;
 import com.entfrm.core.base.util.FileUtil;
 import com.entfrm.core.base.util.StrUtil;
+import com.entfrm.core.data.datasource.DSContextHolder;
+import com.entfrm.core.data.enums.DataTypeEnum;
+import com.entfrm.core.data.util.AliasUtil;
 import com.entfrm.core.security.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -225,6 +228,10 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 if (StrUtil.isNotEmpty(table.getDelNames())) {
                     for (String columnName : StrUtil.split(table.getDelNames(), ",")) {
                         columnService.remove(new QueryWrapper<Column>().eq("table_id", table.getId()).eq("column_name", columnName));
+                        //更新实际表结构
+                        StringBuilder sql = new StringBuilder();
+                        sql.append("ALTER TABLE ").append(table.getTableName()).append(" drop ").append(columnName).append(";");
+                        jdbcTemplate.execute(sql.toString());
                     }
                 }
                 //更新数据库表结构

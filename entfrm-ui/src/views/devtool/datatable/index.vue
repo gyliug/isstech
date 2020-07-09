@@ -392,6 +392,7 @@
       },
       /** 删除按钮操作 */
       handleDel(row) {
+        var that = this;
         if (!this.queryParams || this.queryParams.alias == undefined) {
           this.msgWarning("请选择数据库！");
           return;
@@ -402,11 +403,12 @@
           cancelButtonText: "取消",
           type: "warning"
         }).then(function () {
-          return delDatatable(this.queryParams.alias, tableName);
+          return delDatatable(that.queryParams.alias, tableName);
         }).then(() => {
           this.getList();
           this.msgSuccess("删除成功");
-        }).catch(function () {
+        }).catch(function (e) {
+          console.log(e);
         });
       },
       /** 生成按钮操作 */

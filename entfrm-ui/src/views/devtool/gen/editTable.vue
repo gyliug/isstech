@@ -139,7 +139,7 @@
           </el-table-column>
         </el-table>
       </el-tab-pane>
-      <el-tab-pane label="生成信息" name="genInfo">
+      <el-tab-pane label="生成信息" name="genInfo" height="320px;">
         <gen-info-form ref="genInfo" :info="info"/>
       </el-tab-pane>
     </el-tabs>

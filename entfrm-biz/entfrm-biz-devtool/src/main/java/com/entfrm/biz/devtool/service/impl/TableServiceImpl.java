@@ -1,5 +1,7 @@
 package com.entfrm.biz.devtool.service.impl;
 
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -228,14 +230,14 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 if (StrUtil.isNotEmpty(table.getDelNames())) {
                     for (String columnName : StrUtil.split(table.getDelNames(), ",")) {
                         columnService.remove(new QueryWrapper<Column>().eq("table_id", table.getId()).eq("column_name", columnName));
-                        //更新实际表结构
-                        StringBuilder sql = new StringBuilder();
-                        sql.append("ALTER TABLE ").append(table.getTableName()).append(" drop ").append(columnName).append(";");
-                        jdbcTemplate.execute(sql.toString());
                     }
                 }
-                //更新数据库表结构
-                jdbcTemplate.execute(BuilderUtil.updateTable(table));
+                //更新数据库表结构，
+                //方案一：删除重建，
+                jdbcTemplate.execute("drop table "+table.getTableName()+";");
+                //方案二：备份原表重建
+                //jdbcTemplate.execute("rename  table "+table.getTableName()+" to "+table.getTableName()+ DateUtil.format(new Date(), DatePattern.PURE_TIME_PATTERN)+";");
+                jdbcTemplate.execute(BuilderUtil.createTable(table));
                 for (Column column : table.getColumns()) {
                     if (StrUtil.isNotEmpty(column.getColumnName())) {
                         column.setTableId(table.getId());

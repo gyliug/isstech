@@ -52,7 +52,7 @@
                         </el-form-item>
                     #elseif($column.htmlType == "datetime" && "createTime" != ${column.javaField})
                         <el-form-item label="${comment}" prop="${column.javaField}">
-                            <el-date-picker clearable size="small" style="width: 0px"
+                            <el-date-picker clearable size="small" style="width: 240px"
                                             v-model="queryParams.${column.javaField}"
                                             type="date"
                                             value-format="yyyy-MM-dd"
@@ -240,7 +240,7 @@
                                 #elseif($column.htmlType == "datetime")
                                     <el-col :span="${table.cols}">
                                         <el-form-item label="${comment}" prop="${field}">
-                                            <el-date-picker clearable size="small" style="width: 0px"
+                                            <el-date-picker clearable size="small" style="width: 240px"
                                                             v-model="form.${field}"
                                                             type="date"
                                                             value-format="yyyy-MM-dd"

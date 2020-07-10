@@ -1,7 +1,5 @@
 package com.entfrm.biz.devtool.service.impl;
 
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -23,9 +21,6 @@ import com.entfrm.core.base.constant.SqlConstants;
 import com.entfrm.core.base.exception.BaseException;
 import com.entfrm.core.base.util.FileUtil;
 import com.entfrm.core.base.util.StrUtil;
-import com.entfrm.core.data.datasource.DSContextHolder;
-import com.entfrm.core.data.enums.DataTypeEnum;
-import com.entfrm.core.data.util.AliasUtil;
 import com.entfrm.core.security.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -224,6 +219,9 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
             //创建数据库表结构
             jdbcTemplate.execute(BuilderUtil.createTable(table));
         } else {
+
+            Table oldTable = baseMapper.selectById(table.getId());
+
             int row = baseMapper.updateById(table);
             if (row > 0) {
                 //判断是否有删除字段
@@ -233,10 +231,12 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                     }
                 }
                 //更新数据库表结构，
-                //方案一：删除重建，
-                jdbcTemplate.execute("drop table "+table.getTableName()+";");
+                //方案一：删除重建，删除更新之前的表信息
+                if (oldTable != null) {
+                    jdbcTemplate.execute("drop table " + oldTable.getTableName() + ";");
+                }
                 //方案二：备份原表重建
-                //jdbcTemplate.execute("rename  table "+table.getTableName()+" to "+table.getTableName()+ DateUtil.format(new Date(), DatePattern.PURE_TIME_PATTERN)+";");
+                //jdbcTemplate.execute("rename  table "+oldTable.getTableName()+" to "+oldTable.getTableName()+ DateUtil.format(new Date(), DatePattern.PURE_TIME_PATTERN)+";");
                 jdbcTemplate.execute(BuilderUtil.createTable(table));
                 for (Column column : table.getColumns()) {
                     if (StrUtil.isNotEmpty(column.getColumnName())) {

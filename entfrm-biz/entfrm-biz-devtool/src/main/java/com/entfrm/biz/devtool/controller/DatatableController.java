@@ -51,7 +51,7 @@ public class DatatableController {
         StringBuilder sql = new StringBuilder();
         if (DataTypeEnum.MYSQL.getType().equals(AliasUtil.getDsType(alias))) {
             sql.append("select table_name tableName, table_comment tableComment, create_time createTime from information_schema.tables where table_schema=?")
-                    .append(" and table_name not like 'qrtz_%' and table_name not like 'act_%' and table_name not like 'dev_%' and table_type='base table'");
+                    .append(" and table_name not like 'sys_%' and table_name not like 'qrtz_%' and table_name not like 'act_%' and table_name not like 'dev_%' and table_type='base table'");
             if (StrUtil.isNotBlank(tableName)) {
                 sql.append(" and table_name like '%" + tableName + "%'");
             }
@@ -157,6 +157,21 @@ public class DatatableController {
             sql.append("drop table ").append(tableName);
         }
 
+        return R.ok();
+    }
+
+    @OperLog("物理表删除")
+    @PreAuthorize("@ps.hasPerm('datatable_remove')")
+    @DeleteMapping("/removeTable")
+    @Transactional
+    public R removeTable(@RequestParam String alias, @RequestParam String tableName) {
+        //删除数据库表
+        DSContextHolder.setDSType(AliasUtil.getDsId(alias));
+        StringBuilder sql = new StringBuilder();
+        if (DataTypeEnum.MYSQL.getType().equals(AliasUtil.getDsType(alias))) {
+            sql.append("drop table ").append(tableName).append(";");
+        }
+        jdbcTemplate.execute(sql.toString());
         return R.ok();
     }
 

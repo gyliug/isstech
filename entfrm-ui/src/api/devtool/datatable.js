@@ -63,3 +63,11 @@ export function batchGenToLocal(tables) {
     method: 'get'
   })
 }
+
+// 删除数据表
+export function delOritable(alias, tableName) {
+  return request({
+    url: '/devtool/datatable/removeTable?alias='+alias+'&tableName='+tableName,
+    method: 'delete',
+  })
+}

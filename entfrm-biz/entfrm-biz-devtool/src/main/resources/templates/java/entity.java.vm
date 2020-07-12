@@ -43,6 +43,7 @@ public class ${ClassName} extends BaseEntity{
     @Excel(name = "${comment}", convertExp = "$column.convertExp()")
 #elseif($column.javaType == 'Date')
     @Excel(name = "${comment}", width = 30, dateFormat = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
 #else
     @Excel(name = "${comment}")
 #end

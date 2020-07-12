@@ -109,7 +109,7 @@
               >配置表
               </el-button>
               <el-button
-                v-if="scope.row.id !== 1"
+                v-if="scope.row.isConfig === '1'"
                 size="mini"
                 type="text"
                 icon="el-icon-delete"
@@ -117,6 +117,25 @@
                 v-hasPerm="['datatable_del']"
               >删除
               </el-button>
+              <el-button
+                v-else
+                size="mini"
+                type="text"
+                icon="el-icon-delete"
+                @click="handleDelOri(scope.row)"
+                v-hasPerm="['datatable_remove']"
+              >删除原表
+              </el-button>
+
+              <!--              <el-button
+                              v-if="scope.row.id !== 1"
+                              size="mini"
+                              type="text"
+                              icon="el-icon-delete"
+                              @click="handleDel(scope.row)"
+                              v-hasPerm="['datatable_del']"
+                            >删除
+                            </el-button>-->
               <el-button
                 v-if="scope.row.isConfig === '1'"
                 size="mini"
@@ -186,18 +205,7 @@
 </template>
 
 <script>
-  import {
-    listDatatable,
-    getDatatable,
-    delDatatable,
-    addDatatable,
-    editDatatable,
-    exportDatatable,
-    resetPwd,
-    changeStatus,
-    importTemplate,
-    batchGenToLocal
-  } from "@/api/devtool/datatable";
+  import {addDatatable, batchGenToLocal, delDatatable, editDatatable, listDatatable,delOritable} from "@/api/devtool/datatable";
   import {datasourceList} from "@/api/devtool/datasource";
   import Treeselect from "@riophae/vue-treeselect";
   import "@riophae/vue-treeselect/dist/vue-treeselect.css";
@@ -392,6 +400,7 @@
       },
       /** 删除按钮操作 */
       handleDel(row) {
+        var that = this;
         if (!this.queryParams || this.queryParams.alias == undefined) {
           this.msgWarning("请选择数据库！");
           return;
@@ -402,23 +411,44 @@
           cancelButtonText: "取消",
           type: "warning"
         }).then(function () {
-          return delDatatable(this.queryParams.alias, tableName);
+          return delDatatable(that.queryParams.alias, tableName);
         }).then(() => {
           this.getList();
           this.msgSuccess("删除成功");
-        }).catch(function () {
+        }).catch(function (e) {
+          console.log(e);
+        });
+      },
+      handleDelOri(row){
+        var that = this;
+        if (!this.queryParams || this.queryParams.alias == undefined) {
+          this.msgWarning("请选择数据库！");
+          return;
+        }
+        const tableName = row.tableName;
+        this.$confirm('是否确认删除数据库表"' + tableName + '"?删除后无法恢复！', "警告", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "alert"
+        }).then(function () {
+          return delOritable(that.queryParams.alias, tableName);
+        }).then(() => {
+          this.getList();
+          this.msgSuccess("删除成功");
+        }).catch(function (e) {
+          console.log(e);
         });
       },
       /** 生成按钮操作 */
       handleGen(row) {
         var tables = '';
-        if(row.tableName){
+        if (row.tableName) {
           tables = row.tableName
-        }else {
+        } else {
           tables = this.tableNames.join()
         }
 
-        if(process.env.VUE_APP_BASE_API.indexOf('/pro') == -1){
+        if (process.env.VUE_APP_BASE_API.indexOf('/pro') == -1) {
           batchGenToLocal(tables).then(response => {
             if (response.code === 0) {
               this.msgSuccess(response.data);
@@ -427,7 +457,7 @@
               this.msgError(response.msg);
             }
           });
-        }else {
+        } else {
           downLoadZip("/devtool/datatable/batchGenCode/" + tables, "entfrm");
         }
       }

@@ -156,8 +156,8 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item v-if="form.type != 'M'" label="权限标识">
-              <el-input v-model="form.perms" placeholder="请权限标识" maxlength="50" />
+            <el-form-item v-if="form.type != 'M'" label="权限标识" >
+              <el-input v-model="form.perms" placeholder="请输入权限标识" maxlength="50" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -346,6 +346,10 @@ export default {
     submitForm: function() {
       this.$refs["form"].validate(valid => {
         if (valid) {
+          if(this.form.type === 'F' && !this.form.perms){
+            this.msgError("权限标识不能为空！");
+            return;
+          }
           if (this.form.id != undefined) {
             editMenu(this.form).then(response => {
               if (response.code === 0) {

@@ -168,7 +168,8 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 table.setColumns(list);
             }
         }
-        table.setGenPath(System.getProperty("user.dir"));
+        String genPath = StrUtil.isNotBlank(table.getGenPath()) ? table.getGenPath() : System.getProperty("user.dir");
+        table.setGenPath(genPath);
         List<Map<String, Object>> list = jdbcTemplate.queryForList(SqlConstants.MENU_TREE);
         table.setMenus(list);
         return table;
@@ -218,6 +219,9 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
             //创建数据库表结构
             jdbcTemplate.execute(BuilderUtil.createTable(table));
         } else {
+
+            Table oldTable = baseMapper.selectById(table.getId());
+
             int row = baseMapper.updateById(table);
             if (row > 0) {
                 //判断是否有删除字段
@@ -226,8 +230,14 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                         columnService.remove(new QueryWrapper<Column>().eq("table_id", table.getId()).eq("column_name", columnName));
                     }
                 }
-                //更新数据库表结构
-                jdbcTemplate.execute(BuilderUtil.updateTable(table));
+                //更新数据库表结构，
+                //方案一：删除重建，删除更新之前的表信息
+                if (oldTable != null) {
+                    jdbcTemplate.execute("drop table " + oldTable.getTableName() + ";");
+                }
+                //方案二：备份原表重建
+                //jdbcTemplate.execute("rename  table "+oldTable.getTableName()+" to "+oldTable.getTableName()+ DateUtil.format(new Date(), DatePattern.PURE_TIME_PATTERN)+";");
+                jdbcTemplate.execute(BuilderUtil.createTable(table));
                 for (Column column : table.getColumns()) {
                     if (StrUtil.isNotEmpty(column.getColumnName())) {
                         column.setTableId(table.getId());
@@ -379,7 +389,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 IoUtil.close(sw);
                 //查询菜单是否创建
                 List<Map<String, Object>> maps = jdbcTemplate.queryForList("select * from sys_menu where name = ?", table.getFunctionName());
-                if (maps.size() == 0 ) {
+                if (maps.size() == 0) {
                     //执行生成菜单脚本
                     if (StrUtil.isNotBlank(sqlPath)) {
                         try {

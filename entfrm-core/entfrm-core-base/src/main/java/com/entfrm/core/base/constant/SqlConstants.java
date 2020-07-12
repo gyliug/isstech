@@ -11,7 +11,7 @@ public interface SqlConstants {
 
     String QUERY_ROLES = "select role_id roleId from sys_user_role where user_id = ?";
 
-    String QUERY_PREMS = "select m.perms from sys_menu m left join sys_role_menu rm on rm.menu_id = m.id where rm.role_id = ? and m.type = 'F'";
+    String QUERY_PREMS = "select m.perms from sys_menu m left join sys_role_menu rm on rm.menu_id = m.id where rm.role_id = ? and m.type = 'F' and m.perms is not null";
 
     String OPER_LOG = "insert into sys_oper_log (type, title, method, user_agent, oper_name, client_id, oper_url, oper_ip, oper_addr, oper_param, status, error_msg, execute_time, oper_time) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 

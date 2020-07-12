@@ -210,6 +210,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
             if (row > 0) {
                 for (Column column : table.getColumns()) {
                     if (StrUtil.isNotEmpty(column.getColumnName())) {
+                        column.setId(null);
                         column.setTableId(table.getId());
                         column.setJavaField(StrUtil.toCamelCase(column.getColumnName()));
                         columnService.save(column);

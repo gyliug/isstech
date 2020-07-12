@@ -25,7 +25,7 @@
       <el-row>
         <el-col :span="12">
           <el-form-item prop="code" >
-            <el-input v-model="loginForm.code" type="text" auto-complete="off" placeholder="验证码" maxlength="4" >
+            <el-input v-model="loginForm.code" type="text" auto-complete="off" placeholder="验证码" maxlength="4" @keyup.enter.native="handleLogin">
               <svg-icon slot="prefix" icon-class="code" class="el-input__icon input-icon" />
             </el-input>
           </el-form-item>

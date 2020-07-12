@@ -113,6 +113,7 @@ public class GenUtil {
         column1.setIsList("1");
         column1.setQueryType("eq");
         column1.setHtmlType("input");
+        column1.setId(1);
         list.add(column1);
         Column column2 = new Column();
         column2.setColumnName("create_by");
@@ -122,6 +123,7 @@ public class GenUtil {
         column2.setJavaField("createBy");
         column2.setQueryType("eq");
         column2.setHtmlType("input");
+        column2.setId(2);
         list.add(column2);
         Column column3 = new Column();
         column3.setColumnName("create_time");
@@ -133,6 +135,7 @@ public class GenUtil {
         column3.setIsList("1");
         column3.setQueryType("between");
         column3.setHtmlType("datetime");
+        column3.setId(3);
         list.add(column3);
         Column column4 = new Column();
         column4.setColumnName("update_by");
@@ -142,6 +145,7 @@ public class GenUtil {
         column4.setJavaField("updateBy");
         column4.setQueryType("eq");
         column4.setHtmlType("input");
+        column4.setId(4);
         list.add(column4);
         Column column5 = new Column();
         column5.setColumnName("update_time");
@@ -151,6 +155,7 @@ public class GenUtil {
         column5.setJavaField("updateTime");
         column5.setQueryType("between");
         column5.setHtmlType("datetime");
+        column5.setId(5);
         list.add(column5);
         Column column6 = new Column();
         column6.setColumnName("remarks");
@@ -162,6 +167,7 @@ public class GenUtil {
         column6.setIsEdit("1");
         column6.setQueryType("eq");
         column6.setHtmlType("textarea");
+        column6.setId(6);
         list.add(column6);
         Column column7 = new Column();
         column7.setColumnName("del_flag");
@@ -172,6 +178,7 @@ public class GenUtil {
         column7.setDefValue("0");
         column7.setQueryType("eq");
         column7.setHtmlType("input");
+        column7.setId(7);
         list.add(column7);
         return list;
     }

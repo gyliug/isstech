@@ -19,8 +19,8 @@
 
         </el-row>
 
-        <el-table ref="dragTable" :data="cloumns" :max-height="tableHeight">
-          <el-table-column label="序号" type="index" min-width="5%"/>
+        <el-table ref="dragTable" :data="cloumns" row-key="id"  :max-height="tableHeight">
+          <el-table-column label="序号" type="index" min-width="5%" class-name="allowDrag"/>
           <el-table-column label="字段列名" min-width="10%">
             <template slot-scope="scope">
               <el-input v-model="scope.row.columnName" placeholder="字段列名"></el-input>
@@ -268,7 +268,8 @@
           javaField: '',
           defValue: '',
           queryType: 'eq',
-          htmlType: 'input'
+          htmlType: 'input',
+          addData: true
         }
         this.cloumns.splice(this.cloumns.length - 6, 0, cloumn)
         for (let index in this.cloumns) {

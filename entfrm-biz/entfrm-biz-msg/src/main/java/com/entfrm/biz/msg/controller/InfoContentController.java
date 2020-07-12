@@ -68,7 +68,7 @@ public class InfoContentController {
     }
 
     @PreAuthorize("@ps.hasPerm('infoContent_edit')")
-    @PostMapping("/update")
+    @PutMapping("/update")
     public R update(@Validated @RequestBody InfoContent infoContent) {
         infoContentService.updateById(infoContent);
         return R.ok();

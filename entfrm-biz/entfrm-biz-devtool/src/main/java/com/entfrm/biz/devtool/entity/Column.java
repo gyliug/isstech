@@ -1,6 +1,7 @@
 package com.entfrm.biz.devtool.entity;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.entfrm.core.data.entity.BaseEntity;

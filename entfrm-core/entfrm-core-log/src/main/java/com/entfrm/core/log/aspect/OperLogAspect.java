@@ -25,7 +25,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * 操作日志使用spring event异步入库
  *
- * @author yong
+ * @author entfrm
  */
 @Slf4j
 @Aspect

@@ -40,7 +40,6 @@ public class CategoryController {
      */
     @PreAuthorize("@ps.hasPerm('category_view')")
     @GetMapping("/list")
-    @ResponseBody
     public R list(Category category) {
         List<Category> categoryList = categoryService.list(getQueryWrapper(category));
 
@@ -55,7 +54,6 @@ public class CategoryController {
     @OperLog("类别新增")
     @PreAuthorize("@ps.hasPerm('category_add')")
     @PostMapping("/save")
-    @ResponseBody
     public R save(@Validated @RequestBody Category category) {
         Category info = null;
         if (0 != category.getParentId()) {
@@ -71,7 +69,6 @@ public class CategoryController {
     @OperLog("类别修改")
     @PreAuthorize("@ps.hasPerm('category_edit')")
     @PutMapping("/update")
-    @ResponseBody
     public R update(@Validated @RequestBody Category category) {
         Category info = null;
         if (0 != category.getParentId()) {
@@ -88,14 +85,12 @@ public class CategoryController {
     @OperLog("类别删除")
     @PreAuthorize("@ps.hasPerm('category_del')")
     @DeleteMapping("/remove/{id}")
-    @ResponseBody
     public R remove(@PathVariable("id") Integer id) {
         return R.ok(categoryService.removeById(id));
     }
 
 
     @GetMapping("/categoryTree")
-    @ResponseBody
     public R categoryTree() {
         List<Category> categoryList = categoryService.list(new QueryWrapper<Category>().orderByAsc("sort"));
         return R.ok(categoryService.buildTree(categoryList, 0));
@@ -103,7 +98,6 @@ public class CategoryController {
 
     @PreAuthorize("@ps.hasPerm('category_export')")
     @PostMapping("/export")
-    @ResponseBody
     public R export(Category category) {
         List<Category> list = categoryService.list(getQueryWrapper(category));
         ExcelUtil<Category> util = new ExcelUtil<Category>(Category.class);

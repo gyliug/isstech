@@ -387,7 +387,6 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                             jdbcTemplate.batchUpdate(StrUtil.join(sqlList.toArray(), ""));
                         } catch (Exception e) {
                             e.printStackTrace();
-
                         }
                     }
                 }

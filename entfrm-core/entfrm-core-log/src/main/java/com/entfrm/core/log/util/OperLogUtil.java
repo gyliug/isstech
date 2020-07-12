@@ -25,7 +25,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 /**
- * @author yong
+ * @author entfrm
  * @date 2020/3/18
  * @description 操作日志util
  */

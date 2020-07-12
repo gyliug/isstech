@@ -1,6 +1,6 @@
 package ${basePackage}.${moduleName}.controller;
 
-import com.entfrm.core.base.util.StrUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
     #if($table.tplCategory == 'crud')
     import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -95,8 +95,8 @@ public class ${ClassName}Controller {
     @ApiOperation("${functionName}删除")
     @PreAuthorize("@ps.hasPerm('${permissionPrefix}_del')")
     @DeleteMapping("/remove/{${pkColumn.javaField}}")
-    public R remove(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}) {
-        return R.ok(${className}Service.removeById(${pkColumn.javaField}));
+    public R remove(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType}[] ${pkColumn.javaField}) {
+        return R.ok(${className}Service.removeByIds(Arrays.asList(${pkColumn.javaField})));
     }
 
 

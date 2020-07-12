@@ -3,7 +3,7 @@ package com.entfrm.core.log.annotation;
 import java.lang.annotation.*;
 
 /**
- * @author yong
+ * @author entfrm
  * @date 2019/11/28
  * 操作日志注解
  */

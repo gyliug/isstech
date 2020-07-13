@@ -27,20 +27,22 @@ import java.util.List;
 @AllArgsConstructor
 public class DictDataServiceImpl extends ServiceImpl<DictDataMapper, DictData> implements DictDataService {
 
+    private final String REDIS_DIR = "dictdata:";
     private final RedisTemplate redisTemplate;
 
     public List<DictData> getDictDataList(String dictType) {
         List<DictData> dictDataList = new ArrayList<>();
         //redis缓存
-        if(GlobalConfig.isRedisSwitch()){
-            Object dicts = redisTemplate.opsForValue().get(dictType);
+        String cacheKey = REDIS_DIR + dictType;
+        if (GlobalConfig.isRedisSwitch()) {
+            Object dicts = redisTemplate.opsForValue().get(cacheKey);
             if (!StrUtil.isEmptyIfStr(dicts)) {
                 dictDataList = JSONUtil.toList(JSONUtil.parseArray(dicts.toString()), DictData.class);
             } else {
                 dictDataList = baseMapper.selectList(new QueryWrapper<DictData>().eq("dict_type", dictType).orderByAsc("sort"));
-                redisTemplate.opsForValue().set(dictType, JSONUtil.toJsonStr(dictDataList));
+                redisTemplate.opsForValue().set(cacheKey, JSONUtil.toJsonStr(dictDataList));
             }
-        }else {
+        } else {
             dictDataList = baseMapper.selectList(new QueryWrapper<DictData>().eq("dict_type", dictType).orderByAsc("sort"));
         }
         return dictDataList;

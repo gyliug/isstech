@@ -286,6 +286,11 @@
       getDatasourceList() {
         datasourceList().then(response => {
           this.datasourceOptions = response.data;
+          if(this.datasourceOptions.length>0){
+            //默认查询第一个数据源节点表配置
+            this.queryParams.alias=this.datasourceOptions[0].alias;
+            this.getList();
+          }
         });
       },
       // 筛选节点

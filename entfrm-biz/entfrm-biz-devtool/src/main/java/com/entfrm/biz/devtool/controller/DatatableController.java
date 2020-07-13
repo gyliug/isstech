@@ -161,10 +161,10 @@ public class DatatableController {
     }
 
     @OperLog("物理表删除")
-    @PreAuthorize("@ps.hasPerm('datatable_remove')")
-    @DeleteMapping("/removeTable")
+    @PreAuthorize("@ps.hasPerm('datatable_drop')")
+    @DeleteMapping("/drop")
     @Transactional
-    public R removeTable(@RequestParam String alias, @RequestParam String tableName) {
+    public R drop(@RequestParam String alias, @RequestParam String tableName) {
         //删除数据库表
         DSContextHolder.setDSType(AliasUtil.getDsId(alias));
         StringBuilder sql = new StringBuilder();

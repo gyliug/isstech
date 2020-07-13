@@ -122,20 +122,10 @@
                 size="mini"
                 type="text"
                 icon="el-icon-delete"
-                @click="handleDelOri(scope.row)"
-                v-hasPerm="['datatable_remove']"
+                @click="handleDrop(scope.row)"
+                v-hasPerm="['datatable_drop']"
               >删除原表
               </el-button>
-
-              <!--              <el-button
-                              v-if="scope.row.id !== 1"
-                              size="mini"
-                              type="text"
-                              icon="el-icon-delete"
-                              @click="handleDel(scope.row)"
-                              v-hasPerm="['datatable_del']"
-                            >删除
-                            </el-button>-->
               <el-button
                 v-if="scope.row.isConfig === '1'"
                 size="mini"
@@ -205,7 +195,7 @@
 </template>
 
 <script>
-  import {addDatatable, batchGenToLocal, delDatatable, editDatatable, listDatatable,delOritable} from "@/api/devtool/datatable";
+  import {addDatatable, batchGenToLocal, delDatatable, editDatatable, listDatatable,dropDataTable} from "@/api/devtool/datatable";
   import {datasourceList} from "@/api/devtool/datasource";
   import Treeselect from "@riophae/vue-treeselect";
   import "@riophae/vue-treeselect/dist/vue-treeselect.css";
@@ -419,7 +409,7 @@
           console.log(e);
         });
       },
-      handleDelOri(row){
+      handleDrop(row){
         var that = this;
         if (!this.queryParams || this.queryParams.alias == undefined) {
           this.msgWarning("请选择数据库！");
@@ -431,7 +421,7 @@
           cancelButtonText: "取消",
           type: "alert"
         }).then(function () {
-          return delOritable(that.queryParams.alias, tableName);
+          return dropDataTable(that.queryParams.alias, tableName);
         }).then(() => {
           this.getList();
           this.msgSuccess("删除成功");

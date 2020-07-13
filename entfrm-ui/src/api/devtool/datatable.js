@@ -65,9 +65,9 @@ export function batchGenToLocal(tables) {
 }
 
 // 删除数据表
-export function delOritable(alias, tableName) {
+export function dropDataTable(alias, tableName) {
   return request({
-    url: '/devtool/datatable/removeTable?alias='+alias+'&tableName='+tableName,
+    url: '/devtool/datatable/drop?alias='+alias+'&tableName='+tableName,
     method: 'delete',
   })
 }

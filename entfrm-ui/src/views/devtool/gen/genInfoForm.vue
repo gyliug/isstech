@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="genInfoForm" :model="info" :rules="rules" label-width="150px">
+  <el-form ref="genInfoForm" :model="info" :rules="rules" label-width="150px" style="height: 340px;" >
     <el-row>
       <el-col :span="8">
         <el-form-item prop="tplCategory">

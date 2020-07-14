@@ -232,12 +232,12 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                     }
                 }
                 //更新数据库表结构，
-                //方案一：删除重建，删除更新之前的表信息
                 if (oldTable != null) {
+                    //方案一：删除重建，删除更新之前的表信息
                     jdbcTemplate.execute("drop table " + oldTable.getTableName() + ";");
+                    //方案二：备份原表重建
+                    //jdbcTemplate.execute("rename  table "+oldTable.getTableName()+" to "+oldTable.getTableName()+ DateUtil.format(new Date(), DatePattern.PURE_TIME_PATTERN)+";");
                 }
-                //方案二：备份原表重建
-                //jdbcTemplate.execute("rename  table "+oldTable.getTableName()+" to "+oldTable.getTableName()+ DateUtil.format(new Date(), DatePattern.PURE_TIME_PATTERN)+";");
                 jdbcTemplate.execute(BuilderUtil.createTable(table));
                 for (Column column : table.getColumns()) {
                     if (StrUtil.isNotEmpty(column.getColumnName())) {
@@ -317,7 +317,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
         Table table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName));
         if (table != null) {
             // 查询列信息
-            List<Column> columns = columnService.list(new QueryWrapper<Column>().eq("table_id", table.getId()));
+            List<Column> columns = columnService.list(new QueryWrapper<Column>().eq("table_id", table.getId()).orderByAsc("sort"));
             setPkColumn(table, columns);
             table.setColumns(columns);
 
@@ -360,7 +360,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
         Table table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName));
         if (table != null) {
             // 查询列信息
-            List<Column> columns = columnService.list(new QueryWrapper<Column>().eq("table_id", table.getId()));
+            List<Column> columns = columnService.list(new QueryWrapper<Column>().eq("table_id", table.getId()).orderByAsc("sort"));
             setPkColumn(table, columns);
             table.setColumns(columns);
 

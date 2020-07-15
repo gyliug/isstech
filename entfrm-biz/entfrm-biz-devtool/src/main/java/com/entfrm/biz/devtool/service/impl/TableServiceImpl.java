@@ -389,7 +389,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 IoUtil.write(FileUtil.getOutputStream(localFile), CommonConstants.UTF8, false, sw.toString());
                 IoUtil.close(sw);
                 //查询菜单是否创建
-                List<Map<String, Object>> maps = jdbcTemplate.queryForList("select * from sys_menu where name = ?", table.getFunctionName());
+                List<Map<String, Object>> maps = jdbcTemplate.queryForList("select * from sys_menu where name = ? and del_flag='0'", table.getFunctionName());
                 if (maps.size() == 0) {
                     //执行生成菜单脚本
                     if (StrUtil.isNotBlank(sqlPath)) {

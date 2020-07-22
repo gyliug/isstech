@@ -5,7 +5,7 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
 平台采用Spring Boot 2.X 、Spring Security、Oauth2、Mybatis Plus、Activiti、uni-app等核心技术，前端基于vue-element-admin框架。
 #### 官网地址：http://www.entfrm.com/
 #### 文档地址：http://www.entfrm.com/doc
-###  entfrm官方交流群：871910881 (进群了解更多功能更新动态)
+###  entfrm官方交流群：871910881 345969668 (进群了解更多功能更新动态)
 ### 思维导图
 ![平台思维导图](http://47.100.3.58/static/show/entfrm.png)
 ### APP效果

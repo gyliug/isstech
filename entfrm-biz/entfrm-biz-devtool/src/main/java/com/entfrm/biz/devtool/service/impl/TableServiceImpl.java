@@ -67,7 +67,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
             table.setCols("24");
             table.setColumns(GenUtil.initColumns());
         } else {
-            table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName));
+            table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName).orderByDesc("create_time").last("limit 1"));
             if (table != null) {
                 List<Column> list = columnService.list(new QueryWrapper<Column>().eq(!StrUtil.isBlankIfStr(table.getId()), "table_id", table.getId()).orderByAsc("sort"));
                 table.setColumns(list);

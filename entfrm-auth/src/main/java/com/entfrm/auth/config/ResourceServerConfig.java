@@ -34,7 +34,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter implem
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(
-                        "/oauth/**", "/common/**", "/cms/article/doc/**", "/activiti/service/**", "/activiti/task/track/**",
+                        "/oauth/**", "/common/**", "/cms/article/doc/**", "/activiti/service/**", "/activiti/task/track/**", "/captcha/**",
                         "/devtool/dataset/api/**", "/activiti/process/resource", "/actuator/**").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new CaptchaFilter(redisTemplate), UsernamePasswordAuthenticationFilter.class);

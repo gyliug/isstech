@@ -1,5 +1,6 @@
 package com.entfrm.biz.devtool.service.impl;
 
+import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -19,6 +20,7 @@ import com.entfrm.core.base.constant.CommonConstants;
 import com.entfrm.core.base.constant.GenConstants;
 import com.entfrm.core.base.constant.SqlConstants;
 import com.entfrm.core.base.exception.BaseException;
+import com.entfrm.core.base.util.DateUtil;
 import com.entfrm.core.base.util.FileUtil;
 import com.entfrm.core.base.util.StrUtil;
 import com.entfrm.core.security.util.SecurityUtil;
@@ -220,9 +222,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
             //创建数据库表结构
             jdbcTemplate.execute(BuilderUtil.createTable(table));
         } else {
-
             Table oldTable = baseMapper.selectById(table.getId());
-
             int row = baseMapper.updateById(table);
             if (row > 0) {
                 //判断是否有删除字段
@@ -234,9 +234,10 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 //更新数据库表结构，
                 if (oldTable != null) {
                     //方案一：删除重建，删除更新之前的表信息
-                    jdbcTemplate.execute("drop table " + oldTable.getTableName() + ";");
+                    //jdbcTemplate.execute("drop table " + oldTable.getTableName() + ";");
                     //方案二：备份原表重建
-                    //jdbcTemplate.execute("rename  table "+oldTable.getTableName()+" to "+oldTable.getTableName()+ DateUtil.format(new Date(), DatePattern.PURE_TIME_PATTERN)+";");
+                    String newTableName = oldTable.getTableName()+ DateUtil.format(new Date(), DatePattern.PURE_TIME_PATTERN);
+                    jdbcTemplate.execute("rename  table "+oldTable.getTableName()+" to "+newTableName+";");
                 }
                 jdbcTemplate.execute(BuilderUtil.createTable(table));
                 for (Column column : table.getColumns()) {

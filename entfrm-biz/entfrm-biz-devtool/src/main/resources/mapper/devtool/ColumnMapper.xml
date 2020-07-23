@@ -37,7 +37,7 @@
 	</select>
 
     <delete id="deleteColumnByTableIds" parameterType="Integer">
-        delete from dev_column where table_id in
+        update dev_column set del_flag ='1' where table_id in
         <foreach collection="array" item="tableId" open="(" separator="," close=")">
             #{tableId}
         </foreach>

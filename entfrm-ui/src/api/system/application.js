@@ -9,6 +9,15 @@ export function listApplication(query) {
   })
 }
 
+// 查询应用树
+export function treeApplication(query) {
+  return request({
+    url: '/system/application/tree',
+    method: 'get',
+    params: query
+  })
+}
+
 // 查询应用详细
 export function getApplication(id) {
   return request({

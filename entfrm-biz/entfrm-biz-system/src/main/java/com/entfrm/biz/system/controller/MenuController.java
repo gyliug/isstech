@@ -111,8 +111,8 @@ public class MenuController {
      */
     @GetMapping("/menuTree")
     @ResponseBody
-    public R menuTree() {
-        List<Menu> menuList = menuService.list(new QueryWrapper<Menu>().eq("status", "0").orderByAsc("sort"));
+    public R menuTree(@RequestParam(required = false) String applicationIds) {
+        List<Menu> menuList = menuService.list(new QueryWrapper<Menu>().in(StrUtil.isNotBlank(applicationIds), "application_id", applicationIds).eq("status", "0").orderByAsc("sort"));
         return R.ok(menuList);
     }
 

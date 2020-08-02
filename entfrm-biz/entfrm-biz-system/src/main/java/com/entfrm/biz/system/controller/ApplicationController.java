@@ -46,6 +46,12 @@ public class ApplicationController {
         return R.ok(applicationPage.getRecords(), applicationPage.getTotal());
     }
 
+    @GetMapping("/tree")
+    public R tree( Application application) {
+        List<Application> applicationList = applicationService.list(getQueryWrapper(application));
+        return R.ok(applicationList);
+    }
+
     @GetMapping("/{id}")
     public R getById(@PathVariable("id") Integer id) {
         return R.ok(applicationService.getById(id));

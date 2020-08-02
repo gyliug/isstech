@@ -44,6 +44,11 @@ public class Menu extends BaseEntity {
     private Integer parentId;
 
     /**
+     * 所属应用
+     */
+    private Integer applicationId;
+
+    /**
      * 父菜单IDS
      */
     private String parentIds;

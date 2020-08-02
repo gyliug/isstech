@@ -35,7 +35,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter implem
                 .authorizeRequests()
                 .antMatchers(
                         "/oauth/**", "/common/**", "/cms/article/doc/**", "/activiti/service/**", "/activiti/task/track/**", "/captcha/**",
-                        "/devtool/dataset/api/**", "/activiti/process/resource", "/actuator/**").permitAll()
+                        "/devtool/dataset/api/**", "/activiti/process/resource", "/actuator/**", "/api/**").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new CaptchaFilter(redisTemplate), UsernamePasswordAuthenticationFilter.class);
     }

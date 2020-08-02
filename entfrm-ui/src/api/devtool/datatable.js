@@ -10,6 +10,15 @@ export function listDatatable(query) {
   })
 }
 
+
+export function treeDatatable(query) {
+  return request({
+    url: '/devtool/datatable/tree',
+    method: 'get',
+    params: query
+  })
+}
+
 // 查看数据表详细
 export function getDatatable(datatableId) {
   return request({

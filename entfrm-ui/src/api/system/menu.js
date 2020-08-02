@@ -18,10 +18,11 @@ export function getMenu(menuId) {
 }
 
 // 查询菜单下拉树结构
-export function menuTree() {
+export function menuTree(query) {
   return request({
     url: '/system/menu/menuTree',
-    method: 'get'
+    method: 'get',
+    params: query
   })
 }
 

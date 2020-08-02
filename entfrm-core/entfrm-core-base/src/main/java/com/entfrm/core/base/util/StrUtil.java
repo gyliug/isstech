@@ -137,6 +137,10 @@ public class StrUtil extends cn.hutool.core.util.StrUtil {
         return sqlList;
     }
 
+    public static String removeWhere(String scripts) {
+        return scripts.substring(0, scripts.indexOf("where"));
+    }
+
     public static void main(String[] args) {
         //System.out.println(getScale("0.3795"));
         //System.out.println(DateUtil.parse("2014-06-12 00:00:00").toString("yyyy"));

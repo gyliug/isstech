@@ -99,6 +99,17 @@
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-row>
           <el-col :span="24">
+            <el-form-item label="所属应用" prop="applicationId">
+              <treeselect
+                v-model="form.applicationId"
+                :options="applicationOptions"
+                :normalizer="normalizer"
+                :show-count="true"
+                placeholder="选择所属应用"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
             <el-form-item label="上级菜单">
               <treeselect
                 v-model="form.parentId"
@@ -199,6 +210,7 @@
 
 <script>
 import { listMenu, getMenu, delMenu, addMenu, editMenu } from "@/api/system/menu";
+import {listApplication} from "@/api/system/application";
 import Treeselect from "@riophae/vue-treeselect";
 import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 import IconSelect from "@/components/IconSelect";
@@ -222,6 +234,7 @@ export default {
       statusOptions: [],
       // 缓存数据字典
       cacheOptions: [],
+      applicationOptions: [],
       // 查询参数
       queryParams: {
         name: undefined,
@@ -233,6 +246,9 @@ export default {
       form: {},
       // 表单校验
       rules: {
+        applicationId: [
+          { required: true, message: "所属应用不能为空", trigger: "blur" }
+        ],
         name: [
           { required: true, message: "菜单名称不能为空", trigger: "blur" }
         ],
@@ -247,6 +263,7 @@ export default {
   },
   created() {
     this.getList();
+    this.getAppList();
     this.getDicts("menu_status").then(response => {
       this.statusOptions = response.data;
     });
@@ -266,6 +283,15 @@ export default {
         this.menuList = this.handleTree(response.data, "id");
         this.loading = false;
       });
+    },
+    /** 查询应用列表 */
+    getAppList() {
+      this.loading = true;
+      listApplication({current: 1, size: 30}).then(response => {
+          this.applicationOptions = response.data;
+          this.loading = false;
+        }
+      );
     },
     /** 转换菜单数据结构 */
     normalizer(node) {

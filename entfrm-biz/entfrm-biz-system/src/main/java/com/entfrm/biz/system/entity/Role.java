@@ -41,6 +41,11 @@ public class Role extends BaseEntity {
     private String code;
 
     /**
+     * 所属应用
+     */
+    private String applications;
+
+    /**
      * 数据范围（1：全部数据权限 2：自定数据权限）
      */
     private String dataScope;

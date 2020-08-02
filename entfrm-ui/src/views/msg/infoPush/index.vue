@@ -38,7 +38,7 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
+      <!--<el-col :span="1.5">
         <el-button
           type="primary"
           icon="el-icon-plus"
@@ -58,7 +58,7 @@
           v-hasPerm="['infoPush_edit']"
         >修改
         </el-button>
-      </el-col>
+      </el-col>-->
       <el-col :span="1.5">
         <el-button
           type="danger"
@@ -70,7 +70,7 @@
         >删除
         </el-button>
       </el-col>
-      <el-col :span="1.5">
+     <!-- <el-col :span="1.5">
         <el-button
           type="warning"
           icon="el-icon-download"
@@ -79,7 +79,7 @@
           v-hasPerm="['infoPush_export']"
         >导出
         </el-button>
-      </el-col>
+      </el-col>-->
       <div class="top-right-btn">
         <el-tooltip class="item" effect="dark" content="刷新" placement="top">
           <el-button size="mini" circle icon="el-icon-refresh" @click="handleQuery"/>
@@ -114,7 +114,7 @@
             icon="el-icon-edit"
             @click="handleEdit(scope.row)"
             v-hasPerm="['infoPush_edit']"
-          >修改
+          >查看
           </el-button>
           <el-button
             size="mini"

@@ -490,9 +490,10 @@
       submitForm: function () {
         this.$refs["form"].validate(valid => {
           if (valid) {
+            this.form.menuIds = this.getMenuAllCheckedKeys();
+            this.form.applications = this.form.applications.join()
+            console.log(this.form.applications)
             if (this.form.id != undefined) {
-              this.form.menuIds = this.getMenuAllCheckedKeys();
-              this.form.applications = this.form.applications.join()
               editRole(this.form).then(response => {
                 if (response.code === 0) {
                   this.msgSuccess("修改成功");
@@ -503,7 +504,6 @@
                 }
               });
             } else {
-              this.form.menuIds = this.getMenuAllCheckedKeys();
               addRole(this.form).then(response => {
                 if (response.code === 0) {
                   this.msgSuccess("新增成功");

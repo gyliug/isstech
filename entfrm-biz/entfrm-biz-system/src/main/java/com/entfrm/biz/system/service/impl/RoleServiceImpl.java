@@ -151,6 +151,8 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
      */
     @Override
     public boolean updateRoleMenu(Role role) {
+        // 修改角色信息
+        baseMapper.updateById(role);
         // 删除角色与菜单关联
         roleMenuService.remove(new QueryWrapper<RoleMenu>().eq("role_id", role.getId()));
         return insertRoleMenu(role);

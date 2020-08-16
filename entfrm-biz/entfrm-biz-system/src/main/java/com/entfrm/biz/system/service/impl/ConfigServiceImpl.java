@@ -1,13 +1,10 @@
 package com.entfrm.biz.system.service.impl;
 
-import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.entfrm.biz.system.entity.Config;
-import com.entfrm.biz.system.entity.DictData;
 import com.entfrm.biz.system.mapper.ConfigMapper;
 import com.entfrm.biz.system.service.ConfigService;
-import com.entfrm.core.base.api.R;
 import com.entfrm.core.base.config.GlobalConfig;
 import com.entfrm.core.base.util.StrUtil;
 import lombok.AllArgsConstructor;
@@ -39,6 +36,7 @@ public class ConfigServiceImpl extends ServiceImpl<ConfigMapper, Config> impleme
             } else {
                 Config config = baseMapper.selectOne(new QueryWrapper<Config>().eq("`key`", key));
                 if(config != null){
+                    value = config.getValue();
                     redisTemplate.opsForValue().set(key, config.getValue());
                 }
             }

@@ -59,7 +59,7 @@ public class UserController {
     private final JdbcTemplate jdbcTemplate;
 
     private QueryWrapper<User> getQueryWrapper(User user) {
-        return new QueryWrapper<User>().like(StrUtil.isNotBlank(user.getUserName()), "user_ame", user.getUserName()).like(StrUtil.isNotBlank(user.getNickName()), "nick_name", user.getNickName()).eq(StrUtil.isNotBlank(user.getStatus()), "status", user.getStatus())
+        return new QueryWrapper<User>().like(StrUtil.isNotBlank(user.getUserName()), "user_name", user.getUserName()).like(StrUtil.isNotBlank(user.getNickName()), "nick_name", user.getNickName()).eq(StrUtil.isNotBlank(user.getStatus()), "status", user.getStatus())
                 .eq(ObjectUtil.isNotNull(user.getDeptId()), "dept_id", user.getDeptId())
                 .between(StrUtil.isNotBlank(user.getBeginTime()) && StrUtil.isNotBlank(user.getEndTime()), "create_time", user.getBeginTime(), user.getEndTime()).apply(StrUtil.isNotBlank(user.getSqlFilter()), user.getSqlFilter());
     }

@@ -1,9 +1,11 @@
 package com.entfrm.biz.system.controller;
 
-import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.entfrm.biz.system.entity.*;
+import com.entfrm.biz.system.entity.Area;
+import com.entfrm.biz.system.entity.Dept;
+import com.entfrm.biz.system.entity.RoleDept;
+import com.entfrm.biz.system.entity.User;
 import com.entfrm.biz.system.service.DeptService;
 import com.entfrm.biz.system.service.RoleDeptService;
 import com.entfrm.biz.system.service.UserService;
@@ -13,7 +15,6 @@ import com.entfrm.core.log.annotation.OperLog;
 import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -106,7 +107,7 @@ public class DeptController {
         if (deptService.getOne(new QueryWrapper<Dept>().eq("parent_id", id)) != null) {
             return R.error("存在下级机构,不允许删除");
         }
-        if (userService.getById(id) != null) {
+        if (userService.getOne(new QueryWrapper<User>().eq("dept_id", id)) != null) {
             return R.error("机构存在用户,不允许删除");
         }
         deptService.removeById(id);

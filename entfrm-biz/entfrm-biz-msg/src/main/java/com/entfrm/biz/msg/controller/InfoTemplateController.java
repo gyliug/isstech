@@ -54,7 +54,7 @@ public class InfoTemplateController {
     }
 
     @PreAuthorize("@ps.hasPerm('infoTemplate_edit')")
-    @PostMapping("/update")
+    @PutMapping("/update")
     public R update(@Validated @RequestBody InfoTemplate infoTemplate) {
         redisTemplate.opsForValue().set("tpl_" + infoTemplate.getTplKey(), infoTemplate.getTplContent());
         infoTemplateService.updateById(infoTemplate);

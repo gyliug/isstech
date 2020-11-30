@@ -3,7 +3,7 @@ package com.entfrm.biz.quartz.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.entfrm.core.data.entity.BaseEntity;
+import com.entfrm.data.entity.BaseEntity;
 import lombok.*;
 
 import java.util.Date;

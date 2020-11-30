@@ -16,20 +16,6 @@ export function login(username, password, time, code, realKey) {
   })
 }
 
-export const refreshToken = (refresh_token) => {
-  const grant_type = 'refresh_token'
-
-  return request({
-    url: '/oauth/token',
-    headers: {
-      'isToken': false,
-      'Authorization': 'Basic ZW50ZnJtOmVudGZybQ==',
-    },
-    method: 'post',
-    params: { refresh_token, grant_type, scope }
-  })
-}
-
 // 获取用户详细信息
 export function getInfo() {
   return request({

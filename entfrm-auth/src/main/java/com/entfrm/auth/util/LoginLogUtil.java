@@ -1,23 +1,17 @@
 package com.entfrm.auth.util;
 
-import cn.hutool.core.util.URLUtil;
 import cn.hutool.extra.servlet.ServletUtil;
-import cn.hutool.http.HttpUtil;
-import com.entfrm.core.base.util.AddressUtil;
-import com.entfrm.core.base.util.DateUtil;
-import com.entfrm.core.base.util.StrUtil;
+import com.entfrm.base.util.AddressUtil;
+import com.entfrm.base.util.DateUtil;
+import com.entfrm.base.util.StrUtil;
 import lombok.experimental.UtilityClass;
 import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Map;
 import java.util.Objects;
 
 /**

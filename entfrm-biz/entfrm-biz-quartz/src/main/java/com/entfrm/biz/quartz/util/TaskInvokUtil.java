@@ -9,7 +9,7 @@ import com.entfrm.biz.quartz.enums.EntfrmQuartzEnum;
 import com.entfrm.biz.quartz.event.JobLogEvent;
 import com.entfrm.biz.quartz.exception.TaskException;
 import com.entfrm.biz.quartz.service.JobService;
-import com.entfrm.core.base.util.SpringContextUtil;
+import com.entfrm.base.util.SpringContextUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

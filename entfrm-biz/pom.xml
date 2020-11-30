@@ -5,20 +5,20 @@
     <parent>
         <artifactId>entfrm</artifactId>
         <groupId>com.entfrm</groupId>
-        <version>1.1.0</version>
+        <version>2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>entfrm-biz</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>entfrm-biz-monitor</module>
-        <module>entfrm-biz-system</module>
-        <module>entfrm-biz-devtool</module>
-        <module>entfrm-biz-quartz</module>
+        <module>entfrm-monitor</module>
+        <module>entfrm-system</module>
+        <module>entfrm-toolkit</module>
+       <!-- <module>entfrm-biz-quartz</module>
         <module>entfrm-biz-activiti</module>
         <module>entfrm-biz-cms</module>
-        <module>entfrm-biz-msg</module>
+        <module>entfrm-biz-msg</module>-->
     </modules>
 
 

@@ -95,7 +95,7 @@
       </div>
     </el-row>
 
-    <el-table v-loading="loading" :data="list" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="list" border @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="日志编号" align="center" prop="id" />
       <el-table-column label="标题" align="center" prop="title" />

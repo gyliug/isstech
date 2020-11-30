@@ -95,7 +95,7 @@
       </div>
     </el-row>
 
-    <el-table v-loading="loading" :data="list" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="list" border @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="访问编号" align="center" prop="id" width="80"/>
       <el-table-column label="登录用户" align="center" prop="loginName"  width="120"/>

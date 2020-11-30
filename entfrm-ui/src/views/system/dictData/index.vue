@@ -66,7 +66,7 @@
       </div>
     </el-row>
 
-    <el-table v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="dataList" border @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="字典编号" align="center" prop="id" />
       <el-table-column label="字典标签" align="center" prop="label" />

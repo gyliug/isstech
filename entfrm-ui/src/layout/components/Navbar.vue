@@ -8,8 +8,6 @@
       <template v-if="device!=='mobile'">
         <search id="header-search" class="right-menu-item" />
 
-        <theme-picker style="display: inline-block; height: 100%;vertical-align: middle; margin-top: -10px;" @change="themeChange" />
-
         <el-tooltip content="源码地址" effect="dark" placement="bottom">
           <entfrm-git id="entfrm-git" class="right-menu-item hover-effect" />
         </el-tooltip>
@@ -23,19 +21,19 @@
       </template>
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
-        <div class="avatar-wrapper" >
+        <div class="avatar-wrapper">
           <img :src="avatar" class="user-avatar">
-          <i class="el-icon-arrow-down" />
+          <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/user/profile">
-            <el-dropdown-item>个人信息</el-dropdown-item>
+            <el-dropdown-item>个人中心</el-dropdown-item>
           </router-link>
-          <el-dropdown-item>
-            <span @click="setting = true">布局配置</span>
+          <el-dropdown-item @click.native="setting = true">
+            <span>布局设置</span>
           </el-dropdown-item>
-          <el-dropdown-item divided>
-            <span @click.native="logout" ref="exitBtn">退出系统</span>
+          <el-dropdown-item divided @click.native="logout">
+            <span>退出登录</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -50,7 +48,6 @@ import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 import Search from '@/components/HeaderSearch'
-import ThemePicker from '@/components/ThemePicker'
 import EntfrmGit from '@/components/Entfrm/Git'
 
 export default {
@@ -60,7 +57,6 @@ export default {
     Screenfull,
     SizeSelect,
     Search,
-    ThemePicker,
     EntfrmGit
   },
   computed: {
@@ -81,18 +77,9 @@ export default {
       }
     }
   },
-  mounted() {
-    this.$refs.exitBtn.parentNode.addEventListener('click', this.logout, false);
-  },
   methods: {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
-    },
-    themeChange(val) {
-      this.$store.dispatch('settings/changeSetting', {
-        key: 'theme',
-        value: val
-      })
     },
     async logout() {
       this.$confirm('确定注销并退出系统吗？', '提示', {
@@ -101,7 +88,7 @@ export default {
         type: 'warning'
       }).then(() => {
         this.$store.dispatch('LogOut').then(() => {
-          this.$router.push({path: "/login"});
+          location.href = '/index';
         })
       })
     }
@@ -168,25 +155,24 @@ export default {
 
     .avatar-container {
       margin-right: 30px;
-      text-align: center;
 
       .avatar-wrapper {
-        margin-top: 10px;
+        margin-top: 5px;
         position: relative;
 
         .user-avatar {
           cursor: pointer;
-          width: 30px;
-          height: 30px;
+          width: 40px;
+          height: 40px;
           border-radius: 10px;
         }
 
-        .el-icon-arrow-down {
+        .el-icon-caret-bottom {
           cursor: pointer;
           position: absolute;
           right: -20px;
-          top: 10px;
-          font-size: 14px;
+          top: 25px;
+          font-size: 12px;
         }
       }
     }

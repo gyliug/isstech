@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getAccessToken } from '@/utils/auth'
+import { getToken } from '@/utils/auth'
 
 const mimeMap = {
   xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -13,7 +13,7 @@ export function downLoadZip(str, filename) {
     method: 'get',
     url: url,
     responseType: 'blob',
-    headers: { 'Authorization': 'Bearer ' + getAccessToken() }
+    headers: { 'Authorization': 'Bearer ' + getToken() }
   }).then(res => {
     resolveBlob(res, mimeMap.zip)
   })

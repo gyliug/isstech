@@ -2,8 +2,8 @@ package com.entfrm.biz.quartz.util;
 
 import com.entfrm.biz.quartz.entity.Job;
 import com.entfrm.biz.quartz.exception.TaskException;
-import com.entfrm.core.base.api.R;
-import com.entfrm.core.base.constant.CommonConstants;
+import com.entfrm.base.api.R;
+import com.entfrm.base.constant.CommonConstants;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

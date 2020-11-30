@@ -3,31 +3,37 @@
 
     <panel-group @handleSetLineChartData="handleSetLineChartData" />
 
+    <el-card class="box-card">
+      <div slot="header" class="clearfix">
+        <span>开发向导</span>
+        <el-button style="float: right; padding: 3px 0" type="text">操作</el-button>
+      </div>
+      <div
+        v-for="o in 2"
+        class="item"
+        :style="{backgroundColor: '#409EFF'}"
+      >
+        <svg-icon icon-class="star"/>
+        <div class="desc">{{'向导 ' + o }}</div>
+      </div>
+    </el-card>
+
+    <el-card class="box-card" style="margin-top: 15px;">
+      <div slot="header" class="clearfix">
+        <span>插件管理</span>
+        <el-button style="float: right; padding: 3px 0" type="text">操作</el-button>
+      </div>
+      <div
+        v-for="o in 4"
+        class="item"
+        :style="{backgroundColor: '#556688'}"
+      >
+        <svg-icon icon-class="component"/>
+        <div class="desc">{{'插件 ' + o }}</div>
+      </div>
+    </el-card>
+
     <shortcut />
-
-    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
-      <line-chart :chart-data="lineChartData" />
-    </el-row>
-
-    <el-row :gutter="32">
-      <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-          <raddar-chart />
-        </div>
-      </el-col>
-      <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-          <pie-chart />
-        </div>
-      </el-col>
-      <el-col :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-          <bar-chart />
-        </div>
-      </el-col>
-    </el-row>
-
-
   </div>
 </template>
 
@@ -97,6 +103,31 @@ export default {
 @media (max-width:1024px) {
   .chart-wrapper {
     padding: 8px;
+  }
+}
+
+.el-card {
+  margin-bottom: 16px;
+}
+
+/deep/ .box-card .el-card__body {
+  padding: 0;
+  overflow-x: auto;
+
+  .item {
+    width: 120px;
+    float: left;
+    margin: 10px 20px;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    svg {
+      font-size: 64px;
+      margin-bottom: 12px;
+    }
   }
 }
 </style>

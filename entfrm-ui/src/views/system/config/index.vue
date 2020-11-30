@@ -89,7 +89,7 @@
       </div>
     </el-row>
 
-    <el-table v-loading="loading" :data="configList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="configList" border @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="参数主键" align="center" prop="id" />
       <el-table-column label="参数名称" align="center" prop="name" :show-overflow-tooltip="true" />

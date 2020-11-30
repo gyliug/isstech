@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.entfrm.biz.quartz.entity.Job;
 import com.entfrm.biz.quartz.enums.EntfrmQuartzEnum;
 import com.entfrm.biz.quartz.exception.TaskException;
-import com.entfrm.core.base.util.SpringContextUtil;
+import com.entfrm.base.util.SpringContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;

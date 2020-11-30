@@ -33,6 +33,7 @@ const permission = {
 function filterAsyncRouter(asyncRouterMap) {
   return asyncRouterMap.filter(route => {
     if (route.component) {
+      // Layout组件特殊处理
       if (route.component === '#') {
         if (route.path.indexOf("/") === 0) {
           route.component = Layout

@@ -19,7 +19,7 @@ import Layout from '@/layout'
  * meta : {
     roles: ['admin','editor']    // 设置该路由进入的权限，支持多个权限叠加
     title: 'title'               // 设置该路由在侧边栏和面包屑中展示的名字
-    icon: 'svg-name'             // 设置该路由的图标，对应路径src/icons/svg
+    icon: 'svg-name'             // 设置该路由的图标，对应路径src/assets/icons/svg
     breadcrumb: false            // 如果设置为false，则不会在breadcrumb面包屑中显示
   }
  */
@@ -53,12 +53,12 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: '/',
+    path: '',
     component: Layout,
     redirect: 'index',
     children: [
       {
-        path: '/index',
+        path: 'index',
         component: (resolve) => require(['@/views/index'], resolve),
         name: '首页',
         meta: { title: '首页', icon: 'dashboard', noCache: true, affix: true }
@@ -93,19 +93,6 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/detail',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: '/detail/:modelId(\\d+)',
-        component: (resolve) => require(['@/views/activiti/detail'], resolve),
-        name: 'Detail',
-        meta: { title: '模型设计', icon: '' }
-      }
-    ]
-  },
-  {
     path: '/jobLog',
     component: Layout,
     hidden: true,
@@ -125,7 +112,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'edit',
-        component: (resolve) => require(['@/views/devtool/gen/editTable'], resolve),
+        component: (resolve) => require(['@/views/toolkit/gen/editTable'], resolve),
         name: 'GenEdit',
         meta: { title: '新建/配置表' }
       }

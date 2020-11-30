@@ -2,11 +2,11 @@ package com.entfrm.biz.cms.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.entfrm.core.base.annotation.Excel;
+import com.entfrm.base.annotation.Excel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import com.entfrm.core.data.entity.BaseEntity;
+import com.entfrm.data.entity.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 
 import java.util.ArrayList;

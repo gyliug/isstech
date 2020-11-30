@@ -2,8 +2,8 @@ package com.entfrm.biz.activiti.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.entfrm.core.base.annotation.Excel;
-import com.entfrm.core.data.entity.BaseEntity;
+import com.entfrm.base.annotation.Excel;
+import com.entfrm.data.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

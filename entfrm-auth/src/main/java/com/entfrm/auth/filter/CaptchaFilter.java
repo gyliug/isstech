@@ -1,7 +1,7 @@
 package com.entfrm.auth.filter;
 
-import com.entfrm.core.base.config.GlobalConfig;
-import com.entfrm.core.base.util.StrUtil;
+import com.entfrm.base.config.GlobalConfig;
+import com.entfrm.base.util.StrUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.redis.core.RedisTemplate;

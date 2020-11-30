@@ -5,8 +5,8 @@
     </div>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
       <h3 class="title">entfrm开发平台</h3>
-      <el-form-item prop="username">
-        <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
+      <el-form-item prop="userName">
+        <el-input v-model="loginForm.userName" type="text" auto-complete="off" placeholder="账号" @keyup.enter.native="handleLogin">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
@@ -52,7 +52,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2018-2020 entfrm.com All Rights Reserved.</span>
+      <span>Copyright © 2020-2030  entfrm团队 All Rights Reserved. <b>entfrm-ui v2.0</b></span>
     </div>
   </div>
 </template>
@@ -69,7 +69,7 @@ export default {
       codeUrl: require('../assets/images/captcha.jpg'),
       cookiePassword: "",
       loginForm: {
-        username: "entfrm",
+        userName: "entfrm",
         password: "123456",
         rememberMe: false,
         code: "",
@@ -77,7 +77,7 @@ export default {
         realKey: ""
       },
       loginRules: {
-        username: [
+        userName: [
           { required: true, trigger: "blur", message: "用户名不能为空" }
         ],
         password: [
@@ -111,11 +111,11 @@ export default {
       });
     },
     getCookie() {
-      const username = Cookies.get("username");
+      const userName = Cookies.get("userName");
       const password = Cookies.get("password");
       const rememberMe = Cookies.get('rememberMe')
       this.loginForm = {
-        username: username === undefined ? this.loginForm.username : username,
+        userName: userName === undefined ? this.loginForm.userName : userName,
         password: password === undefined ? this.loginForm.password : decrypt(password),
         rememberMe: rememberMe === undefined ? false : Boolean(rememberMe),
         code: this.loginForm.code,
@@ -127,11 +127,11 @@ export default {
         if (valid) {
           this.loading = true;
           if (this.loginForm.rememberMe) {
-            Cookies.set("username", this.loginForm.username, { expires: 30 });
+            Cookies.set("userName", this.loginForm.userName, { expires: 30 });
             Cookies.set("password", encrypt(this.loginForm.password), { expires: 30 });
             Cookies.set('rememberMe', this.loginForm.rememberMe, { expires: 30 });
           } else {
-            Cookies.remove("username");
+            Cookies.remove("userName");
             Cookies.remove("password");
             Cookies.remove('rememberMe');
           }
@@ -170,7 +170,7 @@ export default {
   top: 10px;
   width: 50%;
   text-align: left;
-  color: #13C2C2;
+  color: #556688;
   font-family: Arial;
   font-weight: bold;
   font-size: 24px;

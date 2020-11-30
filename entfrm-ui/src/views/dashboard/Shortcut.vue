@@ -2,8 +2,8 @@
   <div class="panel-group">
     <el-card class="box-card">
       <div slot="header">
-        <span class="title">快捷方式</span>
-        <span class="right" @click="toShortcut">+</span>
+        <span>快捷方式</span>
+        <el-button style="float: right; padding: 3px 0" type="text" @click="toShortcut">新增</el-button>
       </div>
       <div
         v-for="shortcut in shortcutData"
@@ -67,30 +67,12 @@
       margin-bottom: 16px;
     }
 
-    /deep/ .box-card .el-card__header {
-      padding: 0;
-
-      .title {
-        height: 55px;
-        line-height: 55px;
-        margin-left: 16px;
-      }
-
-      .right {
-        float: right;
-        margin-right: 12px;
-        font-size: 48px;
-        font-weight: 300;
-        cursor: pointer;
-      }
-    }
-
     /deep/ .box-card .el-card__body {
       padding: 0;
       overflow-x: auto;
 
       .item {
-        width: 100px;
+        width: 120px;
         float: left;
         margin: 10px 20px;
         color: white;
@@ -100,7 +82,7 @@
         cursor: pointer;
 
         svg {
-          font-size: 32px;
+          font-size: 64px;
           margin-bottom: 12px;
         }
       }

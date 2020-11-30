@@ -82,7 +82,7 @@
       </div>
     </el-row>
 
-    <el-table v-loading="loading" :data="shortcutList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="shortcutList" border @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
       <el-table-column label="编号" align="center" prop="id"/>
       <el-table-column label="名称" align="center" prop="name" :show-overflow-tooltip="true"/>

@@ -1,7 +1,7 @@
 package com.entfrm.biz.msg.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.entfrm.core.data.entity.BaseEntity;
+import com.entfrm.data.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;

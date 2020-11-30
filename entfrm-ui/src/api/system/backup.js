@@ -17,14 +17,6 @@ export function getBackup(backupId) {
   })
 }
 
-// 根据备份键名查询备份值
-export function getByKey(backupKey) {
-  return request({
-    url: '/system/backup/getByKey/' + backupKey,
-    method: 'get'
-  })
-}
-
 // 新增备份配置
 export function addBackup(data) {
   return request({

@@ -2,10 +2,9 @@ package com.entfrm.auth.config;
 
 import com.entfrm.auth.handler.EntfrmWebResponseExceptionTranslator;
 import com.entfrm.auth.service.EntfrmUserDetailService;
-import com.entfrm.core.base.config.GlobalConfig;
-import com.entfrm.core.security.entity.EntfrmUser;
+import com.entfrm.base.config.GlobalConfig;
+import com.entfrm.security.entity.EntfrmUser;
 import lombok.AllArgsConstructor;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

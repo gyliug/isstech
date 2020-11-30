@@ -69,7 +69,7 @@
       </div>
     </el-row>
 
-    <el-table v-loading="loading" :data="fileInfoList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="fileInfoList" border @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="文件编号" align="center" prop="id" />
       <el-table-column label="文件名称" align="center" prop="name" :show-overflow-tooltip="true" />

@@ -10,7 +10,7 @@
       </div>
     </el-row>
 
-    <el-table v-loading="loading" :data="list" >
+    <el-table v-loading="loading" :data="list" border>
       <!--<el-table-column label="序号"  type="index" width="50"/>-->
       <el-table-column label="用户编号" align="center" prop="user_id" width="80" />
       <el-table-column label="用户名称" align="center" prop="username" />

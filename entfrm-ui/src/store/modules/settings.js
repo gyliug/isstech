@@ -1,10 +1,11 @@
 import variables from '@/assets/styles/element-variables.scss'
 import defaultSettings from '@/settings'
 
-const { showSettings, tagsView, fixedHeader, sidebarLogo } = defaultSettings
+const { themeStyle, showSettings, tagsView, fixedHeader, sidebarLogo } = defaultSettings
 
 const state = {
   theme: variables.theme,
+  themeStyle: themeStyle,
   showSettings: showSettings,
   tagsView: tagsView,
   fixedHeader: fixedHeader,
@@ -16,19 +17,13 @@ const mutations = {
     if (state.hasOwnProperty(key)) {
       state[key] = value
     }
-  },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
   }
 }
 
 const actions = {
   changeSetting({ commit }, data) {
     commit('CHANGE_SETTING', data)
-  },
-  setAvatar({ commit }, data) {
-    commit('SET_AVATAR', data)
-  },
+  }
 }
 
 export default {

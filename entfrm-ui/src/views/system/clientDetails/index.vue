@@ -60,7 +60,7 @@
       </div>
     </el-row>
 
-    <el-table v-loading="loading" :data="clientDetailsList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="clientDetailsList" border @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
       <el-table-column label="编号" prop="clientId"/>
       <el-table-column label="秘钥" prop="clientSecret" :show-overflow-tooltip="true"/>

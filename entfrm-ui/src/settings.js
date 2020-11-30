@@ -2,7 +2,12 @@ module.exports = {
   title: 'entfrm开发平台',
 
   /**
-   * 是否系统布局配置
+   * 风格配置
+   */
+  themeStyle: 'light',
+
+  /**
+   * 是否布局配置
    */
   showSettings: false,
 

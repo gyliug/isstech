@@ -1,6 +1,6 @@
 package com.entfrm.biz.activiti.listener;
 
-import com.entfrm.core.security.util.SecurityUtil;
+import com.entfrm.security.util.SecurityUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.TaskListener;

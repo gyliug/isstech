@@ -1,6 +1,6 @@
  /**
  * 通用css样式布局处理
- * Copyright (c) 2019 entfrm
+ * Copyright (c) 2020 entfrm
  */
 
  /** 基础通用 **/
@@ -53,16 +53,25 @@
 	margin-left: 20px;
 }
 
-.el-dialog {
+.el-dialog:not(.is-fullscreen){
 	margin-top: 6vh !important;
 }
 
-.el-table .el-table__header-wrapper th {
-	word-break: break-word;
-	background-color: #f8f8f9;
-	color: #515a6e;
-	height: 40px;
-	font-size: 13px;
+.el-table {
+	.el-table__header-wrapper, .el-table__fixed-header-wrapper {
+		th {
+			word-break: break-word;
+			background-color: #f8f8f9;
+			color: #515a6e;
+			height: 40px;
+			font-size: 13px;
+		}
+	}
+	.el-table__body-wrapper {
+		.el-button [class*="el-icon-"] + span {
+			margin-left: 1px;
+		}
+	}
 }
 
 /** 表单布局 **/
@@ -139,6 +148,27 @@
 	margin-bottom: 10px;
 }
 
+/* button color */
+.el-button--cyan.is-active,
+.el-button--cyan:active {
+  background: #20B2AA;
+  border-color: #20B2AA;
+  color: #FFFFFF;
+}
+
+.el-button--cyan:focus,
+.el-button--cyan:hover {
+  background: #48D1CC;
+  border-color: #48D1CC;
+  color: #FFFFFF;
+}
+
+.el-button--cyan {
+  background-color: #20B2AA;
+  border-color: #20B2AA;
+  color: #FFFFFF;
+}
+
 /* text color */
 .text-navy {
 	color: #1ab394;
@@ -189,8 +219,14 @@
 	overflow: hidden;
 }
 
- .top-right-btn {
-   float: right;
-   height: 30px;
-   line-height: 30px;
- }
+/* 拖拽列样式 */
+.sortable-ghost{
+	opacity: .8;
+	color: #fff!important;
+	background: #42b983!important;
+}
+
+.top-right-btn {
+	position: relative;
+	float: right;
+}

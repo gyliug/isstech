@@ -2,8 +2,8 @@ package com.entfrm.auth.controller;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.entfrm.core.base.api.R;
-import com.entfrm.core.base.constant.CommonConstants;
+import com.entfrm.base.api.R;
+import com.entfrm.base.constant.CommonConstants;
 import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.ConvertingCursor;
 import org.springframework.data.redis.core.Cursor;
@@ -20,7 +20,6 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**

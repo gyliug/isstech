@@ -1,6 +1,6 @@
 package com.entfrm.auth.config;
 
-import com.entfrm.core.base.config.GlobalConfig;
+import com.entfrm.base.config.GlobalConfig;
 import com.entfrm.auth.filter.CaptchaFilter;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -35,7 +35,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter implem
                 .authorizeRequests()
                 .antMatchers(
                         "/oauth/**", "/common/**", "/cms/article/doc/**", "/activiti/service/**", "/activiti/task/track/**", "/captcha/**",
-                        "/devtool/dataset/api/**", "/activiti/process/resource", "/actuator/**", "/api/**").permitAll()
+                        "/toolkit/dataset/api/**", "/activiti/process/resource", "/actuator/**", "/api/**").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new CaptchaFilter(redisTemplate), UsernamePasswordAuthenticationFilter.class);
     }

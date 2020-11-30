@@ -1,10 +1,10 @@
 package com.entfrm.auth.service;
 
 import com.entfrm.auth.entity.SysUser;
-import com.entfrm.core.base.constant.CommonConstants;
-import com.entfrm.core.base.constant.SqlConstants;
-import com.entfrm.core.base.util.StrUtil;
-import com.entfrm.core.security.entity.EntfrmUser;
+import com.entfrm.base.constant.CommonConstants;
+import com.entfrm.base.constant.SqlConstants;
+import com.entfrm.base.util.StrUtil;
+import com.entfrm.security.entity.EntfrmUser;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.Configuration;

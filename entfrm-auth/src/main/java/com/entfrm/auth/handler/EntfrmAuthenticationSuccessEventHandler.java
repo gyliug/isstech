@@ -3,10 +3,10 @@ package com.entfrm.auth.handler;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import com.entfrm.auth.util.LoginLogUtil;
-import com.entfrm.core.base.constant.SecurityConstants;
-import com.entfrm.core.base.constant.SqlConstants;
-import com.entfrm.core.security.entity.EntfrmUser;
-import com.entfrm.core.security.handler.AbstractAuthenticationSuccessEventHandler;
+import com.entfrm.base.constant.SecurityConstants;
+import com.entfrm.base.constant.SqlConstants;
+import com.entfrm.security.entity.EntfrmUser;
+import com.entfrm.security.handler.AbstractAuthenticationSuccessEventHandler;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.task.TaskExecutor;
@@ -18,7 +18,6 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
 
 /**
  * @author entfmr

@@ -17,14 +17,6 @@ export function getFileInfo(fileInfoId) {
   })
 }
 
-// 根据文件键名查询文件值
-export function getByKey(fileInfoKey) {
-  return request({
-    url: '/system/fileInfo/getByKey/' + fileInfoKey,
-    method: 'get'
-  })
-}
-
 // 新增文件配置
 export function addFileInfo(data) {
   return request({

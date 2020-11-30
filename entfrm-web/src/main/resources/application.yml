@@ -138,9 +138,9 @@ xss:
   # 过滤开关
   enabled: true
   # 排除链接（多个用逗号分隔）
-  excludes: /cms/article/*,/system/datasource/save,/system/datasource/update,/devtool/dataset/*
+  excludes: /cms/article/*,/system/datasource/save,/system/datasource/update,/toolkit/dataset/*
   # 匹配链接
-  urlPatterns: /system/*,/monitor/*,/quartz/*,/devtool/*,/activiti/*,/cms/*
+  urlPatterns: /system/*,/monitor/*,/quartz/*,/toolkit/*,/activiti/*,/cms/*
 
 # 日志配置
 logging:

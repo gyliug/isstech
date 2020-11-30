@@ -19,7 +19,7 @@ export function checkPerm(value) {
     }
     return true
   } else {
-    console.error(`need roles! Like checkPerm="['user_add','user_edit']"`)
+    console.error(`need roles! Like checkPermi="['user_add','user_edit']"`)
     return false
   }
 }

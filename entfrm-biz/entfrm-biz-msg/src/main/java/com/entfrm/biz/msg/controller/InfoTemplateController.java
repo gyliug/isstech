@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.entfrm.biz.msg.entity.InfoTemplate;
 import com.entfrm.biz.msg.service.InfoTemplateService;
-import com.entfrm.core.base.api.R;
+import com.entfrm.base.api.R;
 import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;

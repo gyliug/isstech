@@ -1,7 +1,7 @@
 package com.entfrm.auth.handler;
 
-import com.entfrm.core.data.handler.BaseMetaObjectHandler;
-import com.entfrm.core.security.util.SecurityUtil;
+import com.entfrm.data.handler.BaseMetaObjectHandler;
+import com.entfrm.security.util.SecurityUtil;
 import org.springframework.stereotype.Component;
 
 /**

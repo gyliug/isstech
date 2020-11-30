@@ -88,7 +88,7 @@
       </div>
     </el-row>
 
-    <el-table v-loading="loading" :data="roleList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="roleList" border @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
       <el-table-column label="角色编号" prop="id" width="120"/>
       <el-table-column label="角色名称" prop="name" :show-overflow-tooltip="true" width="150"/>

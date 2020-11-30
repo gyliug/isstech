@@ -105,7 +105,7 @@ public class InfoPushController {
     }
 
     @PreAuthorize("@ps.hasPerm('infoPush_edit')")
-    @PostMapping("/update")
+    @PutMapping("/update")
     public R update(@Validated @RequestBody InfoPush infoPush) {
         infoPushService.updateById(infoPush);
         return R.ok();

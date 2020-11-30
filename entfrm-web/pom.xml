@@ -33,26 +33,6 @@
             <artifactId>entfrm-monitor</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>com.entfrm</groupId>
-            <artifactId>entfrm-biz-quartz</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.entfrm</groupId>
-            <artifactId>entfrm-biz-activiti</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.entfrm</groupId>
-            <artifactId>entfrm-biz-cms</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.entfrm</groupId>
-            <artifactId>entfrm-biz-msg</artifactId>
-            <version>${project.version}</version>
-        </dependency>-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

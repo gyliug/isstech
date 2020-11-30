@@ -15,10 +15,6 @@
         <module>entfrm-monitor</module>
         <module>entfrm-system</module>
         <module>entfrm-toolkit</module>
-       <!-- <module>entfrm-biz-quartz</module>
-        <module>entfrm-biz-activiti</module>
-        <module>entfrm-biz-cms</module>
-        <module>entfrm-biz-msg</module>-->
     </modules>
 
 

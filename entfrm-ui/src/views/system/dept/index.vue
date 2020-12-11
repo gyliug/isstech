@@ -56,7 +56,7 @@
     <el-table
       v-loading="loading"
       :data="deptList"
-      row-key="id"
+      row-key="deptId"
       border
       default-expand-all
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
@@ -104,7 +104,7 @@
         <el-row>
           <el-col :span="24" v-if="form.parentId !== 0">
             <el-form-item label="上级机构" prop="parentId">
-              <treeselect v-model="form.parentId" :options="deptOptions" :normalizer="normalizer" placeholder="选择上级机构" />
+              <treeselect v-model="form.parentId" :options="deptOptions" :defaultExpandLevel="2" :normalizer="normalizer" placeholder="选择上级机构" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -231,7 +231,7 @@ export default {
     getList() {
       this.loading = true;
       listDept(this.queryParams).then(response => {
-        this.deptList = this.handleTree(response.data, "id");
+        this.deptList = this.handleTree(response.data, "deptId");
         this.loading = false;
       });
     },
@@ -241,7 +241,7 @@ export default {
         delete node.children;
       }
       return {
-        id: node.id,
+        id: node.deptId,
         label: node.name,
         children: node.children
       };
@@ -249,7 +249,7 @@ export default {
     /** 查询机构下拉树结构 */
     getTreeselect() {
       listDept().then(response => {
-        this.deptOptions = this.handleTree(response.data, "id");
+        this.deptOptions = this.handleTree(response.data, "deptId");
       });
     },
     // 字典状态字典翻译
@@ -264,7 +264,7 @@ export default {
     // 表单重置
     reset() {
       this.form = {
-        id: undefined,
+        deptId: undefined,
         parentId: undefined,
         name: undefined,
         code: undefined,
@@ -290,7 +290,7 @@ export default {
       this.reset();
       this.getTreeselect();
       if (row != undefined) {
-        this.form.parentId = row.id;
+        this.form.parentId = row.deptId;
       }
       this.open = true;
       this.title = "添加机构";
@@ -299,7 +299,7 @@ export default {
     handleEdit(row) {
       this.reset();
       this.getTreeselect();
-      getDept(row.id).then(response => {
+      getDept(row.deptId).then(response => {
         this.form = response.data;
         this.open = true;
         this.title = "修改机构";
@@ -309,7 +309,7 @@ export default {
     submitForm: function() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.id != undefined) {
+          if (this.form.deptId != undefined) {
             editDept(this.form).then(response => {
               console.log(JSON.stringify(response))
               if (response.code === 0) {
@@ -341,7 +341,7 @@ export default {
           cancelButtonText: "取消",
           type: "warning"
         }).then(function() {
-          return delDept(row.id);
+          return delDept(row.deptId);
         }).then(() => {
           this.getList();
           this.msgSuccess("删除成功");

@@ -73,7 +73,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
         Iterator<Dept> it = list.iterator();
         while (it.hasNext()) {
             Dept n = (Dept) it.next();
-            if (n.getParentId().intValue() == t.getId().intValue()) {
+            if (n.getParentId().intValue() == t.getDeptId().intValue()) {
                 tlist.add(n);
             }
         }

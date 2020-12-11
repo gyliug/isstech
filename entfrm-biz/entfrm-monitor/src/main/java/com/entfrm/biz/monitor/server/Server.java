@@ -168,8 +168,8 @@ public class Server {
      */
     private void setSysFiles(OperatingSystem os) {
         FileSystem fileSystem = os.getFileSystem();
-        OSFileStore[] fsArray = fileSystem.getFileStores();
-        for (OSFileStore fs : fsArray) {
+        List<OSFileStore> fsList = fileSystem.getFileStores();
+        for (OSFileStore fs : fsList) {
             long free = fs.getUsableSpace();
             long total = fs.getTotalSpace();
 

@@ -21,17 +21,18 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>8</java.version>
-        <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
-        <security.oauth2.version>2.3.5.RELEASE</security.oauth2.version>
-        <mybatis-plus.version>3.3.1</mybatis-plus.version>
-        <hutool.version>5.2.0</hutool.version>
-        <druid.version>1.1.21</druid.version>
-        <oshi.version>3.9.1</oshi.version>
+        <spring-boot.version>2.3.6.RELEASE</spring-boot.version>
+        <security.oauth2.version>2.3.6.RELEASE</security.oauth2.version>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
+        <dynamic-ds.version>3.2.0</dynamic-ds.version>
+        <hutool.version>5.5.1</hutool.version>
+        <druid.version>1.2.3</druid.version>
+        <oshi.version>5.3.6</oshi.version>
         <poi.version>4.1.0</poi.version>
         <activiti.version>5.22.0</activiti.version>
         <ip2region.version>1.7.2</ip2region.version>
         <velocity.version>1.7</velocity.version>
-        <swagger.version>2.9.2</swagger.version>
+        <knife4j.version>2.0.8</knife4j.version>
     </properties>
 
     <dependencies>

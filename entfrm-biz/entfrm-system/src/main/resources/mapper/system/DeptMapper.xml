@@ -3,7 +3,7 @@
 <mapper namespace="com.entfrm.biz.system.mapper.DeptMapper">
 
     <resultMap type="Dept" id="DeptResult">
-        <id property="id" column="id"/>
+        <id property="deptId" column="dept_id"/>
         <result property="code" column="code"/>
         <result property="name" column="name"/>
         <result property="parentId" column="parent_id"/>

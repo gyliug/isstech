@@ -90,7 +90,7 @@ public class DeptController {
         //更新用户机构名称
         new Thread() {
             public void run() {
-                List<User> userList = userService.list(new QueryWrapper<User>().eq("dept_id", dept.getId()));
+                List<User> userList = userService.list(new QueryWrapper<User>().eq("dept_id", dept.getDeptId()));
                 for (User user : userList) {
                     user.setDeptName(dept.getName());
                     userService.updateById(user);

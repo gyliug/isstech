@@ -63,7 +63,12 @@ public class DataFilterAspect {
 
     @Before("dataFilterCut()")
     public void dataFilter(JoinPoint point) throws Throwable {
-        Object params = point.getArgs()[1];
+        Object params = null;
+        if (point.getArgs().length > 1) {
+            params = point.getArgs()[1];
+        } else {
+            params = point.getArgs()[0];
+        }
         if (params != null && params instanceof BaseEntity) {
 
             BaseEntity baseEntity = (BaseEntity) params;
@@ -94,7 +99,8 @@ public class DataFilterAspect {
         if (roles != null && roles.size() > 0) {
             sqlFilter.append(" (");
             for (int i = 0; i < roles.size(); i++) {
-                String dataScope = jdbcTemplate.queryForObject(SqlConstants.ROLE_DATASCOPE, String.class, roles.get(i));;
+                String dataScope = jdbcTemplate.queryForObject(SqlConstants.ROLE_DATASCOPE, String.class, roles.get(i));
+                ;
                 if (i != 0) {
                     sqlFilter.append(" OR");
                 }
@@ -107,7 +113,7 @@ public class DataFilterAspect {
                     sqlFilter.append(StrUtil.format(" {}dept_id = {} ", tableAlias, user.getDeptId()));
                 } else if (DATA_SCOPE_DEPT_AND_CHILD.equals(dataScope)) {
                     sqlFilter.append(StrUtil.format(
-                            " {}dept_id IN ( SELECT id FROM sys_dept WHERE id = {} or find_in_set( {} , ancestors ) )", tableAlias, user.getDeptId(), user.getDeptId()));
+                            " {}dept_id IN ( SELECT dept_id FROM sys_dept WHERE dept_id = {} or find_in_set( {} , ancestors ) )", tableAlias, user.getDeptId(), user.getDeptId()));
                 } else if (DATA_SCOPE_SELF.equals(dataScope)) {
                     sqlFilter.append(StrUtil.format(" create_by = '{}' ", user.getUsername()));
                 }

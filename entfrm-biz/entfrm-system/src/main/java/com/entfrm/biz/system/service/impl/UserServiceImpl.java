@@ -94,7 +94,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                     if(StrUtil.isNotBlank(user.getDeptName())){
                         Dept dept = deptService.getOne(new QueryWrapper<Dept>().eq("name", user.getDeptName()));
                         if(dept != null){
-                            user.setDeptId(dept.getId());
+                            user.setDeptId(dept.getDeptId());
                             user.setDeptName(dept.getName());
                         }
                     }

@@ -30,7 +30,7 @@ import java.util.Map;
  * @description 数据表管理
  */
 @RestController
-@RequestMapping("/devtool/datatable")
+@RequestMapping("/toolkit/datatable")
 @AllArgsConstructor
 public class DatatableController {
 

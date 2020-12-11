@@ -3,7 +3,7 @@ entfrm:
   # 名称
   name: entfrm开发平台
   # 版本
-  version: 1.1.0
+  version: 2.0.0
   # 文件上传路径
   profile: C:/profile/
   # 获取ip地址开关
@@ -23,10 +23,10 @@ server:
   tomcat:
     # tomcat的URI编码
     uri-encoding: UTF-8
-    # tomcat最大线程数，默认为200
-    max-threads: 800
-    # Tomcat启动初始化的线程数，默认值25
-    min-spare-threads: 30
+    # tomcat最大线程数，默认为200 初始化的线程数，默认值10
+    threads:
+      max: 200
+      min-spare: 10
 
 # 用户配置
 user:
@@ -140,7 +140,7 @@ xss:
   # 排除链接（多个用逗号分隔）
   excludes: /cms/article/*,/system/datasource/save,/system/datasource/update,/toolkit/dataset/*
   # 匹配链接
-  urlPatterns: /system/*,/monitor/*,/quartz/*,/toolkit/*,/activiti/*,/cms/*
+  urlPatterns: /system/*,/monitor/*,/toolkit/*,/quartz/*,/activiti/*,/cms/*
 
 # 日志配置
 logging:

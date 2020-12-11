@@ -122,19 +122,15 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
 entfrm-boot
 |--entfrm-auth Oauth2授权模块
 |--entfrm-biz 
-|----entfrm-biz-activiti 工作流模块
-|----entfrm-biz-cms 内容管理模块
-|----entfrm-biz-devtool 开发工具模块
 |----entfrm-biz-monitor 运维监控模块
-|----entfrm-biz-msg 消息模块
-|----entfrm-biz-quartz 定时任务模块
 |----entfrm-biz-system 系统管理模块
+|----entfrm-biz-toolkit 开发工具模块
 |--entfrm-core 
-|----entfrm-core-base 基础核心模块
-|----entfrm-core-data 数据核心模块
-|----entfrm-core-log 日志核心模块
-|----entfrm-core-security 安全核心模块
-|----entfrm-core-swagger Swagger文档
+|----entfrm-base 核心基础模块
+|----entfrm-data 核心数据模块
+|----entfrm-log 核心日志模块
+|----entfrm-security 核心安全模块
+|----entfrm-swagger Swagger文档
 |--entfrm-web Web模块
 ~~~
 ### 在线演示

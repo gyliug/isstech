@@ -30,8 +30,8 @@ public class Dept extends BaseEntity {
     /**
      * 部门id
      */
-    @TableId
-    private Integer id;
+    @TableId(value = "dept_id")
+    private Integer deptId;
 
     /**
      * 机构编码

@@ -7,20 +7,15 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
 #### 文档地址：http://www.entfrm.com/doc
 ###  entfrm官方交流群：871910881 345969668 (进群了解更多功能更新动态)
 ### 思维导图
-![平台思维导图](http://47.100.3.58/static/show/entfrm.png)
+![平台思维导图](https://images.gitee.com/uploads/images/2020/1212/202415_459da4c0_5254955.png "entfrm.png")
 ### APP效果
 
-<table>
-    <tr>
-        <td><img src="http://47.100.3.58/static/show/app-login.jpg"/></td>
-        <td><img src="http://47.100.3.58/static/show/app-msg.jpg"/></td>
-        <td><img src="http://47.100.3.58/static/show/app-my.jpg"/></td>
-    </tr>
-</table>
+|  ![输入图片说明](https://images.gitee.com/uploads/images/2020/1212/202442_ec0111a4_5254955.jpeg "app-login.jpg") | ![输入图片说明](https://images.gitee.com/uploads/images/2020/1212/202455_d0ab78e7_5254955.jpeg "app-msg.jpg")  | ![输入图片说明](https://images.gitee.com/uploads/images/2020/1212/202511_54032a32_5254955.jpeg "app-my.jpg")  |
+|---|---|---|
 
 #### entfrm-app已可体验试用，扫描二维码注册体验
 
-<img src="http://47.100.3.58/static/show/qrcode.png"/>
+![体验二维码](https://images.gitee.com/uploads/images/2020/1212/202525_31711038_5254955.png "qrcode.png")
 
 ### 软件功能
 
@@ -152,34 +147,7 @@ entfrm-boot
 7. 启动entfrm-ui
 
 ### 演示效果
-<table>
-    <tr>
-        <td><img src="http://47.100.3.58/static/show/login.png"/></td>
-        <td><img src="http://47.100.3.58/static/show/home.png"/></td>
-    </tr>
-    <tr>
-        <td><img src="http://47.100.3.58/static/show/dept.png"/></td>
-        <td><img src="http://47.100.3.58/static/show/role.png"/></td>
-    </tr>
-    <tr>
-        <td><img src="http://47.100.3.58/static/show/user.png"/></td>
-        <td><img src="http://47.100.3.58/static/show/menu.png"/></td>
-    </tr>
-	<tr>
-        <td><img src="http://47.100.3.58/static/show/dict.png"/></td>
-        <td><img src="http://47.100.3.58/static/show/oauth.png"/></td>
-    </tr>	 
-    <tr>
-        <td><img src="http://47.100.3.58/static/show/loginLog.png"/></td>
-        <td><img src="http://47.100.3.58/static/show/operLog.png"/></td>
-    </tr>
-    <tr>
-        <td><img src="http://47.100.3.58/static/show/datasource.png"/></td>
-        <td><img src="http://47.100.3.58/static/show/job.png"/></td>
-    </tr>
-    <tr>
-        <td><img src="http://47.100.3.58/static/show/model.png"/></td>
-        <td><img src="http://47.100.3.58/static/show/task.png"/></td>
-    </tr>
-</table>
-
+| ![输入图片说明](https://images.gitee.com/uploads/images/2020/1212/202902_59ada433_5254955.png "1.png") | ![输入图片说明](https://images.gitee.com/uploads/images/2020/1212/202914_c3bb3e4b_5254955.png "2.png") |
+|---|---|
+| ![输入图片说明](https://images.gitee.com/uploads/images/2020/1212/202928_947e17f6_5254955.png "3.png") | ![输入图片说明](https://images.gitee.com/uploads/images/2020/1212/202941_69d98d3e_5254955.png "4.png")  |
+| ![输入图片说明](https://images.gitee.com/uploads/images/2020/1212/202954_2927fd17_5254955.png "5.png") | ![输入图片说明](https://images.gitee.com/uploads/images/2020/1212/203010_968f1f64_5254955.png "6.png") |

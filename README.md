@@ -122,9 +122,9 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
 entfrm-boot
 |--entfrm-auth Oauth2授权模块
 |--entfrm-biz 
-|----entfrm-biz-monitor 运维监控模块
-|----entfrm-biz-system 系统管理模块
-|----entfrm-biz-toolkit 开发工具模块
+|----entfrm-monitor 运维监控模块
+|----entfrm-system 系统管理模块
+|----entfrm-toolkit 开发工具模块
 |--entfrm-core 
 |----entfrm-base 核心基础模块
 |----entfrm-data 核心数据模块

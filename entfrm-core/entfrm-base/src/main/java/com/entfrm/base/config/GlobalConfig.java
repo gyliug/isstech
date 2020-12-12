@@ -81,7 +81,7 @@ public class GlobalConfig {
      * 获取项目版本
      */
     public static String getVersion() {
-        return StrUtil.nullToDefault(getConfig("entfrm.version"), "1.1.0");
+        return StrUtil.nullToDefault(getConfig("entfrm.version"), "2.0.0");
     }
 
     /**

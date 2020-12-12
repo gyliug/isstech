@@ -1,5 +1,6 @@
 package com.entfrm.swagger.config;
 
+import cn.hutool.core.collection.ListUtil;
 import com.entfrm.base.config.GlobalConfig;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
@@ -12,9 +13,10 @@ import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author entfrm
@@ -22,53 +24,44 @@ import java.util.Collections;
  * @description swagger 配置
  */
 @Configuration
+@EnableSwagger2WebMvc
 public class SwaggerConfig {
 
     @Bean
-    public Docket createRestApi() {
+    public Docket productApi() {
+        //schema
+        List<GrantType> grantTypes = new ArrayList<>();
+        //密码模式
+        ResourceOwnerPasswordCredentialsGrant resourceOwnerPasswordCredentialsGrant = new ResourceOwnerPasswordCredentialsGrant("/dev/oauth/token?entfrm=" + GlobalConfig.getVersion());
+        grantTypes.add(resourceOwnerPasswordCredentialsGrant);
+        //context
+        //scope方位
+        List<AuthorizationScope> scopes = new ArrayList<>();
+        scopes.add(new AuthorizationScope("read", "read resources"));
+        scopes.add(new AuthorizationScope("write", "write resources"));
+        scopes.add(new AuthorizationScope("reads", "read all resources"));
+        scopes.add(new AuthorizationScope("writes", "write all resources"));
+
+        OAuth oAuth = new OAuthBuilder().name("oauth2")
+                .grantTypes(grantTypes).build();
+
+        SecurityReference securityReference = new SecurityReference("oauth2", scopes.toArray(new AuthorizationScope[]{}));
+        SecurityContext securityContext = new SecurityContext(ListUtil.toList(securityReference), PathSelectors.any());
+        //schemas
+        List<SecurityScheme> securitySchemes = ListUtil.toList(oAuth);
+        //securyContext
+        List<SecurityContext> securityContexts = ListUtil.toList(securityContext);
         return new Docket(DocumentationType.SWAGGER_2)
                 .pathMapping("/dev")
-                .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build()
-                .securitySchemes(Collections.singletonList(securitySchemes()))
-                .securityContexts(Collections.singletonList(securityContexts()));
-    }
+                .securityContexts(securityContexts)
+                .securitySchemes(securitySchemes)
+                .apiInfo(apiInfo());
 
 
-    /**
-     * 认证方式使用密码模式
-     */
-    private SecurityScheme securitySchemes() {
-        GrantType grantType = new ResourceOwnerPasswordCredentialsGrant("/dev/oauth/token");
-
-        return new OAuthBuilder()
-                .name("Authorization")
-                .grantTypes(Collections.singletonList(grantType))
-                .scopes(Arrays.asList(scopes()))
-                .build();
-    }
-
-    /**
-     * 设置 swagger2 认证的安全上下文
-     */
-    private SecurityContext securityContexts() {
-        return SecurityContext.builder()
-                .securityReferences(Collections.singletonList(new SecurityReference("Authorization", scopes())))
-                .forPaths(PathSelectors.any())
-                .build();
-    }
-
-    /**
-     * 允许认证的scope
-     */
-    private AuthorizationScope[] scopes() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("test", "接口测试");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return authorizationScopes;
     }
 
     /**

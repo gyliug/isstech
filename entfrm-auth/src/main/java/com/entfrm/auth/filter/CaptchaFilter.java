@@ -56,6 +56,11 @@ public class CaptchaFilter extends OncePerRequestFilter {
         if (!GlobalConfig.isRedisSwitch()) {
             return true;
         }
+        //swagger 授权认证
+        String entfrm = request.getParameter("entfrm");
+        if(StrUtil.isNotBlank(entfrm) && GlobalConfig.getVersion().equals(entfrm)){
+            return true;
+        }
         String code = request.getParameter("code");
         String realKey = request.getParameter("realKey");
         if (StrUtil.isBlank(code) || StrUtil.isBlank(realKey)) {

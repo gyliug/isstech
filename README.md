@@ -5,6 +5,7 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
 平台采用Spring Boot 2.X 、Spring Security、Oauth2、Mybatis Plus、Activiti、uni-app等核心技术，前端基于vue-element-admin框架。
 #### 官网地址：http://www.entfrm.com/
 #### 文档地址：http://www.entfrm.com/doc
+#### 应用市场：http://www.entfrm.com/market
 ###  entfrm官方交流群：871910881 345969668 (进群了解更多功能更新动态)
 ### 思维导图
 ![平台思维导图](https://images.gitee.com/uploads/images/2020/1212/202415_459da4c0_5254955.png "entfrm.png")
@@ -58,20 +59,23 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
  * 登录日志：系统正常操作日志记录和查询；系统异常信息日志记录和查询。
 
  * 操作日志：系统登录日志记录查询包含登录异常。
-#### 3.消息系统
- * 消息模板：消息模板管理与审核。
- 
- * 系统消息：包括系统通知、告警等。
- 
- * 短信：短信平台集成。
- 
- * 邮件：邮件集成。
 
-#### 4.开发工具
+#### 3.开发工具
  * 数据管理：Mysql、SQL Server、PostgreSQL等主流数据库在线管理、数据表管理（新建、修改、删除、查询）、数据源管理与数据转换。
 
  * 代码生成：支持单表、树表、左树右表代码生成。
  
+ ----------------更多功能应用请移步应用市场----------------
+
+ #### 4.消息系统
+  * 消息模板：消息模板管理与审核。
+  
+  * 系统消息：包括系统通知、告警等。
+  
+  * 短信：短信平台集成。
+  
+  * 邮件：邮件集成。
+  
 #### 5.API引擎
  * 应用管理：应用新增、修改、删除、查看。
  
@@ -91,6 +95,7 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
  * 请假管理：功能包括请假新增、编辑、查看、删除、导出、提交。
  
  * 流程任务：功能包括流程审批、审批意见列表及流程追踪。
+ 
 #### 7.表单引擎
  * 表单设计：表单快速设计。
  
@@ -101,6 +106,7 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
  * 表单数据统计：手机填写的表单，支持列表和图表统计。 
  
  * uni-app示例与基础：提供uni-app实例，并集成表单功能。 
+ 
 #### 8.数据引擎 
  * 可视化：快速配置，图表生成。
  
@@ -115,18 +121,19 @@ entfrm开发平台，是一个以模块化为核心的无代码开发平台，�
 ### 代码结构
 ~~~
 entfrm-boot
-|--entfrm-auth Oauth2授权模块
-|--entfrm-biz 
-|----entfrm-monitor 运维监控模块
-|----entfrm-system 系统管理模块
-|----entfrm-toolkit 开发工具模块
-|--entfrm-core 
-|----entfrm-base 核心基础模块
-|----entfrm-data 核心数据模块
-|----entfrm-log 核心日志模块
+|--entfrm-auth       Oauth2授权模块
+|--entfrm-biz   业务模块
+|----entfrm-monitor  运维监控模块
+|----entfrm-system   系统管理模块
+|----entfrm-toolkit  开发工具模块
+|----entfrm-quartz   定时任务模块
+|--entfrm-core  核心模块 
+|----entfrm-base     核心基础模块
+|----entfrm-data     核心数据模块
+|----entfrm-log      核心日志模块
 |----entfrm-security 核心安全模块
 |----entfrm-swagger Swagger文档
-|--entfrm-web Web模块
+|--entfrm-web       Web模块
 ~~~
 ### 在线演示
 

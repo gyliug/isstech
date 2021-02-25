@@ -5,6 +5,12 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.entfrm.base.constant.CommonConstants;
+import com.entfrm.base.constant.GenConstants;
+import com.entfrm.base.constant.SqlConstants;
+import com.entfrm.base.exception.BaseException;
+import com.entfrm.base.util.FileUtil;
+import com.entfrm.base.util.StrUtil;
 import com.entfrm.biz.toolkit.config.GenConfig;
 import com.entfrm.biz.toolkit.entity.Column;
 import com.entfrm.biz.toolkit.entity.Table;
@@ -15,12 +21,6 @@ import com.entfrm.biz.toolkit.util.BuilderUtil;
 import com.entfrm.biz.toolkit.util.GenUtil;
 import com.entfrm.biz.toolkit.util.VelocityInitializer;
 import com.entfrm.biz.toolkit.util.VelocityUtil;
-import com.entfrm.base.constant.CommonConstants;
-import com.entfrm.base.constant.GenConstants;
-import com.entfrm.base.constant.SqlConstants;
-import com.entfrm.base.exception.BaseException;
-import com.entfrm.base.util.FileUtil;
-import com.entfrm.base.util.StrUtil;
 import com.entfrm.security.util.SecurityUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -385,10 +385,10 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 if (StrUtil.containsAny(template, "vue", "js")) {
                     localFile = table.getGenPath().replace("\\", "/") + "/entfrm-ui/" + VelocityUtil.getFileName(template, table).replace("vue/", "src/");
                 } else if (StrUtil.contains(template, "sql")) {
-                    localFile = table.getGenPath().replace("\\", "/") + "/entfrm-biz/entfrm-biz-" + table.getModuleName() + "/sql/" + VelocityUtil.getFileName(template, table);
+                    localFile = table.getGenPath().replace("\\", "/") + "/entfrm-biz/entfrm-" + table.getModuleName() + "/sql/" + VelocityUtil.getFileName(template, table);
                     sqlPath = localFile;
                 } else {
-                    localFile = table.getGenPath().replace("\\", "/") + "/entfrm-biz/entfrm-biz-" + table.getModuleName() + "/src/" + VelocityUtil.getFileName(template, table);
+                    localFile = table.getGenPath().replace("\\", "/") + "/entfrm-biz/entfrm-" + table.getModuleName() + "/src/" + VelocityUtil.getFileName(template, table);
                 }
                 IoUtil.write(FileUtil.getOutputStream(localFile), CommonConstants.UTF8, false, sw.toString());
                 IoUtil.close(sw);

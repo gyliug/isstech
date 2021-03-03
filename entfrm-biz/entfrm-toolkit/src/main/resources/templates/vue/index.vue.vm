@@ -304,7 +304,7 @@
 </template>
 
 <script>
-import { list${ClassName}, get${ClassName}, del${ClassName}, add${ClassName}, update${ClassName}, export${ClassName} } from "@/api/${moduleName}/${businessName}";
+import { list${ClassName}, get${ClassName}, del${ClassName}, add${ClassName}, edit${ClassName}, export${ClassName} } from "@/api/${moduleName}/${businessName}";
 #foreach($column in $columns)
 #if($column.isAdd == '1' && !$column.superColumn && $column.isPk == '0' && $column.htmlType == "imageUpload")
 import ImageUpload from '@/components/ImageUpload';
@@ -556,7 +556,7 @@ export default {
           this.form.${subclassName}List = this.${subclassName}List;
 #end
           if (this.form.${pkColumn.javaField} != null) {
-            update${ClassName}(this.form).then(response => {
+            edit${ClassName}(this.form).then(response => {
               this.msgSuccess("修改成功");
               this.open = false;
               this.getList();

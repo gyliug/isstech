@@ -467,7 +467,7 @@ export default {
         delete node.children;
       }
       return {
-        id: node.id,
+        id: node.deptId,
         label: node.name,
         children: node.children
       };

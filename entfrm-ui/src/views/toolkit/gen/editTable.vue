@@ -110,9 +110,11 @@
                 <el-option label="单选框" value="radio"/>
                 <el-option label="复选框" value="checkbox"/>
                 <el-option label="日期控件" value="datetime"/>
+                <el-option label="图片上传" value="imageUpload" />
+                <el-option label="文件上传" value="fileUpload" />
+                <el-option label="富文本控件" value="editor" />
                 <el-option label="部门控件" value="dept"/>
                 <el-option label="用户控件" value="user"/>
-                <el-option label="文件上传控件" value="fileUpload"/>
               </el-select>
             </template>
           </el-table-column>
@@ -195,6 +197,7 @@
           this.info.treeName = options.treeName
         }
         this.info.menus = this.handleTree(res.data.menus, "id");
+        this.info.tables = res.data.tables;
       });
       /** 查询字典下拉列表 */
       dictList().then(response => {

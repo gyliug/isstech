@@ -22,6 +22,10 @@ import { parseTime, resetForm, addDateRange, selectDictLabel, selectDictLabels, 
 import Pagination from "@/components/Pagination";
 //自定义表格工具扩展
 import RightToolbar from "@/components/RightToolbar"
+//表单设计器
+import Avue from '@smallwei/avue'
+import '@smallwei/avue/lib/index.css'
+import AvueFormDesign from '@sscfaith/avue-form-design'
 
 // 全局方法挂载
 Vue.prototype.getDicts = getDicts
@@ -51,6 +55,10 @@ Vue.component('Pagination', Pagination)
 Vue.component('RightToolbar', RightToolbar)
 
 Vue.use(permission)
+
+//表单设计器
+Vue.use(Avue)
+Vue.use(AvueFormDesign)
 
 /**
  * If you don't want to use mock-server

@@ -4,10 +4,10 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.entfrm.base.constant.GenConstants;
 import com.entfrm.biz.toolkit.config.GenConfig;
 import com.entfrm.biz.toolkit.entity.Column;
 import com.entfrm.biz.toolkit.entity.Table;
-import com.entfrm.base.constant.GenConstants;
 import org.apache.velocity.VelocityContext;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class VelocityUtil {
      * @return 模板列表
      */
     public static VelocityContext prepareContext(Table table) {
-        String moduleName = table.getModuleName();
+        //String moduleName = table.getModuleName();
         String businessName = table.getBusinessName();
         String packageName = table.getPackageName();
         String tplCategory = table.getTplCategory();
@@ -50,13 +50,16 @@ public class VelocityUtil {
         velocityContext.put("author", table.getFunctionAuthor());
         velocityContext.put("datetime", DateUtil.date());
         velocityContext.put("pkColumn", table.getPkColumn());
-        velocityContext.put("importList", getImportList(columnList));
+        velocityContext.put("importList", getImportList(table));
         velocityContext.put("permissionPrefix", businessName);
         velocityContext.put("columns", columnList);
         velocityContext.put("menuId", table.getMenuId());
         velocityContext.put("table", table);
         if (GenConstants.TPL_TREE.equals(tplCategory)) {
             setTreeVelocityContext(velocityContext, table);
+        }
+        if (GenConstants.TPL_MSUB.equals(tplCategory)) {
+            setMSubVelocityContext(velocityContext, table);
         }
         return velocityContext;
     }
@@ -78,6 +81,23 @@ public class VelocityUtil {
         }
     }
 
+    public static void setMSubVelocityContext(VelocityContext context, Table table) {
+        Table subTable = table.getSubTable();
+        String subTableName = table.getSubTableName();
+        String subTableField = table.getSubTableField();
+        String subClassName = table.getSubTable().getClassName();
+        String subTableClassField = StrUtil.toCamelCase(subTableField);
+
+        context.put("subTable", subTable);
+        context.put("subTableName", subTableName);
+        context.put("subTableField", subTableField);
+        context.put("subTableClassField", StrUtil.upperFirst(subTableClassField));
+        context.put("subTableclassField", subTableClassField);
+        context.put("subClassName", subClassName);
+        context.put("subclassName", StrUtil.lowerFirst(subClassName));
+        context.put("subImportList", getImportList(table.getSubTable()));
+    }
+
     /**
      * 获取模板信息
      *
@@ -91,10 +111,13 @@ public class VelocityUtil {
         templates.add("templates/java/serviceImpl.java.vm");
         templates.add("templates/java/controller.java.vm");
         templates.add("templates/xml/mapper.xml.vm");
-        if (GenConstants.TPL_CRUD.equals(tplCategory)) {
+        if (GenConstants.TPL_CRUD.equals(tplCategory) || GenConstants.TPL_MSUB.equals(tplCategory)) {
             templates.add("templates/vue/index.vue.vm");
         } else if (GenConstants.TPL_TREE.equals(tplCategory)) {
             templates.add("templates/vue/index-tree.vue.vm");
+        } else if (GenConstants.TPL_MSUB.equals(tplCategory)) {
+            templates.add("templates/vue/index.vue.vm");
+            templates.add("templates/java/sub-entity.java.vm");
         }
         templates.add("templates/js/api.js.vm");
         templates.add("templates/sql/sql.vm");
@@ -120,6 +143,9 @@ public class VelocityUtil {
         String mybatisPath = MYBATIS_PATH + "/" + moduleName;
         String vuePath = "vue";
 
+        if (template.contains("sub-entity.java.vm") && StrUtil.equals(GenConstants.TPL_MSUB, table.getTplCategory())) {
+            fileName = StrUtil.format("{}/entity/{}.java", javaPath, table.getSubTable().getClassName());
+        }
         if (template.contains("entity.java.vm")) {
             fileName = StrUtil.format("{}/entity/{}.java", javaPath, className);
         } else if (template.contains("mapper.java.vm")) {
@@ -173,11 +199,16 @@ public class VelocityUtil {
     /**
      * 根据列类型获取导入包
      *
-     * @param columns 列集合
+     * @param table 表
      * @return 返回需要导入的包列表
      */
-    public static HashSet<String> getImportList(List<Column> columns) {
+    public static HashSet<String> getImportList(Table table) {
+        List<Column> columns = table.getColumns();
+        Table subTable = table.getSubTable();
         HashSet<String> importList = new HashSet<String>();
+        if (!StrUtil.isEmptyIfStr(subTable)) {
+            importList.add("java.util.List");
+        }
         for (Column column : columns) {
             if (!column.isSuperColumn() && GenConstants.TYPE_DATE.equals(column.getJavaType())) {
                 importList.add("java.util.Date");

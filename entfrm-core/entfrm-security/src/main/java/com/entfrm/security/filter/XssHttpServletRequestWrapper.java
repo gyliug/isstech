@@ -1,4 +1,4 @@
-package com.entfrm.base.filter;
+package com.entfrm.security.filter;
 
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.http.HtmlUtil;

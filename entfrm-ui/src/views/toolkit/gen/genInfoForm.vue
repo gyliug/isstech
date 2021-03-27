@@ -4,10 +4,10 @@
       <el-col :span="12">
         <el-form-item prop="tplCategory">
           <span slot="label">生成模板</span>
-          <el-select v-model="info.tplCategory">
+          <el-select v-model="info.tplCategory" @change="tplCategorySelect">
             <el-option label="单表（增删改查）" value="crud"/>
             <el-option label="树表（增删改查）" value="tree"/>
-            <el-option label="左树右表（增删改查）" value="ltyt"/>
+            <el-option label="主子表（增删改查）" value="msub"/>
           </el-select>
         </el-form-item>
       </el-col>
@@ -79,7 +79,21 @@
               <i class="el-icon-question"></i>
             </el-tooltip>
           </span>
-          <treeselect v-model="info.menuId" :options="info.menus" :normalizer="normalizer" placeholder="请选择"/>
+          <treeselect :append-to-body="true" v-model="info.menuId" :options="info.menus" :normalizer="normalizer" :show-count="true" placeholder="请选择"/>
+        </el-form-item>
+      </el-col>
+
+      <el-col :span="12">
+        <el-form-item prop="genApi">
+          <span slot="label">是否生成API
+            <el-tooltip content="生成Swagger API文档" placement="top">
+              <i class="el-icon-question"></i>
+            </el-tooltip>
+          </span>
+          <el-radio-group v-model="info.genApi">
+            <el-radio key="0" label="0">是</el-radio>
+            <el-radio key="1" label="1">否</el-radio>
+          </el-radio-group>
         </el-form-item>
       </el-col>
 
@@ -93,7 +107,7 @@
         </el-form-item>
       </el-col>
 
-      <el-col :span="24" v-if="info.genWay == '1'">
+      <el-col :span="12" v-if="info.genWay == '1'">
         <el-form-item prop="genPath">
           <span slot="label">
             生成文件路径
@@ -109,24 +123,6 @@
 
     <el-row v-show="info.tplCategory == 'tree'">
       <h4 class="form-header">其他信息</h4>
-      <el-col :span="12">
-        <el-form-item>
-          <span slot="label">
-            树表表名
-            <el-tooltip content="左侧树表表名， 如：sys_dept" placement="top">
-              <i class="el-icon-question"></i>
-            </el-tooltip>
-          </span>
-          <el-select v-model="info.tableId" placeholder="请选择">
-            <el-option
-              v-for="column in info.columns"
-              :key="column.columnName"
-              :label="column.columnName + '：' + column.columnComment"
-              :value="column.columnName"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-      </el-col>
       <el-col :span="12">
         <el-form-item>
           <span slot="label">
@@ -182,6 +178,46 @@
         </el-form-item>
       </el-col>
     </el-row>
+
+    <el-row v-show="info.tplCategory == 'msub'">
+      <h4 class="form-header">关联信息</h4>
+      <el-col :span="12">
+        <el-form-item>
+          <span slot="label">
+            关联子表的表名
+            <el-tooltip content="关联子表的表名， 如：sys_user" placement="top">
+              <i class="el-icon-question"></i>
+            </el-tooltip>
+          </span>
+          <el-select v-model="info.subTableName" placeholder="请选择" @change="subSelectChange">
+            <el-option
+              v-for="(table, index) in info.tables"
+              :key="index"
+              :label="table.tableName + '：' + table.tableComment"
+              :value="table.tableName"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <el-form-item>
+          <span slot="label">
+            子表关联的外键名
+            <el-tooltip content="子表关联的外键名， 如：user_id" placement="top">
+              <i class="el-icon-question"></i>
+            </el-tooltip>
+          </span>
+          <el-select v-model="info.subTableField" placeholder="请选择">
+            <el-option
+              v-for="(column, index) in subColumns"
+              :key="index"
+              :label="column.columnName + '：' + column.columnComment"
+              :value="column.columnName"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+    </el-row>
   </el-form>
 </template>
 <script>
@@ -198,6 +234,7 @@
     },
     data() {
       return {
+        subColumns: [],
         rules: {
           tplCategory: [
             {required: true, message: "请选择生成模板", trigger: "blur"}
@@ -226,8 +263,10 @@
         }
       };
     },
-    created() {
-
+    watch: {
+      'info.subTableName': function(val) {
+        this.setSubTableColumns(val);
+      }
     },
     methods: {
       /** 转换菜单结构 */
@@ -240,10 +279,31 @@
           label: node.name,
           children: node.children
         };
+      },
+      subSelectChange(value) {
+        this.info.subTableField = '';
+      },
+      tplCategorySelect(value) {
+        if(value !== 'sub') {
+          this.info.subTableName = '';
+          this.info.subTableField = '';
+        }
+      },
+      /** 设置关联外键 */
+      setSubTableColumns(value) {
+        for (var item in this.info.tables) {
+          const name = this.info.tables[item].tableName;
+          if (value === name) {
+            this.subColumns = this.info.tables[item].columns;
+            break;
+          }
+        }
       }
     }
   };
 </script>
 <style scoped>
-
+  /deep/ .el-form-item--medium .el-form-item__content {
+    line-height: 34px;
+  }
 </style>

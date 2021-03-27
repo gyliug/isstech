@@ -53,6 +53,7 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    appId: '0',
     path: '',
     component: Layout,
     redirect: 'index',

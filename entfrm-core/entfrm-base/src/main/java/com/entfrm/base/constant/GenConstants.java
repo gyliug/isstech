@@ -14,6 +14,9 @@ public class GenConstants {
      */
     public static final String TPL_TREE = "tree";
 
+    /** 主子表（增删改查） */
+    public static final String TPL_MSUB = "msub";
+
     /**
      * 树编码字段
      */

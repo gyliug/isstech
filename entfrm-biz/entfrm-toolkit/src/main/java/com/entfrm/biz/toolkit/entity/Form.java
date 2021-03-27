@@ -40,7 +40,7 @@ public class Form extends BaseEntity{
     private String type;
 
     /** 数据库连接 */
-    private Integer datasourceId;
+    private String dsAlias;
 
     /** 表名 */
     @Excel(name = "表名")
@@ -58,4 +58,6 @@ public class Form extends BaseEntity{
     @Excel(name = "版本号")
     private String version;
 
+    /** 状态 */
+    private String status;
 }

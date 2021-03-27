@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 50725
  Source Host           : localhost:3306
- Source Schema         : entfrm-boot
+ Source Schema         : entfrm2.1
 
  Target Server Type    : MySQL
  Target Server Version : 50725
  File Encoding         : 65001
 
- Date: 11/12/2020 23:25:27
+ Date: 27/03/2021 15:14:15
 */
 
 SET NAMES utf8mb4;
@@ -44,7 +44,7 @@ CREATE TABLE `dev_apiinfo`  (
   `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标识（0-正常，1-删除）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '接口信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '接口信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for dev_column
@@ -77,7 +77,7 @@ CREATE TABLE `dev_column`  (
   `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1262 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for dev_dataset
@@ -99,7 +99,36 @@ CREATE TABLE `dev_dataset`  (
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '删除标识（0-正常，1-删除）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '数据源' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '数据源' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for dev_form
+-- ----------------------------
+DROP TABLE IF EXISTS `dev_form`;
+CREATE TABLE `dev_form`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '表单名称',
+  `code` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '表单标识',
+  `type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '表单类型',
+  `ds_alias` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '数据库别名',
+  `table_name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '表名',
+  `data` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '表单数据',
+  `auto_create` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '自动创建',
+  `version` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '版本号',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '状态',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of dev_form
+-- ----------------------------
+INSERT INTO `dev_form` VALUES (1, '测试表单', 'test', '0', '1', 'test', '\"{column:[{type:\'input\',label:\'单行文本\',span:24,display:true,prop:\'1616808322555_61191\'},{type:\'textarea\',label:\'多行文本\',span:24,display:true,prop:\'1616818908722_16715\'},{type:\'radio\',label:\'单选框组\',dicData:[{label:\'选项一\',value:\'0\'},{label:\'选项二\',value:\'1\'},{label:\'选项三\',value:\'2\'}],span:12,display:true,props:{label:\'label\',value:\'value\'},prop:\'1616808328794_21064\'},{type:\'timerange\',label:\'时间范围\',span:12,display:true,format:\'HH:mm:ss\',valueFormat:\'HH:mm:ss\',prop:\'1616808492078_95952\'},{type:\'upload\',label:\'上传\',span:24,display:true,showFileList:true,multiple:true,limit:10,propsHttp:{},canvasOption:{},prop:\'1616818404413_51309\'},{type:\'icon\',label:\'图标\',component:\'avue-input-icon\',span:24,display:true,params:{iconList:[{label:\'基本图标\',list:[\'el-icon-info\',\'el-icon-error\',\'el-icon-error\',\'el-icon-success\',\'el-icon-warning\',\'el-icon-question\']},{label:\'方向图标\',list:[\'el-icon-info\',\'el-icon-back\',\'el-icon-arrow-left\',\'el-icon-arrow-down\',\'el-icon-arrow-right\',\'el-icon-arrow-up\']},{label:\'符号图标\',list:[\'el-icon-plus\',\'el-icon-minus\',\'el-icon-close\',\'el-icon-check\']}]},prop:\'1616828635931_82028\'}],labelPosition:\'left\',labelSuffix:\'：\',labelWidth:120,gutter:0,menuBtn:true,submitBtn:true,submitText:\'提交\',emptyBtn:true,emptyText:\'清空\',menuPosition:\'center\'}\"', '0', '1.0', '0', 'entfrm', '2021-03-26 23:32:55', '', '2021-03-27 11:55:19', NULL, '0');
 
 -- ----------------------------
 -- Table structure for dev_table
@@ -117,10 +146,13 @@ CREATE TABLE `dev_table`  (
   `function_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '生成功能名',
   `function_author` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '生成功能作者',
   `cols` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '24' COMMENT '分栏',
+  `gen_api` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成API',
   `gen_way` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '生成方式',
   `options` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '其它生成选项',
   `menu_id` int(11) NULL DEFAULT NULL COMMENT '父级菜单',
   `gen_path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生成路径',
+  `sub_table_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关联子表的表名',
+  `sub_table_field` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '关联子表的外键名',
   `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '创建者',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
@@ -128,7 +160,7 @@ CREATE TABLE `dev_table`  (
   `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 96 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for oauth_client_details
@@ -168,6 +200,7 @@ CREATE TABLE `sys_application`  (
   `cover` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '封面',
   `version` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '版本',
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
+  `sort` int(11) NULL DEFAULT 1 COMMENT '排序',
   `dept_id` int(11) NULL DEFAULT NULL COMMENT '机构编号',
   `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '状态',
   `create_by` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建人',
@@ -182,8 +215,8 @@ CREATE TABLE `sys_application`  (
 -- ----------------------------
 -- Records of sys_application
 -- ----------------------------
-INSERT INTO `sys_application` VALUES (1, '通用管理系统', '1', '0', '通用', NULL, '1.0.1', '通用管理系统', 1, '1', 'entfrm', '2020-04-23 19:20:29', 'entfrm', '2020-04-23 20:06:36', NULL, '0');
-INSERT INTO `sys_application` VALUES (2, '内容管理系统', '1', '1', '其他', NULL, '1.0.0', '内容管理系统', 1, '1', 'entfrm', '2020-05-15 22:55:31', 'entfrm', '2020-05-15 23:09:16', NULL, '0');
+INSERT INTO `sys_application` VALUES (1, '通用管理', '1', '0', '通用', NULL, '1.0.1', '通用管理', 1, 1, '1', 'entfrm', '2020-04-23 19:20:29', 'entfrm', '2020-04-23 20:06:36', NULL, '0');
+INSERT INTO `sys_application` VALUES (2, '开发工具', '1', '1', '其他', NULL, '1.0.0', '开发工具', 1, 1, '1', 'entfrm', '2020-05-15 22:55:31', 'entfrm', '2020-05-15 23:09:16', NULL, '0');
 
 -- ----------------------------
 -- Table structure for sys_area
@@ -221,7 +254,7 @@ CREATE TABLE `sys_backup`  (
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -266,7 +299,7 @@ CREATE TABLE `sys_datasource`  (
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   `del_flag` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -317,7 +350,7 @@ CREATE TABLE `sys_dict`  (
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict
@@ -341,6 +374,7 @@ INSERT INTO `sys_dict` VALUES (16, '消息类型', 'msg_type', '0', '0', 'entfrm
 INSERT INTO `sys_dict` VALUES (17, '应用状态', 'application_status', '0', '0', 'entfrm', '2020-05-15 22:56:49', NULL, NULL, '应用状态列表', '0');
 INSERT INTO `sys_dict` VALUES (18, '消息通知类型', 'content_type', '0', '0', 'entfrm', '2020-05-25 15:45:41', NULL, NULL, '', '0');
 INSERT INTO `sys_dict` VALUES (19, '数据格式类型', 'data_type', '0', '0', 'entfrm', '2020-06-13 08:51:07', NULL, NULL, '', '0');
+INSERT INTO `sys_dict` VALUES (20, '表单类型', 'form_type', '0', '0', 'entfrm', '2021-03-26 23:30:49', NULL, NULL, '', '0');
 
 -- ----------------------------
 -- Table structure for sys_dict_data
@@ -360,7 +394,7 @@ CREATE TABLE `sys_dict_data`  (
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注信息',
   `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 54 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict_data
@@ -416,6 +450,8 @@ INSERT INTO `sys_dict_data` VALUES (48, NULL, 'content_type', '通知', '0', 0, 
 INSERT INTO `sys_dict_data` VALUES (49, NULL, 'content_type', '公告', '1', 1, 'entfrm', '2020-05-25 15:46:38', NULL, '2020-05-25 15:46:38', NULL, '0');
 INSERT INTO `sys_dict_data` VALUES (50, NULL, 'content_type', '其他', '2', 2, 'entfrm', '2020-05-25 15:46:46', NULL, '2020-05-25 15:46:45', NULL, '0');
 INSERT INTO `sys_dict_data` VALUES (51, NULL, 'data_type', 'json', 'json', 1, 'entfrm', '2020-06-13 08:51:24', NULL, '2020-06-13 08:51:24', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (52, NULL, 'form_type', '普通表单', '0', 0, 'entfrm', '2021-03-26 23:31:12', NULL, '2021-03-26 23:31:12', NULL, '0');
+INSERT INTO `sys_dict_data` VALUES (53, NULL, 'form_type', '工作流表单', '1', 1, 'entfrm', '2021-03-26 23:31:20', NULL, '2021-03-26 23:31:19', NULL, '0');
 
 -- ----------------------------
 -- Table structure for sys_file_info
@@ -436,7 +472,7 @@ CREATE TABLE `sys_file_info`  (
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sys_login_log
@@ -453,7 +489,26 @@ CREATE TABLE `sys_login_log`  (
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 463 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 478 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_login_log
+-- ----------------------------
+INSERT INTO `sys_login_log` VALUES (463, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 21:22:49');
+INSERT INTO `sys_login_log` VALUES (464, 'entfrm', '1', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 21:35:56');
+INSERT INTO `sys_login_log` VALUES (465, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 21:36:03');
+INSERT INTO `sys_login_log` VALUES (466, 'entfrm', '1', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 21:59:18');
+INSERT INTO `sys_login_log` VALUES (467, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 21:59:23');
+INSERT INTO `sys_login_log` VALUES (468, 'entfrm', '1', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 22:00:53');
+INSERT INTO `sys_login_log` VALUES (469, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 22:01:04');
+INSERT INTO `sys_login_log` VALUES (470, 'entfrm', '1', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 23:27:38');
+INSERT INTO `sys_login_log` VALUES (471, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 23:27:45');
+INSERT INTO `sys_login_log` VALUES (472, 'entfrm', '1', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 23:34:41');
+INSERT INTO `sys_login_log` VALUES (473, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 23:34:47');
+INSERT INTO `sys_login_log` VALUES (474, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-27 09:08:15');
+INSERT INTO `sys_login_log` VALUES (475, 'access-token', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '1', '登录失败，异常：Invalid access token: c88968e6-2d51-4485-8f0b-417366646638', '2021-03-27 11:46:45');
+INSERT INTO `sys_login_log` VALUES (476, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-27 11:46:53');
+INSERT INTO `sys_login_log` VALUES (477, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-27 12:09:10');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -480,14 +535,14 @@ CREATE TABLE `sys_menu`  (
   `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '删除标识（0-正常,1-删除）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 229 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 236 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
 INSERT INTO `sys_menu` VALUES (1, '系统管理', 0, NULL, 1, 'M', 'system', '#', '', 'system', '0', 10, '0', 'admin', '2019-03-16 11:33:00', 'admin', '2020-03-16 20:45:21', '系统管理模块', '0');
 INSERT INTO `sys_menu` VALUES (2, '运维监控', 0, NULL, 1, 'M', 'monitor', '#', '', 'monitor', '0', 20, '0', 'admin', '2019-03-16 11:33:00', 'admin', '2020-03-17 19:14:27', '运维监控模块', '0');
-INSERT INTO `sys_menu` VALUES (3, '开发工具', 0, NULL, 1, 'M', 'toolkit', '#', '', 'tool', '0', 30, '0', 'admin', '2019-03-16 11:33:00', 'admin', '2020-03-17 19:14:33', '开发工具模块', '0');
+INSERT INTO `sys_menu` VALUES (3, '开发工具', 0, NULL, 2, 'M', 'toolkit', '#', '', 'tool', '0', 30, '0', 'admin', '2019-03-16 11:33:00', 'admin', '2021-03-26 22:01:59', '开发工具模块', '0');
 INSERT INTO `sys_menu` VALUES (4, '机构管理', 1, NULL, 1, 'C', 'dept', 'system/dept/index', '', 'tree', '0', 1, '0', NULL, '2020-03-13 19:31:20', NULL, '2020-03-14 20:55:41', NULL, '0');
 INSERT INTO `sys_menu` VALUES (5, '角色管理', 1, NULL, 1, 'C', 'role', 'system/role/index', '', 'peoples', '0', 2, '0', NULL, '2020-03-13 19:32:09', NULL, '2020-03-16 22:11:57', NULL, '0');
 INSERT INTO `sys_menu` VALUES (6, '用户管理', 1, NULL, 1, 'C', 'user', 'system/user/index', '', 'user', '0', 3, '0', NULL, '2020-03-13 19:32:30', NULL, '2020-03-16 22:11:59', NULL, '0');
@@ -538,9 +593,9 @@ INSERT INTO `sys_menu` VALUES (51, 'API监控', 2, NULL, 1, 'C', 'apiStat', 'mon
 INSERT INTO `sys_menu` VALUES (52, '日志监控', 2, NULL, 1, 'M', 'log', '#', NULL, 'monitor', '0', 7, '0', 'entfrm', '2020-03-17 18:12:01', NULL, '2020-05-17 16:48:23', NULL, '0');
 INSERT INTO `sys_menu` VALUES (53, '登录日志', 52, NULL, 1, 'C', 'loginLog', 'monitor/loginLog/index', NULL, 'logininfor', '0', 1, '0', 'entfrm', '2020-03-17 18:12:56', NULL, '2020-03-18 22:31:53', NULL, '0');
 INSERT INTO `sys_menu` VALUES (54, '操作日志', 52, NULL, 1, 'C', 'operLog', 'monitor/operLog/index', NULL, 'log', '0', 2, '0', 'entfrm', '2020-03-17 18:13:52', 'entfrm', '2020-03-18 22:31:36', NULL, '0');
-INSERT INTO `sys_menu` VALUES (55, '接口文档', 3, NULL, 1, 'C', 'swagger', 'toolkit/swagger/index', NULL, 'swagger', '0', 4, '0', 'entfrm', '2020-03-17 18:18:38', 'entfrm', '2020-03-21 11:09:59', NULL, '0');
-INSERT INTO `sys_menu` VALUES (56, '模板管理', 3, NULL, 1, 'M', 'template', '#', NULL, 'drag', '0', 5, '0', 'entfrm', '2020-03-17 18:19:52', 'entfrm', '2020-12-11 23:09:42', NULL, '1');
-INSERT INTO `sys_menu` VALUES (57, '表单构建', 3, NULL, 1, 'C', 'build', 'toolkit/build/index', NULL, 'form', '0', 6, '0', 'entfrm', '2020-03-17 18:21:32', 'entfrm', '2020-03-24 17:57:17', NULL, '0');
+INSERT INTO `sys_menu` VALUES (55, '接口文档', 3, NULL, 2, 'C', 'swagger', 'toolkit/swagger/index', NULL, 'swagger', '0', 4, '0', 'entfrm', '2020-03-17 18:18:38', 'entfrm', '2021-03-26 21:59:08', NULL, '0');
+INSERT INTO `sys_menu` VALUES (56, '模板管理', 3, NULL, 2, 'M', 'template', '#', NULL, 'drag', '0', 5, '0', 'entfrm', '2020-03-17 18:19:52', 'entfrm', '2021-03-26 21:59:08', NULL, '1');
+INSERT INTO `sys_menu` VALUES (57, '表单构建', 3, NULL, 2, 'C', 'build', 'toolkit/build/index', NULL, 'form', '0', 6, '0', 'entfrm', '2020-03-17 18:21:32', 'entfrm', '2021-03-27 09:12:17', NULL, '1');
 INSERT INTO `sys_menu` VALUES (59, '终端新增', 45, NULL, 1, 'F', NULL, '#', 'clientDetails_add', NULL, '0', 1, '0', 'entfrm', '2020-03-18 15:18:36', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (60, '终端修改', 45, NULL, 1, 'F', NULL, '#', 'clientDetails_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-18 15:18:53', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (61, '终端删除', 45, NULL, 1, 'F', NULL, '#', 'clientDetails_del', NULL, '0', 3, '0', 'entfrm', '2020-03-18 15:19:06', NULL, NULL, NULL, '0');
@@ -560,8 +615,8 @@ INSERT INTO `sys_menu` VALUES (74, '文件启用', 44, NULL, 1, 'F', NULL, '#', 
 INSERT INTO `sys_menu` VALUES (75, '文件删除', 44, NULL, 1, 'F', NULL, '#', 'fileInfo_del', NULL, '0', 3, '0', 'entfrm', '2020-03-20 22:42:30', NULL, '2020-03-20 22:44:29', NULL, '0');
 INSERT INTO `sys_menu` VALUES (76, '文件查看', 44, NULL, 1, 'F', NULL, '#', 'fileInfo_view', NULL, '0', 4, '0', 'entfrm', '2020-03-20 22:43:06', NULL, '2020-03-20 22:44:26', NULL, '0');
 INSERT INTO `sys_menu` VALUES (77, '文件分享', 44, NULL, 1, 'F', NULL, '#', 'fileInfo_share', NULL, '0', 5, '0', 'entfrm', '2020-03-20 22:43:37', 'entfrm', '2020-03-20 22:44:23', NULL, '0');
-INSERT INTO `sys_menu` VALUES (78, '数据库管理', 3, NULL, 1, 'C', 'datasource', 'toolkit/datasource/index', NULL, 'druid', '0', 1, '0', 'entfrm', '2020-03-21 11:05:47', 'entfrm', '2020-04-12 11:20:56', NULL, '0');
-INSERT INTO `sys_menu` VALUES (79, '数据表管理', 3, NULL, 1, 'C', 'datatable', 'toolkit/datatable/index', NULL, 'table', '0', 2, '0', 'entfrm', '2020-03-21 11:07:23', 'entfrm', '2020-03-21 12:04:41', NULL, '0');
+INSERT INTO `sys_menu` VALUES (78, '数据库管理', 3, NULL, 2, 'C', 'datasource', 'toolkit/datasource/index', NULL, 'druid', '0', 1, '0', 'entfrm', '2020-03-21 11:05:47', 'entfrm', '2021-03-26 21:59:08', NULL, '0');
+INSERT INTO `sys_menu` VALUES (79, '数据表管理', 3, NULL, 2, 'C', 'datatable', 'toolkit/datatable/index', NULL, 'table', '0', 2, '0', 'entfrm', '2020-03-21 11:07:23', 'entfrm', '2021-03-26 21:59:08', NULL, '0');
 INSERT INTO `sys_menu` VALUES (81, '数据库新增', 78, NULL, 1, 'F', NULL, '#', 'datasource_add', NULL, '0', 1, '0', 'entfrm', '2020-03-21 11:27:26', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (82, '数据库修改', 78, NULL, 1, 'F', NULL, '#', 'datasource_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-21 11:27:46', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (83, '数据库删除', 78, NULL, 1, 'F', NULL, '#', 'datasource_del', NULL, '0', 3, '0', 'entfrm', '2020-03-21 11:27:59', NULL, NULL, NULL, '0');
@@ -576,7 +631,7 @@ INSERT INTO `sys_menu` VALUES (105, '快捷方式新增', 43, NULL, 1, 'F', NULL
 INSERT INTO `sys_menu` VALUES (106, '快捷方式修改', 43, NULL, 1, 'F', NULL, '#', 'shortcut_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-27 09:44:36', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (107, '快捷方式删除', 43, NULL, 1, 'F', NULL, '#', 'shortcut_del', NULL, '0', 3, '0', 'entfrm', '2020-03-27 09:44:57', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (108, '快捷方式查看', 43, NULL, 1, 'F', NULL, '#', 'shortcut_view', NULL, '0', 4, '0', 'entfrm', '2020-03-27 09:45:16', NULL, NULL, NULL, '0');
-INSERT INTO `sys_menu` VALUES (109, '数据源管理', 3, NULL, 1, 'C', 'dataset', 'devtool/dataset/index', NULL, 'star', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-06-12 21:57:13', '数据源菜单', '0');
+INSERT INTO `sys_menu` VALUES (109, '数据源管理', 3, NULL, 2, 'C', 'dataset', 'toolkit/dataset/index', NULL, 'star', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2021-03-26 22:17:28', '数据源菜单', '0');
 INSERT INTO `sys_menu` VALUES (110, '数据源新增', 109, NULL, 1, 'F', NULL, '#', 'dataset_add', '#', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
 INSERT INTO `sys_menu` VALUES (111, '数据源修改', 109, NULL, 1, 'F', NULL, '#', 'dataset_edit', '#', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
 INSERT INTO `sys_menu` VALUES (112, '数据源删除', 109, NULL, 1, 'F', NULL, '#', 'dataset_del', '#', '1', 3, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
@@ -590,7 +645,7 @@ INSERT INTO `sys_menu` VALUES (142, '应用删除', 139, NULL, 1, 'F', NULL, '#'
 INSERT INTO `sys_menu` VALUES (143, '应用查询', 139, NULL, 1, 'F', NULL, '#', 'application_view', '#', '1', 4, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
 INSERT INTO `sys_menu` VALUES (144, '应用导出', 139, NULL, 1, 'F', NULL, '#', 'application_export', '#', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
 INSERT INTO `sys_menu` VALUES (145, 'redis监控', 2, NULL, 1, 'C', 'redis', 'monitor/redis/index', NULL, 'component', '1', 5, '0', 'entfrm', '2020-04-24 22:26:31', 'entfrm', '2020-05-17 16:49:59', NULL, '0');
-INSERT INTO `sys_menu` VALUES (146, '接口构建', 3, NULL, 1, 'C', 'apiinfo', 'toolkit/apiinfo/index', NULL, 'star', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-05-15 23:23:29', '接口菜单', '0');
+INSERT INTO `sys_menu` VALUES (146, '接口构建', 3, NULL, 2, 'C', 'apiinfo', 'toolkit/apiinfo/index', NULL, 'star', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2021-03-26 21:59:08', '接口菜单', '0');
 INSERT INTO `sys_menu` VALUES (147, '接口新增', 146, NULL, 1, 'F', NULL, '#', 'apiinfo_add', '#', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
 INSERT INTO `sys_menu` VALUES (148, '接口修改', 146, NULL, 1, 'F', NULL, '#', 'apiinfo_edit', '#', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
 INSERT INTO `sys_menu` VALUES (149, '接口删除', 146, NULL, 1, 'F', NULL, '#', 'apiinfo_del', '#', '1', 3, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
@@ -598,6 +653,13 @@ INSERT INTO `sys_menu` VALUES (150, '接口查询', 146, NULL, 1, 'F', NULL, '#'
 INSERT INTO `sys_menu` VALUES (151, '接口导出', 146, NULL, 1, 'F', NULL, '#', 'apiinfo_export', '#', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', NULL, '0');
 INSERT INTO `sys_menu` VALUES (159, '令牌删除', 47, NULL, 1, 'F', NULL, '#', 'token_del', NULL, '1', 1, '0', 'entfrm', '2020-04-21 12:28:59', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (160, '令牌查看', 47, NULL, 1, 'F', NULL, '#', 'token_view', NULL, '1', 2, '0', 'entfrm', '2020-04-21 12:29:19', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (229, '表单管理', 3, NULL, 1, 'C', 'form', 'toolkit/form/index', '', 'build', '1', 3, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2021-03-27 09:12:41', '表单管理菜单', '0');
+INSERT INTO `sys_menu` VALUES (230, '表单管理新增', 229, NULL, 1, 'F', '', '#', 'form_add', '#', '1', 1, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (231, '表单管理修改', 229, NULL, 1, 'F', '', '#', 'form_edit', '#', '1', 2, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (232, '表单管理删除', 229, NULL, 1, 'F', '', '#', 'form_del', '#', '1', 3, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (233, '表单管理查询', 229, NULL, 1, 'F', '', '#', 'form_view', '#', '1', 4, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (234, '表单管理导出', 229, NULL, 1, 'F', '', '#', 'form_export', '#', '1', 5, '0', 'entfrm', '2020-02-02 00:00:00', 'entfrm', '2020-02-02 00:00:00', '', '0');
+INSERT INTO `sys_menu` VALUES (235, '表单设计', 229, NULL, 2, 'F', NULL, '#', 'form_design', NULL, '1', 6, '0', 'entfrm', '2021-03-26 23:33:55', NULL, NULL, NULL, '0');
 
 -- ----------------------------
 -- Table structure for sys_oper_log
@@ -620,7 +682,7 @@ CREATE TABLE `sys_oper_log`  (
   `execute_time` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '执行时间',
   `oper_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 832 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 847 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -629,6 +691,21 @@ INSERT INTO `sys_oper_log` VALUES (828, '1', '角色修改', 'PUT', 'Mozilla/5.0
 INSERT INTO `sys_oper_log` VALUES (829, '1', '角色修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 'entfrm', 'entfrm', '/system/role/update', '127.0.0.1', 'XX XX', '', 0, '', '157', '2020-12-11 23:24:24');
 INSERT INTO `sys_oper_log` VALUES (830, '1', '角色修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 'entfrm', 'entfrm', '/system/role/update', '127.0.0.1', 'XX XX', '', 0, '', '39', '2020-12-11 23:24:26');
 INSERT INTO `sys_oper_log` VALUES (831, '1', '角色删除', 'DELETE', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 'entfrm', 'entfrm', '/system/role/remove/3', '127.0.0.1', 'XX XX', '', 0, '', '21', '2020-12-11 23:24:31');
+INSERT INTO `sys_oper_log` VALUES (832, '1', '角色修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/role/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '0', '2021-03-26 23:27:31');
+INSERT INTO `sys_oper_log` VALUES (833, '1', '字典新增', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/dict/save', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '179', '2021-03-26 23:30:48');
+INSERT INTO `sys_oper_log` VALUES (834, '1', '字典数据新增', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/dictData/save', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '21', '2021-03-26 23:31:12');
+INSERT INTO `sys_oper_log` VALUES (835, '1', '字典数据新增', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/dictData/save', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '10', '2021-03-26 23:31:19');
+INSERT INTO `sys_oper_log` VALUES (836, '1', '表单管理新增', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/form/save', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '14', '2021-03-26 23:32:54');
+INSERT INTO `sys_oper_log` VALUES (837, '1', '菜单新增', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/menu/save', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '12', '2021-03-26 23:33:55');
+INSERT INTO `sys_oper_log` VALUES (838, '1', '角色修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/role/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '9', '2021-03-26 23:34:37');
+INSERT INTO `sys_oper_log` VALUES (839, '1', '菜单修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/menu/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '0', '2021-03-27 09:11:23');
+INSERT INTO `sys_oper_log` VALUES (840, '1', '菜单删除', 'DELETE', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/menu/remove/57', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '19', '2021-03-27 09:11:29');
+INSERT INTO `sys_oper_log` VALUES (841, '1', '表单管理修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/form/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '0', '2021-03-27 11:55:18');
+INSERT INTO `sys_oper_log` VALUES (842, '1', '表单管理修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/form/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '20', '2021-03-27 12:13:41');
+INSERT INTO `sys_oper_log` VALUES (843, '1', '表单管理修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/form/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '29', '2021-03-27 12:22:02');
+INSERT INTO `sys_oper_log` VALUES (844, '1', '表单管理修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/form/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '19', '2021-03-27 15:03:58');
+INSERT INTO `sys_oper_log` VALUES (845, '1', '新建/配置表', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/datatable/getGenTable', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 1, '\r\n### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column \'gen_api\' in \'field list\'\r\n### The error may exist in com/entfrm/biz/toolkit/mapper/TableMapper.java (best guess)\r\n### The error may involve defaultParameterMap\r\n### The error occurred while setting parameters\r\n### SQL: SELECT  id,table_name,table_comment,class_name,tpl_category,package_name,module_name,business_name,function_name,function_author,options,cols,gen_api,gen_way,menu_id,gen_path,sub_table_name,sub_table_field,create_by,create_time,update_by,update_time,remarks,del_flag  FROM dev_table   WHERE  del_flag=\'0\'\r\n### Cause: java.sql.SQLSyntaxErrorException: Unknown column \'gen_api\' in \'field list\'\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column \'gen_api\' in \'field list\'', '28', '2021-03-27 15:04:21');
+INSERT INTO `sys_oper_log` VALUES (846, '1', '新建/配置表', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/datatable/getGenTable', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '28', '2021-03-27 15:05:50');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -649,7 +726,7 @@ CREATE TABLE `sys_role`  (
   `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '删除标识（0-正常,1-删除）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role
@@ -683,6 +760,46 @@ CREATE TABLE `sys_role_menu`  (
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
+INSERT INTO `sys_role_menu` VALUES (2, 11);
+INSERT INTO `sys_role_menu` VALUES (2, 16);
+INSERT INTO `sys_role_menu` VALUES (2, 7);
+INSERT INTO `sys_role_menu` VALUES (2, 25);
+INSERT INTO `sys_role_menu` VALUES (2, 26);
+INSERT INTO `sys_role_menu` VALUES (2, 27);
+INSERT INTO `sys_role_menu` VALUES (2, 28);
+INSERT INTO `sys_role_menu` VALUES (2, 33);
+INSERT INTO `sys_role_menu` VALUES (2, 78);
+INSERT INTO `sys_role_menu` VALUES (2, 81);
+INSERT INTO `sys_role_menu` VALUES (2, 82);
+INSERT INTO `sys_role_menu` VALUES (2, 83);
+INSERT INTO `sys_role_menu` VALUES (2, 84);
+INSERT INTO `sys_role_menu` VALUES (2, 79);
+INSERT INTO `sys_role_menu` VALUES (2, 90);
+INSERT INTO `sys_role_menu` VALUES (2, 91);
+INSERT INTO `sys_role_menu` VALUES (2, 92);
+INSERT INTO `sys_role_menu` VALUES (2, 93);
+INSERT INTO `sys_role_menu` VALUES (2, 94);
+INSERT INTO `sys_role_menu` VALUES (2, 95);
+INSERT INTO `sys_role_menu` VALUES (2, 109);
+INSERT INTO `sys_role_menu` VALUES (2, 110);
+INSERT INTO `sys_role_menu` VALUES (2, 111);
+INSERT INTO `sys_role_menu` VALUES (2, 112);
+INSERT INTO `sys_role_menu` VALUES (2, 113);
+INSERT INTO `sys_role_menu` VALUES (2, 114);
+INSERT INTO `sys_role_menu` VALUES (2, 55);
+INSERT INTO `sys_role_menu` VALUES (2, 57);
+INSERT INTO `sys_role_menu` VALUES (2, 1);
+INSERT INTO `sys_role_menu` VALUES (2, 4);
+INSERT INTO `sys_role_menu` VALUES (2, 5);
+INSERT INTO `sys_role_menu` VALUES (2, 29);
+INSERT INTO `sys_role_menu` VALUES (2, 3);
+INSERT INTO `sys_role_menu` VALUES (3, 109);
+INSERT INTO `sys_role_menu` VALUES (3, 110);
+INSERT INTO `sys_role_menu` VALUES (3, 111);
+INSERT INTO `sys_role_menu` VALUES (3, 112);
+INSERT INTO `sys_role_menu` VALUES (3, 113);
+INSERT INTO `sys_role_menu` VALUES (3, 114);
+INSERT INTO `sys_role_menu` VALUES (3, 3);
 INSERT INTO `sys_role_menu` VALUES (1, 1);
 INSERT INTO `sys_role_menu` VALUES (1, 139);
 INSERT INTO `sys_role_menu` VALUES (1, 140);
@@ -773,6 +890,13 @@ INSERT INTO `sys_role_menu` VALUES (1, 81);
 INSERT INTO `sys_role_menu` VALUES (1, 82);
 INSERT INTO `sys_role_menu` VALUES (1, 83);
 INSERT INTO `sys_role_menu` VALUES (1, 84);
+INSERT INTO `sys_role_menu` VALUES (1, 229);
+INSERT INTO `sys_role_menu` VALUES (1, 230);
+INSERT INTO `sys_role_menu` VALUES (1, 231);
+INSERT INTO `sys_role_menu` VALUES (1, 232);
+INSERT INTO `sys_role_menu` VALUES (1, 233);
+INSERT INTO `sys_role_menu` VALUES (1, 234);
+INSERT INTO `sys_role_menu` VALUES (1, 235);
 INSERT INTO `sys_role_menu` VALUES (1, 79);
 INSERT INTO `sys_role_menu` VALUES (1, 90);
 INSERT INTO `sys_role_menu` VALUES (1, 91);
@@ -794,46 +918,6 @@ INSERT INTO `sys_role_menu` VALUES (1, 149);
 INSERT INTO `sys_role_menu` VALUES (1, 150);
 INSERT INTO `sys_role_menu` VALUES (1, 151);
 INSERT INTO `sys_role_menu` VALUES (1, 57);
-INSERT INTO `sys_role_menu` VALUES (2, 11);
-INSERT INTO `sys_role_menu` VALUES (2, 16);
-INSERT INTO `sys_role_menu` VALUES (2, 7);
-INSERT INTO `sys_role_menu` VALUES (2, 25);
-INSERT INTO `sys_role_menu` VALUES (2, 26);
-INSERT INTO `sys_role_menu` VALUES (2, 27);
-INSERT INTO `sys_role_menu` VALUES (2, 28);
-INSERT INTO `sys_role_menu` VALUES (2, 33);
-INSERT INTO `sys_role_menu` VALUES (2, 78);
-INSERT INTO `sys_role_menu` VALUES (2, 81);
-INSERT INTO `sys_role_menu` VALUES (2, 82);
-INSERT INTO `sys_role_menu` VALUES (2, 83);
-INSERT INTO `sys_role_menu` VALUES (2, 84);
-INSERT INTO `sys_role_menu` VALUES (2, 79);
-INSERT INTO `sys_role_menu` VALUES (2, 90);
-INSERT INTO `sys_role_menu` VALUES (2, 91);
-INSERT INTO `sys_role_menu` VALUES (2, 92);
-INSERT INTO `sys_role_menu` VALUES (2, 93);
-INSERT INTO `sys_role_menu` VALUES (2, 94);
-INSERT INTO `sys_role_menu` VALUES (2, 95);
-INSERT INTO `sys_role_menu` VALUES (2, 109);
-INSERT INTO `sys_role_menu` VALUES (2, 110);
-INSERT INTO `sys_role_menu` VALUES (2, 111);
-INSERT INTO `sys_role_menu` VALUES (2, 112);
-INSERT INTO `sys_role_menu` VALUES (2, 113);
-INSERT INTO `sys_role_menu` VALUES (2, 114);
-INSERT INTO `sys_role_menu` VALUES (2, 55);
-INSERT INTO `sys_role_menu` VALUES (2, 57);
-INSERT INTO `sys_role_menu` VALUES (2, 1);
-INSERT INTO `sys_role_menu` VALUES (2, 4);
-INSERT INTO `sys_role_menu` VALUES (2, 5);
-INSERT INTO `sys_role_menu` VALUES (2, 29);
-INSERT INTO `sys_role_menu` VALUES (2, 3);
-INSERT INTO `sys_role_menu` VALUES (3, 109);
-INSERT INTO `sys_role_menu` VALUES (3, 110);
-INSERT INTO `sys_role_menu` VALUES (3, 111);
-INSERT INTO `sys_role_menu` VALUES (3, 112);
-INSERT INTO `sys_role_menu` VALUES (3, 113);
-INSERT INTO `sys_role_menu` VALUES (3, 114);
-INSERT INTO `sys_role_menu` VALUES (3, 3);
 
 -- ----------------------------
 -- Table structure for sys_shortcut
@@ -854,7 +938,7 @@ CREATE TABLE `sys_shortcut`  (
   `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT '0' COMMENT '0-正常，1-删除',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_shortcut
@@ -889,7 +973,7 @@ CREATE TABLE `sys_user`  (
   `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user

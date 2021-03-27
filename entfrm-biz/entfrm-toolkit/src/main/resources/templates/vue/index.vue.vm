@@ -166,6 +166,7 @@
     <!-- 添加或修改${functionName}对话框 -->
     <el-dialog :title="title" :visible.sync="open" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+        <el-row>
 #foreach($column in $columns)
 #set($field=$column.javaField)
 #if($column.isAdd == '1' && $column.isPk != '1')
@@ -178,22 +179,31 @@
 #end
 #set($dictType=$column.dictType)
 #if($column.htmlType == "input")
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}" prop="${field}">
           <el-input v-model="form.${field}" placeholder="请输入${comment}" />
         </el-form-item>
+      </el-col>
 #elseif($column.htmlType == "imageUpload")
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}">
           <imageUpload v-model="form.${field}"/>
         </el-form-item>
+      </el-col>
 #elseif($column.htmlType == "fileUpload")
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}">
           <fileUpload v-model="form.${field}"/>
         </el-form-item>
+      </el-col>
 #elseif($column.htmlType == "editor")
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}">
           <editor v-model="form.${field}" :min-height="192"/>
         </el-form-item>
+      </el-col>
 #elseif($column.htmlType == "select" && "" != $dictType)
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}" prop="${field}">
           <el-select v-model="form.${field}" placeholder="请选择${comment}">
             <el-option
@@ -205,13 +215,17 @@
             ></el-option>
           </el-select>
         </el-form-item>
+      </el-col>
 #elseif($column.htmlType == "select" && $dictType)
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}" prop="${field}">
           <el-select v-model="form.${field}" placeholder="请选择${comment}">
             <el-option label="请选择字典生成" value="" />
           </el-select>
         </el-form-item>
+      </el-col>
 #elseif($column.htmlType == "checkbox" && "" != $dictType)
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}">
           <el-checkbox-group v-model="form.${field}">
             <el-checkbox
@@ -222,13 +236,17 @@
             </el-checkbox>
           </el-checkbox-group>
         </el-form-item>
+      </el-col>
 #elseif($column.htmlType == "checkbox" && $dictType)
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}">
           <el-checkbox-group v-model="form.${field}">
             <el-checkbox>请选择字典生成</el-checkbox>
           </el-checkbox-group>
         </el-form-item>
+      </el-col>
 #elseif($column.htmlType == "radio" && "" != $dictType)
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}">
           <el-radio-group v-model="form.${field}">
             <el-radio
@@ -239,13 +257,17 @@
             >{{dict.label}}</el-radio>
           </el-radio-group>
         </el-form-item>
+      </el-col>
 #elseif($column.htmlType == "radio" && $dictType)
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}">
           <el-radio-group v-model="form.${field}">
             <el-radio label="1">请选择字典生成</el-radio>
           </el-radio-group>
         </el-form-item>
+      </el-col>
 #elseif($column.htmlType == "datetime")
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}" prop="${field}">
           <el-date-picker clearable size="small"
             v-model="form.${field}"
@@ -254,15 +276,19 @@
             placeholder="选择${comment}">
           </el-date-picker>
         </el-form-item>
+      </el-col>
 #elseif($column.htmlType == "textarea")
+      <el-col :span="${table.cols}">
         <el-form-item label="${comment}" prop="${field}">
           <el-input v-model="form.${field}" type="textarea" placeholder="请输入内容" />
         </el-form-item>
+      </el-col>
 #end
 #end
 #end
 #end
 #if($table.tplCategory == 'msub')
+      <el-col :span="24">
         <el-divider content-position="center">${subTable.functionName}信息</el-divider>
         <el-row :gutter="10" class="mb8">
           <el-col :span="1.5">
@@ -293,7 +319,9 @@
 #end
 #end
         </el-table>
+      </el-col>
 #end
+    </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -304,7 +332,7 @@
 </template>
 
 <script>
-import { list${ClassName}, get${ClassName}, del${ClassName}, add${ClassName}, edit${ClassName}, export${ClassName} } from "@/api/${moduleName}/${businessName}";
+import { list${ClassName}, get${ClassName}, del${ClassName}, add${ClassName}, update${ClassName}, export${ClassName} } from "@/api/${moduleName}/${businessName}";
 #foreach($column in $columns)
 #if($column.isAdd == '1' && !$column.superColumn && $column.isPk == '0' && $column.htmlType == "imageUpload")
 import ImageUpload from '@/components/ImageUpload';
@@ -556,7 +584,7 @@ export default {
           this.form.${subclassName}List = this.${subclassName}List;
 #end
           if (this.form.${pkColumn.javaField} != null) {
-            edit${ClassName}(this.form).then(response => {
+            update${ClassName}(this.form).then(response => {
               this.msgSuccess("修改成功");
               this.open = false;
               this.getList();
@@ -629,7 +657,7 @@ export default {
         }).then(function() {
           return export${ClassName}(queryParams);
         }).then(response => {
-          this.download(response.data);
+          this.download(response.msg);
         })
     }
   }

@@ -3,12 +3,12 @@ package com.entfrm.biz.toolkit.controller;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.io.IoUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.entfrm.base.api.R;
+import com.entfrm.base.util.StrUtil;
 import com.entfrm.biz.toolkit.entity.Column;
 import com.entfrm.biz.toolkit.entity.Table;
 import com.entfrm.biz.toolkit.service.ColumnService;
 import com.entfrm.biz.toolkit.service.TableService;
-import com.entfrm.base.api.R;
-import com.entfrm.base.util.StrUtil;
 import com.entfrm.data.datasource.DSContextHolder;
 import com.entfrm.data.enums.DataTypeEnum;
 import com.entfrm.data.util.AliasUtil;
@@ -51,7 +51,7 @@ public class DatatableController {
         StringBuilder sql = new StringBuilder();
         if (DataTypeEnum.MYSQL.getType().equals(AliasUtil.getDsType(alias))) {
             sql.append("select table_name tableName, table_comment tableComment, create_time createTime from information_schema.tables where table_schema=?")
-                    .append(" and table_name not like 'sys_%' and table_name not like 'qrtz_%' and table_name not like 'act_%' and table_type='base table'");
+                    .append(" and table_name not like 'sys_%' and table_name not like 'qrtz_%' and table_name not like 'act_%' and table_name not like 'dev_%' and table_type='base table'");
             if (StrUtil.isNotBlank(tableName)) {
                 sql.append(" and table_name like '%" + tableName + "%'");
             }
@@ -99,9 +99,9 @@ public class DatatableController {
 
     @OperLog("预览代码")
     @PreAuthorize("@ps.hasPerm('datatable_view')")
-    @GetMapping("/preview/{tableId}")
-    public R preview(@PathVariable("tableId") Integer tableId) {
-        Map<String, String> dataMap = tableService.previewCode(tableId);
+    @GetMapping("/preview/{tableName}")
+    public R preview(@PathVariable("tableName") String tableName) {
+        Map<String, String> dataMap = tableService.previewCode(tableName);
         return R.ok(dataMap);
     }
 

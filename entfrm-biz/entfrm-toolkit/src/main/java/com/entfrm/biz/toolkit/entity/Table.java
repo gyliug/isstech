@@ -91,6 +91,11 @@ public class Table extends BaseEntity {
     private String cols;
 
     /**
+     * 生成API
+     */
+    private String genApi;
+
+    /**
      * 生成方式
      */
     private String genWay;
@@ -104,6 +109,16 @@ public class Table extends BaseEntity {
      * 生成路径
      */
     private String genPath;
+
+    /** 关联子表的表名 */
+    private String subTableName;
+
+    /** 关联子表的外键名 */
+    private String subTableField;
+
+    /** 子表信息 */
+    @TableField(exist = false)
+    private Table subTable;
 
     /**
      * 树编码字段
@@ -123,6 +138,11 @@ public class Table extends BaseEntity {
     @TableField(exist = false)
     private String treeName;
 
+    /**
+     * 表信息
+     */
+    @TableField(exist = false)
+    private List<Table> tables;
     /**
      * 表列信息
      */

@@ -1,6 +1,6 @@
-package com.entfrm.base.config;
+package com.entfrm.security.config;
 
-import com.entfrm.base.filter.XssFilter;
+import com.entfrm.security.filter.XssFilter;
 import com.entfrm.base.util.StrUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

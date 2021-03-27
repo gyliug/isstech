@@ -1,144 +1,154 @@
 <template>
   <div class="app-container">
-    <el-row :gutter="20">
+    <el-row :gutter="10">
       <!--数据库名称数据-->
       <el-col :span="4" :xs="24">
-        <div class="head-container">
-          <el-input
-            v-model="name"
-            placeholder="请输入数据库名称"
-            clearable
-            size="small"
-            prefix-icon="el-icon-search"
-            style="margin-bottom: 20px"
-          />
-        </div>
-        <div class="head-container">
-          <el-tree
-            :data="datasourceOptions"
-            :props="defaultProps"
-            :expand-on-click-node="false"
-            :filter-node-method="filterNode"
-            ref="tree"
-            default-expand-all
-            @node-click="handleNodeClick"
-          />
-        </div>
+        <el-card class="box-card">
+          <div class="head-container">
+            <el-input
+              v-model="name"
+              placeholder="请输入数据库名称"
+              clearable
+              size="small"
+              prefix-icon="el-icon-search"
+              style="margin-bottom: 20px"
+            />
+          </div>
+          <div class="head-container">
+            <el-tree
+              :data="datasourceOptions"
+              :props="defaultProps"
+              :expand-on-click-node="false"
+              :filter-node-method="filterNode"
+              ref="tree"
+              default-expand-all
+              @node-click="handleNodeClick"
+            />
+          </div>
+        </el-card>
       </el-col>
       <!--数据表数据-->
       <el-col :span="20" :xs="24">
-        <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
-          <el-form-item label="表名" prop="tableName">
-            <el-input
-              v-model="queryParams.tableName"
-              placeholder="请输入表名"
-              clearable
-              size="small"
-              style="width: 240px"
-              @keyup.enter.native="handleQuery"
-            />
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-            <el-button icon="el-icon-refresh-right" size="mini" @click="resetQuery">重置</el-button>
-          </el-form-item>
-        </el-form>
+        <el-card class="box-card">
+          <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
+            <el-form-item label="表名" prop="tableName">
+              <el-input
+                v-model="queryParams.tableName"
+                placeholder="请输入表名"
+                clearable
+                size="small"
+                style="width: 240px"
+                @keyup.enter.native="handleQuery"
+              />
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
+              <el-button icon="el-icon-refresh-right" size="mini" @click="resetQuery">重置</el-button>
+            </el-form-item>
+          </el-form>
 
-        <el-row :gutter="10" class="mb8">
-          <el-col :span="1.5">
-            <el-button
-              type="primary"
-              icon="el-icon-plus"
-              size="mini"
-              @click="handleAdd"
-              v-hasPerm="['datatable_add']"
-            >新增表
-            </el-button>
-          </el-col>
-          <!--<el-col :span="1.5">
-            <el-button
-              type="danger"
-              icon="el-icon-delete"
-              size="mini"
-              :disabled="multiple"
-              @click="handleDel"
-              v-hasPerm="['datatable_del']"
-            >删除表
-            </el-button>
-          </el-col>-->
-          <el-col :span="1.5">
-            <el-button
-              type="success"
-              icon="el-icon-download"
-              size="mini"
-              :disabled="multiple"
-              @click="handleGen"
-              v-hasPerm="['datatable_gen']"
-            >生成
-            </el-button>
-          </el-col>
-
-          <div class="top-right-btn">
-            <el-tooltip class="item" effect="dark" content="刷新" placement="top">
-              <el-button size="mini" circle icon="el-icon-refresh" @click="handleQuery"/>
-            </el-tooltip>
-            <el-tooltip class="item" effect="dark" :content="showSearch ? '隐藏搜索' : '显示搜索'" placement="top">
-              <el-button size="mini" circle icon="el-icon-search" @click="showSearch=!showSearch"/>
-            </el-tooltip>
-          </div>
-        </el-row>
-
-        <el-table v-loading="loading" :data="datatableList" border @selection-change="handleSelectionChange">
-          <el-table-column type="selection" width="45" align="center"/>
-          <el-table-column label="表名" align="center" prop="tableName" :show-overflow-tooltip="true"/>
-          <el-table-column label="注释" align="center" prop="tableComment" :show-overflow-tooltip="true"/>
-          <el-table-column label="创建时间" align="center" prop="createTime" :show-overflow-tooltip="true"/>
-          <el-table-column
-            label="操作"
-            align="center"
-            width="240"
-            class-name="small-padding fixed-width"
-          >
-            <template slot-scope="scope">
+          <el-row :gutter="10" class="mb8">
+            <el-col :span="1.5">
               <el-button
+                type="primary"
+                icon="el-icon-plus"
                 size="mini"
-                type="text"
-                icon="el-icon-setting"
-                @click="handleConfig(scope.row)"
-                v-hasPerm="['datatable_config']"
-              >配置表
+                @click="handleAdd"
+                v-hasPerm="['datatable_add']"
+              >新增表
               </el-button>
+            </el-col>
+            <!--<el-col :span="1.5">
               <el-button
-                v-if="scope.row.isConfig === '1'"
-                size="mini"
-                type="text"
+                type="danger"
                 icon="el-icon-delete"
-                @click="handleDel(scope.row)"
+                size="mini"
+                :disabled="multiple"
+                @click="handleDel"
                 v-hasPerm="['datatable_del']"
-              >删除
+              >删除表
               </el-button>
+            </el-col>-->
+            <el-col :span="1.5">
               <el-button
-                v-else
-                size="mini"
-                type="text"
-                icon="el-icon-delete"
-                @click="handleDrop(scope.row)"
-                v-hasPerm="['datatable_drop']"
-              >删除原表
-              </el-button>
-              <el-button
-                v-if="scope.row.isConfig === '1'"
-                size="mini"
-                type="text"
+                type="success"
                 icon="el-icon-download"
-                @click="handleGen(scope.row)"
+                size="mini"
+                :disabled="multiple"
+                @click="handleGen"
                 v-hasPerm="['datatable_gen']"
               >生成
               </el-button>
-            </template>
-          </el-table-column>
-        </el-table>
+            </el-col>
 
+            <div class="top-right-btn">
+              <el-tooltip class="item" effect="dark" content="刷新" placement="top">
+                <el-button size="mini" circle icon="el-icon-refresh" @click="handleQuery"/>
+              </el-tooltip>
+              <el-tooltip class="item" effect="dark" :content="showSearch ? '隐藏搜索' : '显示搜索'" placement="top">
+                <el-button size="mini" circle icon="el-icon-search" @click="showSearch=!showSearch"/>
+              </el-tooltip>
+            </div>
+          </el-row>
+
+          <el-table v-loading="loading" :data="datatableList" border @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="45" align="center"/>
+            <el-table-column label="表名" align="center" prop="tableName" :show-overflow-tooltip="true"/>
+            <el-table-column label="注释" align="center" prop="tableComment" :show-overflow-tooltip="true"/>
+            <el-table-column label="创建时间" align="center" prop="createTime" :show-overflow-tooltip="true"/>
+            <el-table-column
+              label="操作"
+              align="center"
+              width="240"
+              class-name="small-padding fixed-width"
+            >
+              <template slot-scope="scope">
+                <el-button
+                  size="mini"
+                  type="text"
+                  icon="el-icon-view"
+                  @click="handlePreview(scope.row)"
+                  v-hasPerm="['datatable_config']"
+                >预览</el-button>
+                <el-button
+                  size="mini"
+                  type="text"
+                  icon="el-icon-setting"
+                  @click="handleConfig(scope.row)"
+                  v-hasPerm="['datatable_config']"
+                >配置表
+                </el-button>
+                <el-button
+                  v-if="scope.row.isConfig === '1'"
+                  size="mini"
+                  type="text"
+                  icon="el-icon-delete"
+                  @click="handleDel(scope.row)"
+                  v-hasPerm="['datatable_del']"
+                >删除
+                </el-button>
+                <el-button
+                  v-else
+                  size="mini"
+                  type="text"
+                  icon="el-icon-delete"
+                  @click="handleDrop(scope.row)"
+                  v-hasPerm="['datatable_drop']"
+                >删除原表
+                </el-button>
+                <el-button
+                  v-if="scope.row.isConfig === '1'"
+                  size="mini"
+                  type="text"
+                  icon="el-icon-download"
+                  @click="handleGen(scope.row)"
+                  v-hasPerm="['datatable_gen']"
+                >生成
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-card>
       </el-col>
     </el-row>
 
@@ -191,15 +201,44 @@
       </div>
     </el-dialog>
 
+    <!-- 预览界面 -->
+    <el-dialog :title="preview.title" :visible.sync="preview.open" width="80%" top="5vh" append-to-body>
+      <el-tabs v-model="preview.activeName">
+        <el-tab-pane
+          v-for="(value, key) in preview.data"
+          :label="key.substring(key.lastIndexOf('/')+1,key.indexOf('.vm'))"
+          :name="key.substring(key.lastIndexOf('/')+1,key.indexOf('.vm'))"
+          :key="key"
+        >
+          <pre><code class="hljs" v-html="highlightedCode(value, key)"></code></pre>
+        </el-tab-pane>
+      </el-tabs>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-  import {addDatatable, batchGenToLocal, delDatatable, editDatatable, listDatatable,dropDataTable} from "@/api/toolkit/datatable";
+  import {
+    addDatatable,
+    batchGenToLocal,
+    previewTable,
+    delDatatable,
+    editDatatable,
+    listDatatable,
+    dropDataTable
+  } from "@/api/toolkit/datatable";
   import {datasourceList} from "@/api/toolkit/datasource";
   import Treeselect from "@riophae/vue-treeselect";
   import "@riophae/vue-treeselect/dist/vue-treeselect.css";
   import {downLoadZip} from "@/utils/zipdownload";
+  import hljs from "highlight.js/lib/highlight";
+  import "highlight.js/styles/github-gist.css";
+  hljs.registerLanguage("java", require("highlight.js/lib/languages/java"));
+  hljs.registerLanguage("xml", require("highlight.js/lib/languages/xml"));
+  hljs.registerLanguage("html", require("highlight.js/lib/languages/xml"));
+  hljs.registerLanguage("vue", require("highlight.js/lib/languages/xml"));
+  hljs.registerLanguage("javascript", require("highlight.js/lib/languages/javascript"));
+  hljs.registerLanguage("sql", require("highlight.js/lib/languages/sql"));
 
   export default {
     name: "Datatable",
@@ -233,6 +272,13 @@
         defaultProps: {
           children: "children",
           label: "name"
+        },
+        // 预览参数
+        preview: {
+          open: false,
+          title: "代码预览",
+          data: {},
+          activeName: "entity.java"
         },
         // 查询参数
         queryParams: {
@@ -286,9 +332,9 @@
       getDatasourceList() {
         datasourceList().then(response => {
           this.datasourceOptions = response.data;
-          if(this.datasourceOptions.length>0){
+          if (this.datasourceOptions.length > 0) {
             //默认查询第一个数据源节点表配置
-            this.queryParams.alias=this.datasourceOptions[0].alias;
+            this.queryParams.alias = this.datasourceOptions[0].alias;
             this.getList();
           }
         });
@@ -414,7 +460,7 @@
           console.log(e);
         });
       },
-      handleDrop(row){
+      handleDrop(row) {
         var that = this;
         if (!this.queryParams || this.queryParams.alias == undefined) {
           this.msgWarning("请选择数据库！");
@@ -434,6 +480,19 @@
           console.log(e);
         });
       },
+      handlePreview(row){
+        previewTable(row.tableName).then(response => {
+          this.preview.data = response.data;
+          this.preview.open = true;
+        });
+      },
+      /** 高亮显示 */
+      highlightedCode(code, key) {
+        const vmName = key.substring(key.lastIndexOf("/") + 1, key.indexOf(".vm"));
+        var language = vmName.substring(vmName.indexOf(".") + 1, vmName.length);
+        const result = hljs.highlight(language, code || "", true);
+        return result.value || '&nbsp;';
+      },
       /** 生成按钮操作 */
       handleGen(row) {
         var tables = '';
@@ -443,7 +502,7 @@
           tables = this.tableNames.join()
         }
 
-        if (process.env.VUE_APP_BASE_API.indexOf('/pro') == -1) {
+        if (row.genWay == '1') {
           batchGenToLocal(tables).then(response => {
             if (response.code === 0) {
               this.msgSuccess(response.data);

@@ -4,13 +4,21 @@ import Layout from '@/layout/index'
 
 const permission = {
   state: {
+    apps: [],
     routes: [],
-    addRoutes: []
+    addRoutes: [],
+    activeRoutes: []
   },
   mutations: {
+    SET_APPS: (state, apps) => {
+      state.apps = apps
+    },
     SET_ROUTES: (state, routes) => {
       state.addRoutes = routes
       state.routes = constantRoutes.concat(routes)
+    },
+    ACTIVE_ROUTES: (state, activeRoutes) => {
+      state.activeRoutes = activeRoutes
     }
   },
   actions: {
@@ -19,7 +27,9 @@ const permission = {
       return new Promise(resolve => {
         // 向后端请求路由数据
         getMenus().then(res => {
-          const accessedRoutes = filterAsyncRouter(res.data)
+          const apps = res.data.applications
+          commit('SET_APPS', apps)
+          const accessedRoutes = filterAsyncRouter(res.data.menus)
           accessedRoutes.push({ path: '*', redirect: '/404', hidden: true })
           commit('SET_ROUTES', accessedRoutes)
           resolve(accessedRoutes)

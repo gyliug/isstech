@@ -22,9 +22,9 @@ import java.util.Arrays;
 /**
  * @author entfrm
  * @date 2021-03-11 21:57:03
- * @description 表单管理Controller
+ * @description 表单Controller
  */
-@Api("表单管理管理")
+@Api("表单管理")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/toolkit/form")
@@ -41,7 +41,7 @@ public class FormController {
                 .orderByDesc("id");
     }
 
-    @ApiOperation("表单管理列表")
+    @ApiOperation("表单列表")
     @PreAuthorize("@ps.hasPerm('form_view')")
     @GetMapping("/list")
     public R list(Page page, Form form) {
@@ -49,14 +49,14 @@ public class FormController {
         return R.ok(formPage.getRecords(), formPage.getTotal());
     }
 
-    @ApiOperation("表单管理查询")
+    @ApiOperation("表单查询")
     @GetMapping("/{id}")
     public R getById(@PathVariable("id") Integer id) {
         return R.ok(formService.getById(id));
     }
 
-    @OperLog("表单管理新增")
-    @ApiOperation("表单管理新增")
+    @OperLog("表单新增")
+    @ApiOperation("表单新增")
     @PreAuthorize("@ps.hasPerm('form_add')")
     @PostMapping("/save")
     public R save(@Validated @RequestBody Form form) {
@@ -64,8 +64,8 @@ public class FormController {
         return R.ok();
     }
 
-    @OperLog("表单管理修改")
-    @ApiOperation("表单管理修改")
+    @OperLog("表单修改")
+    @ApiOperation("表单修改")
     @PreAuthorize("@ps.hasPerm('form_edit')")
     @PutMapping("/update")
     public R update(@Validated @RequestBody Form form) {
@@ -73,9 +73,8 @@ public class FormController {
         return R.ok();
     }
 
-
-    @OperLog("表单管理删除")
-    @ApiOperation("表单管理删除")
+    @OperLog("表单删除")
+    @ApiOperation("表单删除")
     @PreAuthorize("@ps.hasPerm('form_del')")
     @DeleteMapping("/remove/{id}")
     public R remove(@PathVariable("id") Integer[] id) {
@@ -88,6 +87,6 @@ public class FormController {
     public R export(Form form) {
         List<Form> list = formService.list(getQueryWrapper(form));
         ExcelUtil<Form> util = new ExcelUtil<Form>(Form.class);
-        return util.exportExcel(list, "表单管理数据");
+        return util.exportExcel(list, "表单数据");
     }
 }

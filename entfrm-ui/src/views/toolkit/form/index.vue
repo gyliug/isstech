@@ -94,14 +94,15 @@
 
     <el-table v-loading="loading" :data="formList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="主键" align="center" prop="id"/>
+      <el-table-column label="主键" width="60" align="center" prop="id"/>
       <el-table-column label="表单名称" align="center" prop="name"/>
       <el-table-column label="表单编码" align="center" prop="code"/>
       <el-table-column label="表单类型" align="center" prop="type" :formatter="typeFormat"/>
       <el-table-column label="表名" align="center" prop="tableName"/>
-      <el-table-column label="表单数据" align="center" prop="data"/>
-      <el-table-column label="自动建表" align="center" prop="autoCreate" :formatter="autoCreateFormat"/>
+      <!--      <el-table-column label="表单数据" align="center" prop="data"/>
+            <el-table-column label="自动建表" align="center" prop="autoCreate" :formatter="autoCreateFormat"/>-->
       <el-table-column label="版本号" align="center" prop="version"/>
+      <el-table-column label="状态" align="center" prop="status" :formatter="statusFormat"/>
       <el-table-column label="创建时间" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.createTime) }}</span>
@@ -109,6 +110,14 @@
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-magic-stick"
+            @click="handleDesign(scope.row)"
+            v-hasPerm="['form_design']"
+          >设计
+          </el-button>
           <el-button
             size="mini"
             type="text"
@@ -139,47 +148,79 @@
 
     <!-- 添加或修改表单管理对话框 -->
     <el-dialog :title="title" :visible.sync="open" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="表单名称" prop="name">
-          <el-input v-model="form.name" placeholder="请输入表单名称"/>
-        </el-form-item>
-        <el-form-item label="表单编码" prop="code">
-          <el-input v-model="form.code" placeholder="请输入表单编码"/>
-        </el-form-item>
-        <el-form-item label="表单类型" prop="type">
-          <el-select v-model="form.type" placeholder="请选择表单类型">
-            <el-option
-              v-for="dict in typeOptions"
-              :key="dict.value"
-              :label="dict.label"
-              :value="dict.value"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="数据库" prop="datasourceId">
-          <el-input v-model="form.datasourceId" placeholder="请输入数据库"/>
-        </el-form-item>
-        <el-form-item label="表名" prop="tableName">
-          <el-input v-model="form.tableName" placeholder="请输入表名"/>
-        </el-form-item>
-        <el-form-item label="自动建表">
-          <el-radio-group v-model="form.autoCreate">
-            <el-radio
-              v-for="dict in autoCreateOptions"
-              :key="dict.value"
-              :label="dict.value"
-            >{{ dict.label }}
-            </el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="版本号" prop="version">
-          <el-input v-model="form.version" placeholder="请输入版本号"/>
-        </el-form-item>
+      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="表单名称" prop="name">
+              <el-input v-model="form.name" placeholder="请输入表单名称"/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="表单类型" prop="type">
+              <el-select v-model="form.type" placeholder="请选择表单类型">
+                <el-option
+                  v-for="dict in typeOptions"
+                  :key="dict.value"
+                  :label="dict.label"
+                  :value="dict.value"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="表单编码" prop="code">
+              <el-input v-model="form.code" placeholder="请输入表单编码"/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="版本号" prop="version">
+              <el-input v-model="form.version" placeholder="请输入版本号"/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="数据库别名" prop="dsAlias">
+              <el-input v-model="form.dsAlias" placeholder="请输入数据库别名"/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="表名" prop="tableName">
+              <el-input v-model="form.tableName" placeholder="请输入表名"/>
+            </el-form-item>
+          </el-col>
+
+          <!--        <el-form-item label="自动建表">
+                    <el-radio-group v-model="form.autoCreate">
+                      <el-radio
+                        v-for="dict in autoCreateOptions"
+                        :key="dict.value"
+                        :label="dict.value"
+                      >{{ dict.label }}
+                      </el-radio>
+                    </el-radio-group>
+                  </el-form-item>-->
+
+        </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
         <el-button @click="cancel">取 消</el-button>
       </div>
+    </el-dialog>
+
+    <el-dialog title="表单设计" :visible.sync="openDesign" append-to-body :fullscreen="true">
+      <avue-form-design style="height: 86vh;"
+                        ref="formDesign"
+                        :showGithubStar="false"
+                        :options="options"
+                        :toolbar="['clear', 'preview', 'import']">
+        <template slot="toolbar">
+          <el-button type="text"
+                     size="medium"
+                     icon="el-icon-download"
+                     @click="handleSubmit">保存
+          </el-button>
+        </template>
+      </avue-form-design>
     </el-dialog>
   </div>
 </template>
@@ -210,8 +251,11 @@ export default {
       title: "",
       // 是否显示弹出层
       open: false,
+      // 是否显示弹出层
+      openDesign: false,
       // 日期范围
       dateRange: [],
+      statusOptions: [],
       // 表单类型字典
       typeOptions: [],
       // 是否自动建表字典
@@ -225,10 +269,29 @@ export default {
         tableName: null,
         createTime: null,
       },
+      options: {
+        column: [],
+      },
       // 表单参数
       form: {},
       // 表单校验
-      rules: {}
+      rules: {
+        name: [
+          {required: true, message: "表单名称不能为空", trigger: "blur"}
+        ],
+        code: [
+          {required: true, message: "表单编码不能为空", trigger: "blur"}
+        ],
+        version: [
+          {required: true, message: "版本号不能为空", trigger: "blur"}
+        ],
+        dsAlias: [
+          {required: true, message: "数据库别名不能为空", trigger: "blur"}
+        ],
+        tableName: [
+          {required: true, message: "表名不能为空", trigger: "blur"}
+        ],
+      }
     };
   },
   created() {
@@ -239,6 +302,10 @@ export default {
     this.getDicts("yes_no").then(response => {
       this.autoCreateOptions = response.data;
     });
+    this.getDicts("status").then(response => {
+      this.statusOptions = response.data;
+    });
+
   },
   methods: {
     /** 查询表单管理列表 */
@@ -249,6 +316,9 @@ export default {
         this.total = response.total;
         this.loading = false;
       });
+    },
+    statusFormat(row, column) {
+      return this.selectDictLabel(this.statusOptions, row.status);
     },
     // 表单类型字典翻译
     typeFormat(row, column) {
@@ -270,17 +340,11 @@ export default {
         name: null,
         code: null,
         type: "0",
-        datasourceId: null,
+        dsAlias: null,
         tableName: null,
         data: null,
         autoCreate: "0",
-        version: null,
-        createBy: null,
-        createTime: null,
-        updateBy: null,
-        updateTime: null,
-        remarks: null,
-        delFlag: null
+        version: null
       };
       this.resetForm("form");
     },
@@ -336,6 +400,23 @@ export default {
         }
       });
     },
+    handleDesign(row) {
+      this.form = row;
+      this.openDesign = true
+      console.log(this.form.data)
+      if (this.form.data) {
+        this.options = JSON.parse(this.form.data)
+      }
+    },
+    handleSubmit() {
+      this.$refs.formDesign.getData('string').then(data => {
+        this.form.data = JSON.stringify(data)
+        editForm(this.form).then(response => {
+          this.msgSuccess("表单设计数据提交成功");
+          this.openDesign = false;
+        });
+      })
+    },
     /** 删除按钮操作 */
     handleDelete(row) {
       const ids = row.id || this.ids;
@@ -366,3 +447,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+/deep/ .el-dialog__body {
+  padding: 10px 20px;
+}
+</style>

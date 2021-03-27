@@ -44,10 +44,10 @@ public interface TableService extends IService<Table> {
     /**
      * 预览代码
      *
-     * @param tableId 表编号
+     * @param tableName 表名
      * @return 预览数据列表
      */
-    public Map<String, String> previewCode(Integer tableId);
+    public Map<String, String> previewCode(String tableName);
 
     /**
      * 批量生成代码到本地

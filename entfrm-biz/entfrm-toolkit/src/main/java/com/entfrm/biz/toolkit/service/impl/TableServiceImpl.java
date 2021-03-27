@@ -65,7 +65,8 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
             table.setFunctionAuthor(GenConfig.getAuthor());
             table.setTplCategory("crud");
             table.setCols("24");
-            table.setGenWay("0");
+            table.setGenApi("0");
+            table.setGenWay("1");
             table.setColumns(GenUtil.initColumns());
         } else {
             table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName).orderByDesc("create_time").last("limit 1"));
@@ -89,7 +90,8 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 table.setFunctionAuthor(GenConfig.getAuthor());
                 table.setTplCategory("crud");
                 table.setCols("24");
-                table.setGenWay("0");
+                table.setGenApi("0");
+                table.setGenWay("1");
                 table.setCreateBy(SecurityUtil.getUser().getUsername());
                 baseMapper.insert(table);
                 //表列 信息新增
@@ -174,6 +176,12 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
         }
         String genPath = StrUtil.isNotBlank(table.getGenPath()) ? table.getGenPath() : System.getProperty("user.dir");
         table.setGenPath(genPath);
+        List<Table> tables = baseMapper.selectList(new QueryWrapper<Table>());
+        for (Table table1 : tables) {
+            List<Column> list = columnService.list(new QueryWrapper<Column>().eq("table_id", table1.getId()).orderByAsc("sort"));
+            table1.setColumns(list);
+        }
+        table.setTables(tables);
         List<Map<String, Object>> list = jdbcTemplate.queryForList(SqlConstants.MENU_TREE);
         table.setMenus(list);
         return table;
@@ -242,6 +250,7 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                     jdbcTemplate.execute("rename  table " + oldTable.getTableName() + " to " + newTableName + ";");
                 }
                 jdbcTemplate.execute(BuilderUtil.createTable(table));*/
+                //直接更新表结构
                 jdbcTemplate.execute(BuilderUtil.updateTable(table));
                 for (Column column : table.getColumns()) {
                     if (StrUtil.isNotEmpty(column.getColumnName())) {
@@ -270,15 +279,18 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
     /**
      * 预览代码
      *
-     * @param tableId 表编号
+     * @param tableName 表名
      * @return 预览数据列表
      */
-    public Map<String, String> previewCode(Integer tableId) {
+    public Map<String, String> previewCode(String tableName) {
         Map<String, String> dataMap = new LinkedHashMap<>();
         // 查询表信息
-        Table table = baseMapper.selectById(tableId);
+        Table table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName));
         // 查询列信息
-        List<Column> columns = JSONUtil.toList(JSONUtil.parseArray(table.getColumns()), Column.class);
+        List<Column> columns = columnService.list(new QueryWrapper<Column>().eq("table_id", table.getId()));
+        table.setColumns(columns);
+        // 加载主子表信息
+        loadSubTable(table);
         setPkColumn(table, columns);
         VelocityInitializer.initVelocity();
 
@@ -320,6 +332,8 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
         // 查询表信息
         Table table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName));
         if (table != null) {
+            //加载主子表
+            loadSubTable(table);
             // 查询列信息
             List<Column> columns = columnService.list(new QueryWrapper<Column>().eq("table_id", table.getId()).orderByAsc("sort"));
             setPkColumn(table, columns);
@@ -363,6 +377,8 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
         // 查询表信息
         Table table = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", tableName));
         if (table != null) {
+            //加载主子表
+            loadSubTable(table);
             // 查询列信息
             List<Column> columns = columnService.list(new QueryWrapper<Column>().eq("table_id", table.getId()).orderByAsc("sort"));
             setPkColumn(table, columns);
@@ -424,6 +440,24 @@ public class TableServiceImpl extends ServiceImpl<TableMapper, Table> implements
                 table.setPkColumn(column);
                 break;
             }
+        }
+    }
+
+    /**
+     * 加载主子表信息
+     *
+     * @param table 业务表信息
+     */
+    public void loadSubTable(Table table) {
+        String subTableName = table.getSubTableName();
+        if (StrUtil.isNotEmpty(subTableName)) {
+            Table table1 = baseMapper.selectOne(new QueryWrapper<Table>().eq("table_name", subTableName));
+            if(table1 != null){
+                List<Column> columns = columnService.list(new QueryWrapper<Column>().eq("table_id", table1.getId()));
+                table1.setColumns(columns);
+                table.setSubTable(table1);
+            }
+
         }
     }
 }

@@ -12,6 +12,11 @@ import java.util.List;
  */
 @Data
 public class MenuVo implements Serializable {
+
+    /**
+     * 应用编号
+     */
+    private String appId;
     /**
      * 路由名字
      */

@@ -56,6 +56,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     public List<MenuVo> buildMenus(List<Menu> menus) {
         List<MenuVo> menuVoList = menus.stream().map(menu -> {
             MenuVo menuVo = new MenuVo();
+            menuVo.setAppId(menu.getApplicationId() + "");
             menuVo.setName(StrUtil.upperFirst(menu.getPath()));
             if (menu.getParentId() == 0 && !StrUtil.contains(menu.getPath(), "http")) {
                 menuVo.setPath("/" + menu.getPath());

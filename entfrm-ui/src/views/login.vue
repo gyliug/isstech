@@ -170,7 +170,7 @@ export default {
   top: 10px;
   width: 50%;
   text-align: left;
-  color: #556688;
+  color: #64D9D6;
   font-family: Arial;
   font-weight: bold;
   font-size: 24px;

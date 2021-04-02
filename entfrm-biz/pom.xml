@@ -15,6 +15,7 @@
         <module>entfrm-monitor</module>
         <module>entfrm-system</module>
         <module>entfrm-toolkit</module>
+        <module>entfrm-quartz</module>
     </modules>
 
 

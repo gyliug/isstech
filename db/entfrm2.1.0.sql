@@ -1,18 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : mysql
- Source Server Type    : MySQL
- Source Server Version : 50725
- Source Host           : localhost:3306
- Source Schema         : entfrm2.1
-
- Target Server Type    : MySQL
- Target Server Version : 50725
- File Encoding         : 65001
-
- Date: 27/03/2021 15:14:15
-*/
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -186,6 +171,205 @@ CREATE TABLE `oauth_client_details`  (
 -- ----------------------------
 INSERT INTO `oauth_client_details` VALUES ('entfrm', '', '$2a$10$IYtF5Qg/TBtau1pT.q4LLu8OdtutvopkxCc4nnV4n.KaadVmeodKK', 'server', 'password,refresh_token', '', NULL, NULL, NULL, NULL, 'true');
 INSERT INTO `oauth_client_details` VALUES ('test', NULL, '$2a$10$q0DT1hteQMt7LSdmR5GANekY.YYCpxHQh21OCyGDAamxHjiCJaa86', 'test', 'password,refresh_token', NULL, NULL, NULL, NULL, NULL, 'true');
+
+-- ----------------------------
+-- Table structure for qrtz_blob_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_blob_triggers`;
+CREATE TABLE `qrtz_blob_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_group` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `blob_data` blob NULL,
+  PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
+  CONSTRAINT `qrtz_blob_triggers_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_calendars
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_calendars`;
+CREATE TABLE `qrtz_calendars`  (
+  `sched_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `calendar_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `calendar` blob NOT NULL,
+  PRIMARY KEY (`sched_name`, `calendar_name`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_cron_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_cron_triggers`;
+CREATE TABLE `qrtz_cron_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_group` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `cron_expression` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `time_zone_id` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
+  CONSTRAINT `qrtz_cron_triggers_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of qrtz_cron_triggers
+-- ----------------------------
+INSERT INTO `qrtz_cron_triggers` VALUES ('clusteredScheduler', '测试任务', 'demo', '0 * * * * ? *', 'Asia/Shanghai');
+
+-- ----------------------------
+-- Table structure for qrtz_fired_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_fired_triggers`;
+CREATE TABLE `qrtz_fired_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `entry_id` varchar(95) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_group` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `instance_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `fired_time` bigint(13) NOT NULL,
+  `sched_time` bigint(13) NOT NULL,
+  `priority` int(11) NOT NULL,
+  `state` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `job_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `job_group` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `is_nonconcurrent` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `requests_recovery` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`sched_name`, `entry_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_job_details
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_job_details`;
+CREATE TABLE `qrtz_job_details`  (
+  `sched_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `job_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `job_group` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `job_class_name` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `is_durable` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `is_nonconcurrent` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `is_update_data` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `requests_recovery` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `job_data` blob NULL,
+  PRIMARY KEY (`sched_name`, `job_name`, `job_group`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of qrtz_job_details
+-- ----------------------------
+INSERT INTO `qrtz_job_details` VALUES ('clusteredScheduler', '测试任务', 'demo', NULL, 'com.cetccq.platform.biz.quartz.config.TmQuartzFactory', '0', '1', '0', '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000B7363686564756C654A6F627372002E636F6D2E70696734636C6F75642E706967782E6461656D6F6E2E71756172747A2E656E746974792E5379734A6F6200000000000000010200174C0009636C6173734E616D657400124C6A6176612F6C616E672F537472696E673B4C0008637265617465427971007E00094C000A63726561746554696D657400194C6A6176612F74696D652F4C6F63616C4461746554696D653B4C000E63726F6E45787072657373696F6E71007E00094C000B657865637574655061746871007E00094C00106A6F624578656375746553746174757371007E00094C00086A6F6247726F757071007E00094C00056A6F6249647400134C6A6176612F6C616E672F496E74656765723B4C00076A6F624E616D6571007E00094C00086A6F624F7264657271007E00094C00096A6F6253746174757371007E00094C000D6A6F6254656E616E745479706571007E00094C00076A6F625479706571007E00094C000A6D6574686F644E616D6571007E00094C00116D6574686F64506172616D7356616C756571007E00094C000D6D697366697265506F6C69637971007E00094C00086E65787454696D6571007E000A4C000C70726576696F757354696D6571007E000A4C000672656D61726B71007E00094C0009737461727454696D6571007E000A4C000874656E616E74496471007E000B4C0008757064617465427971007E00094C000A75706461746554696D6571007E000A78720035636F6D2E62616F6D69646F752E6D796261746973706C75732E657874656E73696F6E2E6163746976657265636F72642E4D6F64656C0000000000000001020000787074000464656D6F74000561646D696E7372000D6A6176612E74696D652E536572955D84BA1B2248B20C00007870770A05000007E303190E00F17874000D30202A202A202A202A203F202A7400007400013074000464656D6F737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078700000000174000CE6B58BE8AF95E4BBBBE58AA17400013574000133740001317400013274000A64656D6F4D6574686F6474000970696734636C6F7564740001337371007E0010770905000007E3031916E2787371007E0010770A05000007E30319161CCD78740020E6BC94E7A4BA537072696E67204265616EE79A84E5AE9AE697B6E4BBBBE58AA17371007E0010770A05000007E303191600DE7871007E001874000561646D696E7371007E0010770A05000007E303190E00F1787800);
+
+-- ----------------------------
+-- Table structure for qrtz_locks
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_locks`;
+CREATE TABLE `qrtz_locks`  (
+  `sched_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `lock_name` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`sched_name`, `lock_name`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of qrtz_locks
+-- ----------------------------
+INSERT INTO `qrtz_locks` VALUES ('clusteredScheduler', 'STATE_ACCESS');
+INSERT INTO `qrtz_locks` VALUES ('clusteredScheduler', 'TRIGGER_ACCESS');
+
+-- ----------------------------
+-- Table structure for qrtz_paused_trigger_grps
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_paused_trigger_grps`;
+CREATE TABLE `qrtz_paused_trigger_grps`  (
+  `sched_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_group` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`sched_name`, `trigger_group`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_scheduler_state
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_scheduler_state`;
+CREATE TABLE `qrtz_scheduler_state`  (
+  `sched_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `instance_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `last_checkin_time` bigint(13) NOT NULL,
+  `checkin_interval` bigint(13) NOT NULL,
+  PRIMARY KEY (`sched_name`, `instance_name`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of qrtz_scheduler_state
+-- ----------------------------
+INSERT INTO `qrtz_scheduler_state` VALUES ('clusteredScheduler', 'lengleng1553564320591', 1553568907589, 10000);
+
+-- ----------------------------
+-- Table structure for qrtz_simple_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_simple_triggers`;
+CREATE TABLE `qrtz_simple_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_group` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `repeat_count` bigint(7) NOT NULL,
+  `repeat_interval` bigint(12) NOT NULL,
+  `times_triggered` bigint(10) NOT NULL,
+  PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
+  CONSTRAINT `QRTZ_SIMPLE_TRIGGERS_IBFK_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_simprop_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_simprop_triggers`;
+CREATE TABLE `qrtz_simprop_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_group` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `str_prop_1` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `str_prop_2` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `str_prop_3` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `int_prop_1` int(11) NULL DEFAULT NULL,
+  `int_prop_2` int(11) NULL DEFAULT NULL,
+  `long_prop_1` bigint(20) NULL DEFAULT NULL,
+  `long_prop_2` bigint(20) NULL DEFAULT NULL,
+  `dec_prop_1` decimal(13, 4) NULL DEFAULT NULL,
+  `dec_prop_2` decimal(13, 4) NULL DEFAULT NULL,
+  `bool_prop_1` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `bool_prop_2` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
+  CONSTRAINT `QRTZ_SIMPROP_TRIGGERS_IBFK_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for qrtz_triggers
+-- ----------------------------
+DROP TABLE IF EXISTS `qrtz_triggers`;
+CREATE TABLE `qrtz_triggers`  (
+  `sched_name` varchar(120) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_group` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `job_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `job_group` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(250) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `next_fire_time` bigint(13) NULL DEFAULT NULL,
+  `prev_fire_time` bigint(13) NULL DEFAULT NULL,
+  `priority` int(11) NULL DEFAULT NULL,
+  `trigger_state` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `trigger_type` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `start_time` bigint(13) NOT NULL,
+  `end_time` bigint(13) NULL DEFAULT NULL,
+  `calendar_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `misfire_instr` smallint(2) NULL DEFAULT NULL,
+  `job_data` blob NULL,
+  PRIMARY KEY (`sched_name`, `trigger_name`, `trigger_group`) USING BTREE,
+  INDEX `sched_name`(`sched_name`, `job_name`, `job_group`) USING BTREE,
+  CONSTRAINT `qrtz_triggers_ibfk_1` FOREIGN KEY (`sched_name`, `job_name`, `job_group`) REFERENCES `qrtz_job_details` (`sched_name`, `job_name`, `job_group`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of qrtz_triggers
+-- ----------------------------
+INSERT INTO `qrtz_triggers` VALUES ('clusteredScheduler', '测试任务', 'demo', '测试任务', 'demo', NULL, 1553568960000, 1553568900000, 5, 'WAITING', 'CRON', 1553564598000, 0, NULL, 2, '');
 
 -- ----------------------------
 -- Table structure for sys_application
@@ -475,6 +659,62 @@ CREATE TABLE `sys_file_info`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Table structure for sys_job
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_job`;
+CREATE TABLE `sys_job`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '任务id',
+  `job_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '任务名称',
+  `job_group` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '任务组名',
+  `job_order` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '组内执行顺利，值越大执行优先级越高，最大值9，最小值1',
+  `job_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1' COMMENT '1、java类;2、spring bean名称;3、rest调用;4、jar调用;9其他',
+  `execute_path` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'job_type=3时，rest调用地址，仅支持rest get协议,需要增加String返回值，0成功，1失败;job_type=4时，jar路径;其它值为空',
+  `params_value` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '参数值',
+  `cron_expression` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'cron执行表达式',
+  `misfire_policy` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '3' COMMENT '错误策略（1立即执行 2执行一次 3放弃执行）',
+  `job_tenant_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '1' COMMENT '1、多租户任务;2、非多租户任务',
+  `job_status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '状态（1、未发布;2、运行中;3、暂停;4、删除;）',
+  `job_execute_status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '状态（0正常 1异常）',
+  `start_time` datetime(0) NULL DEFAULT NULL COMMENT '初次执行时间',
+  `previous_time` datetime(0) NULL DEFAULT NULL COMMENT '上次执行时间',
+  `next_time` datetime(0) NULL DEFAULT NULL COMMENT '下次执行时间',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '创建者',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '更新时间',
+  `remarks` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注信息',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 1代表删除）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_job
+-- ----------------------------
+INSERT INTO `sys_job` VALUES (1, 'demoMethod', 'demo', '5', '2', 'demo.demoMethod', '1', '0 * * * * ? *', '3', '1', '3', '0', '2020-05-21 16:17:11', '2020-06-02 10:37:00', '2020-06-02 10:38:00', 'admin', '2019-03-25 14:00:14', 'entfrm', '2021-04-04 17:20:50', '演示Spring Bean的定时任务', '0');
+
+-- ----------------------------
+-- Table structure for sys_job_log
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_job_log`;
+CREATE TABLE `sys_job_log`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '任务日志ID',
+  `job_id` int(11) NOT NULL COMMENT '任务id',
+  `job_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '任务名称',
+  `job_group` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '任务组名',
+  `job_order` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '组内执行顺利，值越大执行优先级越高，最大值9，最小值1',
+  `job_type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '1' COMMENT '1、java类;2、spring bean名称;3、rest调用;4、jar调用;9其他',
+  `execute_path` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'job_type=3时，rest调用地址，仅支持post协议;job_type=4时，jar路径;其它值为空',
+  `params_value` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '参数值',
+  `cron_expression` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'cron执行表达式',
+  `job_message` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '日志信息',
+  `job_log_status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '执行状态（0正常 1失败）',
+  `execute_time` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '执行时间',
+  `exception_info` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '异常信息',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '定时任务执行日志表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for sys_login_log
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_login_log`;
@@ -489,26 +729,7 @@ CREATE TABLE `sys_login_log`  (
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 478 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of sys_login_log
--- ----------------------------
-INSERT INTO `sys_login_log` VALUES (463, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 21:22:49');
-INSERT INTO `sys_login_log` VALUES (464, 'entfrm', '1', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 21:35:56');
-INSERT INTO `sys_login_log` VALUES (465, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 21:36:03');
-INSERT INTO `sys_login_log` VALUES (466, 'entfrm', '1', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 21:59:18');
-INSERT INTO `sys_login_log` VALUES (467, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 21:59:23');
-INSERT INTO `sys_login_log` VALUES (468, 'entfrm', '1', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 22:00:53');
-INSERT INTO `sys_login_log` VALUES (469, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 22:01:04');
-INSERT INTO `sys_login_log` VALUES (470, 'entfrm', '1', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 23:27:38');
-INSERT INTO `sys_login_log` VALUES (471, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 23:27:45');
-INSERT INTO `sys_login_log` VALUES (472, 'entfrm', '1', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 23:34:41');
-INSERT INTO `sys_login_log` VALUES (473, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-26 23:34:47');
-INSERT INTO `sys_login_log` VALUES (474, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-27 09:08:15');
-INSERT INTO `sys_login_log` VALUES (475, 'access-token', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '1', '登录失败，异常：Invalid access token: c88968e6-2d51-4485-8f0b-417366646638', '2021-03-27 11:46:45');
-INSERT INTO `sys_login_log` VALUES (476, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-27 11:46:53');
-INSERT INTO `sys_login_log` VALUES (477, 'entfrm', '0', '127.0.0.1', '0|0|0|内网IP|内网IP', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', '0', '', '2021-03-27 12:09:10');
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -587,6 +808,7 @@ INSERT INTO `sys_menu` VALUES (44, '文件管理', 1, NULL, 1, 'C', 'fileInfo', 
 INSERT INTO `sys_menu` VALUES (45, '终端管理', 1, NULL, 1, 'C', 'clientDetails', 'system/clientDetails/index', NULL, 'phone', '0', 9, '0', 'entfrm', '2020-03-17 17:57:46', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (46, '数据备份', 1, NULL, 1, 'C', 'backup', 'system/backup/index', NULL, 'date-range', '0', 11, '0', 'entfrm', '2020-03-17 18:02:21', NULL, '2020-03-18 22:20:28', NULL, '0');
 INSERT INTO `sys_menu` VALUES (47, '令牌管理', 2, NULL, 1, 'C', 'token', 'monitor/token/index', NULL, 'post', '0', 1, '0', 'entfrm', '2020-03-17 17:59:55', 'entfrm', '2020-05-10 22:32:05', NULL, '0');
+INSERT INTO `sys_menu` VALUES (48, '定时任务', 2, NULL, 1, 'C', 'job', 'monitor/job/index', NULL, 'time-range', '0', 2, '0', 'entfrm', '2020-03-17 18:08:23', NULL, '2020-03-18 22:20:23', NULL, '0');
 INSERT INTO `sys_menu` VALUES (49, '数据监控', 2, NULL, 1, 'C', 'druid', 'monitor/druid/index', NULL, 'druid', '0', 3, '0', 'entfrm', '2020-03-17 18:08:56', NULL, '2020-03-20 18:53:07', NULL, '0');
 INSERT INTO `sys_menu` VALUES (50, '服务监控', 2, NULL, 1, 'C', 'server', 'monitor/server/index', NULL, 'server', '0', 4, '0', 'entfrm', '2020-03-17 18:09:39', 'entfrm', '2020-03-20 19:23:24', NULL, '0');
 INSERT INTO `sys_menu` VALUES (51, 'API监控', 2, NULL, 1, 'C', 'apiStat', 'monitor/apiStat/index', 'apiStat_view', 'chart', '0', 6, '0', 'entfrm', '2020-03-17 18:15:13', 'entfrm', '2020-05-17 16:48:20', NULL, '0');
@@ -627,6 +849,15 @@ INSERT INTO `sys_menu` VALUES (92, '表删除', 79, NULL, 1, 'F', NULL, '#', 'da
 INSERT INTO `sys_menu` VALUES (93, '表查看', 79, NULL, 1, 'F', NULL, '#', 'datatable_view', NULL, '0', 4, '0', 'entfrm', '2020-03-25 15:01:06', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (94, '表配置', 79, NULL, 1, 'F', NULL, '#', 'datatable_config', NULL, '0', 5, '0', 'entfrm', '2020-03-25 15:02:39', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (95, '代码生成', 79, NULL, 1, 'F', NULL, '#', 'datatable_gen', NULL, '0', 6, '0', 'entfrm', '2020-03-25 15:03:06', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (96, '任务新增', 48, NULL, 1, 'F', NULL, '#', 'job_add', NULL, '0', 1, '0', 'entfrm', '2020-03-26 15:34:44', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (97, '任务编辑', 48, NULL, 1, 'F', NULL, '#', 'job_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-26 15:34:59', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (98, '任务删除', 48, NULL, 1, 'F', NULL, '#', 'job_del', NULL, '0', 3, '0', 'entfrm', '2020-03-26 15:35:17', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (99, '任务查看', 48, NULL, 1, 'F', NULL, '#', 'job_view', NULL, '0', 4, '0', 'entfrm', '2020-03-26 15:35:32', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (100, '任务暂定', 48, NULL, 1, 'F', NULL, '#', 'job_stop', NULL, '0', 5, '0', 'entfrm', '2020-03-26 15:37:16', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (101, '任务启动', 48, NULL, 1, 'F', NULL, '#', 'job_start', NULL, '0', 6, '0', 'entfrm', '2020-03-26 15:37:35', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (102, '任务重置', 48, NULL, 1, 'F', NULL, '#', 'job_refresh', NULL, '0', 7, '0', 'entfrm', '2020-03-26 15:37:56', NULL, NULL, NULL, '0');
+INSERT INTO `sys_menu` VALUES (103, '任务日志查看', 48, NULL, 1, 'F', NULL, '#', 'jobLog_view', NULL, '0', 8, '0', 'entfrm', '2020-03-26 15:38:19', 'entfrm', '2020-03-26 15:38:35', NULL, '0');
+INSERT INTO `sys_menu` VALUES (104, '任务日志删除', 48, NULL, 1, 'F', NULL, '#', 'jobLog_del', NULL, '0', 9, '0', 'entfrm', '2020-03-26 15:38:51', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (105, '快捷方式新增', 43, NULL, 1, 'F', NULL, '#', 'shortcut_add', NULL, '0', 1, '0', 'entfrm', '2020-03-27 09:44:13', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (106, '快捷方式修改', 43, NULL, 1, 'F', NULL, '#', 'shortcut_edit', NULL, '0', 2, '0', 'entfrm', '2020-03-27 09:44:36', NULL, NULL, NULL, '0');
 INSERT INTO `sys_menu` VALUES (107, '快捷方式删除', 43, NULL, 1, 'F', NULL, '#', 'shortcut_del', NULL, '0', 3, '0', 'entfrm', '2020-03-27 09:44:57', NULL, NULL, NULL, '0');
@@ -682,30 +913,7 @@ CREATE TABLE `sys_oper_log`  (
   `execute_time` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '执行时间',
   `oper_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 847 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of sys_oper_log
--- ----------------------------
-INSERT INTO `sys_oper_log` VALUES (828, '1', '角色修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 'entfrm', 'entfrm', '/system/role/update', '127.0.0.1', 'XX XX', '', 0, '', '9', '2020-12-11 23:24:20');
-INSERT INTO `sys_oper_log` VALUES (829, '1', '角色修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 'entfrm', 'entfrm', '/system/role/update', '127.0.0.1', 'XX XX', '', 0, '', '157', '2020-12-11 23:24:24');
-INSERT INTO `sys_oper_log` VALUES (830, '1', '角色修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 'entfrm', 'entfrm', '/system/role/update', '127.0.0.1', 'XX XX', '', 0, '', '39', '2020-12-11 23:24:26');
-INSERT INTO `sys_oper_log` VALUES (831, '1', '角色删除', 'DELETE', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36', 'entfrm', 'entfrm', '/system/role/remove/3', '127.0.0.1', 'XX XX', '', 0, '', '21', '2020-12-11 23:24:31');
-INSERT INTO `sys_oper_log` VALUES (832, '1', '角色修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/role/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '0', '2021-03-26 23:27:31');
-INSERT INTO `sys_oper_log` VALUES (833, '1', '字典新增', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/dict/save', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '179', '2021-03-26 23:30:48');
-INSERT INTO `sys_oper_log` VALUES (834, '1', '字典数据新增', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/dictData/save', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '21', '2021-03-26 23:31:12');
-INSERT INTO `sys_oper_log` VALUES (835, '1', '字典数据新增', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/dictData/save', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '10', '2021-03-26 23:31:19');
-INSERT INTO `sys_oper_log` VALUES (836, '1', '表单管理新增', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/form/save', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '14', '2021-03-26 23:32:54');
-INSERT INTO `sys_oper_log` VALUES (837, '1', '菜单新增', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/menu/save', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '12', '2021-03-26 23:33:55');
-INSERT INTO `sys_oper_log` VALUES (838, '1', '角色修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/role/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '9', '2021-03-26 23:34:37');
-INSERT INTO `sys_oper_log` VALUES (839, '1', '菜单修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/menu/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '0', '2021-03-27 09:11:23');
-INSERT INTO `sys_oper_log` VALUES (840, '1', '菜单删除', 'DELETE', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/system/menu/remove/57', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '19', '2021-03-27 09:11:29');
-INSERT INTO `sys_oper_log` VALUES (841, '1', '表单管理修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/form/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '0', '2021-03-27 11:55:18');
-INSERT INTO `sys_oper_log` VALUES (842, '1', '表单管理修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/form/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '20', '2021-03-27 12:13:41');
-INSERT INTO `sys_oper_log` VALUES (843, '1', '表单管理修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/form/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '29', '2021-03-27 12:22:02');
-INSERT INTO `sys_oper_log` VALUES (844, '1', '表单管理修改', 'PUT', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/form/update', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '19', '2021-03-27 15:03:58');
-INSERT INTO `sys_oper_log` VALUES (845, '1', '新建/配置表', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/datatable/getGenTable', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 1, '\r\n### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column \'gen_api\' in \'field list\'\r\n### The error may exist in com/entfrm/biz/toolkit/mapper/TableMapper.java (best guess)\r\n### The error may involve defaultParameterMap\r\n### The error occurred while setting parameters\r\n### SQL: SELECT  id,table_name,table_comment,class_name,tpl_category,package_name,module_name,business_name,function_name,function_author,options,cols,gen_api,gen_way,menu_id,gen_path,sub_table_name,sub_table_field,create_by,create_time,update_by,update_time,remarks,del_flag  FROM dev_table   WHERE  del_flag=\'0\'\r\n### Cause: java.sql.SQLSyntaxErrorException: Unknown column \'gen_api\' in \'field list\'\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column \'gen_api\' in \'field list\'', '28', '2021-03-27 15:04:21');
-INSERT INTO `sys_oper_log` VALUES (846, '1', '新建/配置表', 'POST', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'entfrm', 'entfrm', '/toolkit/datatable/getGenTable', '127.0.0.1', '0|0|0|内网IP|内网IP', '', 0, '', '28', '2021-03-27 15:05:50');
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -871,6 +1079,16 @@ INSERT INTO `sys_role_menu` VALUES (1, 2);
 INSERT INTO `sys_role_menu` VALUES (1, 47);
 INSERT INTO `sys_role_menu` VALUES (1, 159);
 INSERT INTO `sys_role_menu` VALUES (1, 160);
+INSERT INTO `sys_role_menu` VALUES (1, 48);
+INSERT INTO `sys_role_menu` VALUES (1, 96);
+INSERT INTO `sys_role_menu` VALUES (1, 97);
+INSERT INTO `sys_role_menu` VALUES (1, 98);
+INSERT INTO `sys_role_menu` VALUES (1, 99);
+INSERT INTO `sys_role_menu` VALUES (1, 100);
+INSERT INTO `sys_role_menu` VALUES (1, 101);
+INSERT INTO `sys_role_menu` VALUES (1, 102);
+INSERT INTO `sys_role_menu` VALUES (1, 103);
+INSERT INTO `sys_role_menu` VALUES (1, 104);
 INSERT INTO `sys_role_menu` VALUES (1, 49);
 INSERT INTO `sys_role_menu` VALUES (1, 50);
 INSERT INTO `sys_role_menu` VALUES (1, 145);
@@ -890,13 +1108,6 @@ INSERT INTO `sys_role_menu` VALUES (1, 81);
 INSERT INTO `sys_role_menu` VALUES (1, 82);
 INSERT INTO `sys_role_menu` VALUES (1, 83);
 INSERT INTO `sys_role_menu` VALUES (1, 84);
-INSERT INTO `sys_role_menu` VALUES (1, 229);
-INSERT INTO `sys_role_menu` VALUES (1, 230);
-INSERT INTO `sys_role_menu` VALUES (1, 231);
-INSERT INTO `sys_role_menu` VALUES (1, 232);
-INSERT INTO `sys_role_menu` VALUES (1, 233);
-INSERT INTO `sys_role_menu` VALUES (1, 234);
-INSERT INTO `sys_role_menu` VALUES (1, 235);
 INSERT INTO `sys_role_menu` VALUES (1, 79);
 INSERT INTO `sys_role_menu` VALUES (1, 90);
 INSERT INTO `sys_role_menu` VALUES (1, 91);
@@ -910,6 +1121,13 @@ INSERT INTO `sys_role_menu` VALUES (1, 111);
 INSERT INTO `sys_role_menu` VALUES (1, 112);
 INSERT INTO `sys_role_menu` VALUES (1, 113);
 INSERT INTO `sys_role_menu` VALUES (1, 114);
+INSERT INTO `sys_role_menu` VALUES (1, 229);
+INSERT INTO `sys_role_menu` VALUES (1, 230);
+INSERT INTO `sys_role_menu` VALUES (1, 231);
+INSERT INTO `sys_role_menu` VALUES (1, 232);
+INSERT INTO `sys_role_menu` VALUES (1, 233);
+INSERT INTO `sys_role_menu` VALUES (1, 234);
+INSERT INTO `sys_role_menu` VALUES (1, 235);
 INSERT INTO `sys_role_menu` VALUES (1, 55);
 INSERT INTO `sys_role_menu` VALUES (1, 146);
 INSERT INTO `sys_role_menu` VALUES (1, 147);
@@ -917,7 +1135,6 @@ INSERT INTO `sys_role_menu` VALUES (1, 148);
 INSERT INTO `sys_role_menu` VALUES (1, 149);
 INSERT INTO `sys_role_menu` VALUES (1, 150);
 INSERT INTO `sys_role_menu` VALUES (1, 151);
-INSERT INTO `sys_role_menu` VALUES (1, 57);
 
 -- ----------------------------
 -- Table structure for sys_shortcut
@@ -978,7 +1195,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 'entfrm', '管理员', '00', '$2a$10$N0EAFRVjSYipHK/HDqzuEuVJZBabVTD7Z.NrXrnas984.1wjkaLK.', 1, '重庆总公司', '111@qq.com', NULL, '15611111111', '0', '/profile/avatar/avatar1589722134317.png', '0', '', NULL, 'entfrm', '2020-03-13 20:56:44', '', NULL, '全栈工程师', '0');
+INSERT INTO `sys_user` VALUES (1, 'entfrm', '管理员', '00', '$2a$10$N0EAFRVjSYipHK/HDqzuEuVJZBabVTD7Z.NrXrnas984.1wjkaLK.', 1, '重庆总公司', '111@qq.com', NULL, '15611111111', '0', '', '0', '', NULL, 'entfrm', '2020-03-13 20:56:44', '', NULL, '全栈工程师', '0');
 INSERT INTO `sys_user` VALUES (2, 'test', '测试01', '00', '$2a$10$Yq7NRB8VO4n1AxcThlwJweM1WE8fwvFRl0krQkNihGxiCRW/Gfp/.', 1, '重庆总公司', '', NULL, '', '0', '', '0', '', NULL, 'entfrm', '2020-03-14 18:14:11', '', NULL, NULL, '0');
 
 -- ----------------------------

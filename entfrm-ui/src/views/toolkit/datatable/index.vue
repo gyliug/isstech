@@ -104,6 +104,7 @@
             >
               <template slot-scope="scope">
                 <el-button
+                  v-if="scope.row.isConfig === '1'"
                   size="mini"
                   type="text"
                   icon="el-icon-view"

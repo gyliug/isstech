@@ -62,6 +62,7 @@ public class DatatableController {
             Table table = tableService.getOne(new QueryWrapper<Table>().eq("table_name", map.get("tableName")));
             if (table != null) {
                 map.put("isConfig", "1");
+                map.put("genWay", table.getGenWay());
             } else {
                 map.put("isConfig", "0");
             }

@@ -92,7 +92,7 @@
           </el-row>
 
           <el-table v-loading="loading" :data="datatableList" border @selection-change="handleSelectionChange">
-            <el-table-column type="selection" width="45" align="center"/>
+            <el-table-column type="selection" width="54" align="center"/>
             <el-table-column label="表名" align="center" prop="tableName" :show-overflow-tooltip="true"/>
             <el-table-column label="注释" align="center" prop="tableComment" :show-overflow-tooltip="true"/>
             <el-table-column label="创建时间" align="center" prop="createTime" :show-overflow-tooltip="true"/>

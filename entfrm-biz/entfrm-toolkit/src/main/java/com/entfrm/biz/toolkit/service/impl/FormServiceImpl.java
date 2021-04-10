@@ -1,5 +1,6 @@
 package com.entfrm.biz.toolkit.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import com.entfrm.biz.toolkit.mapper.FormMapper;
@@ -13,4 +14,8 @@ import com.entfrm.biz.toolkit.service.FormService;
  */
 @Service
 public class FormServiceImpl extends ServiceImpl<FormMapper, Form> implements FormService {
+    @Override
+    public Page<Form> customFormPage(Page<Form> page, Form form) {
+        return page.setRecords(baseMapper.selectCustomQuery(page, form));
+    }
 }

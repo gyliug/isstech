@@ -22,4 +22,21 @@
         <result property="delFlag" column="del_flag"/>
     </resultMap>
 
+   <!-- 也可以返回上面map   resultMap="FormResult"-->
+    <select id="selectCustomQuery" resultType="Form">
+        SELECT *, u.nick_name FROM dev_form a
+        LEFT JOIN sys_user u ON u.user_name = a.create_by
+        <where>
+            <if test="query.type != null and query.type != ''">
+                AND a.type = #{type}
+            </if>
+            <if test="query.name != null and query.name != ''">
+                AND a.name like concat('%', #{name}, '%')
+            </if>
+            <if test="query.beginTime != null and query.beginTime != '' and query.endTime != null and query.endTime != ''">
+                AND a.create_time BETWEEN #{query.beginTime} AND #{query.endTime}
+            </if>
+        </where>
+        group by a.type
+    </select>
 </mapper>

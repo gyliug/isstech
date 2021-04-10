@@ -89,4 +89,10 @@ public class FormController {
         ExcelUtil<Form> util = new ExcelUtil<Form>(Form.class);
         return util.exportExcel(list, "表单数据");
     }
+
+    @GetMapping("/customFormList")
+    public R customFormList(Page page, Form form) {
+        page = formService.customFormPage(page, form);
+        return R.ok(page.getRecords(), page.getTotal());
+    }
 }

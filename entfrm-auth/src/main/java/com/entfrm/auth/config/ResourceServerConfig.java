@@ -38,6 +38,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter implem
                         "/toolkit/dataset/api/**", "/activiti/process/resource", "/actuator/**", "/api/**").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new CaptchaFilter(redisTemplate), UsernamePasswordAuthenticationFilter.class);
+        //让X-frame-options失效,去除iframe限制
+        http.headers().frameOptions().disable();
     }
 
     @Override

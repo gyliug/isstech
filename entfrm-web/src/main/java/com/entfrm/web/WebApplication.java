@@ -1,11 +1,12 @@
 package com.entfrm.web;
 
+import org.activiti.spring.boot.SecurityAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-@SpringBootApplication(scanBasePackages = "com.entfrm")
+@SpringBootApplication(scanBasePackages = "com.entfrm",exclude = SecurityAutoConfiguration.class)
 public class WebApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

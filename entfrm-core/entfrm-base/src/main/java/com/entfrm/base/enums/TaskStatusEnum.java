@@ -14,7 +14,7 @@ public enum TaskStatusEnum {
     /**
      * 未提交
      */
-    UNSUBMIT("0", "未提交"),
+    UN_SUBMIT("0", "未提交"),
 
     /**
      * 审核中
@@ -25,6 +25,11 @@ public enum TaskStatusEnum {
      * 已完成
      */
     COMPLETED("2", "已完成"),
+
+    /**
+     * 作废流程
+     */
+    ABOLISH_PROCESS("8", "作废"),
 
     /**
      * 驳回

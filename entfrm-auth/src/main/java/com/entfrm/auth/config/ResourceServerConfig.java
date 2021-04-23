@@ -30,14 +30,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter implem
     @SneakyThrows
     public void configure(HttpSecurity http) {
         http
-                // CRSF禁用，因为不使用session
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers(
-                        "/oauth/**", "/common/**", "/cms/article/doc/**", "/activiti/service/**", "/activiti/task/track/**", "/captcha/**",
-                        "/toolkit/dataset/api/**", "/activiti/process/resource", "/actuator/**", "/api/**").permitAll()
-                .anyRequest().authenticated()
-                .and().addFilterBefore(new CaptchaFilter(redisTemplate), UsernamePasswordAuthenticationFilter.class);
+            // CRSF禁用，因为不使用session
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers(
+                    "/oauth/**", "/common/**", "/cms/article/doc/**", "/activiti/service/**", "/activiti/task/track/**", "/captcha/**",
+                    "/toolkit/dataset/api/**", "/activiti/process/resource", "/activiti/IInitiatedProcess/tracking", "/actuator/**", "/api/**").permitAll()
+            .anyRequest().authenticated()
+            .and().addFilterBefore(new CaptchaFilter(redisTemplate), UsernamePasswordAuthenticationFilter.class);
         //让X-frame-options失效,去除iframe限制
         http.headers().frameOptions().disable();
     }

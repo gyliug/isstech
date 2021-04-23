@@ -7,7 +7,7 @@ import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 import org.springframework.util.Assert;
 
 /**
- *
+ * .
  * @date 2019-06-28
  */
 class AutowireCapableBeanJobFactory extends SpringBeanJobFactory {

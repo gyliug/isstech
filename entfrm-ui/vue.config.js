@@ -47,13 +47,17 @@ module.exports = {
     name: name,
     resolve: {
       alias: {
-        '@': resolve('src')
+        //'@': resolve('src')
       }
     }
   },
   chainWebpack(config) {
     config.plugins.delete('preload') // TODO: need test
     config.plugins.delete('prefetch') // TODO: need test
+    // install monaco-editor-webpack-plugin
+    config.plugin('MonacoWebpackPlugin')
+          .use(require('monaco-editor-webpack-plugin'),
+               [{languages: ['typescript', 'javascript', 'css', 'json']}])
 
     // set svg-sprite-loader
     config.module

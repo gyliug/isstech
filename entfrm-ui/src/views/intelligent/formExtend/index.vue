@@ -97,7 +97,6 @@
         </template>
       </el-table-column>
       <el-table-column label="备注" align="center" prop="remarks" width="180" :show-overflow-tooltip="true"/>
-      >
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button

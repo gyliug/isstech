@@ -487,7 +487,7 @@ export default {
     },
     // 节点单击事件
     handleNodeClick(data) {
-      this.queryParams.deptId = data.id;
+      this.queryParams.deptId = data.deptId;
       this.getList();
     },
     // 用户状态修改
@@ -592,7 +592,7 @@ export default {
         if (valid) {
           let getNameById = (deptId, deptOptions) => {
             for (let i = 0; i < deptOptions.length; i++) {
-              if (deptOptions[i].id === deptId) {
+              if (deptOptions[i].deptId === deptId) {
                 return deptOptions[i].name;
               }
               if (deptOptions[i].children) {

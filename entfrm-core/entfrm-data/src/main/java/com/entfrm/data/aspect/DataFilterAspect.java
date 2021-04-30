@@ -100,7 +100,6 @@ public class DataFilterAspect {
             sqlFilter.append(" (");
             for (int i = 0; i < roles.size(); i++) {
                 String dataScope = jdbcTemplate.queryForObject(SqlConstants.ROLE_DATASCOPE, String.class, roles.get(i));
-                ;
                 if (i != 0) {
                     sqlFilter.append(" OR");
                 }

@@ -139,7 +139,7 @@ public class BusinessIntegratedProcessServiceImpl implements BusinessIntegratedP
 
     @Override
     public Map<String, Object> businessSelect(Object id,String formCode,Float version) {
-        String code=formCode,businessId=Convert.convert(String.class,id);;
+        String code=formCode,businessId=Convert.convert(String.class,id);
         FormExtend formExtend=formExtendMapper.selectOne(Wrappers.<FormExtend>lambdaQuery().eq(FormExtend::getCode,code));
         Map<String,Object> result=new HashMap<>();
         if(ObjectUtil.isNotEmpty(formExtend)){

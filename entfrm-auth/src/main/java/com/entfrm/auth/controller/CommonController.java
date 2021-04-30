@@ -76,7 +76,7 @@ public class CommonController {
             // 获取文件的后缀名
             String type = UploadUtil.getType(fileFormat);
             // 新文件名
-            String newFileName = type + new Date().getTime();
+            String newFileName = type + System.currentTimeMillis();
             // 获取大小
             String fileSize = FileUtil.fileSize(file.getSize());
             // 上传文件

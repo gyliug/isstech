@@ -4,14 +4,16 @@ import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.util.RuntimeUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.log.StaticLog;
+import cn.hutool.system.OsInfo;
+import cn.hutool.system.SystemUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.entfrm.biz.system.entity.Backup;
-import com.entfrm.biz.system.service.BackupService;
 import com.entfrm.base.api.R;
 import com.entfrm.base.constant.CommonConstants;
 import com.entfrm.base.util.DateUtil;
+import com.entfrm.biz.system.entity.Backup;
+import com.entfrm.biz.system.service.BackupService;
 import com.entfrm.log.annotation.OperLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -72,9 +74,10 @@ public class BackupController {
         backup.setName(name);
         String filePath = profile + "backup/";
         File uploadDir = new File(filePath);
-        if (!uploadDir.exists())
+        if (!uploadDir.exists()) {
             uploadDir.mkdirs();
-        String cmd = "cmd /c mysqldump -u" + username + " -p" + password + " " + CommonConstants.DB_NAME + " > "
+        }
+        String cmd = getOsCmd() + "mysqldump -u" + username + " -p" + password + " " + CommonConstants.DB_NAME + " > "
                 + filePath + CommonConstants.DB_NAME + "_" + name + ".sql";
         backup.setPath(filePath + CommonConstants.DB_NAME + "_" + name + ".sql");
         //执行备份命令
@@ -95,7 +98,7 @@ public class BackupController {
     public R restore(@PathVariable("id") Integer id) {
         Backup backup = backupService.getById(id);
         if (backup != null) {
-            String cmd = "cmd /c mysql -u" + username + " -p" + password + " " + CommonConstants.DB_NAME + " < " + backup.getPath();
+            String cmd = getOsCmd() + "mysql -u" + username + " -p" + password + " " + CommonConstants.DB_NAME + " < " + backup.getPath();
             //执行还原命令
             try {
                 StaticLog.info("执行还原命令：" + cmd);
@@ -105,6 +108,15 @@ public class BackupController {
             }
         }
         return R.ok();
+    }
+
+    private String getOsCmd() {
+        OsInfo osInfo = SystemUtil.getOsInfo();
+        String cmd = "";
+        if (osInfo.isWindows()) {
+            cmd = "cmd /c ";
+        }
+        return cmd;
     }
 
     @OperLog("备份删除")

@@ -72,12 +72,18 @@
     <el-table v-loading="loading" :data="fileInfoList" border @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="文件编号" align="center" prop="id" />
-      <el-table-column label="文件名称" align="center" prop="name" :show-overflow-tooltip="true" />
+      <el-table-column label="文件名称" align="center" prop="name" :show-overflow-tooltip="true" >
+        <template slot-scope="scope">
+          <el-link :href="newPath(scope.row.path)" target="_blank">{{ scope.row.name}}</el-link>
+        </template>
+      </el-table-column>
       <el-table-column label="缩略图" align="center" prop="thumbnail" :show-overflow-tooltip="true">
         <template slot-scope="scope">
-          <img v-if="scope.row.type == 'image'" :src="newPath(scope.row.path)" width="32" height="23"/>
-          <i v-if="scope.row.type == 'media'"  class="el-icon-video-camera-solid" style="font-size: 23px"/>
-          <i v-if="scope.row.type == 'file'" class="el-icon-copy-document" style="font-size: 23px"/>
+          <el-link :href="newPath(scope.row.path)" target="_blank">
+            <img v-if="scope.row.type == 'image'" :src="newPath(scope.row.path)" width="32" height="23"/>
+            <i v-if="scope.row.type == 'media'"  class="el-icon-video-camera-solid" style="font-size: 23px"/>
+            <i v-if="scope.row.type == 'file'" class="el-icon-copy-document" style="font-size: 23px"/>
+          </el-link>
         </template>
       </el-table-column>
       <el-table-column label="文件类型" align="center" prop="type" :formatter="typeFormat" />

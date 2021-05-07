@@ -26,7 +26,8 @@ import {
   selectDictLabels,
   download,
   handleTree,
-  vGet
+  vGet,
+  newPath
 } from "@/utils/entfrm";
 import Pagination from "@/components/Pagination";
 //自定义表格工具扩展
@@ -47,6 +48,7 @@ Vue.prototype.selectDictLabels = selectDictLabels
 Vue.prototype.download = download
 Vue.prototype.handleTree = handleTree
 Vue.prototype.vGet = vGet
+Vue.prototype.newPath = newPath
 
 Vue.prototype.msgSuccess = function (msg) {
   this.$message({ showClose: true, message: msg, type: "success" });

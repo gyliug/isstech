@@ -163,3 +163,14 @@ export function vGet(origin, keys) {
     return undefined
   }
 }
+
+
+// 地址转换
+export function newPath(path) {
+  return baseURL + path;
+}
+
+export function preview(path) {
+  const previewUrl = 'http://' + location.host + baseURL + path
+  window.open('http://' + location.host + '/preview/onlinePreview?url=' + encodeURIComponent(previewUrl));
+}

@@ -94,7 +94,7 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/jobLog',
+    path: '/monitor',
     component: Layout,
     hidden: true,
     children: [
@@ -118,7 +118,25 @@ export const constantRoutes = [
         meta: { title: '新建/配置表' }
       }
     ]
-  }
+  },
+  {
+    path: '/toolkit',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'dynamicForm',
+        component: (resolve) => require(['@/views/toolkit/form/list'], resolve),
+        name: 'DynamicForm',
+        meta: { title: '动态表单数据' }
+      }
+    ]
+  },
+  {
+    path: '/online',
+    component: (resolve) => require(['@/views/toolkit/form/online'], resolve),
+    hidden: true
+  },
 ]
 
 export default new Router({

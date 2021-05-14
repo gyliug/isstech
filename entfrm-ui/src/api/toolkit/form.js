@@ -43,13 +43,55 @@ export function delForm(id) {
   })
 }
 
-
-
 // 导出表单管理
 export function exportForm(query) {
   return request({
     url: '/toolkit/form/export',
     method: 'get',
     params: query
+  })
+}
+
+// 查询动态表单数据列表
+export function listDynamicForm(query) {
+  return request({
+    url: '/toolkit/form/dynamicFormList',
+    method: 'get',
+    params: query
+  })
+}
+
+// 查询动态表单数据
+export function getDynamicForm(query) {
+  return request({
+    url: '/toolkit/form/dynamicForm',
+    method: 'get',
+    params: query
+  })
+}
+
+// 新增动态表单管理
+export function addDynamicForm(data) {
+  return request({
+    url: '/toolkit/form/dynamicFormSave',
+    method: 'post',
+    data: data
+  })
+}
+
+// 删除动态表单数据
+export function removeDynamicForm(query) {
+  return request({
+    url: '/toolkit/form/dynamicFormRemove',
+    method: 'delete',
+    params: query
+  })
+}
+
+// 查询动态表单字段
+export function getColumns(tableName) {
+  return request({
+    url: '/toolkit/form/column/' + tableName,
+    method: 'get'
   })
 }

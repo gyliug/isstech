@@ -1,50 +1,5 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="表单名称" prop="name">
-        <el-input
-          v-model="queryParams.name"
-          placeholder="请输入表单名称"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="表单类型" prop="type">
-        <el-select v-model="queryParams.type" placeholder="请选择表单类型" clearable size="small">
-          <el-option
-            v-for="dict in typeOptions"
-            :key="dict.value"
-            :label="dict.label"
-            :value="dict.value"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="表名" prop="tableName">
-        <el-input
-          v-model="queryParams.tableName"
-          placeholder="请输入表名"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="创建时间">
-        <el-date-picker v-model="dateRange"
-                        size="small"
-                        style="width: 240px"
-                        value-format="yyyy-MM-dd"
-                        type="daterange"
-                        range-separator="-"
-                        start-placeholder="开始日期"
-                        end-placeholder="结束日期"
-        ></el-date-picker>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
-      </el-form-item>
-    </el-form>
 
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
@@ -52,20 +7,9 @@
           type="primary"
           icon="el-icon-plus"
           size="mini"
-          @click="handleAdd"
+          @click="handleOnline"
           v-hasPerm="['form_add']"
         >新增
-        </el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPerm="['form_edit']"
-        >修改
         </el-button>
       </el-col>
       <el-col :span="1.5">
@@ -79,33 +23,36 @@
         >删除
         </el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPerm="['form_export']"
-        >导出
-        </el-button>
-      </el-col>
+      <!--      <el-col :span="1.5">
+              <el-button
+                type="success"
+                icon="el-icon-edit"
+                size="mini"
+                :disabled="single"
+                @click="handleUpdate"
+                v-hasPerm="['form_edit']"
+              >修改
+              </el-button>
+            </el-col>
+            <el-col :span="1.5">
+              <el-button
+                type="warning"
+                icon="el-icon-download"
+                size="mini"
+                @click="handleExport"
+                v-hasPerm="['form_export']"
+              >导出
+              </el-button>
+            </el-col>-->
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="formList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="formList" border @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center"/>
-      <el-table-column label="主键" width="60" align="center" prop="id"/>
-      <el-table-column label="表单名称" align="center" prop="name"/>
-      <el-table-column label="表单编码" align="center" prop="code"/>
-      <el-table-column label="表单类型" align="center" prop="type" :formatter="typeFormat"/>
-      <el-table-column label="表名" align="center" prop="tableName"/>
-      <!--      <el-table-column label="表单数据" align="center" prop="data"/>
-            <el-table-column label="自动建表" align="center" prop="autoCreate" :formatter="autoCreateFormat"/>-->
-      <el-table-column label="版本号" align="center" prop="version"/>
-      <el-table-column label="状态" align="center" prop="status" :formatter="statusFormat"/>
-      <el-table-column label="创建时间" align="center" prop="createTime" width="180">
+      <el-table-column v-for="(column, index) in columnList" v-if="column.isList == '1'" :key="index"
+                       :label="column.columnComment" align="center" :prop="column.javaField" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime) }}</span>
+          <span>{{scope.row[`${column.columnName}`] ===undefined ? '' : scope.row[`${column.columnName}`]}}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -114,42 +61,26 @@
             size="mini"
             type="text"
             icon="el-icon-magic-stick"
-            @click="handleDesign(scope.row)"
+            @click="handleDetail(scope.row)"
             v-hasPerm="['form_design']"
-          >设计
+          >查看
           </el-button>
+<!--          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-edit"
+            @click="handleUpdate(scope.row)"
+            v-hasPerm="['form_edit']"
+          >修改
+          </el-button>-->
           <el-button
             size="mini"
             type="text"
-            icon="el-icon-tickets"
-            @click="handleData(scope.row)"
-            v-hasPerm="['form_edit']"
-          >数据
+            icon="el-icon-delete"
+            @click="handleDelete(scope.row)"
+            v-hasPerm="['form_del']"
+          >删除
           </el-button>
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-edit-outline"
-            @click="handleOnline(scope.row)"
-            v-hasPerm="['form_edit']"
-          >在线填表
-          </el-button>
-          <!--          <el-button
-                      size="mini"
-                      type="text"
-                      icon="el-icon-edit"
-                      @click="handleUpdate(scope.row)"
-                      v-hasPerm="['form_edit']"
-                    >修改
-                    </el-button>
-                    <el-button
-                      size="mini"
-                      type="text"
-                      icon="el-icon-delete"
-                      @click="handleDelete(scope.row)"
-                      v-hasPerm="['form_del']"
-                    >删除
-                    </el-button>-->
         </template>
       </el-table-column>
     </el-table>
@@ -223,30 +154,27 @@
       </div>
     </el-dialog>
 
-    <el-dialog title="表单设计" :visible.sync="openDesign" append-to-body :fullscreen="true">
-      <avue-form-design style="height: 86vh;"
-                        ref="formDesign"
-                        :showGithubStar="false"
-                        :options="options"
-                        :include-fields="includeFields"
-                        :toolbar="['clear', 'preview', 'import']">
-        <template slot="toolbar">
-          <el-button type="text"
-                     size="medium"
-                     icon="el-icon-download"
-                     @click="handleSubmit">保存
-          </el-button>
-        </template>
-      </avue-form-design>
+    <el-dialog :title="dtitle" :visible.sync="dopen" append-to-body>
+      <avue-form :option="dynamicForm.option" v-model="dynamicForm.obj" ></avue-form>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import {listForm, getForm, delForm, addForm, editForm, exportForm} from "@/api/toolkit/form";
+import {
+  getForm,
+  delForm,
+  addForm,
+  editForm,
+  exportForm,
+  listDynamicForm,
+  getDynamicForm,
+  removeDynamicForm,
+  getColumns
+} from "@/api/toolkit/form";
 
 export default {
-  name: "Form",
+  name: "DynamicForm",
   components: {},
   data() {
     return {
@@ -264,10 +192,13 @@ export default {
       total: 0,
       // 表单管理表格数据
       formList: [],
+      columnList: [],
       // 弹出层标题
       title: "",
+      dtitle: "",
       // 是否显示弹出层
       open: false,
+      dopen: false,
       // 是否显示弹出层
       openDesign: false,
       // 日期范围
@@ -285,6 +216,7 @@ export default {
         type: null,
         tableName: null,
         createTime: null,
+        params: {}
       },
       options: {
         column: [],
@@ -292,6 +224,10 @@ export default {
       includeFields: ['input', 'password', 'textarea', 'number', 'radio', 'checkbox', 'select', 'upload', 'date', 'time', 'datetime'],
       // 表单参数
       form: {},
+      dynamicForm:{
+        option: {},
+        obj: {}
+      },
       // 表单校验
       rules: {
         name: [
@@ -313,25 +249,25 @@ export default {
     };
   },
   created() {
+    this.getColumnList();
     this.getList();
-    this.getDicts("form_type").then(response => {
-      this.typeOptions = response.data;
-    });
-    this.getDicts("yes_no").then(response => {
-      this.autoCreateOptions = response.data;
-    });
-    this.getDicts("status").then(response => {
-      this.statusOptions = response.data;
-    });
-
   },
   methods: {
     /** 查询表单管理列表 */
     getList() {
       this.loading = true;
-      listForm(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
+      this.queryParams.tableName = this.$route.query.tableName
+      listDynamicForm(this.queryParams).then(response => {
         this.formList = response.data;
         this.total = response.total;
+        this.loading = false;
+      });
+    },
+    getColumnList() {
+      this.loading = true;
+      const tableName = this.$route.query.tableName
+      getColumns(tableName).then(response => {
+        this.columnList = response.data;
         this.loading = false;
       });
     },
@@ -382,6 +318,24 @@ export default {
       this.single = selection.length !== 1
       this.multiple = !selection.length
     },
+    handleOnline() {
+      const id = this.$route.query.id
+      let routeUrl = this.$router.resolve({
+        path: "/online",
+        query: {id: id}
+      });
+      window.open(routeUrl.href, '_blank');
+    },
+    handleDetail(row){
+      const tableName = this.$route.query.tableName
+      getDynamicForm({tableName: tableName, id: row.id}).then(response => {
+        this.dynamicForm.obj = response.data;
+        this.dynamicForm.option = JSON.parse(response.msg)
+        this.dynamicForm.option.detail = true
+        this.dopen = true;
+        this.dtitle = "详情";
+      });
+    },
     /** 新增按钮操作 */
     handleAdd() {
       this.reset();
@@ -419,22 +373,7 @@ export default {
       });
     },
     handleDesign(row) {
-      this.form = row;
-      this.openDesign = true
-      console.log(this.form.data)
-      if (this.form.data) {
-        this.options = JSON.parse(this.form.data)
-      }
-    },
-    handleData(row) {
-      this.$router.push({path: '/toolkit/dynamicForm', query: {id: row.id, tableName: row.tableName}})
-    },
-    handleOnline(row) {
-      let routeUrl = this.$router.resolve({
-        path: "/online",
-        query: {id: row.id}
-      });
-      window.open(routeUrl.href, '_blank');
+
     },
     handleSubmit() {
       this.$refs.formDesign.getData('json').then(data => {
@@ -448,12 +387,13 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const ids = row.id || this.ids;
-      this.$confirm('是否确认删除表单管理编号为"' + ids + '"的数据项?', "警告", {
+      const tableName = this.$route.query.tableName
+      this.$confirm('是否确认删除动态表单编号为"' + ids + '"的数据项?', "警告", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
       }).then(function () {
-        return delForm(ids);
+        return removeDynamicForm({tableName: tableName, ids: ids});
       }).then(() => {
         this.getList();
         this.msgSuccess("删除成功");

@@ -1,23 +1,37 @@
 package com.entfrm.biz.toolkit.controller;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONNull;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.entfrm.biz.toolkit.entity.Form;
-import com.entfrm.biz.toolkit.service.FormService;
-import com.entfrm.log.annotation.OperLog;
-import org.springframework.security.access.prepost.PreAuthorize;
 import com.entfrm.base.api.R;
+import com.entfrm.base.constant.CommonConstants;
 import com.entfrm.base.util.ExcelUtil;
-import lombok.AllArgsConstructor;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import com.entfrm.biz.toolkit.dto.FormDto;
+import com.entfrm.biz.toolkit.entity.Column;
+import com.entfrm.biz.toolkit.entity.Form;
+import com.entfrm.biz.toolkit.entity.Table;
+import com.entfrm.biz.toolkit.service.ColumnService;
+import com.entfrm.biz.toolkit.service.FormService;
+import com.entfrm.biz.toolkit.service.TableService;
+import com.entfrm.biz.toolkit.util.BuilderUtil;
+import com.entfrm.log.annotation.OperLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author entfrm
@@ -30,7 +44,10 @@ import java.util.Arrays;
 @RequestMapping("/toolkit/form")
 public class FormController {
 
+    private final JdbcTemplate jdbcTemplate;
     private final FormService formService;
+    private final TableService tableService;
+    private final ColumnService columnService;
 
     private QueryWrapper<Form> getQueryWrapper(Form form) {
         return new QueryWrapper<Form>()
@@ -59,6 +76,7 @@ public class FormController {
     @ApiOperation("表单新增")
     @PreAuthorize("@ps.hasPerm('form_add')")
     @PostMapping("/save")
+    @Transactional
     public R save(@Validated @RequestBody Form form) {
         formService.save(form);
         return R.ok();
@@ -69,6 +87,23 @@ public class FormController {
     @PreAuthorize("@ps.hasPerm('form_edit')")
     @PutMapping("/update")
     public R update(@Validated @RequestBody Form form) {
+        if ("0".equals(form.getAutoCreate())) {
+            Table table = tableService.getOne(new QueryWrapper<Table>().eq("table_name", CommonConstants.PREFIX + form.getTableName()));
+            if(table == null){
+                table = BuilderUtil.createForm(form);
+                tableService.save(table);
+                if (table.getColumns() != null && table.getColumns().size() > 0) {
+                    for (Column column : table.getColumns()) {
+                        column.setTableId(table.getId());
+                        columnService.save(column);
+                    }
+                }
+                //创建SQL脚本
+                jdbcTemplate.execute(BuilderUtil.createTable(table));
+            }else {
+                //todo 更新表结构
+            }
+        }
         formService.updateById(form);
         return R.ok();
     }
@@ -90,9 +125,40 @@ public class FormController {
         return util.exportExcel(list, "表单数据");
     }
 
-    @GetMapping("/customFormList")
-    public R customFormList(Page page, Form form) {
-        page = formService.customFormPage(page, form);
-        return R.ok(page.getRecords(), page.getTotal());
+    @ApiOperation("动态表单列表")
+    @GetMapping("/dynamicFormList")
+    public R dynamicFormList(Page page, Form form, @RequestParam("params") String params) {
+        IPage<Map> formPage = formService.mapFormPage(page, form, params);
+        return R.ok(formPage.getRecords(), formPage.getTotal());
     }
+
+    @ApiOperation("动态表单查询")
+    @GetMapping("/dynamicForm")
+    public R dynamicFormById(String tableName, Integer id) {
+        Form form = formService.getOne(new QueryWrapper<Form>().eq("table_name", tableName));
+        return R.ok(formService.queryData(tableName, id), form.getData());
+    }
+
+    @PostMapping("dynamicFormSave")
+    public R dynamicFormSave(@RequestBody FormDto formDto) throws Exception{
+        Form form = formService.getById(formDto.getFormId());
+        List<Column> columns = BuilderUtil.createColumns(form.getData());
+        formService.saveData(form, columns, formDto.getData());
+        return R.ok("保存数据成功");
+    }
+
+    @ApiOperation("动态表单删除")
+    @DeleteMapping("/dynamicFormRemove")
+    public R dynamicFormRemove(String tableName, Integer[] ids) {
+        formService.removeData(tableName, ids);
+        return R.ok();
+    }
+
+    @GetMapping("/column/{tableName}")
+    public R column(@PathVariable String tableName) {
+        Table table = tableService.getOne(new QueryWrapper<Table>().eq("table_name", CommonConstants.PREFIX + tableName));
+        List<Column> columnList = columnService.list(new QueryWrapper<Column>().eq("table_id", table.getId()));
+        return R.ok(columnList);
+    }
+
 }

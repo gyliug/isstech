@@ -13,7 +13,7 @@ public interface CommonConstants {
     /**
      * 前缀
      */
-    String PREFIX = "entfrm_";
+    String PREFIX = "form_";
 
     /**
      * UTF-8 字符集
